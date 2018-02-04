@@ -13,9 +13,11 @@
 		61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61294A732024C7D0009F9886 /* Waller.xcdatamodeld */; };
 		61294A772024C7D0009F9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61294A762024C7D0009F9886 /* Assets.xcassets */; };
 		61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A782024C7D0009F9886 /* LaunchScreen.storyboard */; };
+		D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.release.xcconfig"; sourceTree = "<group>"; };
 		61294A692024C7D0009F9886 /* Waller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61294A6C2024C7D0009F9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61294A6E2024C7D0009F9886 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		61294A762024C7D0009F9886 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61294A792024C7D0009F9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61294A7B2024C7D0009F9886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62D248798B62B430FC2E862D /* Pods-Waller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.debug.xcconfig"; sourceTree = "<group>"; };
+		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24E6CC41032909971F747B5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5BBBD056102E468DD91D9840 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62D248798B62B430FC2E862D /* Pods-Waller.debug.xcconfig */,
+				609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		61294A602024C7D0009F9886 = {
 			isa = PBXGroup;
 			children = (
 				61294A6B2024C7D0009F9886 /* Waller */,
 				61294A6A2024C7D0009F9886 /* Products */,
+				5BBBD056102E468DD91D9840 /* Pods */,
+				24E6CC41032909971F747B5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61294A7E2024C7D0009F9886 /* Build configuration list for PBXNativeTarget "Waller" */;
 			buildPhases = (
+				5EB4C71A9392D1F5EBEBEFC1 /* [CP] Check Pods Manifest.lock */,
 				61294A652024C7D0009F9886 /* Sources */,
 				61294A662024C7D0009F9886 /* Frameworks */,
 				61294A672024C7D0009F9886 /* Resources */,
+				72CAA85F603110A4FB1B8188 /* [CP] Embed Pods Frameworks */,
+				27115F4AF669680A54C7D8B0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27115F4AF669680A54C7D8B0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Waller/Pods-Waller-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5EB4C71A9392D1F5EBEBEFC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Waller-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72CAA85F603110A4FB1B8188 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Waller/Pods-Waller-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		61294A652024C7D0009F9886 /* Sources */ = {
@@ -276,6 +354,7 @@
 		};
 		61294A7F2024C7D0009F9886 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62D248798B62B430FC2E862D /* Pods-Waller.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -291,6 +370,7 @@
 		};
 		61294A802024C7D0009F9886 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
