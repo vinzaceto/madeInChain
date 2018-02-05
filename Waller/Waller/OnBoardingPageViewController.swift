@@ -8,12 +8,59 @@
 
 import UIKit
 
-class OnBoardingPageViewController: UIPageViewController {
+class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
+    lazy var orderedViewController:[UIViewController] = {
+        return [self.newVC(viewController: "onPage0"), self.newVC(viewController: "onPage1") ]
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.dataSource = self
+        if let firstVC = orderedViewController.first {
+            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        }
 
         // Do any additional setup after loading the view.
+    }
+    
+    func newVC(viewController: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewController.index(of: viewController) else {
+            return nil
+        }
+        
+        let previousIndex = viewControllerIndex - 1
+        
+        guard previousIndex >= 0 else {
+            return self.orderedViewController.last
+        }
+        
+        guard orderedViewController.count > previousIndex else {
+            return nil
+        }
+        return orderedViewController[previousIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewController.index(of: viewController) else {
+            return nil
+        }
+        
+        let nextIndex = viewControllerIndex + 1
+        
+        guard orderedViewController.count != nextIndex else {
+            return self.orderedViewController.first
+        }
+        
+        guard orderedViewController.count > nextIndex else {
+            return nil
+        }
+        return orderedViewController[nextIndex]
     }
 
     override func didReceiveMemoryWarning() {
