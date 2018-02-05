@@ -11,7 +11,9 @@ import UIKit
 class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     lazy var orderedViewController:[UIViewController] = {
-        return [self.newVC(viewController: "onPage0"), self.newVC(viewController: "onPage1") ]
+        return [self.newVC(viewController: "onPage0"),
+                self.newVC(viewController: "onPage1"),
+                self.newVC(viewController: "onPage2")]
     }()
 
     override func viewDidLoad() {
@@ -37,7 +39,8 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         let previousIndex = viewControllerIndex - 1
         
         guard previousIndex >= 0 else {
-            return self.orderedViewController.last
+            // return self.orderedViewController.last
+            return nil
         }
         
         guard orderedViewController.count > previousIndex else {
@@ -54,7 +57,8 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         let nextIndex = viewControllerIndex + 1
         
         guard orderedViewController.count != nextIndex else {
-            return self.orderedViewController.first
+            //return self.orderedViewController.first
+            return nil
         }
         
         guard orderedViewController.count > nextIndex else {

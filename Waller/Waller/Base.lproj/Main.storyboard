@@ -38,6 +38,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="9hO-oZ-0bz">
+                                <rect key="frame" x="168" y="610" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="pageControl:" destination="kAN-af-2FR" eventType="valueChanged" id="u1n-SM-mLm"/>
+                                </connections>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="0.33673148110659179" green="0.4397889523429318" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -56,6 +63,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="kAN-af-2FR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="38" y="330"/>
         </scene>
@@ -95,6 +103,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAK-dU-igv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="805.60000000000002" y="329.68515742128938"/>
+        </scene>
+        <!--onPage2-->
+        <scene sceneID="rRv-aL-ZrB">
+            <objects>
+                <viewController storyboardIdentifier="onPage2" id="TA6-jy-KmM" userLabel="onPage2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PMN-4h-xg2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPB-c7-Arg">
+                                <rect key="frame" x="163" y="333" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OnBoarding page 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zji-8B-TzS">
+                                <rect key="frame" x="104" y="242" width="167" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.090808860957622528" green="0.4242483377456665" blue="0.11850970238447189" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pPB-c7-Arg" firstAttribute="leading" secondItem="9o9-tt-XVd" secondAttribute="leading" constant="163" id="DM4-tc-uXA"/>
+                            <constraint firstItem="zji-8B-TzS" firstAttribute="centerX" secondItem="pPB-c7-Arg" secondAttribute="centerX" id="IUj-MT-h83"/>
+                            <constraint firstItem="9o9-tt-XVd" firstAttribute="bottom" secondItem="pPB-c7-Arg" secondAttribute="bottom" constant="313" id="T2o-IM-h2S"/>
+                            <constraint firstItem="9o9-tt-XVd" firstAttribute="trailing" secondItem="pPB-c7-Arg" secondAttribute="trailing" constant="164" id="V0l-4R-1JQ"/>
+                            <constraint firstItem="zji-8B-TzS" firstAttribute="top" secondItem="9o9-tt-XVd" secondAttribute="top" constant="222" id="kws-P0-DaH"/>
+                            <constraint firstItem="zji-8B-TzS" firstAttribute="leading" secondItem="9o9-tt-XVd" secondAttribute="leading" constant="104" id="wFS-3y-Jih"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9o9-tt-XVd"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vgR-r0-b0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1550" y="330"/>
         </scene>
     </scenes>
 </document>
