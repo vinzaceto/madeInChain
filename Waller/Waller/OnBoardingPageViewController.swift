@@ -15,6 +15,8 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
                 self.newVC(viewController: "onPage1"),
                 self.newVC(viewController: "onPage2")]
     }()
+    
+    var pageControl = UIPageControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +25,21 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         if let firstVC = orderedViewController.first {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+        self.delegate = self
+        configurePageControl()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func configurePageControl() {
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen
+            .main.bounds.width, height: 50))
+        pageControl.numberOfPages = orderedViewController.count
+        pageControl.currentPage = 0
+        pageControl.tintColor = UIColor.white
+        pageControl.pageIndicatorTintColor = UIColor.gray
+        pageControl.currentPageIndicatorTintColor = UIColor.red
+        self.view.addSubview(pageControl)
     }
     
     func newVC(viewController: String) -> UIViewController {
@@ -65,6 +80,11 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
             return nil
         }
         return orderedViewController[nextIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let pageContentViewController = pageViewController.viewControllers![0]
+        self.pageControl.currentPage = orderedViewController.index(of: pageContentViewController)!
     }
 
     override func didReceiveMemoryWarning() {

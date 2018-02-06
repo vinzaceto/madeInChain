@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		249471392029ADB3001D2509 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249471382029ADB3001D2509 /* GradientView.swift */; };
+		2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2494713A2029B314001D2509 /* UIImgWithMask.swift */; };
 		24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */; };
 		61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6C2024C7D0009F9886 /* AppDelegate.swift */; };
 		61294A6F2024C7D0009F9886 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6E2024C7D0009F9886 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		249471382029ADB3001D2509 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		2494713A2029B314001D2509 /* UIImgWithMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImgWithMask.swift; sourceTree = "<group>"; };
 		24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageViewController.swift; sourceTree = "<group>"; };
 		609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.release.xcconfig"; sourceTree = "<group>"; };
 		61294A692024C7D0009F9886 /* Waller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waller.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,8 @@
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
 				61294A6E2024C7D0009F9886 /* ViewController.swift */,
 				61294A702024C7D0009F9886 /* Main.storyboard */,
+				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
+				249471382029ADB3001D2509 /* GradientView.swift */,
 				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
 				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
@@ -222,8 +228,10 @@
 			files = (
 				24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */,
 				61294A6F2024C7D0009F9886 /* ViewController.swift in Sources */,
+				249471392029ADB3001D2509 /* GradientView.swift in Sources */,
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
 				61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */,
+				2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
