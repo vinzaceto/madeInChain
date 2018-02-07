@@ -13,6 +13,13 @@
 		61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61294A732024C7D0009F9886 /* Waller.xcdatamodeld */; };
 		61294A772024C7D0009F9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61294A762024C7D0009F9886 /* Assets.xcassets */; };
 		61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A782024C7D0009F9886 /* LaunchScreen.storyboard */; };
+		618E4B17202A531A007F0D32 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B16202A531A007F0D32 /* AddViewController.swift */; };
+		618E4B19202A548A007F0D32 /* CreateStandardWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */; };
+		618E4B1C202A6404007F0D32 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */; };
+		61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDA62029B71100F270DF /* MultiOptionView.swift */; };
+		61DDBDA92029B72100F270DF /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDA82029B72100F270DF /* OptionView.swift */; };
+		61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDAA2029BCBE00F270DF /* Properties.swift */; };
+		61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDAC202A4CD600F270DF /* DataStructure.swift */; };
 		D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +33,14 @@
 		61294A762024C7D0009F9886 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61294A792024C7D0009F9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61294A7B2024C7D0009F9886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		618E4B16202A531A007F0D32 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStandardWalletController.swift; sourceTree = "<group>"; };
+		618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
+		618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Waller-Bridging-Header.h"; sourceTree = "<group>"; };
+		61DDBDA62029B71100F270DF /* MultiOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiOptionView.swift; sourceTree = "<group>"; };
+		61DDBDA82029B72100F270DF /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
+		61DDBDAA2029BCBE00F270DF /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
+		61DDBDAC202A4CD600F270DF /* DataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
 		62D248798B62B430FC2E862D /* Pods-Waller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.debug.xcconfig"; sourceTree = "<group>"; };
 		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,15 +95,31 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
+				61294A762024C7D0009F9886 /* Assets.xcassets */,
+				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
+				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
 				61294A6E2024C7D0009F9886 /* ViewController.swift */,
 				61294A702024C7D0009F9886 /* Main.storyboard */,
-				61294A762024C7D0009F9886 /* Assets.xcassets */,
-				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
+				618E4B16202A531A007F0D32 /* AddViewController.swift */,
+				618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */,
+				618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */,
+				618E4B1A202A5504007F0D32 /* MultiOptionClass */,
 				61294A7B2024C7D0009F9886 /* Info.plist */,
 				61294A732024C7D0009F9886 /* Waller.xcdatamodeld */,
+				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
+				618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */,
 			);
 			path = Waller;
+			sourceTree = "<group>";
+		};
+		618E4B1A202A5504007F0D32 /* MultiOptionClass */ = {
+			isa = PBXGroup;
+			children = (
+				61DDBDA62029B71100F270DF /* MultiOptionView.swift */,
+				61DDBDA82029B72100F270DF /* OptionView.swift */,
+			);
+			path = MultiOptionClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +157,7 @@
 				TargetAttributes = {
 					61294A682024C7D0009F9886 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -217,9 +249,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */,
 				61294A6F2024C7D0009F9886 /* ViewController.swift in Sources */,
+				618E4B17202A531A007F0D32 /* AddViewController.swift in Sources */,
+				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
+				618E4B1C202A6404007F0D32 /* SetPasswordViewController.swift in Sources */,
+				618E4B19202A548A007F0D32 /* CreateStandardWalletController.swift in Sources */,
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
 				61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */,
+				61DDBDA92029B72100F270DF /* OptionView.swift in Sources */,
+				61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,12 +396,15 @@
 			baseConfigurationReference = 62D248798B62B430FC2E862D /* Pods-Waller.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.Waller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Waller/Waller-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -373,12 +415,14 @@
 			baseConfigurationReference = 609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.Waller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Waller/Waller-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
