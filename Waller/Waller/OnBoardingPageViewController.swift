@@ -11,9 +11,17 @@ import UIKit
 class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     lazy var orderedViewController:[UIViewController] = {
-        return [self.newVC(viewController: "onPage0"),
-                self.newVC(viewController: "onPage1"),
-                self.newVC(viewController: "onPage2")]
+        
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        
+        let controller1 = st.instantiateViewController(withIdentifier: "onPage0") as! ViewController
+        
+        let controller2 = st.instantiateViewController(withIdentifier: "onPage0") as! ViewController
+        
+        let controller3 = st.instantiateViewController(withIdentifier: "onPage0") as! ViewController
+        
+        return [controller1,controller2,
+                controller3]
     }()
     
     var pageControl = UIPageControl()
@@ -42,8 +50,8 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         self.view.addSubview(pageControl)
     }
     
-    func newVC(viewController: String) -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: viewController)
+    func newVC(controllerID: String) -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: controllerID)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

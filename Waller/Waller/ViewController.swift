@@ -9,10 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let gradientView:GradientView = GradientView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        gradientView.FirstColor = UIColor.blue
+        gradientView.SecondColor = UIColor.green
+        self.view.addSubview(gradientView)
+     
     }
 
     override func didReceiveMemoryWarning() {
