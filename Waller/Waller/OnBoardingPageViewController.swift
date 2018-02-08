@@ -12,13 +12,13 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
     
     lazy var orderedViewController:[UIViewController] = {
         
-        let st = UIStoryboard(name: "Main", bundle: nil)
+        let st = UIStoryboard(name: "OnBoarding", bundle: nil)
         
-        let controller1 = st.instantiateViewController(withIdentifier: "onPage0") as! ViewController
+        let controller1 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
         
-        let controller2 = st.instantiateViewController(withIdentifier: "onPage0") as! ViewController
+        let controller2 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
         
-        let controller3 = st.instantiateViewController(withIdentifier: "onPage0") as! ViewController
+        let controller3 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
         
         return [controller1,controller2,
                 controller3]
@@ -51,7 +51,7 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
     }
     
     func newVC(controllerID: String) -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: controllerID)
+        return UIStoryboard(name: "OnBoarding", bundle: nil).instantiateViewController(withIdentifier: controllerID)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
