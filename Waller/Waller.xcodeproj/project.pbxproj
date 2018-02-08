@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24152FBD202C3BE2005B5971 /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24152FBC202C3BE2005B5971 /* CircleTransition.swift */; };
 		249471392029ADB3001D2509 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249471382029ADB3001D2509 /* GradientView.swift */; };
 		2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2494713A2029B314001D2509 /* UIImgWithMask.swift */; };
 		24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24152FBC202C3BE2005B5971 /* CircleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTransition.swift; sourceTree = "<group>"; };
 		249471382029ADB3001D2509 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		2494713A2029B314001D2509 /* UIImgWithMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImgWithMask.swift; sourceTree = "<group>"; };
 		24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
 				249471382029ADB3001D2509 /* GradientView.swift */,
 				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
+				24152FBC202C3BE2005B5971 /* CircleTransition.swift */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
 				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
 				61294A7B2024C7D0009F9886 /* Info.plist */,
@@ -229,6 +232,7 @@
 				24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */,
 				61294A6F2024C7D0009F9886 /* ViewController.swift in Sources */,
 				249471392029ADB3001D2509 /* GradientView.swift in Sources */,
+				24152FBD202C3BE2005B5971 /* CircleTransition.swift in Sources */,
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
 				61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */,
 				2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */,
