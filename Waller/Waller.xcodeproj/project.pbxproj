@@ -16,6 +16,13 @@
 		618E4B17202A531A007F0D32 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B16202A531A007F0D32 /* AddViewController.swift */; };
 		618E4B19202A548A007F0D32 /* CreateStandardWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */; };
 		618E4B1C202A6404007F0D32 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */; };
+		618E4B27202B0C6A007F0D32 /* SetSaveTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B26202B0C6A007F0D32 /* SetSaveTypeController.swift */; };
+		61B9D2A0202B765000E22B0D /* GenerateWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D29F202B765000E22B0D /* GenerateWalletController.swift */; };
+		61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A1202B796D00E22B0D /* ACProgressView.swift */; };
+		61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */; };
+		61B9D2A7202B796D00E22B0D /* ACProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */; };
+		61B9D2A8202B796D00E22B0D /* ACProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61B9D2A4202B796D00E22B0D /* ACProgressView.xib */; };
+		61B9D2AD202BAACE00E22B0D /* BTCTestnetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */; };
 		61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDA62029B71100F270DF /* MultiOptionView.swift */; };
 		61DDBDA92029B72100F270DF /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDA82029B72100F270DF /* OptionView.swift */; };
 		61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDAA2029BCBE00F270DF /* Properties.swift */; };
@@ -37,6 +44,13 @@
 		618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStandardWalletController.swift; sourceTree = "<group>"; };
 		618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Waller-Bridging-Header.h"; sourceTree = "<group>"; };
+		618E4B26202B0C6A007F0D32 /* SetSaveTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSaveTypeController.swift; sourceTree = "<group>"; };
+		61B9D29F202B765000E22B0D /* GenerateWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateWalletController.swift; sourceTree = "<group>"; };
+		61B9D2A1202B796D00E22B0D /* ACProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACProgressView.swift; sourceTree = "<group>"; };
+		61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACHUD+Animation.swift"; sourceTree = "<group>"; };
+		61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACProgressHUD.swift; sourceTree = "<group>"; };
+		61B9D2A4202B796D00E22B0D /* ACProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProgressView.xib; sourceTree = "<group>"; };
+		61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCTestnetInfo.swift; sourceTree = "<group>"; };
 		61DDBDA62029B71100F270DF /* MultiOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiOptionView.swift; sourceTree = "<group>"; };
 		61DDBDA82029B72100F270DF /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		61DDBDAA2029BCBE00F270DF /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
@@ -95,7 +109,9 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
+				61B9D2A9202B797800E22B0D /* ACProgressHUD */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
+				61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */,
 				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
 				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
@@ -103,7 +119,9 @@
 				61294A702024C7D0009F9886 /* Main.storyboard */,
 				618E4B16202A531A007F0D32 /* AddViewController.swift */,
 				618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */,
+				618E4B26202B0C6A007F0D32 /* SetSaveTypeController.swift */,
 				618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */,
+				61B9D29F202B765000E22B0D /* GenerateWalletController.swift */,
 				618E4B1A202A5504007F0D32 /* MultiOptionClass */,
 				61294A7B2024C7D0009F9886 /* Info.plist */,
 				61294A732024C7D0009F9886 /* Waller.xcdatamodeld */,
@@ -120,6 +138,17 @@
 				61DDBDA82029B72100F270DF /* OptionView.swift */,
 			);
 			path = MultiOptionClass;
+			sourceTree = "<group>";
+		};
+		61B9D2A9202B797800E22B0D /* ACProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */,
+				61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */,
+				61B9D2A1202B796D00E22B0D /* ACProgressView.swift */,
+				61B9D2A4202B796D00E22B0D /* ACProgressView.xib */,
+			);
+			path = ACProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +217,7 @@
 				61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */,
 				61294A772024C7D0009F9886 /* Assets.xcassets in Resources */,
 				61294A722024C7D0009F9886 /* Main.storyboard in Resources */,
+				61B9D2A8202B796D00E22B0D /* ACProgressView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,12 +282,18 @@
 				61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */,
 				61294A6F2024C7D0009F9886 /* ViewController.swift in Sources */,
 				618E4B17202A531A007F0D32 /* AddViewController.swift in Sources */,
+				61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
 				618E4B1C202A6404007F0D32 /* SetPasswordViewController.swift in Sources */,
+				61B9D2A0202B765000E22B0D /* GenerateWalletController.swift in Sources */,
 				618E4B19202A548A007F0D32 /* CreateStandardWalletController.swift in Sources */,
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
+				618E4B27202B0C6A007F0D32 /* SetSaveTypeController.swift in Sources */,
+				61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */,
+				61B9D2AD202BAACE00E22B0D /* BTCTestnetInfo.swift in Sources */,
 				61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */,
 				61DDBDA92029B72100F270DF /* OptionView.swift in Sources */,
+				61B9D2A7202B796D00E22B0D /* ACProgressHUD.swift in Sources */,
 				61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

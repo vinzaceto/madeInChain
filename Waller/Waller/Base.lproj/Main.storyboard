@@ -31,18 +31,15 @@
                             </connections>
                         </button>
                     </navigationItem>
-                    <connections>
-                        <segue destination="gs1-vA-w0a" kind="show" id="pgF-i4-j4x"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="516" y="129.08545727136433"/>
         </scene>
-        <!--Name-->
+        <!--Set a name-->
         <scene sceneID="I0Y-Ra-S2x">
             <objects>
-                <viewController storyboardIdentifier="CWController" title="Name" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gs1-vA-w0a" customClass="CreateStandardWalletController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CWController" title="Set a name" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gs1-vA-w0a" customClass="CreateStandardWalletController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5wj-Ei-2vv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,7 +49,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKv-6B-95M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="128"/>
+            <point key="canvasLocation" x="1358" y="128"/>
+        </scene>
+        <!--Generate Wallet Controller-->
+        <scene sceneID="7gO-na-f9X">
+            <objects>
+                <viewController storyboardIdentifier="GWController" id="zCu-1x-gmT" customClass="GenerateWalletController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mq6-zc-mFk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="E01-uw-Iny"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nr9-Y9-L5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1657" y="-665"/>
+        </scene>
+        <!--Saving type-->
+        <scene sceneID="zIQ-dh-bY6">
+            <objects>
+                <viewController storyboardIdentifier="STController" title="Saving type" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y7X-IB-uhY" customClass="SetSaveTypeController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cPt-3j-rAs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mZy-3a-rvg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yRN-rx-o4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="129"/>
         </scene>
         <!--Set Password View Controller-->
         <scene sceneID="4sF-1y-4UJ">
@@ -67,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAr-FD-8BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="128"/>
+            <point key="canvasLocation" x="2903" y="-197"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="R8W-Yv-ECj">
