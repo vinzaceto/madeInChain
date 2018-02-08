@@ -109,7 +109,6 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
-				24365668202C60B200E33A6E /* Main.storyboard */,
 				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
 				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
 				74A2BEFF202A060F0054044A /* walletFiles */,
@@ -117,9 +116,10 @@
 				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
 				249471382029ADB3001D2509 /* GradientView.swift */,
 				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
+				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
 				24152FBC202C3BE2005B5971 /* CircleTransition.swift */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
-				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
+				24365668202C60B200E33A6E /* Main.storyboard */,
 				61294A702024C7D0009F9886 /* OnBoarding.storyboard */,
 				618E4B16202A531A007F0D32 /* AddViewController.swift */,
 				618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */,

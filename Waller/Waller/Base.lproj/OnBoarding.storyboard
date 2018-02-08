@@ -18,16 +18,40 @@
             </objects>
             <point key="canvasLocation" x="38" y="-402"/>
         </scene>
+        <!--Main-->
+        <scene sceneID="PTx-x4-uxo">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MainSB" storyboardName="Main" id="4bC-QA-rzS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xeU-vT-BkT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="-472"/>
+        </scene>
         <!--onPage0-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="onPage0" id="BYZ-38-t0r" userLabel="onPage0" customClass="OnViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="Waller" customModuleProvider="target">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="Waller" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83E-jz-Kfp">
+                                <rect key="frame" x="157" y="32" width="61" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipButt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TmF-fU-Su4"/>
+                                    <segue destination="4bC-QA-rzS" kind="show" identifier="MainSB" id="p0k-Tv-tTs"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="ButtonSkip" destination="83E-jz-Kfp" id="oub-BN-MU0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

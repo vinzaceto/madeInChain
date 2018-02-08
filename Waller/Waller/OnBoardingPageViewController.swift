@@ -9,6 +9,7 @@
 import UIKit
 
 class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+
     
     lazy var orderedViewController:[UIViewController] = {
         
@@ -20,6 +21,17 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         
         let controller3 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
         
+//        let w:CGFloat = 100
+//        let y =  200
+//        let x = controller3.view.frame.size.width - w - 30.0
+//        let skipButton = UIButton.init(type:UIButtonType.roundedRect)
+//        skipButton.frame = CGRect.init(x: Int(x), y: y, width: Int(w), height: 30)
+//        skipButton.backgroundColor = UIColor.red
+//        skipButton.center.x = controller3.view.center.x
+//        skipButton.setTitle("Skip", for: .normal)
+//        controller3.view.addSubview(skipButton)
+//        self.view.addSubview(skipButton)
+        
         return [controller1,controller2,
                 controller3]
     }()
@@ -28,14 +40,14 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.dataSource = self
         if let firstVC = orderedViewController.first {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         self.delegate = self
         configurePageControl()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -100,5 +112,13 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         // Dispose of any resources that can be recreated.
     }
     
+//    func onboardingWillTransitonToIndex(_ index: Int) {
+//        if index == 2
+//        {
+//            skipButton.isHidden = false
+//            //self.view.bringSubview(toFront: skipButton)
+//        }
+//    }
 
+  
 }
