@@ -31,18 +31,15 @@
                             </connections>
                         </button>
                     </navigationItem>
-                    <connections>
-                        <segue destination="gs1-vA-w0a" kind="show" id="pgF-i4-j4x"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="516" y="129.08545727136433"/>
         </scene>
-        <!--Name-->
+        <!--Set a name-->
         <scene sceneID="I0Y-Ra-S2x">
             <objects>
-                <viewController storyboardIdentifier="CWController" title="Name" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gs1-vA-w0a" customClass="CreateStandardWalletController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CWController" title="Set a name" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gs1-vA-w0a" customClass="CreateStandardWalletController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5wj-Ei-2vv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,7 +49,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKv-6B-95M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="128"/>
+            <point key="canvasLocation" x="1358" y="128"/>
+        </scene>
+        <!--Generate Wallet Controller-->
+        <scene sceneID="7gO-na-f9X">
+            <objects>
+                <viewController storyboardIdentifier="GWController" id="zCu-1x-gmT" customClass="GenerateWalletController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mq6-zc-mFk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="E01-uw-Iny"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nr9-Y9-L5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1657" y="-665"/>
+        </scene>
+        <!--Saving type-->
+        <scene sceneID="zIQ-dh-bY6">
+            <objects>
+                <viewController storyboardIdentifier="STController" title="Saving type" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y7X-IB-uhY" customClass="SetSaveTypeController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cPt-3j-rAs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mZy-3a-rvg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yRN-rx-o4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="129"/>
         </scene>
         <!--Set Password View Controller-->
         <scene sceneID="4sF-1y-4UJ">
@@ -67,32 +94,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAr-FD-8BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="128"/>
+            <point key="canvasLocation" x="2903" y="-197"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="R8W-Yv-ECj">
             <objects>
-                <viewController storyboardIdentifier="MainSB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NDG-Gg-Nol" customClass="ViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NDG-Gg-Nol" customClass="HomeViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z8W-9J-lz9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <rect key="frame" x="164" y="20" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="ML7-QE-EkI" kind="presentation" id="RVn-Zw-Es9"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pt-sr-Ix4" customClass="HFCardCollectionView" customModule="Waller">
+                                <rect key="frame" x="16" y="149" width="343" height="369"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewLayout key="collectionViewLayout" id="1Yg-aB-HNg" customClass="HFCardCollectionViewLayout" customModule="Waller"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WalletCell" id="rW3-eX-Va5" customClass="WalletCell" customModule="Waller" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="NDG-Gg-Nol" id="klD-pd-un7"/>
+                                    <outlet property="delegate" destination="NDG-Gg-Nol" id="HPL-hC-rhF"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="yrT-DB-bZU"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="9Pt-sr-Ix4" id="JOC-VZ-juw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqW-A2-O9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-402" y="-634"/>
+            <point key="canvasLocation" x="-402.39999999999998" y="-634.632683658171"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0nB-PE-yWb">

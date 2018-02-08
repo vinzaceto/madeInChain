@@ -5,11 +5,12 @@
 
 @implementation BTCBlockchainInfo
 
+
 // Builds a request from a list of BTCAddress objects.
 - (NSMutableURLRequest*) requestForUnspentOutputsWithAddresses:(NSArray*)addresses {
     if (addresses.count == 0) return nil;
     
-    NSString* urlstring = [NSString stringWithFormat:@"https://blockchain.info/unspent?active=%@", [[addresses valueForKey:@"base58String"] componentsJoinedByString:@"%7C"]];
+    NSString* urlstring = [NSString stringWithFormat:@"https://testnet.blockchain.info/unspent?active=%@", [[addresses valueForKey:@"base58String"] componentsJoinedByString:@"%7C"]];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlstring]];
     request.HTTPMethod = @"GET";
     return request;
@@ -81,6 +82,7 @@
     if (!data) {
         return nil;
     }
+    NSLog(@"data: %@",data);
     return [self unspentOutputsForResponseData:data error:errorOut];
 }
 

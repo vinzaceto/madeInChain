@@ -14,19 +14,30 @@
 		2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2494713A2029B314001D2509 /* UIImgWithMask.swift */; };
 		24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */; };
 		61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6C2024C7D0009F9886 /* AppDelegate.swift */; };
-		61294A722024C7D0009F9886 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A702024C7D0009F9886 /* OnBoarding.storyboard */; };
+		61294A6F2024C7D0009F9886 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6E2024C7D0009F9886 /* HomeViewController.swift */; };
+		61294A722024C7D0009F9886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A702024C7D0009F9886 /* Main.storyboard */; };
 		61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61294A732024C7D0009F9886 /* Waller.xcdatamodeld */; };
 		61294A772024C7D0009F9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61294A762024C7D0009F9886 /* Assets.xcassets */; };
 		61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A782024C7D0009F9886 /* LaunchScreen.storyboard */; };
 		618E4B17202A531A007F0D32 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B16202A531A007F0D32 /* AddViewController.swift */; };
 		618E4B19202A548A007F0D32 /* CreateStandardWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */; };
 		618E4B1C202A6404007F0D32 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */; };
+		618E4B27202B0C6A007F0D32 /* SetSaveTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618E4B26202B0C6A007F0D32 /* SetSaveTypeController.swift */; };
+		61B9D2A0202B765000E22B0D /* GenerateWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D29F202B765000E22B0D /* GenerateWalletController.swift */; };
+		61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A1202B796D00E22B0D /* ACProgressView.swift */; };
+		61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */; };
+		61B9D2A7202B796D00E22B0D /* ACProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */; };
+		61B9D2A8202B796D00E22B0D /* ACProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61B9D2A4202B796D00E22B0D /* ACProgressView.xib */; };
+		61B9D2AD202BAACE00E22B0D /* BTCTestnetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */; };
 		61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDA62029B71100F270DF /* MultiOptionView.swift */; };
 		61DDBDA92029B72100F270DF /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDA82029B72100F270DF /* OptionView.swift */; };
 		61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDAA2029BCBE00F270DF /* Properties.swift */; };
 		61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDAC202A4CD600F270DF /* DataStructure.swift */; };
-		744358E5202AF7C200CD1982 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358E3202AF7C200CD1982 /* CardView.swift */; };
-		744358E6202AF7C200CD1982 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358E4202AF7C200CD1982 /* WalletView.swift */; };
+		74435901202B320900CD1982 /* HFCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FD202B320900CD1982 /* HFCardCollectionViewCell.swift */; };
+		74435902202B320900CD1982 /* HFCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FE202B320900CD1982 /* HFCardCollectionView.swift */; };
+		74435903202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FF202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift */; };
+		74435904202B320900CD1982 /* HFCardCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74435900202B320900CD1982 /* HFCardCollectionViewLayout.swift */; };
+		74435906202B380A00CD1982 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74435905202B380A00CD1982 /* WalletCell.swift */; };
 		D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +50,8 @@
 		609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.release.xcconfig"; sourceTree = "<group>"; };
 		61294A692024C7D0009F9886 /* Waller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61294A6C2024C7D0009F9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		61294A6E2024C7D0009F9886 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		61294A712024C7D0009F9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61294A6E2024C7D0009F9886 /* OnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController.swift; sourceTree = "<group>"; };
 		61294A712024C7D0009F9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OnBoarding.storyboard; sourceTree = "<group>"; };
 		61294A742024C7D0009F9886 /* Waller.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Waller.xcdatamodel; sourceTree = "<group>"; };
@@ -49,13 +62,23 @@
 		618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStandardWalletController.swift; sourceTree = "<group>"; };
 		618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Waller-Bridging-Header.h"; sourceTree = "<group>"; };
+		618E4B26202B0C6A007F0D32 /* SetSaveTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSaveTypeController.swift; sourceTree = "<group>"; };
+		61B9D29F202B765000E22B0D /* GenerateWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateWalletController.swift; sourceTree = "<group>"; };
+		61B9D2A1202B796D00E22B0D /* ACProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACProgressView.swift; sourceTree = "<group>"; };
+		61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACHUD+Animation.swift"; sourceTree = "<group>"; };
+		61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACProgressHUD.swift; sourceTree = "<group>"; };
+		61B9D2A4202B796D00E22B0D /* ACProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProgressView.xib; sourceTree = "<group>"; };
+		61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTCTestnetInfo.swift; sourceTree = "<group>"; };
 		61DDBDA62029B71100F270DF /* MultiOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiOptionView.swift; sourceTree = "<group>"; };
 		61DDBDA82029B72100F270DF /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		61DDBDAA2029BCBE00F270DF /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		61DDBDAC202A4CD600F270DF /* DataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
 		62D248798B62B430FC2E862D /* Pods-Waller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.debug.xcconfig"; sourceTree = "<group>"; };
-		744358E3202AF7C200CD1982 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		744358E4202AF7C200CD1982 /* WalletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		744358FD202B320900CD1982 /* HFCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		744358FE202B320900CD1982 /* HFCardCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFCardCollectionView.swift; sourceTree = "<group>"; };
+		744358FF202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFCardCollectionViewLayoutDelegate.swift; sourceTree = "<group>"; };
+		74435900202B320900CD1982 /* HFCardCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFCardCollectionViewLayout.swift; sourceTree = "<group>"; };
+		74435905202B380A00CD1982 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,10 +132,16 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
+				61B9D2A9202B797800E22B0D /* ACProgressHUD */,
+				744358FC202B31D400CD1982 /* HFCardCollectionView */,
+				61294A762024C7D0009F9886 /* Assets.xcassets */,
+				61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */,
 				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
 				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
-				74A2BEFF202A060F0054044A /* walletFiles */,
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
+				61294A6E2024C7D0009F9886 /* HomeViewController.swift */,
+				61294A702024C7D0009F9886 /* Main.storyboard */,
+				74435905202B380A00CD1982 /* WalletCell.swift */,
 				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
 				249471382029ADB3001D2509 /* GradientView.swift */,
 				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
@@ -123,7 +152,9 @@
 				61294A702024C7D0009F9886 /* OnBoarding.storyboard */,
 				618E4B16202A531A007F0D32 /* AddViewController.swift */,
 				618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */,
+				618E4B26202B0C6A007F0D32 /* SetSaveTypeController.swift */,
 				618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */,
+				61B9D29F202B765000E22B0D /* GenerateWalletController.swift */,
 				618E4B1A202A5504007F0D32 /* MultiOptionClass */,
 				61294A7B2024C7D0009F9886 /* Info.plist */,
 				61294A732024C7D0009F9886 /* Waller.xcdatamodeld */,
@@ -142,13 +173,26 @@
 			path = MultiOptionClass;
 			sourceTree = "<group>";
 		};
-		74A2BEFF202A060F0054044A /* walletFiles */ = {
+		61B9D2A9202B797800E22B0D /* ACProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				744358E3202AF7C200CD1982 /* CardView.swift */,
-				744358E4202AF7C200CD1982 /* WalletView.swift */,
+				61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */,
+				61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */,
+				61B9D2A1202B796D00E22B0D /* ACProgressView.swift */,
+				61B9D2A4202B796D00E22B0D /* ACProgressView.xib */,
 			);
-			path = walletFiles;
+			path = ACProgressHUD;
+			sourceTree = "<group>";
+		};
+		744358FC202B31D400CD1982 /* HFCardCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				744358FE202B320900CD1982 /* HFCardCollectionView.swift */,
+				744358FD202B320900CD1982 /* HFCardCollectionViewCell.swift */,
+				74435900202B320900CD1982 /* HFCardCollectionViewLayout.swift */,
+				744358FF202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift */,
+			);
+			path = HFCardCollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +260,8 @@
 			files = (
 				61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */,
 				61294A772024C7D0009F9886 /* Assets.xcassets in Resources */,
+				61294A722024C7D0009F9886 /* Main.storyboard in Resources */,
+				61B9D2A8202B796D00E22B0D /* ACProgressView.xib in Resources */,
 				61294A722024C7D0009F9886 /* OnBoarding.storyboard in Resources */,
 				2436566A202C60B200E33A6E /* Main.storyboard in Resources */,
 			);
@@ -282,18 +328,28 @@
 				2436566B202C614A00E33A6E /* OnViewController.swift in Sources */,
 				249471392029ADB3001D2509 /* GradientView.swift in Sources */,
 				24152FBD202C3BE2005B5971 /* CircleTransition.swift in Sources */,
+				74435904202B320900CD1982 /* HFCardCollectionViewLayout.swift in Sources */,
 				61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */,
+				74435906202B380A00CD1982 /* WalletCell.swift in Sources */,
+				61294A6F2024C7D0009F9886 /* HomeViewController.swift in Sources */,
 				618E4B17202A531A007F0D32 /* AddViewController.swift in Sources */,
+				61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
+				74435902202B320900CD1982 /* HFCardCollectionView.swift in Sources */,
 				24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */,
 				618E4B1C202A6404007F0D32 /* SetPasswordViewController.swift in Sources */,
+				61B9D2A0202B765000E22B0D /* GenerateWalletController.swift in Sources */,
 				618E4B19202A548A007F0D32 /* CreateStandardWalletController.swift in Sources */,
-				744358E6202AF7C200CD1982 /* WalletView.swift in Sources */,
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
-				744358E5202AF7C200CD1982 /* CardView.swift in Sources */,
+				618E4B27202B0C6A007F0D32 /* SetSaveTypeController.swift in Sources */,
+				61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */,
+				61B9D2AD202BAACE00E22B0D /* BTCTestnetInfo.swift in Sources */,
 				61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */,
+				74435903202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift in Sources */,
+				74435901202B320900CD1982 /* HFCardCollectionViewCell.swift in Sources */,
 				2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */,
 				61DDBDA92029B72100F270DF /* OptionView.swift in Sources */,
+				61B9D2A7202B796D00E22B0D /* ACProgressHUD.swift in Sources */,
 				61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

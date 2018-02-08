@@ -14,7 +14,6 @@ class AddViewController: UIViewController,MultiOptionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         
         var data:[Option] = []
@@ -55,6 +54,9 @@ class AddViewController: UIViewController,MultiOptionViewDelegate {
             // none
         }
     }
+    
+
+
     
     func goToCreateStandardWallet()
     {
