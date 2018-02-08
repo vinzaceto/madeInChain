@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		24152FBD202C3BE2005B5971 /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24152FBC202C3BE2005B5971 /* CircleTransition.swift */; };
+		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
+		2436566B202C614A00E33A6E /* OnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6E2024C7D0009F9886 /* OnViewController.swift */; };
 		249471392029ADB3001D2509 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249471382029ADB3001D2509 /* GradientView.swift */; };
 		2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2494713A2029B314001D2509 /* UIImgWithMask.swift */; };
 		24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */; };
 		61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6C2024C7D0009F9886 /* AppDelegate.swift */; };
-		61294A6F2024C7D0009F9886 /* OnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6E2024C7D0009F9886 /* OnViewController.swift */; };
 		61294A722024C7D0009F9886 /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A702024C7D0009F9886 /* OnBoarding.storyboard */; };
 		61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61294A732024C7D0009F9886 /* Waller.xcdatamodeld */; };
 		61294A772024C7D0009F9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61294A762024C7D0009F9886 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		24152FBC202C3BE2005B5971 /* CircleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTransition.swift; sourceTree = "<group>"; };
+		24365669202C60B200E33A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		249471382029ADB3001D2509 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		2494713A2029B314001D2509 /* UIImgWithMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImgWithMask.swift; sourceTree = "<group>"; };
 		24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageViewController.swift; sourceTree = "<group>"; };
@@ -107,21 +109,18 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
-				61294A762024C7D0009F9886 /* Assets.xcassets */,
+				24365668202C60B200E33A6E /* Main.storyboard */,
 				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
 				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
 				74A2BEFF202A060F0054044A /* walletFiles */,
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
-				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
-				61294A702024C7D0009F9886 /* OnBoarding.storyboard */,
 				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
 				249471382029ADB3001D2509 /* GradientView.swift */,
 				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
 				24152FBC202C3BE2005B5971 /* CircleTransition.swift */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
-				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
-				61294A6E2024C7D0009F9886 /* ViewController.swift */,
-				61294A702024C7D0009F9886 /* Main.storyboard */,
+				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
+				61294A702024C7D0009F9886 /* OnBoarding.storyboard */,
 				618E4B16202A531A007F0D32 /* AddViewController.swift */,
 				618E4B18202A548A007F0D32 /* CreateStandardWalletController.swift */,
 				618E4B1B202A6404007F0D32 /* SetPasswordViewController.swift */,
@@ -218,6 +217,7 @@
 				61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */,
 				61294A772024C7D0009F9886 /* Assets.xcassets in Resources */,
 				61294A722024C7D0009F9886 /* OnBoarding.storyboard in Resources */,
+				2436566A202C60B200E33A6E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,14 +279,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */,
-				61294A6F2024C7D0009F9886 /* OnViewController.swift in Sources */,
+				2436566B202C614A00E33A6E /* OnViewController.swift in Sources */,
 				249471392029ADB3001D2509 /* GradientView.swift in Sources */,
 				24152FBD202C3BE2005B5971 /* CircleTransition.swift in Sources */,
 				61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */,
-				61294A6F2024C7D0009F9886 /* ViewController.swift in Sources */,
 				618E4B17202A531A007F0D32 /* AddViewController.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
+				24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */,
 				618E4B1C202A6404007F0D32 /* SetPasswordViewController.swift in Sources */,
 				618E4B19202A548A007F0D32 /* CreateStandardWalletController.swift in Sources */,
 				744358E6202AF7C200CD1982 /* WalletView.swift in Sources */,
@@ -302,6 +301,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		24365668202C60B200E33A6E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24365669202C60B200E33A6E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		61294A702024C7D0009F9886 /* OnBoarding.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
