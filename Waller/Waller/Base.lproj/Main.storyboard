@@ -115,18 +115,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
-                                <rect key="frame" x="164" y="20" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
+                                <rect key="frame" x="164" y="581" width="46" height="47"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="ML7-QE-EkI" kind="presentation" id="RVn-Zw-Es9"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pt-sr-Ix4" customClass="HFCardCollectionView" customModule="Waller">
-                                <rect key="frame" x="16" y="149" width="343" height="369"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRANCY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4A-VV-VfB">
+                                <rect key="frame" x="16" y="40" width="57" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="US$ AMOUND" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-2L-LQF">
+                                <rect key="frame" x="289" y="40" width="70" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="US$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="els-cb-NUv">
+                                <rect key="frame" x="16" y="56" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKK-qq-IRd">
+                                <rect key="frame" x="328" y="56" width="31" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/US$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPE-zo-sQ4">
+                                <rect key="frame" x="16" y="97" width="45" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC AMOUND" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1c-yg-ePV">
+                                <rect key="frame" x="289" y="106" width="70" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUO-I1-Q8a">
+                                <rect key="frame" x="16" y="113" width="21" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0J-YA-3ag">
+                                <rect key="frame" x="316" y="122" width="43" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pt-sr-Ix4" customClass="HFCardCollectionView" customModule="Waller">
+                                <rect key="frame" x="16" y="168" width="343" height="369"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="369" id="5kf-Tb-2MC"/>
+                                </constraints>
                                 <collectionViewLayout key="collectionViewLayout" id="1Yg-aB-HNg" customClass="HFCardCollectionViewLayout" customModule="Waller"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WalletCell" id="rW3-eX-Va5" customClass="WalletCell" customModule="Waller" customModuleProvider="target">
@@ -145,10 +194,37 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="T0J-YA-3ag" secondAttribute="trailing" constant="16" id="8j6-F2-KMU"/>
+                            <constraint firstItem="9Pt-sr-Ix4" firstAttribute="centerX" secondItem="4RK-uK-YEx" secondAttribute="centerX" id="Dcr-mI-fXy"/>
+                            <constraint firstItem="QPE-zo-sQ4" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="Ebz-uO-AVZ"/>
+                            <constraint firstItem="els-cb-NUv" firstAttribute="top" secondItem="C4A-VV-VfB" secondAttribute="bottom" constant="4" id="HRH-BK-7ZY"/>
+                            <constraint firstItem="C4A-VV-VfB" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="L0v-PU-0sS"/>
+                            <constraint firstItem="4RK-uK-YEx" firstAttribute="top" secondItem="9Pt-sr-Ix4" secondAttribute="bottom" constant="8" symbolic="YES" id="LI3-lY-1gb"/>
+                            <constraint firstItem="9Pt-sr-Ix4" firstAttribute="top" secondItem="T0J-YA-3ag" secondAttribute="bottom" constant="25" id="P0w-0s-Gjs"/>
+                            <constraint firstItem="BKK-qq-IRd" firstAttribute="top" secondItem="gfg-2L-LQF" secondAttribute="bottom" constant="4" id="Pee-av-upG"/>
+                            <constraint firstItem="aUO-I1-Q8a" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="PqU-Z1-vTn"/>
+                            <constraint firstItem="els-cb-NUv" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="UjO-iu-yQ8"/>
+                            <constraint firstItem="T0J-YA-3ag" firstAttribute="top" secondItem="i1c-yg-ePV" secondAttribute="bottom" constant="4" id="Uuy-Ti-g51"/>
+                            <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="gfg-2L-LQF" secondAttribute="trailing" constant="16" id="Zpj-PJ-iF8"/>
+                            <constraint firstItem="i1c-yg-ePV" firstAttribute="top" secondItem="BKK-qq-IRd" secondAttribute="bottom" constant="20" id="iCO-B2-QfY"/>
+                            <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="i1c-yg-ePV" secondAttribute="trailing" constant="16" id="iqJ-zH-czw"/>
+                            <constraint firstItem="gfg-2L-LQF" firstAttribute="top" secondItem="yrT-DB-bZU" secondAttribute="top" constant="20" id="k4d-lR-Q5R"/>
+                            <constraint firstItem="aUO-I1-Q8a" firstAttribute="top" secondItem="QPE-zo-sQ4" secondAttribute="bottom" constant="4" id="lVG-Qp-0GD"/>
+                            <constraint firstItem="C4A-VV-VfB" firstAttribute="top" secondItem="yrT-DB-bZU" secondAttribute="top" constant="20" id="nC5-Fo-pP5"/>
+                            <constraint firstItem="9Pt-sr-Ix4" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="uvR-wh-azR"/>
+                            <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="BKK-qq-IRd" secondAttribute="trailing" constant="16" id="vCJ-Hi-sez"/>
+                            <constraint firstItem="QPE-zo-sQ4" firstAttribute="top" secondItem="els-cb-NUv" secondAttribute="bottom" constant="20" id="w8p-8c-S7M"/>
+                            <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="9Pt-sr-Ix4" secondAttribute="trailing" constant="16" id="yVj-Is-ijb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="yrT-DB-bZU"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="9Pt-sr-Ix4" id="JOC-VZ-juw"/>
+                        <outlet property="currentAmount" destination="BKK-qq-IRd" id="srN-s0-9l4"/>
+                        <outlet property="currentBTCvalue" destination="aUO-I1-Q8a" id="PH7-4Z-nAd"/>
+                        <outlet property="currentBtcAmount" destination="T0J-YA-3ag" id="EXb-pg-Lia"/>
+                        <outlet property="currentCurrancy" destination="els-cb-NUv" id="fP2-hz-E8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqW-A2-O9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
