@@ -8,10 +8,11 @@
 
 import UIKit
 
-class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIViewControllerTransitioningDelegate {
 
-    
+
     lazy var orderedViewController:[UIViewController] = {
+        
         
         let st = UIStoryboard(name: "OnBoarding", bundle: nil)
         
@@ -59,6 +60,7 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         pageControl.tintColor = UIColor.white
         pageControl.pageIndicatorTintColor = UIColor.gray
         pageControl.currentPageIndicatorTintColor = UIColor.red
+        
         self.view.addSubview(pageControl)
     }
     
@@ -119,6 +121,8 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
 //            //self.view.bringSubview(toFront: skipButton)
 //        }
 //    }
+    
+
 
   
 }

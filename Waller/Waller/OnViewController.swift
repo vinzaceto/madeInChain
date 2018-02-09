@@ -8,14 +8,24 @@
 
 import UIKit
 
-class OnViewController: UIViewController {
+class OnViewController: UIViewController, UIViewControllerTransitioningDelegate{
     
     @IBOutlet weak var ButtonSkip: UIButton!
+    
+    let transition = CircleTransition()
+
     
     @IBAction func skipButt(_ sender: Any) {
         performSegue(withIdentifier: "MainSB", sender: self)
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let secondVC = segue.destination as! HomeViewController
+        secondVC.transitioningDelegate = self
+        secondVC.modalPresentationStyle = .custom
+        
+    }
 
     
     
@@ -39,6 +49,22 @@ class OnViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = ButtonSkip.center
+        transition.circleColor = .white
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.startingPoint = ButtonSkip.center
+        transition.circleColor = .white
+        
+        return transition
     }
 
 
