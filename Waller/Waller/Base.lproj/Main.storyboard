@@ -148,7 +148,7 @@
                         <viewLayoutGuide key="safeArea" id="yrT-DB-bZU"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="9Pt-sr-Ix4" id="JOC-VZ-juw"/>
+                        <outlet property="collectionView" destination="9Pt-sr-Ix4" id="2Hu-bv-Wes"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqW-A2-O9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
