@@ -107,6 +107,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		24ED6D89202DDE6F00BFBCD2 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
+				249471382029ADB3001D2509 /* GradientView.swift */,
+				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
+				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
+				24152FBC202C3BE2005B5971 /* CircleTransition.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		5BBBD056102E468DD91D9840 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,11 +158,7 @@
 				249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */,
 				66098371202D276700639EE3 /* AddWallet */,
 				74435905202B380A00CD1982 /* WalletCell.swift */,
-				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
-				249471382029ADB3001D2509 /* GradientView.swift */,
-				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
-				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
-				24152FBC202C3BE2005B5971 /* CircleTransition.swift */,
+				24ED6D89202DDE6F00BFBCD2 /* OnBoarding */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
 				24365668202C60B200E33A6E /* Main.storyboard */,
 				61294A702024C7D0009F9886 /* OnBoarding.storyboard */,

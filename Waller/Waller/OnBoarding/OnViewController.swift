@@ -28,17 +28,13 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate{
     }
 
     
-    
-    let gradientView:GradientView = GradientView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
-        gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        gradientView.FirstColor = UIColor.blue
-        gradientView.SecondColor = UIColor.green
-        self.view.addSubview(gradientView)
+        ButtonSkip.isHidden = false
+        ButtonSkip.backgroundColor = .red
+        ButtonSkip.layer.cornerRadius = 10
+
         self.view.addSubview(ButtonSkip)
         
      
@@ -66,7 +62,14 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate{
         
         return transition
     }
-
+    
+//    func indexPageControl(_ index: Int) {
+//        if index == 2
+//        {
+//            ButtonSkip.isHidden = false
+//            self.view.bringSubview(toFront: ButtonSkip)
+//        }
+//    }
 
 }
 
