@@ -14,7 +14,7 @@ class WalletCell: HFCardCollectionViewCell
     {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor.brown
+        self.backgroundColor = UIColor.white
     }
     
 }
