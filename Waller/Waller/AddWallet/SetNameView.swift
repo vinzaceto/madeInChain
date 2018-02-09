@@ -1,45 +1,49 @@
 //
-//  CreateStandardWalletController.swift
+//  SetNameView.swift
 //  Waller
 //
-//  Created by Vincenzo Ajello on 06/02/18.
+//  Created by Vincenzo Ajello on 08/02/18.
 //  Copyright © 2018 madeinchain. All rights reserved.
 //
 
 import UIKit
 
-class CreateStandardWalletController: UIViewController, UITextFieldDelegate {
+class SetNameView: UIView,UITextFieldDelegate {
 
     let nameField:UITextField = UITextField()
     var nameFieldPlaceholder = "type a wallet name here"
     var nameFieldTemporaryText:String = ""
     var nameFieldTemporaryPlaceholder:NSAttributedString!
+    var lockWrite:Bool = false
     let continueButton = UIButton.init(type: .roundedRect)
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+    var delegate:SetupPageViewDelegate!
+    
+    
+    override init(frame: CGRect)
+    {
+        super.init(frame: frame)
         
-        let labelframe = CGRect.init(x: 30, y:160, width: self.view.frame.size.width - 60, height: 50)
+        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        
+        let labelframe = CGRect.init(x: 30, y:160, width: self.frame.size.width - 60, height: 50)
         let optionText = UILabel.init(frame:labelframe)
         optionText.textColor = UIColor.gray
         optionText.textAlignment = .center
         optionText.text = "You are creating a new wallet, please give a name to it to continue."
         optionText.font = UIFont.systemFont(ofSize: 20)
         optionText.numberOfLines = 0
-        self.view.addSubview(optionText)
+        self.addSubview(optionText)
         
-        let fieldFrame = CGRect.init(x: 30, y: 260, width: self.view.frame.size.width - 120, height: 40)
+        let fieldFrame = CGRect.init(x: 30, y: 260, width: self.frame.size.width - 120, height: 40)
         nameField.frame = fieldFrame
         nameField.delegate = self
         nameField.font = UIFont.systemFont(ofSize: 24)
         changePlaceholderColor(field: nameField, color: UIColor.gray, text: nameFieldPlaceholder)
-        self.view.addSubview(nameField)
+        self.addSubview(nameField)
         
-        let line = UIView.init(frame: CGRect.init(x: 20, y: 300, width: self.view.frame.size.width - 40, height: 3))
+        let line = UIView.init(frame: CGRect.init(x: 20, y: 300, width: self.frame.size.width - 40, height: 3))
         line.backgroundColor = UIColor.white
-        self.view.addSubview(line)
+        self.addSubview(line)
         
         let w:CGFloat = 65
         let h:CGFloat = 30
@@ -50,18 +54,11 @@ class CreateStandardWalletController: UIViewController, UITextFieldDelegate {
         continueButton.addTarget(self, action: #selector(continueButtonPressed), for: .touchUpInside)
         continueButton.setTitle("continue", for: .normal)
         continueButton.isEnabled = false
-        self.view.addSubview(continueButton)
-        
-        nameField.becomeFirstResponder()
+        self.addSubview(continueButton)
     }
     
-    func changePlaceholderColor(field:UITextField, color:UIColor, text:String?)
-    {
-        var p = field.placeholder
-        if text != nil{p = text}
-        let attrPlaceholder = NSAttributedString(string: p!, attributes: [NSAttributedStringKey.foregroundColor: color])
-        field.attributedPlaceholder = attrPlaceholder
-    }
+    
+    
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
@@ -72,6 +69,8 @@ class CreateStandardWalletController: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
+        if lockWrite == true {return false}
+        
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let o = currentText.replacingCharacters(in: stringRange, with: string)
@@ -87,6 +86,17 @@ class CreateStandardWalletController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    
+    
+    
+    
+    
+    
+    @objc func continueButtonPressed()
+    {
+        checkName()
+    }
+    
     func checkName()
     {
         guard let n = nameField.text else { return }
@@ -94,7 +104,7 @@ class CreateStandardWalletController: UIViewController, UITextFieldDelegate {
         // trim whitespaces
         let name = n.trimmingCharacters(in: .whitespaces)
         nameField.text = name
-
+        
         // check for empty name
         if name.trimmingCharacters(in: .whitespaces).isEmpty
         {
@@ -103,31 +113,29 @@ class CreateStandardWalletController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        print("name : \(name)")
-        goToSetType(name:name)
+        //print("name : \(name)")
+        
+        nameField.resignFirstResponder()
+        
+        guard let _ = self.delegate?.nameSetted(name: name)
+        else { return }        
     }
     
-
-    @objc func continueButtonPressed()
+    func changePlaceholderColor(field:UITextField, color:UIColor, text:String?)
     {
-        checkName()
+        var p = field.placeholder
+        if text != nil{p = text}
+        let attrPlaceholder = NSAttributedString(string: p!, attributes: [NSAttributedStringKey.foregroundColor: color])
+        field.attributedPlaceholder = attrPlaceholder
     }
-    
-    func goToSetType(name:String)
-    {
-        print("Go to Generate")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let saveTypeController = storyboard.instantiateViewController(withIdentifier: "STController") as! SetSaveTypeController
-        navigationController?.pushViewController(saveTypeController, animated: true)
-    }
-    
-    
-    
     
     func printErrorOnField(error:String, field:UITextField)
     {
         guard let text = field.text else { return }
         guard let placeholder = field.attributedPlaceholder else { return }
+
+        lockWrite = true
+        
         nameFieldTemporaryText = text
         nameFieldTemporaryPlaceholder = placeholder
         
@@ -139,12 +147,15 @@ class CreateStandardWalletController: UIViewController, UITextFieldDelegate {
     
     @objc func resetField(field:UITextField)
     {
+        lockWrite = false
         field.text = nameFieldTemporaryText
         field.attributedPlaceholder = nameFieldTemporaryPlaceholder
         nameFieldTemporaryText = ""
         nameFieldTemporaryPlaceholder = nil
     }
-
-    override func didReceiveMemoryWarning()
-    {super.didReceiveMemoryWarning()}
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+    }
 }
