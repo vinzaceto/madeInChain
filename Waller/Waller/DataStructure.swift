@@ -29,3 +29,10 @@ enum SaveType
     case Mnemonic
 }
 
+struct Wallet
+{
+    var identifier:String
+    var name:String
+    var address:String
+    var encryptedPrivKey:String
+}

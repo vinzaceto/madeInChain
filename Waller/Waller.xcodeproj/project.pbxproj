@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610B1DD2202DB7B9005B1105 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAC202DB7B9005B1105 /* Logger.swift */; };
+		610B1DD3202DB7B9005B1105 /* DirUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAE202DB7B9005B1105 /* DirUtils.swift */; };
+		610B1DD4202DB7B9005B1105 /* RequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB0202DB7B9005B1105 /* RequestExtension.swift */; };
+		610B1DD5202DB7B9005B1105 /* VersionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB2202DB7B9005B1105 /* VersionController.swift */; };
+		610B1DD6202DB7B9005B1105 /* VersionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB3202DB7B9005B1105 /* VersionProvider.swift */; };
+		610B1DD7202DB7B9005B1105 /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB5202DB7B9005B1105 /* StorageError.swift */; };
+		610B1DD8202DB7B9005B1105 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB7202DB7B9005B1105 /* Requestable.swift */; };
+		610B1DD9202DB7B9005B1105 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB8202DB7B9005B1105 /* Entity.swift */; };
+		610B1DDA202DB7B9005B1105 /* NSSortDescriptorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB9202DB7B9005B1105 /* NSSortDescriptorConvertible.swift */; };
+		610B1DDB202DB7B9005B1105 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DBA202DB7B9005B1105 /* Context.swift */; };
+		610B1DDC202DB7B9005B1105 /* NSPredicateConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DBB202DB7B9005B1105 /* NSPredicateConvertible.swift */; };
+		610B1DDD202DB7B9005B1105 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DBD202DB7B9005B1105 /* Storage.swift */; };
+		610B1DDE202DB7B9005B1105 /* RequestObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DBE202DB7B9005B1105 /* RequestObservable.swift */; };
+		610B1DDF202DB7B9005B1105 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DBF202DB7B9005B1105 /* Request.swift */; };
+		610B1DE0202DB7B9005B1105 /* CoreDataDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DC2202DB7B9005B1105 /* CoreDataDefaultStorage.swift */; };
+		610B1DE1202DB7B9005B1105 /* CoreDataiCloudStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DC3202DB7B9005B1105 /* CoreDataiCloudStorage.swift */; };
+		610B1DE2202DB7B9005B1105 /* NSManagedObjectMemoryContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DC5202DB7B9005B1105 /* NSManagedObjectMemoryContext.swift */; };
+		610B1DE3202DB7B9005B1105 /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DC6202DB7B9005B1105 /* NSManagedObject.swift */; };
+		610B1DE4202DB7B9005B1105 /* NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DC7202DB7B9005B1105 /* NSManagedObjectContext.swift */; };
+		610B1DE5202DB7B9005B1105 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DC9202DB7B9005B1105 /* CoreDataError.swift */; };
+		610B1DE6202DB7B9005B1105 /* CoreDataOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DCB202DB7B9005B1105 /* CoreDataOptions.swift */; };
+		610B1DE7202DB7B9005B1105 /* CoreDataObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DCC202DB7B9005B1105 /* CoreDataObjectModel.swift */; };
+		610B1DE8202DB7B9005B1105 /* CoreDataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DCD202DB7B9005B1105 /* CoreDataChange.swift */; };
+		610B1DE9202DB7B9005B1105 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DCE202DB7B9005B1105 /* CoreDataStore.swift */; };
+		610B1DEA202DB7B9005B1105 /* CoreDataObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DCF202DB7B9005B1105 /* CoreDataObservable.swift */; };
+		610B1DEB202DB7B9005B1105 /* CoreDataiCloudConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DD0202DB7B9005B1105 /* CoreDataiCloudConfig.swift */; };
+		610B1DEC202DB7B9005B1105 /* CoreDataContextParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DD1202DB7B9005B1105 /* CoreDataContextParent.swift */; };
+		610B1DF5202DBC15005B1105 /* WalletGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6609836F202D1F2500639EE3 /* WalletGenerationView.swift */; };
 		61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6C2024C7D0009F9886 /* AppDelegate.swift */; };
 		61294A6F2024C7D0009F9886 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6E2024C7D0009F9886 /* HomeViewController.swift */; };
 		61294A722024C7D0009F9886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A702024C7D0009F9886 /* Main.storyboard */; };
@@ -29,7 +57,6 @@
 		6609836A202CE29C00639EE3 /* SetSaveTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66098369202CE29C00639EE3 /* SetSaveTypeView.swift */; };
 		6609836C202CEBFB00639EE3 /* SetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6609836B202CEBFB00639EE3 /* SetPasswordView.swift */; };
 		6609836E202D0E7300639EE3 /* PWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6609836D202D0E7300639EE3 /* PWTextField.swift */; };
-		66098370202D1F2500639EE3 /* WalletGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6609836F202D1F2500639EE3 /* WalletGenerationView.swift */; };
 		74435901202B320900CD1982 /* HFCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FD202B320900CD1982 /* HFCardCollectionViewCell.swift */; };
 		74435902202B320900CD1982 /* HFCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FE202B320900CD1982 /* HFCardCollectionView.swift */; };
 		74435903202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FF202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift */; };
@@ -40,6 +67,35 @@
 
 /* Begin PBXFileReference section */
 		609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.release.xcconfig"; sourceTree = "<group>"; };
+		610B1DAC202DB7B9005B1105 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		610B1DAE202DB7B9005B1105 /* DirUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirUtils.swift; sourceTree = "<group>"; };
+		610B1DB0202DB7B9005B1105 /* RequestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestExtension.swift; sourceTree = "<group>"; };
+		610B1DB2202DB7B9005B1105 /* VersionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionController.swift; sourceTree = "<group>"; };
+		610B1DB3202DB7B9005B1105 /* VersionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionProvider.swift; sourceTree = "<group>"; };
+		610B1DB5202DB7B9005B1105 /* StorageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
+		610B1DB7202DB7B9005B1105 /* Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		610B1DB8202DB7B9005B1105 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		610B1DB9202DB7B9005B1105 /* NSSortDescriptorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSSortDescriptorConvertible.swift; sourceTree = "<group>"; };
+		610B1DBA202DB7B9005B1105 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		610B1DBB202DB7B9005B1105 /* NSPredicateConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPredicateConvertible.swift; sourceTree = "<group>"; };
+		610B1DBD202DB7B9005B1105 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		610B1DBE202DB7B9005B1105 /* RequestObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestObservable.swift; sourceTree = "<group>"; };
+		610B1DBF202DB7B9005B1105 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		610B1DC2202DB7B9005B1105 /* CoreDataDefaultStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataDefaultStorage.swift; sourceTree = "<group>"; };
+		610B1DC3202DB7B9005B1105 /* CoreDataiCloudStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataiCloudStorage.swift; sourceTree = "<group>"; };
+		610B1DC5202DB7B9005B1105 /* NSManagedObjectMemoryContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectMemoryContext.swift; sourceTree = "<group>"; };
+		610B1DC6202DB7B9005B1105 /* NSManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
+		610B1DC7202DB7B9005B1105 /* NSManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContext.swift; sourceTree = "<group>"; };
+		610B1DC9202DB7B9005B1105 /* CoreDataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
+		610B1DCB202DB7B9005B1105 /* CoreDataOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataOptions.swift; sourceTree = "<group>"; };
+		610B1DCC202DB7B9005B1105 /* CoreDataObjectModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataObjectModel.swift; sourceTree = "<group>"; };
+		610B1DCD202DB7B9005B1105 /* CoreDataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataChange.swift; sourceTree = "<group>"; };
+		610B1DCE202DB7B9005B1105 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		610B1DCF202DB7B9005B1105 /* CoreDataObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataObservable.swift; sourceTree = "<group>"; };
+		610B1DD0202DB7B9005B1105 /* CoreDataiCloudConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataiCloudConfig.swift; sourceTree = "<group>"; };
+		610B1DD1202DB7B9005B1105 /* CoreDataContextParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataContextParent.swift; sourceTree = "<group>"; };
+		610B1DF1202DBB70005B1105 /* WalletTable+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalletTable+CoreDataProperties.swift"; path = "/Users/vince/Gits/madeInChain/Waller/Waller/WalletTable+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		610B1DF2202DBB70005B1105 /* WalletTable+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WalletTable+CoreDataClass.swift"; path = "/Users/vince/Gits/madeInChain/Waller/Waller/WalletTable+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		61294A692024C7D0009F9886 /* Waller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61294A6C2024C7D0009F9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61294A6E2024C7D0009F9886 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +160,144 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		610B1DA9202DB7B9005B1105 /* SugarData */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DAA202DB7B9005B1105 /* Foundation */,
+				610B1DC0202DB7B9005B1105 /* CoreData */,
+			);
+			path = SugarData;
+			sourceTree = "<group>";
+		};
+		610B1DAA202DB7B9005B1105 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DAB202DB7B9005B1105 /* Logger */,
+				610B1DAD202DB7B9005B1105 /* Utils */,
+				610B1DAF202DB7B9005B1105 /* Extensions */,
+				610B1DB1202DB7B9005B1105 /* Version */,
+				610B1DB4202DB7B9005B1105 /* Errors */,
+				610B1DB6202DB7B9005B1105 /* Protocols */,
+				610B1DBC202DB7B9005B1105 /* Entities */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		610B1DAB202DB7B9005B1105 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DAC202DB7B9005B1105 /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		610B1DAD202DB7B9005B1105 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DAE202DB7B9005B1105 /* DirUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		610B1DAF202DB7B9005B1105 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DB0202DB7B9005B1105 /* RequestExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		610B1DB1202DB7B9005B1105 /* Version */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DB2202DB7B9005B1105 /* VersionController.swift */,
+				610B1DB3202DB7B9005B1105 /* VersionProvider.swift */,
+			);
+			path = Version;
+			sourceTree = "<group>";
+		};
+		610B1DB4202DB7B9005B1105 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DB5202DB7B9005B1105 /* StorageError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		610B1DB6202DB7B9005B1105 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DB7202DB7B9005B1105 /* Requestable.swift */,
+				610B1DB8202DB7B9005B1105 /* Entity.swift */,
+				610B1DB9202DB7B9005B1105 /* NSSortDescriptorConvertible.swift */,
+				610B1DBA202DB7B9005B1105 /* Context.swift */,
+				610B1DBB202DB7B9005B1105 /* NSPredicateConvertible.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		610B1DBC202DB7B9005B1105 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DBD202DB7B9005B1105 /* Storage.swift */,
+				610B1DBE202DB7B9005B1105 /* RequestObservable.swift */,
+				610B1DBF202DB7B9005B1105 /* Request.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		610B1DC0202DB7B9005B1105 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DC1202DB7B9005B1105 /* Storages */,
+				610B1DC4202DB7B9005B1105 /* Extensions */,
+				610B1DC8202DB7B9005B1105 /* Errors */,
+				610B1DCA202DB7B9005B1105 /* Entities */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		610B1DC1202DB7B9005B1105 /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DC2202DB7B9005B1105 /* CoreDataDefaultStorage.swift */,
+				610B1DC3202DB7B9005B1105 /* CoreDataiCloudStorage.swift */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
+		610B1DC4202DB7B9005B1105 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DC5202DB7B9005B1105 /* NSManagedObjectMemoryContext.swift */,
+				610B1DC6202DB7B9005B1105 /* NSManagedObject.swift */,
+				610B1DC7202DB7B9005B1105 /* NSManagedObjectContext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		610B1DC8202DB7B9005B1105 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DC9202DB7B9005B1105 /* CoreDataError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		610B1DCA202DB7B9005B1105 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DCB202DB7B9005B1105 /* CoreDataOptions.swift */,
+				610B1DCC202DB7B9005B1105 /* CoreDataObjectModel.swift */,
+				610B1DCD202DB7B9005B1105 /* CoreDataChange.swift */,
+				610B1DCE202DB7B9005B1105 /* CoreDataStore.swift */,
+				610B1DCF202DB7B9005B1105 /* CoreDataObservable.swift */,
+				610B1DD0202DB7B9005B1105 /* CoreDataiCloudConfig.swift */,
+				610B1DD1202DB7B9005B1105 /* CoreDataContextParent.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		61294A602024C7D0009F9886 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +319,7 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
+				610B1DA9202DB7B9005B1105 /* SugarData */,
 				61B9D2A9202B797800E22B0D /* ACProgressHUD */,
 				744358FC202B31D400CD1982 /* HFCardCollectionView */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
@@ -139,6 +334,8 @@
 				61B9D29F202B765000E22B0D /* GenerateWalletController.swift */,
 				61294A7B2024C7D0009F9886 /* Info.plist */,
 				61294A732024C7D0009F9886 /* Waller.xcdatamodeld */,
+				610B1DF2202DBB70005B1105 /* WalletTable+CoreDataClass.swift */,
+				610B1DF1202DBB70005B1105 /* WalletTable+CoreDataProperties.swift */,
 				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
 				618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */,
 			);
@@ -319,29 +516,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				610B1DF5202DBC15005B1105 /* WalletGenerationView.swift in Sources */,
 				74435904202B320900CD1982 /* HFCardCollectionViewLayout.swift in Sources */,
 				61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */,
 				74435906202B380A00CD1982 /* WalletCell.swift in Sources */,
 				61294A6F2024C7D0009F9886 /* HomeViewController.swift in Sources */,
+				610B1DD9202DB7B9005B1105 /* Entity.swift in Sources */,
+				610B1DDE202DB7B9005B1105 /* RequestObservable.swift in Sources */,
+				610B1DEB202DB7B9005B1105 /* CoreDataiCloudConfig.swift in Sources */,
+				610B1DDD202DB7B9005B1105 /* Storage.swift in Sources */,
 				61CDB2EB202CCF210004C02B /* AddWalletViewController.swift in Sources */,
 				61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */,
 				61CDB2E9202CCD5C0004C02B /* SetNameView.swift in Sources */,
+				610B1DD8202DB7B9005B1105 /* Requestable.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
 				74435902202B320900CD1982 /* HFCardCollectionView.swift in Sources */,
 				6609836C202CEBFB00639EE3 /* SetPasswordView.swift in Sources */,
 				6609836A202CE29C00639EE3 /* SetSaveTypeView.swift in Sources */,
 				61B9D2A0202B765000E22B0D /* GenerateWalletController.swift in Sources */,
+				610B1DE4202DB7B9005B1105 /* NSManagedObjectContext.swift in Sources */,
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
 				61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */,
+				610B1DE5202DB7B9005B1105 /* CoreDataError.swift in Sources */,
+				610B1DD6202DB7B9005B1105 /* VersionProvider.swift in Sources */,
+				610B1DDC202DB7B9005B1105 /* NSPredicateConvertible.swift in Sources */,
+				610B1DDB202DB7B9005B1105 /* Context.swift in Sources */,
 				61B9D2AD202BAACE00E22B0D /* BTCTestnetInfo.swift in Sources */,
+				610B1DE1202DB7B9005B1105 /* CoreDataiCloudStorage.swift in Sources */,
+				610B1DEC202DB7B9005B1105 /* CoreDataContextParent.swift in Sources */,
 				61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */,
 				66098368202CD31C00639EE3 /* AddTypeView.swift in Sources */,
 				74435903202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift in Sources */,
 				74435901202B320900CD1982 /* HFCardCollectionViewCell.swift in Sources */,
+				610B1DD7202DB7B9005B1105 /* StorageError.swift in Sources */,
+				610B1DE9202DB7B9005B1105 /* CoreDataStore.swift in Sources */,
+				610B1DD3202DB7B9005B1105 /* DirUtils.swift in Sources */,
+				610B1DE7202DB7B9005B1105 /* CoreDataObjectModel.swift in Sources */,
+				610B1DE0202DB7B9005B1105 /* CoreDataDefaultStorage.swift in Sources */,
+				610B1DE2202DB7B9005B1105 /* NSManagedObjectMemoryContext.swift in Sources */,
+				610B1DE3202DB7B9005B1105 /* NSManagedObject.swift in Sources */,
 				61DDBDA92029B72100F270DF /* OptionView.swift in Sources */,
+				610B1DD2202DB7B9005B1105 /* Logger.swift in Sources */,
+				610B1DE6202DB7B9005B1105 /* CoreDataOptions.swift in Sources */,
 				61B9D2A7202B796D00E22B0D /* ACProgressHUD.swift in Sources */,
-				66098370202D1F2500639EE3 /* WalletGenerationView.swift in Sources */,
+				610B1DDF202DB7B9005B1105 /* Request.swift in Sources */,
+				610B1DDA202DB7B9005B1105 /* NSSortDescriptorConvertible.swift in Sources */,
+				610B1DD5202DB7B9005B1105 /* VersionController.swift in Sources */,
+				610B1DE8202DB7B9005B1105 /* CoreDataChange.swift in Sources */,
 				61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */,
+				610B1DEA202DB7B9005B1105 /* CoreDataObservable.swift in Sources */,
+				610B1DD4202DB7B9005B1105 /* RequestExtension.swift in Sources */,
 				6609836E202D0E7300639EE3 /* PWTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

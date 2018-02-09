@@ -19,14 +19,17 @@ class SetSaveTypeView: UIView, MultiOptionViewDelegate {
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         
-        let labelframe = CGRect.init(x: 40, y:120, width: self.frame.size.width - 80, height: 50)
-        let optionText = UILabel.init(frame:labelframe)
-        optionText.textColor = UIColor.gray
-        optionText.textAlignment = .center
-        optionText.text = "Before to generate your new address, please select how to save it."
-        optionText.font = UIFont.systemFont(ofSize: 20)
-        optionText.numberOfLines = 0
-        self.addSubview(optionText)
+        let centeredWrapper = UIView.init(frame: CGRect.init(x: 0, y: 0, width: frame.size.width, height: 0))
+        self.addSubview(centeredWrapper)
+        
+        let labelframe = CGRect.init(x: 30, y:0, width: self.frame.size.width - 60, height: 50)
+        let infoText = UILabel.init(frame:labelframe)
+        infoText.textColor = UIColor.gray
+        infoText.textAlignment = .center
+        infoText.text = "Before to generate your new address, select how to save it."
+        infoText.font = UIFont.systemFont(ofSize: 20)
+        infoText.numberOfLines = 0
+        centeredWrapper.addSubview(infoText)
         
         var data:[Option] = []
         
@@ -36,14 +39,17 @@ class SetSaveTypeView: UIView, MultiOptionViewDelegate {
         data.append(option1)
         data.append(option2)
         
-        let frame = CGRect.init(x: 10, y: 100, width: self.frame.size.width-20, height: 0)
+        let my = infoText.frame.origin.y + infoText.frame.size.height + 20
+        
+        let frame = CGRect.init(x: 10, y: my, width: self.frame.size.width-20, height: 0)
         multiView = MultiOptionView.init(frame:frame,data:data)
         multiView.setDefaultIndex(index: 0)
         multiView.delegate = self
-        self.addSubview(multiView)
-        
-        multiView.center = self.center
-        
+        centeredWrapper.addSubview(multiView)
+
+        let height = infoText.frame.size.height + multiView.frame.size.height + 20
+        centeredWrapper.frame.size.height = height
+        centeredWrapper.center = self.center
     }
     
     func optionSelected(selectedIndex: Int) {

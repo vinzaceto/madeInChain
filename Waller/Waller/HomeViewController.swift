@@ -19,9 +19,40 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         super.viewDidLoad()
         
         
+        let db = coreDataStorage()
+        
+        do {
+                try db.operation
+                {
+                    (context, save) throws -> Void in
+                    let newTask: WalletTable = try! context.create()
+                    newTask.walletID = "ThisIsAWalletID"
+                    save()
+                }
+            }
+        catch
+        {
+            // There was an error in the operation
+        }
+    
+        let wallets: [WalletTable] = try! db.fetch(FetchRequest<WalletTable>().sorted(with: "walletID", ascending: true))
+        print(wallets)
+        
+        
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
       
         
+    }
+    
+    
+    
+    // Initializing CoreDataDefaultStorage
+    func coreDataStorage() -> CoreDataDefaultStorage {
+        let store = CoreDataStore.named("WalletTable")
+        let bundle = Bundle(for: self.classForCoder)
+        let model = CoreDataObjectModel.merged([bundle])
+        let defaultStorage = try! CoreDataDefaultStorage(store: store, model: model)
+        return defaultStorage
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

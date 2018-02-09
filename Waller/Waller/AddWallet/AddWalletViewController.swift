@@ -54,8 +54,16 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
 
         walletGenerationView = WalletGenerationView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         walletGenerationView.delegate = self
-
-        backButton.setTitle("back", for: .normal)
+        self.view.addSubview(walletGenerationView)
+        
+        walletGenerationView.gererateWallet(name: "walletName", pass: "passpass")
+        {
+            (success, error) in
+            
+            
+        }
+        
+        backButton.setTitle("Back", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         backButton.sizeToFit()
         backButton.isEnabled = false
@@ -112,7 +120,19 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     func passwordSetted(pass: String)
     {
         print("password : \(pass)")
-        goToGenerateWallet()
+        walletGenerationView.gererateWallet(name: "", pass: "")
+        {
+            (success, error) in
+            
+            if success == true
+            {
+                self.goToGenerateWallet()
+            }
+            else
+            {
+                print("WalletGenerationFailed reason : \(String(describing: error))")
+            }
+        }
     }
     
     func goToGenerateWallet()
