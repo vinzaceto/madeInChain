@@ -62,6 +62,17 @@
 		74435903202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FF202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift */; };
 		74435904202B320900CD1982 /* HFCardCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74435900202B320900CD1982 /* HFCardCollectionViewLayout.swift */; };
 		74435906202B380A00CD1982 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74435905202B380A00CD1982 /* WalletCell.swift */; };
+		74435918202DC1A700CD1982 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7443590D202DC1A200CD1982 /* Rubik-Italic.ttf */; };
+		74435919202DC1A700CD1982 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7443590E202DC1A300CD1982 /* Rubik-Black.ttf */; };
+		7443591A202DC1A700CD1982 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7443590F202DC1A300CD1982 /* Rubik-LightItalic.ttf */; };
+		7443591B202DC1A700CD1982 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435910202DC1A400CD1982 /* Rubik-Regular.ttf */; };
+		7443591C202DC1A700CD1982 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435911202DC1A400CD1982 /* Rubik-Light.ttf */; };
+		7443591D202DC1A700CD1982 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435912202DC1A500CD1982 /* Rubik-BoldItalic.ttf */; };
+		7443591E202DC1A700CD1982 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435913202DC1A500CD1982 /* Rubik-BlackItalic.ttf */; };
+		7443591F202DC1A700CD1982 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435914202DC1A500CD1982 /* Rubik-Medium.ttf */; };
+		74435920202DC1A700CD1982 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435915202DC1A600CD1982 /* Rubik-MediumItalic.ttf */; };
+		74435921202DC1A700CD1982 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 74435916202DC1A600CD1982 /* OFL.txt */; };
+		74435922202DC1A700CD1982 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435917202DC1A600CD1982 /* Rubik-Bold.ttf */; };
 		D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +139,17 @@
 		744358FF202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFCardCollectionViewLayoutDelegate.swift; sourceTree = "<group>"; };
 		74435900202B320900CD1982 /* HFCardCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFCardCollectionViewLayout.swift; sourceTree = "<group>"; };
 		74435905202B380A00CD1982 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
+		7443590D202DC1A200CD1982 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		7443590E202DC1A300CD1982 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
+		7443590F202DC1A300CD1982 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
+		74435910202DC1A400CD1982 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		74435911202DC1A400CD1982 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		74435912202DC1A500CD1982 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		74435913202DC1A500CD1982 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
+		74435914202DC1A500CD1982 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		74435915202DC1A600CD1982 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
+		74435916202DC1A600CD1982 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		74435917202DC1A600CD1982 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -319,6 +341,7 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
+				7443590C202DC18300CD1982 /* Resources */,
 				610B1DA9202DB7B9005B1105 /* SugarData */,
 				61B9D2A9202B797800E22B0D /* ACProgressHUD */,
 				744358FC202B31D400CD1982 /* HFCardCollectionView */,
@@ -388,6 +411,24 @@
 			path = HFCardCollectionView;
 			sourceTree = "<group>";
 		};
+		7443590C202DC18300CD1982 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74435916202DC1A600CD1982 /* OFL.txt */,
+				7443590E202DC1A300CD1982 /* Rubik-Black.ttf */,
+				74435913202DC1A500CD1982 /* Rubik-BlackItalic.ttf */,
+				74435917202DC1A600CD1982 /* Rubik-Bold.ttf */,
+				74435912202DC1A500CD1982 /* Rubik-BoldItalic.ttf */,
+				7443590D202DC1A200CD1982 /* Rubik-Italic.ttf */,
+				74435911202DC1A400CD1982 /* Rubik-Light.ttf */,
+				7443590F202DC1A300CD1982 /* Rubik-LightItalic.ttf */,
+				74435914202DC1A500CD1982 /* Rubik-Medium.ttf */,
+				74435915202DC1A600CD1982 /* Rubik-MediumItalic.ttf */,
+				74435910202DC1A400CD1982 /* Rubik-Regular.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -451,7 +492,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74435921202DC1A700CD1982 /* OFL.txt in Resources */,
+				74435919202DC1A700CD1982 /* Rubik-Black.ttf in Resources */,
+				7443591B202DC1A700CD1982 /* Rubik-Regular.ttf in Resources */,
 				61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */,
+				74435922202DC1A700CD1982 /* Rubik-Bold.ttf in Resources */,
+				7443591F202DC1A700CD1982 /* Rubik-Medium.ttf in Resources */,
+				7443591A202DC1A700CD1982 /* Rubik-LightItalic.ttf in Resources */,
+				7443591C202DC1A700CD1982 /* Rubik-Light.ttf in Resources */,
+				7443591E202DC1A700CD1982 /* Rubik-BlackItalic.ttf in Resources */,
+				7443591D202DC1A700CD1982 /* Rubik-BoldItalic.ttf in Resources */,
+				74435918202DC1A700CD1982 /* Rubik-Italic.ttf in Resources */,
+				74435920202DC1A700CD1982 /* Rubik-MediumItalic.ttf in Resources */,
 				61294A772024C7D0009F9886 /* Assets.xcassets in Resources */,
 				61294A722024C7D0009F9886 /* Main.storyboard in Resources */,
 				61B9D2A8202B796D00E22B0D /* ACProgressView.xib in Resources */,
