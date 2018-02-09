@@ -12,6 +12,12 @@ import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate {
 
+    @IBOutlet weak var currentCurrancy: UILabel!
+    @IBOutlet weak var currentBTCvalue: UILabel!
+    @IBOutlet weak var currentAmount: UILabel!
+    @IBOutlet weak var currentBtcAmount: UILabel!
+    
+    
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
 
@@ -20,8 +26,22 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-      
+
         
+    }
+    
+    func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willRevealCardAtIndex index: Int) {
+        if let cell = self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? WalletCell {
+            //cell.cardCollectionViewLayout = self.cardCollectionViewLayout
+            //cell.cardIsRevealed(true)
+        }
+    }
+    
+    func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willUnrevealCardAtIndex index: Int) {
+        if let cell = self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? WalletCell {
+            //cell.cardCollectionViewLayout = self.cardCollectionViewLayout
+            //cell.cardIsRevealed(false)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
