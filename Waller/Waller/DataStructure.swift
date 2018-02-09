@@ -15,3 +15,17 @@ struct Option
     var text:String
     var buttonTitle:String
 }
+
+enum AddType
+{
+    case Standard
+    case Multisig
+    case Import
+}
+
+enum SaveType
+{
+    case Local
+    case Mnemonic
+}
+

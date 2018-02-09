@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add View Controller-->
+        <!--Add Wallet View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AddViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AddWalletViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,15 +22,26 @@
                     </view>
                     <navigationItem key="navigationItem" id="33P-Se-VSe">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="jDX-ng-BkS">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RwH-PK-kf5">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YiP-zW-WCn">
                             <rect key="frame" x="168" y="7" width="39" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Close"/>
                             <connections>
-                                <action selector="closeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qGz-qo-lo2"/>
+                                <action selector="closeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yRP-4R-ILe"/>
                             </connections>
                         </button>
                     </navigationItem>
+                    <connections>
+                        <outlet property="backButton" destination="RwH-PK-kf5" id="qGM-g2-5Kb"/>
+                        <outlet property="closeButton" destination="YiP-zW-WCn" id="Dyu-mp-Ev1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
