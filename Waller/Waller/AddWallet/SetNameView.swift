@@ -11,7 +11,7 @@ import UIKit
 class SetNameView: UIView,UITextFieldDelegate {
 
     let nameField:UITextField = UITextField()
-    var nameFieldPlaceholder = "type a wallet name here"
+    var nameFieldPlaceholder = "type a name here"
     var nameFieldTemporaryText:String = ""
     var nameFieldTemporaryPlaceholder:NSAttributedString!
     var lockWrite:Bool = false
@@ -23,9 +23,13 @@ class SetNameView: UIView,UITextFieldDelegate {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        self.backgroundColor = UIColor.lightGray
         
-        let labelframe = CGRect.init(x: 30, y:80, width: self.frame.size.width - 60, height: 60)
-        let infoText = UILabel.init(frame:labelframe)
+        // centered y with keyboard
+        let top = ((self.frame.size.height - 230) / 2) - 50
+        
+        let infoText = UILabel.init(frame:CGRect.init(x: 0, y:top, width: 280, height: 60))
+        infoText.center.x = self.center.x
         infoText.textColor = UIColor.gray
         infoText.textAlignment = .center
         infoText.text = "You are creating a new wallet, give a name to it to continue."
@@ -35,10 +39,11 @@ class SetNameView: UIView,UITextFieldDelegate {
         
         let fy = infoText.frame.origin.y + infoText.frame.size.height + 20
         
-        let fieldFrame = CGRect.init(x: 30, y: fy, width: self.frame.size.width - 120, height: 40)
-        nameField.frame = fieldFrame
+        nameField.frame = CGRect.init(x: 0, y: fy, width: 260, height: 40)
+        nameField.center.x = self.center.x
         nameField.delegate = self
-        nameField.font = UIFont.systemFont(ofSize: 18)
+        nameField.font = UIFont.systemFont(ofSize: 24)
+        nameField.autocorrectionType = UITextAutocorrectionType.no
         changePlaceholderColor(field: nameField, color: UIColor.gray, text: nameFieldPlaceholder)
         self.addSubview(nameField)
         
@@ -134,9 +139,14 @@ class SetNameView: UIView,UITextFieldDelegate {
     
     func printErrorOnField(error:String, field:UITextField)
     {
+        if lockWrite == true
+        {
+            return
+        }
+        
         guard let text = field.text else { return }
         guard let placeholder = field.attributedPlaceholder else { return }
-
+        
         lockWrite = true
         
         nameFieldTemporaryText = text

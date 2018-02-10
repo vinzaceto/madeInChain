@@ -19,8 +19,8 @@ class WalletGenerationView: UIView
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         
-        let labelframe = CGRect.init(x: 30, y:120, width: self.frame.size.width - 60, height: 75)
-        let infoText = UILabel.init(frame:labelframe)
+        let infoText = UILabel.init(frame:CGRect.init(x: 0, y:120, width: 280, height: 75))
+        infoText.center.x = self.center.x
         infoText.textColor = UIColor.gray
         infoText.textAlignment = .center
         infoText.text = "Your wallet has been successfully generated and stored on this device."
@@ -37,7 +37,8 @@ class WalletGenerationView: UIView
         
         let y = doneImage.frame.origin.y + doneImage.frame.size.height + 10
         
-        let infoText2 = UILabel.init(frame:CGRect.init(x: 30, y:y, width: self.frame.size.width - 60, height: 100))
+        let infoText2 = UILabel.init(frame:CGRect.init(x: 0, y:y, width: 280, height: 100))
+        infoText2.center.x = self.center.x
         infoText2.textColor = UIColor.gray
         infoText2.textAlignment = .center
         infoText2.text = "Remember you to use the export feature to make a backup or share this wallet on other devices."
@@ -64,8 +65,7 @@ class WalletGenerationView: UIView
         print("Generating wallet with name :  \(name) and pass : \(pass)")
         
         // mnemonic
-        var seed = UUID().uuidString.replacingOccurrences(of: "-", with: "", options: .literal, range: nil)
-        seed = "DB045048DB5543148F478B182439C240"
+        let seed = UUID().uuidString.replacingOccurrences(of: "-", with: "", options: .literal, range: nil)
         print("seed : \(seed)")
 
         let entropy = BTCDataFromHex(seed)
@@ -76,7 +76,85 @@ class WalletGenerationView: UIView
         print("address : \(keychain?.key.addressTestnet)")
         print("pubKey : \(keychain?.extendedPublicKey)")
         print("privKey : \(keychain?.extendedPrivateKey)")
+        
+        // Private key encryption
+        let encryptedPrivateKey = encrypt(privateKey: (keychain?.extendedPrivateKey)!, pass: pass)
+        print("encrypted PrivateKey : \(encryptedPrivateKey.base64EncodedString())")
+        
+        let fullWallet = FullWallet.init(label: name, address: (keychain?.key.addressTestnet.string)!, encryptedPrivatekey: encryptedPrivateKey.base64EncodedString())
+        print(fullWallet)
+        
+        let walletsKeychain = WalletsKeychain.init()
+        walletsKeychain.saveWallet(fullWallet: fullWallet)
+        {
+            (success, error) in
+            print(error)
+        }
+        
+        /*
+        // Decryption
+        do
+        {
+            let originalData = try RNCryptor.decrypt(data: ciphertext, withPassword: pass)
+            print("original data : \(originalData.base64EncodedString())")
 
+            let originalPrivateKey = originalData.base64EncodedString()
+            print("decrypted priv key : \(String.init(data: originalData, encoding: String.Encoding.utf8))")
+        }
+        catch
+        {
+            print("decrypt error : \(error)")
+        }
+        */
+        
+        
+        /*
+        let fullWallet = FullWallet.init(label: name, address: (keychain?.key.addressTestnet.string)!, privkey: keychain?.extendedPrivateKey)
+        print(fullWallet)
+
+        //Create JSON
+        let encodeWallet = try? JSONEncoder().encode(fullWallet)
+        var json: Any?
+        if let data = encodeWallet
+        {
+            json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        }
+        
+        //Print JSON Object
+        
+        var walletJson:Any?
+        if let j = json
+        {
+            walletJson = j
+            print("Wallet JSON:\(String(describing: walletJson))")
+        }
+        
+        let walletJsonData = jsonToNSData(json: walletJson)
+        print(walletJsonData?.base64EncodedString())
+        */
+ 
+        /*
+        // Encryption
+        let data: Data = Data.in
+        let ciphertext = RNCryptor.encrypt(data: data, withPassword: pass)
+        print("encrypted json : \(ciphertext)")
+        
+        
+        // Decryption
+        do
+        {
+            let originalData = try RNCryptor.decrypt(data: ciphertext, withPassword: pass)
+            print("decrypted json : \(originalData)")
+        }
+        catch
+        {
+            print("decrypt error : \(error)")
+        }
+        
+        
+        */
+        
+        /*
         print()
 
         let msp = BTCMnemonic.init(words: mnemonic?.words, password: "", wordListType: BTCMnemonicWordListType.english)
@@ -94,6 +172,13 @@ class WalletGenerationView: UIView
         print("address : \(m?.keychain?.key.addressTestnet)")
         print("pubKey : \(m?.keychain?.extendedPublicKey)")
         print("privKey : \(m?.keychain?.extendedPrivateKey)")
+        */
+        
+        
+        
+        
+        //
+        // {"addresses":[{"address":"1E5PAuSJJA3FZn8kt17CnSDdXqF1wbpM3v","privkey":"5JiRi5aw1bd2pgXrsWoUhUEN93gdk65X1GRE6VRvXupQRvoYjsu"}]}
         
 //        seed : DB045048DB5543148F478B182439C240
 //        seed : Optional([swallow, card, banana, repeat, feature, medal, dial, vapor, blouse, canyon, identify, liberty])
@@ -104,6 +189,41 @@ class WalletGenerationView: UIView
         
         
         completionHandler(true, nil)
+    }
+    
+    func encrypt(privateKey:String, pass:String) -> Data
+    {
+        // string encoding to data
+        let data = privateKey.data(using: String.Encoding.utf8)
+        //print("PrivateKeyData : \(data?.base64EncodedString())")
+
+        // private key encryption
+        let ciphertext = RNCryptor.encrypt(data: data!, withPassword: pass)
+        //print("encrypted PrivateKey : \(ciphertext.base64EncodedString())")
+        
+        return ciphertext
+    }
+    
+    
+    
+    // Convert from NSData to json object
+    func nsdataToJSON(data: Data) -> AnyObject? {
+        do {
+            return try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
+    }
+    
+    // Convert from JSON to nsdata
+    func jsonToNSData(json: Any) -> Data?{
+        do {
+            return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil;
     }
         
     @objc func completeButtonPressed()

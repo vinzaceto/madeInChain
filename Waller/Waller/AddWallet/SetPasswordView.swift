@@ -27,12 +27,12 @@ class SetPasswordView: UIView, UITextFieldDelegate
         
         let attributedInfo = NSMutableAttributedString(string: infoString, attributes: nil)
         
-        let tipsRange = (attributedInfo.string as NSString).range(of: "\n\n• use more than 12 characters\n• don’t use always the same password\n• use special characters.")
+        let tipsRange = (attributedInfo.string as NSString).range(of: "\n• use more than 12 characters\n• don’t use always the same password\n• use special characters.")
         
         attributedInfo.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)], range: tipsRange)
         
-        let labelframe = CGRect.init(x: 20, y:70, width: self.frame.size.width - 40, height: 140)
-        let infoText = UILabel.init(frame:labelframe)
+        let infoText = UILabel.init(frame:CGRect.init(x: 20, y:70, width: 280, height: 140))
+        infoText.center.x = self.center.x
         infoText.textColor = UIColor.gray
         infoText.textAlignment = .center
         infoText.font = UIFont.systemFont(ofSize: 20)
@@ -42,14 +42,16 @@ class SetPasswordView: UIView, UITextFieldDelegate
         
         let py = infoText.frame.origin.y + infoText.frame.size.height + 5
 
-        passField = PWTextField.init(frame: CGRect.init(x: 30, y: py, width: self.frame.size.width - 60, height: 35))
+        passField = PWTextField.init(frame: CGRect.init(x: 0, y: py, width: 260, height: 35))
+        passField.center.x = self.center.x
         changePlaceholderColor(field: passField.textField, color: UIColor.lightText, text: "type a password here")
         passField.textField.delegate = self
         self.addSubview(passField)
         
         let rpy = passField.frame.origin.y + passField.frame.size.height + 10
     
-        retypePassField = PWTextField.init(frame: CGRect.init(x: 30, y: rpy, width: self.frame.size.width - 60, height: 35))
+        retypePassField = PWTextField.init(frame: CGRect.init(x: 0, y: rpy, width: passField.frame.width, height: 35))
+        retypePassField.center.x = self.center.x
         changePlaceholderColor(field: retypePassField.textField, color: UIColor.lightText, text: "re-type the password here")
         retypePassField.textField.delegate = self
         self.addSubview(retypePassField)

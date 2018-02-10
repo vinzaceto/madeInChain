@@ -18,12 +18,13 @@ class SetSaveTypeView: UIView, MultiOptionViewDelegate {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        
+        self.backgroundColor = UIColor.lightGray
+
         let centeredWrapper = UIView.init(frame: CGRect.init(x: 0, y: 0, width: frame.size.width, height: 0))
         self.addSubview(centeredWrapper)
         
-        let labelframe = CGRect.init(x: 30, y:0, width: self.frame.size.width - 60, height: 50)
-        let infoText = UILabel.init(frame:labelframe)
+        let infoText = UILabel.init(frame:CGRect.init(x: 30, y:0, width: 280, height: 50))
+        infoText.center.x = self.center.x
         infoText.textColor = UIColor.gray
         infoText.textAlignment = .center
         infoText.text = "Before to generate your new address, select how to save it."
@@ -33,7 +34,7 @@ class SetSaveTypeView: UIView, MultiOptionViewDelegate {
         
         var data:[Option] = []
         
-        let option1 = Option.init(title: "Store", text: "Create a simple wallet to send and receive funds, it will be protected with a password and stored directly on your device.", buttonTitle: "Setup password for the wallet")
+        let option1 = Option.init(title: "Store locally", text: "Create a simple wallet to send and receive funds, it will be protected with a password and stored directly on your device.", buttonTitle: "Setup password for the wallet")
         let option2 = Option.init(title: "Cold wallet", text: "Store the keys of your wallet manually, without saving it into your device.", buttonTitle: "Store the wallet manually")
         
         data.append(option1)
@@ -41,8 +42,8 @@ class SetSaveTypeView: UIView, MultiOptionViewDelegate {
         
         let my = infoText.frame.origin.y + infoText.frame.size.height + 20
         
-        let frame = CGRect.init(x: 10, y: my, width: self.frame.size.width-20, height: 0)
-        multiView = MultiOptionView.init(frame:frame,data:data)
+        multiView = MultiOptionView.init(frame: CGRect.init(x: 0, y: my, width: 300, height: 0),data:data)
+        multiView.center.x = self.center.x
         multiView.setDefaultIndex(index: 0)
         multiView.delegate = self
         centeredWrapper.addSubview(multiView)

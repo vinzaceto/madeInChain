@@ -15,6 +15,7 @@ protocol SetupPageViewDelegate
     func saveTypeSelected(selectedType:SaveType)
     func passwordSetted(pass:String)
     func completedButtonPressed()
+    func walletFounded(address:String)
 }
 
 
@@ -25,6 +26,10 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     var addSaveType:SetSaveTypeView!
     var addPasswordView:SetPasswordView!
     var walletGenerationView:WalletGenerationView!
+    var mnemonicView:MnemonicView!
+    var qrcodeScanView:QRCodeScanView!
+
+    var walletLabel:String!
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
@@ -54,14 +59,12 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
 
         walletGenerationView = WalletGenerationView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         walletGenerationView.delegate = self
-        self.view.addSubview(walletGenerationView)
-        
-        walletGenerationView.gererateWallet(name: "walletName", pass: "passpass")
-        {
-            (success, error) in
-            
-            
-        }
+       
+        mnemonicView = MnemonicView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        mnemonicView.delegate = self
+
+        qrcodeScanView = QRCodeScanView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        qrcodeScanView.delegate = self
         
         backButton.setTitle("Back", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
@@ -76,7 +79,14 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     func typeSelected(selectedType: AddType)
     {
         print("selected type : \(selectedType)")
-        goToSetNameView()
+        if selectedType == AddType.Standard
+        {
+            goToSetNameView()
+        }
+        if selectedType == AddType.Import
+        {
+            goToQRCodeScan()
+        }
     }
     
     func goToSetNameView()
@@ -85,13 +95,13 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         
         views.append(addNameView)
         addNameView.nameField.text = ""
-        addNameView.nameField.becomeFirstResponder()
         showNextView()
     }
     
     func nameSetted(name: String)
     {
         print("selected name : \(name)")
+        walletLabel = name
         goToSetSaveType()
     }
     
@@ -108,19 +118,22 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         {
             goToSetPassword()
         }
+        if selectedType == SaveType.Mnemonic
+        {
+            goToMnemonicView()
+        }
     }
   
     func goToSetPassword()
     {
         views.append(addPasswordView)
         showNextView()
-        addPasswordView.passField.textField.becomeFirstResponder()
     }
     
     func passwordSetted(pass: String)
     {
         print("password : \(pass)")
-        walletGenerationView.gererateWallet(name: "", pass: "")
+        walletGenerationView.gererateWallet(name:walletLabel, pass: pass)
         {
             (success, error) in
             
@@ -145,6 +158,20 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         showNextView()
     }
     
+    func goToMnemonicView()
+    {
+        views.append(mnemonicView)
+        showNextView()
+    }
+    
+    func goToQRCodeScan()
+    {
+        backButton.isEnabled = true
+        
+        views.append(qrcodeScanView)
+        showNextView()
+    }
+    
     func completedButtonPressed()
     {
         close()
@@ -154,6 +181,25 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     @objc func backButtonPressed()
     {
         showPreviousView()
+    }
+    
+    func walletFounded(address: String)
+    {
+        let alert = EMAlertController(title: "Address found", message: address)
+        
+        let cancel = EMAlertAction(title: "CANCEL", style: .cancel)
+        {
+            self.qrcodeScanView.canScan = true
+        }
+        let confirm = EMAlertAction(title: "IMPORT", style: .normal)
+        {
+            self.qrcodeScanView.canScan = true
+        }
+        
+        alert.addAction(action: cancel)
+        alert.addAction(action: confirm)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     //
@@ -167,6 +213,16 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         
         let currentView = views[currentIndex]
         let nextView = views[nextIndex]
+        
+        if nextView == addNameView
+        {
+            addNameView.nameField.becomeFirstResponder()
+        }
+        
+        if nextView == addPasswordView
+        {
+            addPasswordView.passField.textField.becomeFirstResponder()
+        }
         
         nextView.frame.origin.x = self.view.frame.size.width
         self.view.addSubview(nextView)
@@ -184,6 +240,10 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     {
         let currentIndex = views.count - 1
         let previousIndex = views.count - 2
+
+        addNameView.nameField.resignFirstResponder()
+        addPasswordView.passField.textField.resignFirstResponder()
+        addPasswordView.retypePassField.textField.resignFirstResponder()
         
         if views.count < 2
         {
@@ -192,10 +252,20 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         if views.count == 2
         {
             backButton.isEnabled = false
+            walletLabel = ""
         }
         
         let currentView = views[currentIndex]
         let previousView = views[previousIndex]
+        
+        if previousView == addNameView
+        {
+            addNameView.nameField.becomeFirstResponder()
+        }
+        if previousView == addPasswordView
+        {
+            addPasswordView.passField.textField.becomeFirstResponder()
+        }
         
         UIView.animate(withDuration: 0.5, animations:
             {
@@ -213,7 +283,13 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     {close()}
     
     func close()
-    {self.dismiss(animated: true, completion: nil)}
+    {
+        addNameView.nameField.resignFirstResponder()
+        addPasswordView.passField.textField.resignFirstResponder()
+        addPasswordView.retypePassField.textField.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     override func didReceiveMemoryWarning()
     {super.didReceiveMemoryWarning()}
