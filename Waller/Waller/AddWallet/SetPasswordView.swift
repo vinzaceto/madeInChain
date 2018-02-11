@@ -23,33 +23,43 @@ class SetPasswordView: UIView, UITextFieldDelegate
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         
-        let labelframe = CGRect.init(x: 40, y:80, width: self.frame.size.width - 80, height: 160)
-        let infoText = UILabel.init(frame:labelframe)
+        let infoString = "Set a strong password for your wallet, these are some tips:\n\n• use more than 12 characters\n• don’t use always the same password\n• use special characters."
+        
+        let attributedInfo = NSMutableAttributedString(string: infoString, attributes: nil)
+        
+        let tipsRange = (attributedInfo.string as NSString).range(of: "\n• use more than 12 characters\n• don’t use always the same password\n• use special characters.")
+        
+        attributedInfo.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)], range: tipsRange)
+        
+        let infoText = UILabel.init(frame:CGRect.init(x: 20, y:70, width: 280, height: 140))
+        infoText.center.x = self.center.x
         infoText.textColor = UIColor.gray
         infoText.textAlignment = .center
-        infoText.text = "Set a strong password for your wallet, these are some useful tips:\n\n• use more than 12 characters\n• don’t use always the same password\n• use special characters"
         infoText.font = UIFont.systemFont(ofSize: 20)
+        infoText.attributedText = attributedInfo
         infoText.numberOfLines = 0
         self.addSubview(infoText)
         
-        let py = infoText.frame.origin.y + infoText.frame.size.height + 20
+        let py = infoText.frame.origin.y + infoText.frame.size.height + 5
 
-        passField = PWTextField.init(frame: CGRect.init(x: 40, y: py, width: self.frame.size.width - 80, height: 40))
+        passField = PWTextField.init(frame: CGRect.init(x: 0, y: py, width: 260, height: 35))
+        passField.center.x = self.center.x
         changePlaceholderColor(field: passField.textField, color: UIColor.lightText, text: "type a password here")
         passField.textField.delegate = self
         self.addSubview(passField)
         
-        let rpy = passField.frame.origin.y + passField.frame.size.height + 20
-        
-        retypePassField = PWTextField.init(frame: CGRect.init(x: 40, y: rpy, width: self.frame.size.width - 80, height: 40))
+        let rpy = passField.frame.origin.y + passField.frame.size.height + 10
+    
+        retypePassField = PWTextField.init(frame: CGRect.init(x: 0, y: rpy, width: passField.frame.width, height: 35))
+        retypePassField.center.x = self.center.x
         changePlaceholderColor(field: retypePassField.textField, color: UIColor.lightText, text: "re-type the password here")
         retypePassField.textField.delegate = self
         self.addSubview(retypePassField)
         
-        let by = retypePassField.frame.origin.y + retypePassField.frame.size.height + 30
+        let by = retypePassField.frame.origin.y + retypePassField.frame.size.height + 10
 
         let generateButton = UIButton.init(type: .roundedRect)
-        generateButton.frame = CGRect.init(x: 0, y: by, width: 160, height: 40)
+        generateButton.frame = CGRect.init(x: 0, y: by, width: 160, height: 35)
         generateButton.addTarget(self, action: #selector(generateButtonPressed), for: .touchUpInside)
         generateButton.center.x = self.center.x
         generateButton.layer.borderWidth = 3

@@ -18,32 +18,39 @@ class SetSaveTypeView: UIView, MultiOptionViewDelegate {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        self.backgroundColor = UIColor.lightGray
+
+        let centeredWrapper = UIView.init(frame: CGRect.init(x: 0, y: 0, width: frame.size.width, height: 0))
+        self.addSubview(centeredWrapper)
         
-        let labelframe = CGRect.init(x: 40, y:120, width: self.frame.size.width - 80, height: 50)
-        let optionText = UILabel.init(frame:labelframe)
-        optionText.textColor = UIColor.gray
-        optionText.textAlignment = .center
-        optionText.text = "Before to generate your new address, please select how to save it."
-        optionText.font = UIFont.systemFont(ofSize: 20)
-        optionText.numberOfLines = 0
-        self.addSubview(optionText)
+        let infoText = UILabel.init(frame:CGRect.init(x: 30, y:0, width: 280, height: 50))
+        infoText.center.x = self.center.x
+        infoText.textColor = UIColor.gray
+        infoText.textAlignment = .center
+        infoText.text = "Before to generate your new address, select how to save it."
+        infoText.font = UIFont.systemFont(ofSize: 20)
+        infoText.numberOfLines = 0
+        centeredWrapper.addSubview(infoText)
         
         var data:[Option] = []
         
-        let option1 = Option.init(title: "Store", text: "Create a simple wallet to send and receive funds, it will be protected with a password and stored directly on your device.", buttonTitle: "Setup password for the wallet")
+        let option1 = Option.init(title: "Store locally", text: "Create a simple wallet to send and receive funds, it will be protected with a password and stored directly on your device.", buttonTitle: "Setup password for the wallet")
         let option2 = Option.init(title: "Cold wallet", text: "Store the keys of your wallet manually, without saving it into your device.", buttonTitle: "Store the wallet manually")
         
         data.append(option1)
         data.append(option2)
         
-        let frame = CGRect.init(x: 10, y: 100, width: self.frame.size.width-20, height: 0)
-        multiView = MultiOptionView.init(frame:frame,data:data)
+        let my = infoText.frame.origin.y + infoText.frame.size.height + 20
+        
+        multiView = MultiOptionView.init(frame: CGRect.init(x: 0, y: my, width: 300, height: 0),data:data)
+        multiView.center.x = self.center.x
         multiView.setDefaultIndex(index: 0)
         multiView.delegate = self
-        self.addSubview(multiView)
-        
-        multiView.center = self.center
-        
+        centeredWrapper.addSubview(multiView)
+
+        let height = infoText.frame.size.height + multiView.frame.size.height + 20
+        centeredWrapper.frame.size.height = height
+        centeredWrapper.center = self.center
     }
     
     func optionSelected(selectedIndex: Int) {

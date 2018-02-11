@@ -16,6 +16,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
     @IBOutlet weak var currentBtcAmount: UILabel!
+    @IBOutlet weak var adButton: UIButton!
     
     
     @IBOutlet var collectionView: UICollectionView?
@@ -24,6 +25,21 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView?.frame.origin.y = 200
+        collectionView?.frame.size.height = self.view.frame.size.height - 200
+        collectionView?.frame.size.width = 320
+        collectionView?.center.x = self.view.center.x
+
+        adButton.frame.origin.x = (collectionView?.frame.origin.x)! + (collectionView?.frame.size.width)! - adButton.frame.width
+        adButton.frame.origin.y = (collectionView?.frame.origin.y)! - adButton.frame.height - 10
+        
+        adButton.clipsToBounds = true
+        adButton.layer.cornerRadius = adButton.frame.width / 2
+        adButton.backgroundColor = UIColor.blue
+        adButton.setTitleColor(UIColor.white, for: .normal)
+        
+        let walletsKeychain = WalletsKeychain.init()
+        walletsKeychain.getAllWallets()
         
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
 
@@ -43,6 +59,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             //cell.cardIsRevealed(false)
         }
     }
+    
+    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {

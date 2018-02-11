@@ -48,80 +48,9 @@ class MultiOptionView: UIView, OptionViewDelegate {
         else { return }
     }
     
-    func optionButtonPressed(pressedIndex:Int) {
-        
+    func optionButtonPressed(pressedIndex:Int)
+    {
         openOption(optionIndex: pressedIndex, animated: true)
-        
-        /*
-        var y:CGFloat = 0
-        for index in 0...options.count-1
-        {
-            var height:CGFloat = 0
-            let thisOption = options[index]
-            if thisOption.index == pressedIndex
-            {
-                // set opened height
-                height = thisOption.height
-            }
-            else
-            {
-                // set closed height
-                height = CGFloat(Props.selectionClosedSize)
-            }
-            
-            UIView.animate(withDuration: 1, animations:
-            {
-                thisOption.frame.size.height = height
-                thisOption.frame.origin.y = y
-            })
-            
-            y = y + thisOption.frame.size.height + CGFloat(Props.selectionMargin)
-        }
-         */
-        
-        /*
-        if selectedIndex != pressedIndex
-        {
-            selectedIndex = pressedIndex
-            print("Pressed option w index \(pressedIndex)")
-        }
-        
-        let selectedOption = options[pressedIndex]
-        if selectedOption.isOpen == false
-        {
-            UIView.animate(withDuration: 1, animations: {
-                
-                selectedOption.frame.size.height = selectedOption.height
-            })
-        }
-        
-        for option in options
-        {
-            if option != selectedOption
-            {
-                UIView.animate(withDuration: 1, animations: {
-                
-                    option.frame.size.height = 30
-                })
-            }
-        }
-    
-        var y:CGFloat = 0
-        
-        for index in 0...options.count-1 {
-            
-            let thisOption = options[index]
-            
-            thisOption.frame.origin.y = y
-            
-            UIView.animate(withDuration: 1, animations:
-            {
-                thisOption.frame.origin.y = y
-            })
-            
-            y = y + thisOption.frame.size.height
-        }
-         */
     }
     
     func setDefaultIndex(index:Int)
@@ -150,7 +79,7 @@ class MultiOptionView: UIView, OptionViewDelegate {
             
             if animated == true
             {
-                UIView.animate(withDuration: 1, animations:
+                UIView.animate(withDuration: 0.5, animations:
                 {
                     thisOption.frame.size.height = height
                     thisOption.frame.origin.y = y
