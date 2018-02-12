@@ -13,10 +13,34 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let hasBeenSeen:Bool = UserDefaults.standard.bool(forKey: "visualized")
+        
+        if hasBeenSeen == false
+        {
+            print("showing onboarding")
+            let storyboard = UIStoryboard(name: "OnBoarding", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "onBoardingPWC") as! OnBoardingPageViewController
+            initialViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            initialViewController.delegate = self as? UIPageViewControllerDelegate
+            //self.present(onBoarding, animated: false, completion: nil)
+            self.window?.rootViewController = initialViewController
+
+        }
+        else
+        {
+            print("showing main")
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainSB")
+            self.window?.rootViewController = homeViewController
+
+        }
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

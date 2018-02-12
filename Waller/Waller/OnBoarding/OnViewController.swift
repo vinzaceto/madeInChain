@@ -17,6 +17,8 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate{
     
     @IBAction func skipButt(_ sender: Any) {
         performSegue(withIdentifier: "MainSB", sender: self)
+        UserDefaults.standard.set(true, forKey: "visualized")
+
     }
     
     
