@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate {
 
     @IBOutlet weak var currentCurrancy: UILabel!
@@ -18,9 +17,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var currentBtcAmount: UILabel!
     @IBOutlet weak var adButton: UIButton!
     
-    
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
+    var walletsList:WalletsList!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +37,18 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         adButton.backgroundColor = UIColor.blue
         adButton.setTitleColor(UIColor.white, for: .normal)
         
-        let walletsKeychain = WalletsKeychain.init()
-        walletsKeychain.getAllWallets()
+        loadWallets()
         
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
 
         
+    }
+    
+    func loadWallets()
+    {
+        let walletsKeychain = WalletsDatabase.init()
+        walletsList = walletsKeychain.getAllWallets()
+        print("saved wallets : \(walletsList)")
     }
     
     func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willRevealCardAtIndex index: Int) {
@@ -64,7 +69,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 10
+        if(walletsList.fullWallets.count==0 && walletsList.watchOnlyWallets.count==0){
+            return 1
+        }
+        return walletsList.fullWallets.count + walletsList.watchOnlyWallets.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
