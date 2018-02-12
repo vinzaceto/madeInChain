@@ -16,6 +16,7 @@ protocol SetupPageViewDelegate
     func passwordSetted(pass:String)
     func completedButtonPressed()
     func walletFounded(address:String)
+    func setWalletForMultisigButtonPressed()
 }
 
 
@@ -28,6 +29,7 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     var walletGenerationView:WalletGenerationView!
     var mnemonicView:MnemonicView!
     var qrcodeScanView:QRCodeScanView!
+    var setAddressView:SetAddressForMultisigView!
 
     var walletLabel:String!
 
@@ -66,6 +68,9 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         qrcodeScanView = QRCodeScanView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         qrcodeScanView.delegate = self
         
+        setAddressView = SetAddressForMultisigView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        setAddressView.delegate = self
+        
         backButton.setTitle("Back", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         backButton.sizeToFit()
@@ -82,6 +87,10 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         if selectedType == AddType.Standard
         {
             goToSetNameView()
+        }
+        if selectedType == AddType.Multisig
+        {
+            goToSetMultisigView()
         }
         if selectedType == AddType.Import
         {
@@ -170,6 +179,30 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         
         views.append(qrcodeScanView)
         showNextView()
+    }
+    
+    func goToSetMultisigView()
+    {
+        backButton.isEnabled = true
+
+        views.append(setAddressView)
+        showNextView()
+    }
+    
+    func setWalletForMultisigButtonPressed()
+    {
+        
+        let items = ["First Item", "Second Item", "Third Item", "Fourth Item", "Fifth Item"]
+        let params = Parameters(title: "Select Item ...", items: items, cancelButton: "Cancel")
+        
+        SelectItemController().show(parent: self, params: params) { (index) in
+            if let index = index {
+                print("selected: \(items[index])")
+            } else {
+                print("cancel")
+            }
+        }
+        
     }
     
     func completedButtonPressed()
