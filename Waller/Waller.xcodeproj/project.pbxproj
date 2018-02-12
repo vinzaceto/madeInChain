@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24152FBD202C3BE2005B5971 /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24152FBC202C3BE2005B5971 /* CircleTransition.swift */; };
+		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
+		249471392029ADB3001D2509 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249471382029ADB3001D2509 /* GradientView.swift */; };
+		249C73A5202DAA9100A0EB36 /* OnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6E2024C7D0009F9886 /* OnViewController.swift */; };
+		249C73A7202DAE1E00A0EB36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */; };
+		24A34AC22028FB06003A1BA4 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */; };
 		610B1DD2202DB7B9005B1105 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAC202DB7B9005B1105 /* Logger.swift */; };
 		610B1DD3202DB7B9005B1105 /* DirUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAE202DB7B9005B1105 /* DirUtils.swift */; };
 		610B1DD4202DB7B9005B1105 /* RequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB0202DB7B9005B1105 /* RequestExtension.swift */; };
@@ -218,6 +224,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		24ED6D89202DDE6F00BFBCD2 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
+				249471382029ADB3001D2509 /* GradientView.swift */,
+				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
+				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
+				24152FBC202C3BE2005B5971 /* CircleTransition.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		5BBBD056102E468DD91D9840 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,7 +410,6 @@
 				744358FC202B31D400CD1982 /* HFCardCollectionView */,
 				664263FF202E709D0010828E /* EMAlertController */,
 				66306597202FDF8F00DBD516 /* SelectItemController */,
-				61294A762024C7D0009F9886 /* Assets.xcassets */,
 				66904435202E450A0021BEE2 /* WalletsKeychain.swift */,
 				66904433202E3B050021BEE2 /* RNCryptor.swift */,
 				61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */,
@@ -402,11 +419,7 @@
 				249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */,
 				66098371202D276700639EE3 /* AddWallet */,
 				74435905202B380A00CD1982 /* WalletCell.swift */,
-				2494713A2029B314001D2509 /* UIImgWithMask.swift */,
-				249471382029ADB3001D2509 /* GradientView.swift */,
-				24A34AC12028FB06003A1BA4 /* OnBoardingPageViewController.swift */,
-				61294A6E2024C7D0009F9886 /* OnViewController.swift */,
-				24152FBC202C3BE2005B5971 /* CircleTransition.swift */,
+				24ED6D89202DDE6F00BFBCD2 /* OnBoarding */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
 				24365668202C60B200E33A6E /* Main.storyboard */,
 				61294A702024C7D0009F9886 /* OnBoarding.storyboard */,
@@ -671,7 +684,6 @@
 				74435904202B320900CD1982 /* HFCardCollectionViewLayout.swift in Sources */,
 				61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */,
 				74435906202B380A00CD1982 /* WalletCell.swift in Sources */,
-				61294A6F2024C7D0009F9886 /* HomeViewController.swift in Sources */,
 				663065A2202FDF8F00DBD516 /* SelectItemViewController.swift in Sources */,
 				610B1DD9202DB7B9005B1105 /* Entity.swift in Sources */,
 				664263FD202E709A0010828E /* EMAlertAction.swift in Sources */,
@@ -709,7 +721,6 @@
 				66098368202CD31C00639EE3 /* AddTypeView.swift in Sources */,
 				74435903202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift in Sources */,
 				74435901202B320900CD1982 /* HFCardCollectionViewCell.swift in Sources */,
-				2494713B2029B314001D2509 /* UIImgWithMask.swift in Sources */,
 				610B1DD7202DB7B9005B1105 /* StorageError.swift in Sources */,
 				66904434202E3B050021BEE2 /* RNCryptor.swift in Sources */,
 				610B1DE9202DB7B9005B1105 /* CoreDataStore.swift in Sources */,
