@@ -117,7 +117,7 @@
         <!--Home View Controller-->
         <scene sceneID="R8W-Yv-ECj">
             <objects>
-                <viewController id="NDG-Gg-Nol" customClass="HomeViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainSB" id="NDG-Gg-Nol" customClass="HomeViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z8W-9J-lz9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
