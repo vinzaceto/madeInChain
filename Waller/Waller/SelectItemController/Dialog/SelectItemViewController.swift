@@ -17,7 +17,7 @@ final class SelectItemViewController: UIViewController, ItemTableViewDelegate {
     var dialogTitle = ""
     var buttonTitle = ""
     var itemTableView: ItemTableViewType?
-    var items: [String]?
+    var items: [(label:String,address:String)]?
     
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var btnClose: UIButton?
