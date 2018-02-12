@@ -35,6 +35,8 @@
 		610B1DEB202DB7B9005B1105 /* CoreDataiCloudConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DD0202DB7B9005B1105 /* CoreDataiCloudConfig.swift */; };
 		610B1DEC202DB7B9005B1105 /* CoreDataContextParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DD1202DB7B9005B1105 /* CoreDataContextParent.swift */; };
 		610B1DF5202DBC15005B1105 /* WalletGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6609836F202D1F2500639EE3 /* WalletGenerationView.swift */; };
+		610B1DF72030C7B8005B1105 /* SelectedAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DF62030C7B8005B1105 /* SelectedAddressView.swift */; };
+		610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DF82030D647005B1105 /* SelectWalletCell.swift */; };
 		24152FBD202C3BE2005B5971 /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24152FBC202C3BE2005B5971 /* CircleTransition.swift */; };
 		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
 		249471392029ADB3001D2509 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249471382029ADB3001D2509 /* GradientView.swift */; };
@@ -132,6 +134,8 @@
 		610B1DCF202DB7B9005B1105 /* CoreDataObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataObservable.swift; sourceTree = "<group>"; };
 		610B1DD0202DB7B9005B1105 /* CoreDataiCloudConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataiCloudConfig.swift; sourceTree = "<group>"; };
 		610B1DD1202DB7B9005B1105 /* CoreDataContextParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataContextParent.swift; sourceTree = "<group>"; };
+		610B1DF62030C7B8005B1105 /* SelectedAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAddressView.swift; sourceTree = "<group>"; };
+		610B1DF82030D647005B1105 /* SelectWalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWalletCell.swift; sourceTree = "<group>"; };
 		61294A692024C7D0009F9886 /* Waller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61294A6C2024C7D0009F9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61294A6E2024C7D0009F9886 /* OnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +451,7 @@
 				664263F5202E5AB00010828E /* MnemonicView.swift */,
 				664263F7202E64350010828E /* QRCodeScanView.swift */,
 				66306595202FD91F00DBD516 /* SetAddressForMultisigView.swift */,
+				610B1DF62030C7B8005B1105 /* SelectedAddressView.swift */,
 				618E4B1A202A5504007F0D32 /* MultiOptionClass */,
 				6609836D202D0E7300639EE3 /* PWTextField.swift */,
 			);
@@ -461,6 +466,7 @@
 				6630659A202FDF8F00DBD516 /* Dialog */,
 				6630659F202FDF8F00DBD516 /* CustomPresentAnimationController.swift */,
 				663065A0202FDF8F00DBD516 /* Info.plist */,
+				610B1DF82030D647005B1105 /* SelectWalletCell.swift */,
 			);
 			path = SelectItemController;
 			sourceTree = "<group>";
@@ -677,6 +683,7 @@
 				610B1DDD202DB7B9005B1105 /* Storage.swift in Sources */,
 				61CDB2EB202CCF210004C02B /* AddWalletViewController.swift in Sources */,
 				61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */,
+				610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */,
 				61CDB2E9202CCD5C0004C02B /* SetNameView.swift in Sources */,
 				610B1DD8202DB7B9005B1105 /* Requestable.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
@@ -724,6 +731,7 @@
 				610B1DD5202DB7B9005B1105 /* VersionController.swift in Sources */,
 				610B1DE8202DB7B9005B1105 /* CoreDataChange.swift in Sources */,
 				61DDBDA72029B71100F270DF /* MultiOptionView.swift in Sources */,
+				610B1DF72030C7B8005B1105 /* SelectedAddressView.swift in Sources */,
 				610B1DEA202DB7B9005B1105 /* CoreDataObservable.swift in Sources */,
 				663065A3202FDF8F00DBD516 /* Protocols.swift in Sources */,
 				610B1DD4202DB7B9005B1105 /* RequestExtension.swift in Sources */,

@@ -10,6 +10,8 @@ import UIKit
 
 class SetAddressForMultisigView: UIView {
 
+    var selectedWalletView:SelectedAddressView!
+    var setAddressButton = UIButton.init(type: .roundedRect)
     var delegate:SetupPageViewDelegate!
     
     override init(frame: CGRect)
@@ -32,26 +34,17 @@ class SetAddressForMultisigView: UIView {
         
         let sy = infoText.frame.origin.y + infoText.frame.size.height + 20
         
-        let selectedWalletView = UIView.init(frame: CGRect.init(x: 0, y: sy, width: 280, height: 60))
-        selectedWalletView.backgroundColor = UIColor.brown
+        selectedWalletView = SelectedAddressView.init(frame: CGRect.init(x: 0, y: sy, width: 280, height: 60))
+        selectedWalletView.changeAddressButton.addTarget(self, action: #selector(changeAddressButtonPressed), for: .touchUpInside)
         selectedWalletView.center.x = self.center.x
-        selectedWalletView.layer.cornerRadius = 8
-        selectedWalletView.layer.borderColor = UIColor.darkGray.cgColor
-        selectedWalletView.layer.borderWidth = 3
         self.addSubview(selectedWalletView)
-        
-        let selectButton = UIButton.init(type: .roundedRect)
-        selectButton.frame = selectedWalletView.frame
-        selectButton.addTarget(self, action: #selector(selectedButtonPressed), for: .touchUpInside)
-        self.addSubview(selectButton)
         
         let by = selectedWalletView.frame.origin.y + selectedWalletView.frame.size.height + 10
         
-        let setAddressButton = UIButton.init(type: .roundedRect)
-        setAddressButton.frame = CGRect.init(x: 0, y: by, width: 160, height: 35)
+        setAddressButton.frame = CGRect.init(x: 0, y: by, width: 180, height: 35)
         setAddressButton.addTarget(self, action: #selector(setAddressButtonPressed), for: .touchUpInside)
         setAddressButton.center.x = self.center.x
-        setAddressButton.setTitle("use this address", for: .normal)
+        setAddressButton.setTitle("generate multisig request", for: .normal)
         setAddressButton.isEnabled = false
         self.addSubview(setAddressButton)
         
@@ -62,14 +55,26 @@ class SetAddressForMultisigView: UIView {
         
     }
     
-    @objc func selectedButtonPressed()
+    @objc func changeAddressButtonPressed()
     {
-        print("selectedButtonPressed")
-        
-        guard let _ = self.delegate?.setWalletForMultisigButtonPressed()
+        print("changeAddressButtonPressed")
+                
+        guard let _ = self.delegate?.changeAddressForMultisigButtonPressed()
         else { return }
     }
+    
+    func setAddress(name:String,address:String)
+    {
+        setAddressButton.isEnabled = true
+        selectedWalletView.setAddress(name: name, address: address)
+    }
    
+    func setDefault()
+    {
+        setAddressButton.isEnabled = false
+        selectedWalletView.setDefault()
+    }
+    
     required init?(coder aDecoder: NSCoder)
     {super.init(coder: aDecoder)}
 
