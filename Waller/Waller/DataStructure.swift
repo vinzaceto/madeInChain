@@ -29,3 +29,15 @@ enum SaveType
     case Mnemonic
 }
 
+struct FullWallet: Codable
+{
+    var label:String
+    var address: String
+    var encryptedPrivatekey: String
+}
+
+struct ColdWallet: Codable
+{
+    var label:String
+    var address:String
+}

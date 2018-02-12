@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -171,9 +170,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pt-sr-Ix4" customClass="HFCardCollectionView" customModule="Waller">
-                                <rect key="frame" x="16" y="165" width="382" height="457"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pt-sr-Ix4" customClass="HFCardCollectionView" customModule="Waller">
+                                <rect key="frame" x="16" y="189" width="382" height="457"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1Yg-aB-HNg" customClass="HFCardCollectionViewLayout" customModule="Waller"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WalletCell" id="en5-VK-X5s" customClass="WalletCell" customModule="Waller" customModuleProvider="target">
@@ -216,12 +216,11 @@
                                     <outlet property="delegate" destination="NDG-Gg-Nol" id="HPL-hC-rhF"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
-                                <rect key="frame" x="184" y="669" width="46" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="gAr-fx-eEV"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
+                                <rect key="frame" x="358" y="141" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="+"/>
                                 <connections>
                                     <segue destination="ML7-QE-EkI" kind="presentation" id="RVn-Zw-Es9"/>
                                 </connections>
@@ -230,15 +229,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="QPE-zo-sQ4" firstAttribute="top" secondItem="els-cb-NUv" secondAttribute="bottom" constant="28" id="4yN-If-iOr"/>
-                            <constraint firstItem="4RK-uK-YEx" firstAttribute="top" secondItem="9Pt-sr-Ix4" secondAttribute="bottom" constant="47" id="5wg-Lb-TQE"/>
                             <constraint firstItem="aUO-I1-Q8a" firstAttribute="top" secondItem="QPE-zo-sQ4" secondAttribute="bottom" constant="4" id="6Dy-GC-Vdf"/>
                             <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="T0J-YA-3ag" secondAttribute="trailing" constant="16" id="8j6-F2-KMU"/>
-                            <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="9Pt-sr-Ix4" secondAttribute="trailing" constant="16" id="HDE-Rf-yrP"/>
                             <constraint firstItem="els-cb-NUv" firstAttribute="top" secondItem="C4A-VV-VfB" secondAttribute="bottom" constant="4" id="HRH-BK-7ZY"/>
                             <constraint firstItem="C4A-VV-VfB" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="L0v-PU-0sS"/>
                             <constraint firstItem="BKK-qq-IRd" firstAttribute="top" secondItem="gfg-2L-LQF" secondAttribute="bottom" constant="4" id="Pee-av-upG"/>
                             <constraint firstItem="aUO-I1-Q8a" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="PqU-Z1-vTn"/>
-                            <constraint firstAttribute="bottom" secondItem="4RK-uK-YEx" secondAttribute="bottom" constant="20" symbolic="YES" id="UAq-o2-GsI"/>
                             <constraint firstItem="QPE-zo-sQ4" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="UUU-S0-grg"/>
                             <constraint firstItem="els-cb-NUv" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="UjO-iu-yQ8"/>
                             <constraint firstItem="T0J-YA-3ag" firstAttribute="top" secondItem="i1c-yg-ePV" secondAttribute="bottom" constant="4" id="Uuy-Ti-g51"/>
@@ -246,15 +242,13 @@
                             <constraint firstItem="i1c-yg-ePV" firstAttribute="top" secondItem="BKK-qq-IRd" secondAttribute="bottom" constant="10" id="iCO-B2-QfY"/>
                             <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="i1c-yg-ePV" secondAttribute="trailing" constant="16" id="iqJ-zH-czw"/>
                             <constraint firstItem="gfg-2L-LQF" firstAttribute="top" secondItem="yrT-DB-bZU" secondAttribute="top" constant="20" id="k4d-lR-Q5R"/>
-                            <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="4RK-uK-YEx" secondAttribute="trailing" constant="184" id="mRd-ds-iMg"/>
                             <constraint firstItem="C4A-VV-VfB" firstAttribute="top" secondItem="yrT-DB-bZU" secondAttribute="top" constant="20" id="nC5-Fo-pP5"/>
-                            <constraint firstItem="9Pt-sr-Ix4" firstAttribute="leading" secondItem="yrT-DB-bZU" secondAttribute="leading" constant="16" id="uJW-tb-7uQ"/>
-                            <constraint firstItem="9Pt-sr-Ix4" firstAttribute="top" secondItem="aUO-I1-Q8a" secondAttribute="bottom" constant="25" id="ue0-L0-amX"/>
                             <constraint firstItem="yrT-DB-bZU" firstAttribute="trailing" secondItem="BKK-qq-IRd" secondAttribute="trailing" constant="16" id="vCJ-Hi-sez"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yrT-DB-bZU"/>
                     </view>
                     <connections>
+                        <outlet property="adButton" destination="4RK-uK-YEx" id="yTA-EK-YeK"/>
                         <outlet property="collectionView" destination="9Pt-sr-Ix4" id="JOC-VZ-juw"/>
                         <outlet property="currentAmount" destination="BKK-qq-IRd" id="srN-s0-9l4"/>
                         <outlet property="currentBTCvalue" destination="aUO-I1-Q8a" id="PH7-4Z-nAd"/>

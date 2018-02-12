@@ -11,43 +11,51 @@ import UIKit
 class SetNameView: UIView,UITextFieldDelegate {
 
     let nameField:UITextField = UITextField()
-    var nameFieldPlaceholder = "type a wallet name here"
+    var nameFieldPlaceholder = "type a name here"
     var nameFieldTemporaryText:String = ""
     var nameFieldTemporaryPlaceholder:NSAttributedString!
     var lockWrite:Bool = false
     let continueButton = UIButton.init(type: .roundedRect)
     var delegate:SetupPageViewDelegate!
     
-    
     override init(frame: CGRect)
     {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        self.backgroundColor = UIColor.lightGray
         
-        let labelframe = CGRect.init(x: 30, y:160, width: self.frame.size.width - 60, height: 50)
-        let optionText = UILabel.init(frame:labelframe)
-        optionText.textColor = UIColor.gray
-        optionText.textAlignment = .center
-        optionText.text = "You are creating a new wallet, please give a name to it to continue."
-        optionText.font = UIFont.systemFont(ofSize: 20)
-        optionText.numberOfLines = 0
-        self.addSubview(optionText)
+        // centered y with keyboard
+        let top = ((self.frame.size.height - 230) / 2) - 50
         
-        let fieldFrame = CGRect.init(x: 30, y: 260, width: self.frame.size.width - 120, height: 40)
-        nameField.frame = fieldFrame
+        let infoText = UILabel.init(frame:CGRect.init(x: 0, y:top, width: 280, height: 60))
+        infoText.center.x = self.center.x
+        infoText.textColor = UIColor.gray
+        infoText.textAlignment = .center
+        infoText.text = "You are creating a new wallet, give a name to it to continue."
+        infoText.font = UIFont.systemFont(ofSize: 20)
+        infoText.numberOfLines = 0
+        self.addSubview(infoText)
+        
+        let fy = infoText.frame.origin.y + infoText.frame.size.height + 20
+        
+        nameField.frame = CGRect.init(x: 0, y: fy, width: 260, height: 40)
+        nameField.center.x = self.center.x
         nameField.delegate = self
         nameField.font = UIFont.systemFont(ofSize: 24)
+        nameField.autocorrectionType = UITextAutocorrectionType.no
         changePlaceholderColor(field: nameField, color: UIColor.gray, text: nameFieldPlaceholder)
         self.addSubview(nameField)
         
-        let line = UIView.init(frame: CGRect.init(x: 20, y: 300, width: self.frame.size.width - 40, height: 3))
+        let ly = fy + nameField.frame.size.height - 3
+        
+        let line = UIView.init(frame: CGRect.init(x: 20, y: ly, width: self.frame.size.width - 40, height: 3))
         line.backgroundColor = UIColor.white
         self.addSubview(line)
         
         let w:CGFloat = 65
         let h:CGFloat = 30
-        let x = line.frame.origin.x + line.frame.size.width - w
+        let x = line.frame.origin.x + line.frame.size.width - w - 5
         let y = line.frame.origin.y - h
         
         continueButton.frame = CGRect.init(x: x, y: y, width: w, height: h)
@@ -131,9 +139,14 @@ class SetNameView: UIView,UITextFieldDelegate {
     
     func printErrorOnField(error:String, field:UITextField)
     {
+        if lockWrite == true
+        {
+            return
+        }
+        
         guard let text = field.text else { return }
         guard let placeholder = field.attributedPlaceholder else { return }
-
+        
         lockWrite = true
         
         nameFieldTemporaryText = text
