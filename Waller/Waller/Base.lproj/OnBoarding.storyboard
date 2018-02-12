@@ -12,7 +12,7 @@
         <!--On Boarding Page View Controller-->
         <scene sceneID="B9J-Ra-4nu">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="MzT-9g-BJQ" customClass="OnBoardingPageViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="onBoardingPWC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="MzT-9g-BJQ" customClass="OnBoardingPageViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yF7-IN-Ozq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="38" y="-402"/>
