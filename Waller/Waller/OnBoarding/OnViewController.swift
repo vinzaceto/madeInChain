@@ -8,35 +8,27 @@
 
 import UIKit
 
-class OnViewController: UIViewController, UIViewControllerTransitioningDelegate{
+class OnViewController: UIViewController {
     
     @IBOutlet weak var ButtonSkip: UIButton!
     
-    let transition = CircleTransition()
-
-    
     @IBAction func skipButt(_ sender: Any) {
         performSegue(withIdentifier: "MainSB", sender: self)
-        UserDefaults.standard.set(true, forKey: "visualized")
-
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let secondVC = segue.destination as! HomeViewController
-        secondVC.transitioningDelegate = self
-        secondVC.modalPresentationStyle = .custom
-        
-    }
 
     
+    
+    let gradientView:GradientView = GradientView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
-        ButtonSkip.isHidden = false
-        ButtonSkip.backgroundColor = .red
-        ButtonSkip.layer.cornerRadius = 10
-
+        gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        gradientView.FirstColor = UIColor.blue
+        gradientView.SecondColor = UIColor.green
+        self.view.addSubview(gradientView)
         self.view.addSubview(ButtonSkip)
         
      
@@ -48,30 +40,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .present
-        transition.startingPoint = ButtonSkip.center
-        transition.circleColor = .white
-        
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .dismiss
-        transition.startingPoint = ButtonSkip.center
-        transition.circleColor = .white
-        
-        return transition
-    }
-    
-//    func indexPageControl(_ index: Int) {
-//        if index == 2
-//        {
-//            ButtonSkip.isHidden = false
-//            self.view.bringSubview(toFront: ButtonSkip)
-//        }
-//    }
+
 
 }
 

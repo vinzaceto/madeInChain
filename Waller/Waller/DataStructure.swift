@@ -36,8 +36,14 @@ struct FullWallet: Codable
     var encryptedPrivatekey: String
 }
 
-struct ColdWallet: Codable
+struct WatchOnlyWallet: Codable
 {
     var label:String
     var address:String
+}
+
+struct WalletsList
+{
+    let fullWallets:[FullWallet]
+    let watchOnlyWallets:[WatchOnlyWallet]
 }

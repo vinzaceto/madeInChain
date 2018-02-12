@@ -49,7 +49,8 @@ class SetNameView: UIView,UITextFieldDelegate {
         
         let ly = fy + nameField.frame.size.height - 3
         
-        let line = UIView.init(frame: CGRect.init(x: 20, y: ly, width: self.frame.size.width - 40, height: 3))
+        let line = UIView.init(frame: CGRect.init(x: 20, y: ly, width: 280, height: 3))
+        line.center.x = nameField.center.x
         line.backgroundColor = UIColor.white
         self.addSubview(line)
         
