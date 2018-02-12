@@ -27,7 +27,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         collectionView?.frame.origin.y = 200
         collectionView?.frame.size.height = self.view.frame.size.height - 200
-        collectionView?.frame.size.width = 320
+        collectionView?.frame.size.width = 310
         collectionView?.center.x = self.view.center.x
 
         adButton.frame.origin.x = (collectionView?.frame.origin.x)! + (collectionView?.frame.size.width)! - adButton.frame.width

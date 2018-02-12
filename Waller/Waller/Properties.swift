@@ -10,7 +10,7 @@ import Foundation
 
 class Props:NSObject
 {
-    static let selectionMargin = 30
+    static let selectionMargin = 15
     static let selectionClosedSize = 53
     static let optionTitleHeight = 30
     static let optionViewMargin = 10

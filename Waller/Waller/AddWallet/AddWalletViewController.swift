@@ -16,7 +16,7 @@ protocol SetupPageViewDelegate
     func passwordSetted(pass:String)
     func completedButtonPressed()
     func walletFounded(address:String)
-    func setWalletForMultisigButtonPressed()
+    func changeAddressForMultisigButtonPressed()
 }
 
 
@@ -184,25 +184,33 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     func goToSetMultisigView()
     {
         backButton.isEnabled = true
-
+        setAddressView.setDefault()
         views.append(setAddressView)
         showNextView()
     }
     
-    func setWalletForMultisigButtonPressed()
+    func changeAddressForMultisigButtonPressed()
     {
+        let w1 = (label:"name 1",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let w2 = (label:"name 2",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let w3 = (label:"name 3",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let w4 = (label:"name 4",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let items = [w1, w2, w3, w4]
+        let params = Parameters(title: "Select address...", items: items, cancelButton: "Cancel")
         
-        let items = ["First Item", "Second Item", "Third Item", "Fourth Item", "Fifth Item"]
-        let params = Parameters(title: "Select Item ...", items: items, cancelButton: "Cancel")
-        
-        SelectItemController().show(parent: self, params: params) { (index) in
-            if let index = index {
+        SelectItemController().show(parent: self, params: params)
+        {
+            (index) in
+            if let index = index
+            {
                 print("selected: \(items[index])")
-            } else {
+                self.setAddressView.setAddress(name: items[index].label, address: items[index].address)
+            }
+            else
+            {
                 print("cancel")
             }
         }
-        
     }
     
     func completedButtonPressed()

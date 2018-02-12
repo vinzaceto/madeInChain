@@ -11,12 +11,12 @@ import UIKit
 public struct Parameters {
     public var title: String
     public var itemTableView: ItemTableViewType?
-    public var items: [String]?
+    public var items: [(label:String,address:String)]?
     public var cancelButton: String
     
     public init(
         title: String,
-        items: [String],
+        items: [(label:String,address:String)],
         cancelButton: String
         ) {
         self.title = title
