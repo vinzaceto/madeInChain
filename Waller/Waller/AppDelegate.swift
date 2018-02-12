@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "onBoardingPWC") as! OnBoardingPageViewController
             initialViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             initialViewController.delegate = self as? UIPageViewControllerDelegate
-            //self.present(onBoarding, animated: false, completion: nil)
             self.window?.rootViewController = initialViewController
 
         }
