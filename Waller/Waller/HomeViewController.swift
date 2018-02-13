@@ -16,7 +16,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var currentAmount: UILabel!
     @IBOutlet weak var currentBtcAmount: UILabel!
     @IBOutlet weak var adButton: UIButton!
-    
+    @IBOutlet weak var quickImportButton: UIButton!
+
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
     var walletsList:WalletsList!
@@ -36,11 +37,21 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         adButton.frame.origin.x = (collectionView?.frame.origin.x)! + (collectionView?.frame.size.width)! - adButton.frame.width
         adButton.frame.origin.y = (collectionView?.frame.origin.y)! - adButton.frame.height - 10
-        
+        //adButton.frame.origin.y = 200
+
         adButton.clipsToBounds = true
         adButton.layer.cornerRadius = adButton.frame.width / 2
         adButton.backgroundColor = UIColor.blue
         adButton.setTitleColor(UIColor.white, for: .normal)
+        
+        quickImportButton.frame.origin.x = (collectionView?.frame.origin.x)!
+        quickImportButton.frame.origin.y = adButton.frame.origin.y
+        
+        
+        quickImportButton.clipsToBounds = true
+        quickImportButton.layer.cornerRadius = adButton.layer.cornerRadius
+        quickImportButton.backgroundColor = UIColor.blue
+        quickImportButton.setTitleColor(UIColor.white, for: .normal)
         
         loadWallets()
         
@@ -67,6 +78,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         present(navigationVC, animated: true, completion: nil)
     }
     
+    @IBAction func quickImportButtonPressed(_ sender: Any)
+    {
+        print("quick import button pressed")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let quickImport = storyboard.instantiateViewController(withIdentifier: "QIController") as! QuickImportViewController
+        let navigationVC = UINavigationController(rootViewController: quickImport)
+        present(navigationVC, animated: true, completion: nil)
+    }
     func walletAdded(success: Bool)
     {
         if success == true

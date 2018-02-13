@@ -44,6 +44,7 @@
 		61294A772024C7D0009F9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61294A762024C7D0009F9886 /* Assets.xcassets */; };
 		61294A7A2024C7D0009F9886 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61294A782024C7D0009F9886 /* LaunchScreen.storyboard */; };
 		6130BA832031A423002262FE /* MnemonicConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6130BA822031A423002262FE /* MnemonicConfirmView.swift */; };
+		613C648120335C4E000BC5A6 /* QuickImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613C648020335C4E000BC5A6 /* QuickImportViewController.swift */; };
 		61B6284B20323CE700EE6ABB /* WalletsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6284A20323CE600EE6ABB /* WalletsGenerator.swift */; };
 		61B6285420323D4300EE6ABB /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6284D20323D4300EE6ABB /* CircleTransition.swift */; };
 		61B6285520323D4300EE6ABB /* UIImgWithMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6284E20323D4300EE6ABB /* UIImgWithMask.swift */; };
@@ -143,6 +144,7 @@
 		61294A7B2024C7D0009F9886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6130BA822031A423002262FE /* MnemonicConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicConfirmView.swift; sourceTree = "<group>"; };
 		6130BA842031A7E9002262FE /* WalletsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsGenerator.swift; sourceTree = "<group>"; };
+		613C648020335C4E000BC5A6 /* QuickImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickImportViewController.swift; sourceTree = "<group>"; };
 		618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Waller-Bridging-Header.h"; sourceTree = "<group>"; };
 		61B6284A20323CE600EE6ABB /* WalletsGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletsGenerator.swift; sourceTree = "<group>"; };
 		61B6284D20323D4300EE6ABB /* CircleTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTransition.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
 				249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */,
+				613C648020335C4E000BC5A6 /* QuickImportViewController.swift */,
 				66098371202D276700639EE3 /* AddWallet */,
 				74435905202B380A00CD1982 /* WalletCell.swift */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
@@ -717,6 +720,7 @@
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
 				61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */,
 				610B1DE5202DB7B9005B1105 /* CoreDataError.swift in Sources */,
+				613C648120335C4E000BC5A6 /* QuickImportViewController.swift in Sources */,
 				610B1DD6202DB7B9005B1105 /* VersionProvider.swift in Sources */,
 				610B1DDC202DB7B9005B1105 /* NSPredicateConvertible.swift in Sources */,
 				610B1DDB202DB7B9005B1105 /* Context.swift in Sources */,
@@ -916,7 +920,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EZ8Q48MF9W;
+				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -936,7 +940,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EZ8Q48MF9W;
+				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
