@@ -21,6 +21,10 @@ protocol SetupPageViewDelegate
     func changeAddressForMultisigButtonPressed()
 }
 
+protocol AddWalletViewControllerDelegate
+{
+    func walletAdded(success:Bool)
+}
 
 class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     
@@ -33,7 +37,7 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     var mnemonicConfirmView:MnemonicConfirmView!
     var qrcodeScanView:QRCodeScanView!
     var setAddressView:SetAddressForMultisigView!
-
+    var delegate:AddWalletViewControllerDelegate!
     var walletLabel:String!
 
     @IBOutlet weak var backButton: UIButton!
@@ -270,6 +274,8 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     
     func completedButtonPressed()
     {
+        guard let _ = self.delegate?.walletAdded(success: true)
+        else { return }
         close()
     }
     
