@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             initialViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             initialViewController.delegate = self as? UIPageViewControllerDelegate
             self.window?.rootViewController = initialViewController
-
         }
         else
         {

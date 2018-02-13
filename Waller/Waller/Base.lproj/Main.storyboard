@@ -20,7 +20,7 @@
         <!--Add Wallet View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AddWalletViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AWController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="AddWalletViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,7 +222,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="+"/>
                                 <connections>
-                                    <segue destination="ML7-QE-EkI" kind="presentation" id="RVn-Zw-Es9"/>
+                                    <action selector="addButtonPressed:" destination="NDG-Gg-Nol" eventType="touchUpInside" id="D5V-8t-HUm"/>
                                 </connections>
                             </button>
                         </subviews>
