@@ -17,4 +17,11 @@ class Props:NSObject
     static let optionCornerRadius = 10
     
     static let lastBtcValue = "LASTBTCVALUE"
+    
+    
+    static let httpsSchema = "https"
+    static let bitstampHost = "www.bitstamp.net"
+    
+    static let btcUsd = "btcusd/"
+    static let btcEur = "btceur/"
 }

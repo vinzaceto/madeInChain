@@ -57,13 +57,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
 
+        self.currentBTCvalue.text = UserDefaults.standard.string(forKey: Props.lastBtcValue)
         
         let dataConnection = DataConnections()
-        dataConnection.getBitcoinValue(currency: "btcusd") { (result) in
+        dataConnection.getBitcoinValue(currency: Props.btcUsd) { (result) in
             switch result {
             case .success(let posts):
                 print(posts.last+"$")
-                UserDefaults.standard.set(posts.last, forKey: Props.lastBtcValue)
+                UserDefaults.standard.set(posts.last+"$", forKey: Props.lastBtcValue)
                 self.currentBTCvalue.text = posts.last+"$"
             case .failure(let error):
                 fatalError("error: \(error)")

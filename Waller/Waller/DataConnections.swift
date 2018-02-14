@@ -17,9 +17,9 @@ class DataConnections {
     
     func getBitcoinValue(currency: String, completion: ((Result<BitstampValue>) -> Void)?) {
         var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "www.bitstamp.net"
-        urlComponents.path = "/api/v2/ticker/"+currency+"/"
+        urlComponents.scheme = Props.httpsSchema
+        urlComponents.host = Props.bitstampHost
+        urlComponents.path = "/api/v2/ticker/"+currency
 
         print("Bitstamp URL: \(urlComponents.url)")
         guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
