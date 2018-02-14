@@ -57,7 +57,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
 
-        self.currentBTCvalue.text = UserDefaults.standard.string(forKey: Props.lastBtcValue)
+        if let lastBtcValueTemp = UserDefaults.standard.string(forKey: Props.lastBtcValue) {
+            self.currentBTCvalue.text = lastBtcValueTemp
+        } else {
+            self.currentBTCvalue.text = "0$"
+        }
         
         let dataConnection = DataConnections()
         dataConnection.getBitcoinValue(currency: Props.btcUsd) { (result) in
