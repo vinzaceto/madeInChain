@@ -10,15 +10,16 @@ import UIKit
 
 protocol SetupPageViewDelegate
 {
-    func typeSelected(selectedType:AddType)
+    func addtypeSelected(selectedType:AddType)
     func nameSetted(name:String)
     func saveTypeSelected(selectedType:SaveType)
     func passwordSetted(pass:String)
     func confirmMnemonic(mnemonic:String)
     func mnemonicConfiremed(mnemonic:String)
     func completedButtonPressed()
-    func walletFounded(address:String)
     func changeAddressForMultisigButtonPressed()
+    func importTypeSelected(selectedType: ImportType)
+    func keychainImported(btcKeychain: BTCKeychain)
 }
 
 protocol AddWalletViewControllerDelegate
@@ -26,76 +27,61 @@ protocol AddWalletViewControllerDelegate
     func walletAdded(success:Bool)
 }
 
-class AddWalletViewController: UIViewController,SetupPageViewDelegate {
+class AddWalletViewController: UIViewController,SetupPageViewDelegate {    
     
     var addTypeView:AddTypeView!
     var addNameView:SetNameView!
     var addSaveType:SetSaveTypeView!
     var addPasswordView:SetPasswordView!
-    var walletGeneratedView:WalletGeneratedView!
+    
     var mnemonicView:MnemonicView!
     var mnemonicConfirmView:MnemonicConfirmView!
-    var qrcodeScanView:QRCodeScanView!
+    
     var setAddressView:SetAddressForMultisigView!
-    var delegate:AddWalletViewControllerDelegate!
-    var walletLabel:String!
+    
+    var walletGeneratedView:WalletGeneratedView!
+    
+    var setImportTypeView:SetImportTypeView!
+    var importUsingTextView:ImportUsingTextView!
+    var importUsingQRCodeView:ImportUsingQRCodeView!
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
     var views:[UIView] = []
     
+    var delegate:AddWalletViewControllerDelegate!
+    
+    var walletLabel:String!
+    var addType:AddType!
+    var saveType:SaveType!
+    var importType:ImportType!
+    var importedKeychain:BTCKeychain!
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
 
-        addTypeView = AddTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        addTypeView.delegate = self
-        self.view.addSubview(addTypeView)
-        
-        views.append(addTypeView)
-        
-        addNameView = SetNameView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        addNameView.delegate = self
-        
-        addSaveType = SetSaveTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        addSaveType.delegate = self
-
-        addPasswordView = SetPasswordView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        addPasswordView.delegate = self
-
-        walletGeneratedView = WalletGeneratedView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        walletGeneratedView.delegate = self
-       
-        mnemonicView = MnemonicView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        mnemonicView.delegate = self
-        
-        mnemonicConfirmView = MnemonicConfirmView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        mnemonicConfirmView.delegate = self
-        
-        qrcodeScanView = QRCodeScanView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        qrcodeScanView.delegate = self
-        
-        setAddressView = SetAddressForMultisigView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        setAddressView.delegate = self
+        setupViews()
         
         backButton.setTitle("Back", for: .normal)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         backButton.sizeToFit()
         backButton.isEnabled = false
     }
-
+    
     //
-    // MARK : Navigation
+    // MARK:  SetupPageViewDelegate - Delegates
     //
     
-    func typeSelected(selectedType: AddType)
+    func addtypeSelected(selectedType: AddType)
     {
-        print("selected type : \(selectedType)")
+        addType = selectedType
         if selectedType == AddType.Standard
         {
+            addNameView.infoText.text = "You are creating a new wallet, give a name to it to continue."
             goToSetNameView()
         }
         if selectedType == AddType.Multisig
@@ -104,35 +90,27 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         }
         if selectedType == AddType.Import
         {
-            goToQRCodeScan()
+            goToSetImportTypeView()
         }
-    }
-    
-    func goToSetNameView()
-    {
-        backButton.isEnabled = true
-        
-        views.append(addNameView)
-        addNameView.nameField.text = ""
-        showNextView()
     }
     
     func nameSetted(name: String)
     {
         print("selected name : \(name)")
         walletLabel = name
-        goToSetSaveType()
+        if addType == AddType.Standard
+        {
+            goToSetSaveType()
+        }
+        if addType == AddType.Import
+        {
+            goToSetPassword()
+        }
     }
     
-    func goToSetSaveType()
-    {
-        views.append(addSaveType)
-        showNextView()
-    }
- 
     func saveTypeSelected(selectedType: SaveType)
     {
-        print("save type : \(selectedType)")
+        saveType = selectedType
         if selectedType == SaveType.Local
         {
             goToSetPassword()
@@ -142,31 +120,159 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
             goToMnemonicView()
         }
     }
-  
-    func goToSetPassword()
-    {
-        views.append(addPasswordView)
-        showNextView()
-    }
     
     func passwordSetted(pass: String)
     {
         print("password : \(pass)")
+        
         let walletGenerator = WalletsGenerator.init()
-        walletGenerator.generateWallet(name: walletLabel, pass: pass)
+        
+        if addType == AddType.Standard
+        {
+            walletGenerator.generateWallet(name: walletLabel, pass: pass)
+            {
+                (success, error) in
+                if success == true
+                {
+                    self.walletGeneratedView.infoText.text = "Your wallet has been successfully generated and stored on this device."
+                    self.walletGeneratedView.infoText2.text = "Remember you to use the export feature to make a backup or share this wallet on other devices."
+                    self.goToWalletGeneratedView()
+                }
+                else
+                {
+                    print("WalletGenerationFailed reason : \(String(describing: error))")
+                }
+            }
+        }
+        
+        if addType == AddType.Import
+        {
+            walletGenerator.importWallet(name: walletLabel, pass: pass, keychain: importedKeychain)
+            {
+                (success, error) in
+                if success == true
+                {
+                    self.goToWalletImportedView()
+                }
+                else
+                {
+                    print("import fail")
+                }
+            }
+        }
+    }
+    
+    func confirmMnemonic(mnemonic: String)
+    {
+        goToConfirmMnemonicView(mnemonic: mnemonic)
+    }
+    
+    func mnemonicConfiremed(mnemonic:String)
+    {
+        print("mnemonic confirmed : \(mnemonic)")
+        let mnemonicArray = mnemonic.components(separatedBy: " ")
+        
+        let m = BTCMnemonic.init(words: mnemonicArray, password: "", wordListType: BTCMnemonicWordListType.english)
+        let keychain = m?.keychain
+        let addr = keychain?.key.addressTestnet.string
+        
+        let coldWallet = WatchOnlyWallet.init(label: walletLabel, address: addr!)
+        
+        let walletsDatabase = WalletsDatabase.init()
+        walletsDatabase.saveWatchOnlyWallet(watchOnlyWallet: coldWallet)
+        {
+            (success, error) in
+            print("cold wallet saved")
+            self.walletGeneratedView.infoText.text = "Your cold wallet has been successfully generated."
+            self.walletGeneratedView.infoText2.text = "Remember to store your mnemonic key in a safe place. There is no way to recover your wallet without it"
+            self.goToWalletGeneratedView()
+        }
+    }
+    
+    func importTypeSelected(selectedType: ImportType)
+    {
+        importType = selectedType
+        if selectedType == ImportType.Text
+        {
+            goToImportUsingTextView()
+        }
+        if selectedType == ImportType.QRCode
+        {
+            goToImportUsingQRCodeView()
+        }
+    }
+    
+    func keychainImported(btcKeychain: BTCKeychain)
+    {
+        importedKeychain = btcKeychain
+        addNameView.infoText.text = "You are importing a new wallet, give a name to it to continue."
+        goToSetNameView()
+    }
+    
+    func importWallet(keychain:BTCKeychain,name:String,pass:String)
+    {
+        let walletGenerator = WalletsGenerator.init()
+        walletGenerator.importWallet(name: name, pass: pass, keychain: keychain)
         {
             (success, error) in
             if success == true
             {
-                self.walletGeneratedView.infoText.text = "Your wallet has been successfully generated and stored on this device."
-                self.walletGeneratedView.infoText2.text = "Remember you to use the export feature to make a backup or share this wallet on other devices."
-                self.goToWalletGeneratedView()
+                self.goToWalletImportedView()
             }
             else
             {
-                print("WalletGenerationFailed reason : \(String(describing: error))")
+                print("import fail")
             }
         }
+    }
+    
+    func changeAddressForMultisigButtonPressed()
+    {
+        let w1 = (label:"name 1",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let w2 = (label:"name 2",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let w3 = (label:"name 3",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let w4 = (label:"name 4",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
+        let items = [w1, w2, w3, w4]
+        let params = Parameters(title: "Select address...", items: items, cancelButton: "Cancel")
+        
+        SelectItemController().show(parent: self, params: params)
+        {
+            (index) in
+            if let index = index
+            {
+                print("selected: \(items[index])")
+                self.setAddressView.setAddress(name: items[index].label, address: items[index].address)
+            }
+            else
+            {
+                print("cancel")
+            }
+        }
+    }
+
+    //
+    // MARK: Navigation
+    //
+    
+    func goToSetNameView()
+    {
+        addNameView.nameField.text = ""
+        views.append(addNameView)
+        showNextView()
+    }
+    
+    func goToSetSaveType()
+    {
+        views.append(addSaveType)
+        showNextView()
+    }
+  
+    func goToSetPassword()
+    {
+        views.append(addPasswordView)
+        addPasswordView.passField.textField.text = ""
+        addPasswordView.retypePassField.textField.text = ""
+        showNextView()
     }
     
     func goToWalletGeneratedView()
@@ -197,47 +303,40 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         }
     }
     
-    func confirmMnemonic(mnemonic: String)
-    {
-        goToConfirmMnemonicView(mnemonic: mnemonic)
-    }
-    
     func goToConfirmMnemonicView(mnemonic:String)
     {
         print("mnemonic to confirm : \(mnemonic)")
-        mnemonicConfirmView.mnemonicLabel.becomeFirstResponder()
         mnemonicConfirmView.rightMnemonic = mnemonic
+        mnemonicConfirmView.mnemonicLabel.text = ""
         views.append(mnemonicConfirmView)
         showNextView()
     }
     
-    func mnemonicConfiremed(mnemonic:String)
-    {
-        print("mnemonic confirmed : \(mnemonic)")
-        let mnemonicArray = mnemonic.components(separatedBy: " ")
-        
-        let m = BTCMnemonic.init(words: mnemonicArray, password: "", wordListType: BTCMnemonicWordListType.english)
-        let keychain = m?.keychain
-        let addr = keychain?.key.addressTestnet.string
-
-        let coldWallet = WatchOnlyWallet.init(label: walletLabel, address: addr!)
-
-        let walletsDatabase = WalletsDatabase.init()
-        walletsDatabase.saveWatchOnlyWallet(watchOnlyWallet: coldWallet)
-        {
-            (success, error) in
-            print("cold wallet saved")
-            self.walletGeneratedView.infoText.text = "Your cold wallet has been successfully generated."
-            self.walletGeneratedView.infoText2.text = "Remember to store your mnemonic key in a safe place. There is no way to recover your wallet without it"
-            self.goToWalletGeneratedView()
-        }
-    }
-    
-    func goToQRCodeScan()
+    func goToSetImportTypeView()
     {
         backButton.isEnabled = true
-        views.append(qrcodeScanView)
+        views.append(setImportTypeView)
         showNextView()
+    }
+    
+    func goToImportUsingTextView()
+    {
+        views.append(importUsingTextView)
+        importUsingTextView.textField.text = ""
+        showNextView()
+    }
+    
+    func goToImportUsingQRCodeView()
+    {
+        views.append(importUsingQRCodeView)
+        showNextView()
+    }
+    
+    func goToWalletImportedView()
+    {
+        self.walletGeneratedView.infoText.text = "Your wallet has been successfully imported and stored on this device."
+        self.walletGeneratedView.infoText2.text = "Remember you to use the export feature to make a backup or share this wallet on other devices."
+        self.goToWalletGeneratedView()
     }
     
     func goToSetMultisigView()
@@ -247,30 +346,10 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         views.append(setAddressView)
         showNextView()
     }
-    
-    func changeAddressForMultisigButtonPressed()
-    {
-        let w1 = (label:"name 1",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
-        let w2 = (label:"name 2",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
-        let w3 = (label:"name 3",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
-        let w4 = (label:"name 4",address:"1BoatSLRHtKNngkdXEeobR76b53LETtpyT")
-        let items = [w1, w2, w3, w4]
-        let params = Parameters(title: "Select address...", items: items, cancelButton: "Cancel")
-        
-        SelectItemController().show(parent: self, params: params)
-        {
-            (index) in
-            if let index = index
-            {
-                print("selected: \(items[index])")
-                self.setAddressView.setAddress(name: items[index].label, address: items[index].address)
-            }
-            else
-            {
-                print("cancel")
-            }
-        }
-    }
+
+    //
+    // MARK: Nav bar Navigation
+    //
     
     func completedButtonPressed()
     {
@@ -278,38 +357,21 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         else { return }
         close()
     }
-    
-    
+
     @objc func backButtonPressed()
     {
         showPreviousView()
     }
     
-    func walletFounded(address: String)
-    {
-        let alert = EMAlertController(title: "Address found", message: address)
-        
-        let cancel = EMAlertAction(title: "CANCEL", style: .cancel)
-        {
-            self.qrcodeScanView.canScan = true
-        }
-        let confirm = EMAlertAction(title: "IMPORT", style: .normal)
-        {
-            self.qrcodeScanView.canScan = true
-        }
-        
-        alert.addAction(action: cancel)
-        alert.addAction(action: confirm)
-        
-        present(alert, animated: true, completion: nil)
-    }
     
     //
-    // MARK : Utility
+    // MARK: Utility
     //
     
     func showNextView()
     {
+        backButton.isEnabled = true
+        
         let currentIndex = views.count - 2
         let nextIndex = views.count - 1
         
@@ -329,6 +391,11 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         if nextView == mnemonicConfirmView
         {
             mnemonicConfirmView.mnemonicLabel.becomeFirstResponder()
+        }
+        
+        if nextView == importUsingTextView
+        {
+            importUsingTextView.textField.becomeFirstResponder()
         }
         
         if nextView == walletGeneratedView
@@ -356,6 +423,8 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         let currentIndex = views.count - 1
         let previousIndex = views.count - 2
 
+        
+        addNameView.nameField.resignFirstResponder()
         addPasswordView.passField.textField.resignFirstResponder()
         addPasswordView.retypePassField.textField.resignFirstResponder()
         mnemonicConfirmView.mnemonicLabel.resignFirstResponder()
@@ -381,6 +450,10 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         {
             addPasswordView.passField.textField.becomeFirstResponder()
         }
+        if previousView == setImportTypeView
+        {
+            importUsingTextView.textField.resignFirstResponder()
+        }
         
         UIView.animate(withDuration: 0.5, animations:
             {
@@ -394,17 +467,62 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         }
     }
     
+    
+    func setupViews()
+    {
+        addTypeView = AddTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        addTypeView.delegate = self
+        
+        self.view.addSubview(addTypeView)
+        views.append(addTypeView)
+        
+        addNameView = SetNameView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        addNameView.delegate = self
+        
+        addSaveType = SetSaveTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        addSaveType.delegate = self
+        
+        addPasswordView = SetPasswordView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        addPasswordView.delegate = self
+        
+        walletGeneratedView = WalletGeneratedView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        walletGeneratedView.delegate = self
+        
+        mnemonicView = MnemonicView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        mnemonicView.delegate = self
+        
+        mnemonicConfirmView = MnemonicConfirmView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        mnemonicConfirmView.delegate = self
+        
+        setAddressView = SetAddressForMultisigView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        setAddressView.delegate = self
+        
+        setImportTypeView = SetImportTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        setImportTypeView.delegate = self
+        
+        importUsingTextView = ImportUsingTextView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        importUsingTextView.delegate = self
+        
+        importUsingQRCodeView = ImportUsingQRCodeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        importUsingQRCodeView.delegate = self
+    }
+    
     @IBAction func closeButtonPressed(_ sender: Any)
     {close()}
     
     func close()
     {
+        closeAllTextField()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func closeAllTextField()
+    {
         addNameView.nameField.resignFirstResponder()
         addPasswordView.passField.textField.resignFirstResponder()
         addPasswordView.retypePassField.textField.resignFirstResponder()
         mnemonicConfirmView.mnemonicLabel.resignFirstResponder()
-        self.dismiss(animated: true, completion: nil)
-        
+        importUsingTextView.textField.resignFirstResponder()
     }
     
     override func didReceiveMemoryWarning()

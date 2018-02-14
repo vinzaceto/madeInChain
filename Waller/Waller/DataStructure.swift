@@ -29,6 +29,12 @@ enum SaveType
     case Mnemonic
 }
 
+enum ImportType
+{
+    case Text
+    case QRCode
+}
+
 struct FullWallet: Codable
 {
     var label:String

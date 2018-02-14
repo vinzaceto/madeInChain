@@ -10,6 +10,7 @@ import UIKit
 
 class SetNameView: UIView,UITextFieldDelegate {
 
+    var infoText:UILabel!
     let nameField:UITextField = UITextField()
     var nameFieldPlaceholder = "type a name here"
     var nameFieldTemporaryText:String = ""
@@ -28,7 +29,7 @@ class SetNameView: UIView,UITextFieldDelegate {
         // centered y with keyboard
         let top = ((self.frame.size.height - 230) / 2) - 50
         
-        let infoText = UILabel.init(frame:CGRect.init(x: 0, y:top, width: 280, height: 60))
+        infoText = UILabel.init(frame:CGRect.init(x: 0, y:top, width: 280, height: 60))
         infoText.center.x = self.center.x
         infoText.textColor = UIColor.gray
         infoText.textAlignment = .center

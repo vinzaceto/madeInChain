@@ -34,10 +34,32 @@ class WalletsGenerator: NSObject
                 w.append(gw)
             }
             completionHandler(true, w)
+            return
         }
         
         completionHandler(false, nil)
         return
+    }
+    
+    func importWallet(name:String, pass:String, keychain:BTCKeychain, completionHandler: @escaping (Bool, String?) -> Void)
+    {
+        print("importing wallet with name :  \(name) and pass : \(pass)")
+        
+        // Private key encryption
+        let encryptedPrivateKey = encrypt(privateKey:keychain.extendedPrivateKey, pass: pass)
+        print("encrypted PrivateKey : \(encryptedPrivateKey.base64EncodedString())")
+        
+        let fullWallet = FullWallet.init(label: name, address:keychain.key.addressTestnet.string, encryptedPrivatekey: encryptedPrivateKey.base64EncodedString())
+
+        let walletsKeychain = WalletsDatabase.init()
+        walletsKeychain.saveFullWallet(fullWallet: fullWallet)
+        {
+            (success, error) in
+            print(error)
+            completionHandler(false, nil)
+        }
+        
+        completionHandler(true, nil)
     }
     
     func generateWallet(name:String, pass:String, completionHandler: @escaping (Bool, String?) -> Void)
@@ -70,6 +92,8 @@ class WalletsGenerator: NSObject
             (success, error) in
             print(error)
         }
+        
+        completionHandler(true, nil)
         
         /*
          // Decryption
@@ -166,9 +190,6 @@ class WalletsGenerator: NSObject
         // pubKey Optional("xpub661MyMwAqRbcFK1MVVLPYSU7KDd12bt9QYwf5MWgnfU5NzMTTSz6wu6gw2wmuoKRu9kU2HdJgyFcseZzzZA2oAzCiKYJ3kCobHrGmPw9yfC")
         //        privKey : Optional("xprv9s21ZrQH143K2pvtPToPBJXNmBnWd9AJ3L24Gy75EKw6WC2JuufrQ6nD5jB76fxVg7vUXXmtPYkHZ4YkycskBNzWrx7YBZYJy5JbcTrresX")
         
-        
-        
-        completionHandler(true, nil)
     }
     
     func encrypt(privateKey:String, pass:String) -> Data
