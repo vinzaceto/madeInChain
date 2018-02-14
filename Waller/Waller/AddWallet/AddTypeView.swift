@@ -57,7 +57,7 @@ class AddTypeView: UIView, MultiOptionViewDelegate {
             addType = AddType.Standard
         }
         
-        guard let _ = self.delegate?.typeSelected(selectedType: addType)
+        guard let _ = self.delegate?.addtypeSelected(selectedType: addType)
         else { return }
     }
     

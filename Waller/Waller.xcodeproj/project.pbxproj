@@ -39,6 +39,8 @@
 		610B1DF5202DBC15005B1105 /* WalletGeneratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6609836F202D1F2500639EE3 /* WalletGeneratedView.swift */; };
 		610B1DF72030C7B8005B1105 /* SelectedAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DF62030C7B8005B1105 /* SelectedAddressView.swift */; };
 		610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DF82030D647005B1105 /* SelectWalletCell.swift */; };
+		611D7F1320337B8000C6C70F /* SetImportTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D7F1220337B8000C6C70F /* SetImportTypeView.swift */; };
+		611D7F15203381AB00C6C70F /* ImportUsingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D7F14203381AB00C6C70F /* ImportUsingTextView.swift */; };
 		61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6C2024C7D0009F9886 /* AppDelegate.swift */; };
 		61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61294A732024C7D0009F9886 /* Waller.xcdatamodeld */; };
 		61294A772024C7D0009F9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61294A762024C7D0009F9886 /* Assets.xcassets */; };
@@ -77,7 +79,7 @@
 		663065A6202FDF8F00DBD516 /* CustomPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6630659F202FDF8F00DBD516 /* CustomPresentAnimationController.swift */; };
 		663065A7202FDF8F00DBD516 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 663065A0202FDF8F00DBD516 /* Info.plist */; };
 		664263F6202E5AB00010828E /* MnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F5202E5AB00010828E /* MnemonicView.swift */; };
-		664263F8202E64350010828E /* QRCodeScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F7202E64350010828E /* QRCodeScanView.swift */; };
+		664263F8202E64350010828E /* ImportUsingQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F7202E64350010828E /* ImportUsingQRCodeView.swift */; };
 		664263FC202E709A0010828E /* UIColor+EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F9202E70990010828E /* UIColor+EMAlertController.swift */; };
 		664263FD202E709A0010828E /* EMAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263FA202E70990010828E /* EMAlertAction.swift */; };
 		664263FE202E709A0010828E /* EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263FB202E709A0010828E /* EMAlertController.swift */; };
@@ -140,6 +142,8 @@
 		610B1DD1202DB7B9005B1105 /* CoreDataContextParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataContextParent.swift; sourceTree = "<group>"; };
 		610B1DF62030C7B8005B1105 /* SelectedAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedAddressView.swift; sourceTree = "<group>"; };
 		610B1DF82030D647005B1105 /* SelectWalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWalletCell.swift; sourceTree = "<group>"; };
+		611D7F1220337B8000C6C70F /* SetImportTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImportTypeView.swift; sourceTree = "<group>"; };
+		611D7F14203381AB00C6C70F /* ImportUsingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportUsingTextView.swift; sourceTree = "<group>"; };
 		61294A692024C7D0009F9886 /* Waller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61294A6C2024C7D0009F9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61294A712024C7D0009F9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OnBoarding.storyboard; sourceTree = "<group>"; };
@@ -186,7 +190,7 @@
 		6630659F202FDF8F00DBD516 /* CustomPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentAnimationController.swift; sourceTree = "<group>"; };
 		663065A0202FDF8F00DBD516 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664263F5202E5AB00010828E /* MnemonicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicView.swift; sourceTree = "<group>"; };
-		664263F7202E64350010828E /* QRCodeScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanView.swift; sourceTree = "<group>"; };
+		664263F7202E64350010828E /* ImportUsingQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportUsingQRCodeView.swift; sourceTree = "<group>"; };
 		664263F9202E70990010828E /* UIColor+EMAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EMAlertController.swift"; sourceTree = "<group>"; };
 		664263FA202E70990010828E /* EMAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMAlertAction.swift; sourceTree = "<group>"; };
 		664263FB202E709A0010828E /* EMAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMAlertController.swift; sourceTree = "<group>"; };
@@ -492,9 +496,11 @@
 				6609836F202D1F2500639EE3 /* WalletGeneratedView.swift */,
 				664263F5202E5AB00010828E /* MnemonicView.swift */,
 				6130BA822031A423002262FE /* MnemonicConfirmView.swift */,
-				664263F7202E64350010828E /* QRCodeScanView.swift */,
 				66306595202FD91F00DBD516 /* SetAddressForMultisigView.swift */,
 				610B1DF62030C7B8005B1105 /* SelectedAddressView.swift */,
+				611D7F1220337B8000C6C70F /* SetImportTypeView.swift */,
+				611D7F14203381AB00C6C70F /* ImportUsingTextView.swift */,
+				664263F7202E64350010828E /* ImportUsingQRCodeView.swift */,
 				618E4B1A202A5504007F0D32 /* MultiOptionClass */,
 				6609836D202D0E7300639EE3 /* PWTextField.swift */,
 			);
@@ -720,6 +726,7 @@
 				664263FC202E709A0010828E /* UIColor+EMAlertController.swift in Sources */,
 				610B1DEB202DB7B9005B1105 /* CoreDataiCloudConfig.swift in Sources */,
 				663065A4202FDF8F00DBD516 /* DefaultTableView.swift in Sources */,
+				611D7F15203381AB00C6C70F /* ImportUsingTextView.swift in Sources */,
 				610B1DDD202DB7B9005B1105 /* Storage.swift in Sources */,
 				61CDB2EB202CCF210004C02B /* AddWalletViewController.swift in Sources */,
 				61B6285720323D4300EE6ABB /* OnBoardingPageViewController.swift in Sources */,
@@ -754,6 +761,7 @@
 				74435903202B320900CD1982 /* HFCardCollectionViewLayoutDelegate.swift in Sources */,
 				6130BA832031A423002262FE /* MnemonicConfirmView.swift in Sources */,
 				74435901202B320900CD1982 /* HFCardCollectionViewCell.swift in Sources */,
+				611D7F1320337B8000C6C70F /* SetImportTypeView.swift in Sources */,
 				610B1DD7202DB7B9005B1105 /* StorageError.swift in Sources */,
 				66904434202E3B050021BEE2 /* RNCryptor.swift in Sources */,
 				610B1DE9202DB7B9005B1105 /* CoreDataStore.swift in Sources */,
@@ -773,7 +781,7 @@
 				610B1DDA202DB7B9005B1105 /* NSSortDescriptorConvertible.swift in Sources */,
 				61B6285420323D4300EE6ABB /* CircleTransition.swift in Sources */,
 				663065A1202FDF8F00DBD516 /* SelectItemController.swift in Sources */,
-				664263F8202E64350010828E /* QRCodeScanView.swift in Sources */,
+				664263F8202E64350010828E /* ImportUsingQRCodeView.swift in Sources */,
 				61B6285820323D4300EE6ABB /* GradientView.swift in Sources */,
 				610B1DD5202DB7B9005B1105 /* VersionController.swift in Sources */,
 				610B1DE8202DB7B9005B1105 /* CoreDataChange.swift in Sources */,

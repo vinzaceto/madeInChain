@@ -67,8 +67,7 @@ class QuickImportViewController: UIViewController
                 self.canScan = false
                 
                 print("WALLET FOUND : \(String(describing: btcurl.address?.string))")
-//                guard let _ = self.delegate?.walletFounded(address: (btcurl.address?.string)!)
-//                    else { return }
+                self.walletFounded(address: (btcurl.address?.string)!)
             }
             else
             {
@@ -79,6 +78,25 @@ class QuickImportViewController: UIViewController
         scannerView?.frame = CGRect.init(x: 0, y: 0, width: 250, height: 250)
         scannerView?.center = borderImage.center
         self.view.addSubview(scannerView!)
+    }
+    
+    func walletFounded(address: String)
+    {
+        let alert = EMAlertController(title: "Address found", message: address)
+        
+        let cancel = EMAlertAction(title: "CANCEL", style: .cancel)
+        {
+            self.canScan = true
+        }
+        let confirm = EMAlertAction(title: "IMPORT", style: .normal)
+        {
+            self.canScan = true
+        }
+        
+        alert.addAction(action: cancel)
+        alert.addAction(action: confirm)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func closeButtonPressed(_ sender: Any)

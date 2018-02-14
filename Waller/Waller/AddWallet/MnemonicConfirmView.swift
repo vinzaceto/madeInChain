@@ -73,9 +73,7 @@ class MnemonicConfirmView: UIView {
     }
     
     func compareMnemonix(stringMnemonic:String) -> Bool
-    {
-        return true
-        
+    {        
         let userMnemonic = stringMnemonic.replacingOccurrences(of: " ", with: ",").lowercased()
         
         let userMnemonicArray = userMnemonic.components(separatedBy: [",","\n"])
