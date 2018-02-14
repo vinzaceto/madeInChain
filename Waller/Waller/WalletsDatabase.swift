@@ -10,32 +10,23 @@ import UIKit
 
 class WalletsDatabase: NSObject
 {
-    func getAllWallets() -> WalletsList
+    func getAllWallets() -> [Wallet]
     {
         let db = coreDataStorage()
-        var fullWalletsList:[FullWallet] = []
-        var watchOnlyWalletsList:[WatchOnlyWallet] = []
+        var walletList:[Wallet] = []
         
-        let fullWalletsEntities: [FullWalletEntity] = try! db.fetch(FetchRequest<FullWalletEntity>().sorted(with: "address", ascending: true))
-        for fwEntity in fullWalletsEntities
+        let walletEntities:[WalletEntity] = try! db.fetch(FetchRequest<WalletEntity>().sorted(with: "address", ascending: true))
+    
+        for wEntity in walletEntities
         {
-            let fullWallet = FullWallet.init(label: fwEntity.label!, address: fwEntity.address!, encryptedPrivatekey: fwEntity.encryptedPrivatekey!)
-            fullWalletsList.append(fullWallet)
+            let w = Wallet.init(label: wEntity.label!, address: wEntity.address!, privatekey: wEntity.privateKey!)
+            walletList.append(w)
         }
-        
-        let watchOnlyEntities: [WatchOnlyEntity] = try! db.fetch(FetchRequest<WatchOnlyEntity>().sorted(with: "address", ascending: true))
-        for watchOnlyEntity in watchOnlyEntities
-        {
-            let watchOnlyWallet = WatchOnlyWallet.init(label: watchOnlyEntity.label!, address: watchOnlyEntity.address!)
-            watchOnlyWalletsList.append(watchOnlyWallet)
-        }
-        
-        let walletList = WalletsList.init(fullWallets: fullWalletsList, watchOnlyWallets: watchOnlyWalletsList)
 
         return walletList
     }
     
-    func saveFullWallet(fullWallet:FullWallet, completionHandler: @escaping (Bool, String) -> Void)
+    func saveWallet(wallet:Wallet, completionHandler: @escaping (Bool, String) -> Void)
     {
         let db = coreDataStorage()
         
@@ -45,10 +36,10 @@ class WalletsDatabase: NSObject
             {
                 (context, save) throws in
                 
-                let newWallet: FullWalletEntity = try context.new()
-                newWallet.label = fullWallet.label
-                newWallet.address = fullWallet.address
-                newWallet.encryptedPrivatekey = fullWallet.encryptedPrivatekey
+                let newWallet: WalletEntity = try context.new()
+                newWallet.label = wallet.label
+                newWallet.address = wallet.address
+                newWallet.privateKey = wallet.privatekey
                 try context.insert(newWallet)
                 try save()
                 completionHandler(true, "wallet saved")
@@ -60,29 +51,6 @@ class WalletsDatabase: NSObject
         }
     }
     
-    func saveWatchOnlyWallet(watchOnlyWallet:WatchOnlyWallet, completionHandler: @escaping (Bool, String) -> Void)
-    {
-        let db = coreDataStorage()
-        
-        do
-        {
-            try db.operation
-            {
-                (context, save) throws in
-                
-                let newWallet: WatchOnlyEntity = try context.new()
-                newWallet.label = watchOnlyWallet.label
-                newWallet.address = watchOnlyWallet.address
-                try context.insert(newWallet)
-                try save()
-                completionHandler(true, "wallet saved")
-            }
-        }
-        catch
-        {
-            completionHandler(false, "unable to save the wallet")
-        }
-    }
     
     func removeWalletBy(address:String, completionHandler: @escaping (Bool, String) -> Void)
     {
@@ -96,7 +64,7 @@ class WalletsDatabase: NSObject
                 
                 do
                 {
-                    let thisWallet: FullWalletEntity? = try context.request(FullWalletEntity.self).filtered(with: "address", equalTo: address).fetch().first
+                    let thisWallet: WalletEntity? = try context.request(WalletEntity.self).filtered(with: "address", equalTo: address).fetch().first
                     if let this = thisWallet
                     {
                         try context.remove([this])

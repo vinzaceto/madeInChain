@@ -20,7 +20,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
-    var walletsList:WalletsList!
+    var walletsList:[Wallet]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,15 +131,28 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if(walletsList.fullWallets.count==0 && walletsList.watchOnlyWallets.count==0){
+        if(walletsList.count==0)
+        {
             return 1
         }
-        return walletsList.fullWallets.count + walletsList.watchOnlyWallets.count + 1
+        return walletsList.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
+        if indexPath.row == 0
+        {
+            
+        }
+        else
+        {
+            cell.headerImage.tintColor = UIColor.green
+            cell.iconImage.image = UIImage.init(named: "done")
+            cell.nameLabel.text = walletsList[indexPath.row-1].label
+            cell.subtitleLabel.text = walletsList[indexPath.row-1].address
+            cell.amountLabel.text = "0.00000001"
+        }
         return cell
     }
     

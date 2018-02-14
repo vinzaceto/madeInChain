@@ -49,10 +49,10 @@ class WalletsGenerator: NSObject
         let encryptedPrivateKey = encrypt(privateKey:keychain.extendedPrivateKey, pass: pass)
         print("encrypted PrivateKey : \(encryptedPrivateKey.base64EncodedString())")
         
-        let fullWallet = FullWallet.init(label: name, address:keychain.key.addressTestnet.string, encryptedPrivatekey: encryptedPrivateKey.base64EncodedString())
-
+        let wallet = Wallet.init(label: name, address: keychain.key.addressTestnet.string, privatekey: encryptedPrivateKey.base64EncodedString())
+    
         let walletsKeychain = WalletsDatabase.init()
-        walletsKeychain.saveFullWallet(fullWallet: fullWallet)
+        walletsKeychain.saveWallet(wallet: wallet)
         {
             (success, error) in
             print(error)
@@ -83,11 +83,11 @@ class WalletsGenerator: NSObject
         let encryptedPrivateKey = encrypt(privateKey: (keychain?.extendedPrivateKey)!, pass: pass)
         print("encrypted PrivateKey : \(encryptedPrivateKey.base64EncodedString())")
         
-        let fullWallet = FullWallet.init(label: name, address: (keychain?.key.addressTestnet.string)!, encryptedPrivatekey: encryptedPrivateKey.base64EncodedString())
-        print(fullWallet)
+        let wallet = Wallet.init(label: name, address: (keychain?.key.addressTestnet.string)!, privatekey: encryptedPrivateKey.base64EncodedString())
+        //print(wallet)
         
         let walletsKeychain = WalletsDatabase.init()
-        walletsKeychain.saveFullWallet(fullWallet: fullWallet)
+        walletsKeychain.saveWallet(wallet: wallet)
         {
             (success, error) in
             print(error)

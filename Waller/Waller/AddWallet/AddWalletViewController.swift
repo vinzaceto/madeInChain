@@ -176,10 +176,10 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         let keychain = m?.keychain
         let addr = keychain?.key.addressTestnet.string
         
-        let coldWallet = WatchOnlyWallet.init(label: walletLabel, address: addr!)
+        let coldWallet = Wallet.init(label: walletLabel, address: addr!, privatekey: "")
         
         let walletsDatabase = WalletsDatabase.init()
-        walletsDatabase.saveWatchOnlyWallet(watchOnlyWallet: coldWallet)
+        walletsDatabase.saveWallet(wallet: coldWallet)
         {
             (success, error) in
             print("cold wallet saved")
