@@ -103,7 +103,6 @@
 		74435922202DC1A700CD1982 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74435917202DC1A600CD1982 /* Rubik-Bold.ttf */; };
 		74B76DA3203429B100E1C6F3 /* DataConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DA2203429B100E1C6F3 /* DataConnections.swift */; };
 		74B76DA520343C0400E1C6F3 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DA420343C0400E1C6F3 /* Tools.swift */; };
-		74B76DE720347D7100E1C6F3 /* InfoSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DE520347D7100E1C6F3 /* InfoSectionViewController.swift */; };
 		74B76DE820347D7100E1C6F3 /* InfoSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B76DE620347D7100E1C6F3 /* InfoSectionViewController.xib */; };
 		74B76DEA2034846600E1C6F3 /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DE92034846600E1C6F3 /* XibView.swift */; };
 		D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */; };
@@ -214,7 +213,6 @@
 		74435917202DC1A600CD1982 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		74B76DA2203429B100E1C6F3 /* DataConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConnections.swift; sourceTree = "<group>"; };
 		74B76DA420343C0400E1C6F3 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		74B76DE520347D7100E1C6F3 /* InfoSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSectionViewController.swift; sourceTree = "<group>"; };
 		74B76DE620347D7100E1C6F3 /* InfoSectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoSectionViewController.xib; sourceTree = "<group>"; };
 		74B76DE92034846600E1C6F3 /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,7 +434,6 @@
 				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
 				618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */,
 				74B76DA420343C0400E1C6F3 /* Tools.swift */,
-				74B76DE520347D7100E1C6F3 /* InfoSectionViewController.swift */,
 				74B76DE620347D7100E1C6F3 /* InfoSectionViewController.xib */,
 				74B76DE92034846600E1C6F3 /* XibView.swift */,
 			);
@@ -752,7 +749,6 @@
 				61B9D2AD202BAACE00E22B0D /* BTCTestnetInfo.swift in Sources */,
 				610B1DE1202DB7B9005B1105 /* CoreDataiCloudStorage.swift in Sources */,
 				664263FE202E709A0010828E /* EMAlertController.swift in Sources */,
-				74B76DE720347D7100E1C6F3 /* InfoSectionViewController.swift in Sources */,
 				663065A6202FDF8F00DBD516 /* CustomPresentAnimationController.swift in Sources */,
 				610B1DEC202DB7B9005B1105 /* CoreDataContextParent.swift in Sources */,
 				61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */,
