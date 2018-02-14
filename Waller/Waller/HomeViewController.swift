@@ -58,6 +58,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
 
         
+        let dataConnection = DataConnections()
+        dataConnection.getBitcoinValue(currency: "btcusd") { (result) in
+            switch result {
+            case .success(let posts):
+                self.currentBTCvalue.text = posts.last+"$"
+            case .failure(let error):
+                fatalError("error: \(error)")
+            }
+        }
+        
     }
     
     
