@@ -16,6 +16,9 @@ class Props:NSObject
     static let optionViewMargin = 10
     static let optionCornerRadius = 10
     
+    static let hasBeenSeen:String = "visualized"
+
+    
     static let lastBtcValue = "LASTBTCVALUE"
     
     

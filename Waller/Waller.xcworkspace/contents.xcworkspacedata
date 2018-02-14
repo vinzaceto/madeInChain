@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/pasqualemauriello/Documents/Academy/repo/madeInChain/Waller/Waller/OnBoarding/OnViewController2.swift">
+   </FileRef>
+   <FileRef
       location = "group:Waller.xcodeproj">
    </FileRef>
    <FileRef
