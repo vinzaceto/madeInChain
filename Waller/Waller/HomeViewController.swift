@@ -62,6 +62,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         dataConnection.getBitcoinValue(currency: "btcusd") { (result) in
             switch result {
             case .success(let posts):
+                print(posts.last+"$")
+                UserDefaults.standard.set(posts.last, forKey: Props.lastBtcValue)
                 self.currentBTCvalue.text = posts.last+"$"
             case .failure(let error):
                 fatalError("error: \(error)")

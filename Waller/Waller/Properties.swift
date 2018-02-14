@@ -15,4 +15,6 @@ class Props:NSObject
     static let optionTitleHeight = 30
     static let optionViewMargin = 10
     static let optionCornerRadius = 10
+    
+    static let lastBtcValue = "LASTBTCVALUE"
 }
