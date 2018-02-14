@@ -16,18 +16,18 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         
         let st = UIStoryboard(name: "OnBoarding", bundle: nil)
         
-        let controller1 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
+        let controller1 = st.instantiateViewController(withIdentifier: "onPage3") as! OnViewController
         controller1.view.backgroundColor = UIColor.green
         
         
-        var controller2 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
+        var controller2 = st.instantiateViewController(withIdentifier: "onPage2") as! OnViewController2
         controller2.view.backgroundColor = UIColor.blue
         
-        let controller3 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
+        let controller3 = st.instantiateViewController(withIdentifier: "onPage1") 
         controller3.view.backgroundColor = UIColor.yellow
 
-        return [controller1,controller2,
-                controller3]
+        return [controller3,controller2,
+                controller1]
     }()
     
     let transition = CircleTransition()

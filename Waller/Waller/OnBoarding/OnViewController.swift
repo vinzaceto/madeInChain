@@ -2,13 +2,15 @@
 //  OnViewController.swift
 //  Waller
 //
-//  Created by Vincenzo Ajello on 02/02/18.
+//  Created by Pasquale Mauriello on 02/02/18.
 //  Copyright © 2018 madeinchain. All rights reserved.
 //
 
 import UIKit
 
-class OnViewController: UIViewController {
+class OnViewController: UIViewController, UIViewControllerTransitioningDelegate {
+    
+    let transition = CircleTransition()
     
     @IBOutlet weak var ButtonSkip: UIButton!
     
@@ -17,6 +19,27 @@ class OnViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: Props.hasBeenSeen)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let secondVC = segue.destination as! HomeViewController
+        secondVC.transitioningDelegate = self
+        secondVC.modalPresentationStyle = .custom
+    }
+    
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = ButtonSkip.center
+        transition.circleColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = ButtonSkip.center
+        transition.circleColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+        return transition
+    }
 
     let gradientView:GradientView = GradientView()
 
@@ -34,6 +57,7 @@ class OnViewController: UIViewController {
         
      
    }
+    
     
 
 
