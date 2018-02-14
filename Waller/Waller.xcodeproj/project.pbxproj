@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		243594A42034D14C00D328D9 /* OnViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243594A32034D14C00D328D9 /* OnViewController3.swift */; };
 		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
 		249C73A7202DAE1E00A0EB36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */; };
 		24B0984D2034C0EE00DD8FF5 /* OnViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */; };
@@ -110,6 +111,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		243594A32034D14C00D328D9 /* OnViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController3.swift; sourceTree = "<group>"; };
 		24365669202C60B200E33A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController2.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				61B6285220323D4300EE6ABB /* GradientView.swift */,
 				61B6285320323D4300EE6ABB /* OnViewController.swift */,
 				24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */,
+				243594A32034D14C00D328D9 /* OnViewController3.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -777,6 +780,7 @@
 				664263F6202E5AB00010828E /* MnemonicView.swift in Sources */,
 				61B9D2A7202B796D00E22B0D /* ACProgressHUD.swift in Sources */,
 				610B1DDF202DB7B9005B1105 /* Request.swift in Sources */,
+				243594A42034D14C00D328D9 /* OnViewController3.swift in Sources */,
 				24B0984D2034C0EE00DD8FF5 /* OnViewController2.swift in Sources */,
 				610B1DDA202DB7B9005B1105 /* NSSortDescriptorConvertible.swift in Sources */,
 				61B6285420323D4300EE6ABB /* CircleTransition.swift in Sources */,
