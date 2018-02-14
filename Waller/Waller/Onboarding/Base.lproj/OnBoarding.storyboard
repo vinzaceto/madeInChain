@@ -8,6 +8,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Medium.ttf">
+            <string>Rubik-Medium</string>
+        </array>
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--On Boarding Page View Controller-->
         <scene sceneID="B9J-Ra-4nu">
@@ -43,6 +51,10 @@
                                     <segue destination="4bC-QA-rzS" kind="show" identifier="MainSB" id="p0k-Tv-tTs"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h2U-t3-ocK">
+                                <rect key="frame" x="16" y="213" width="343" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -60,20 +72,70 @@
             </objects>
             <point key="canvasLocation" x="37.600000000000001" y="329.68515742128938"/>
         </scene>
-        <!--View Controller-->
+        <!--On View Controller3-->
         <scene sceneID="bCy-l5-cVf">
             <objects>
-                <viewController storyboardIdentifier="onPage1" id="B4a-Jg-mzh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="onPage1" id="B4a-Jg-mzh" customClass="OnViewController3" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="td1-b1-6ga">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onImg1" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-sU-XRv">
+                                <rect key="frame" x="16" y="213" width="343" height="279"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Cc-yP-sbb">
+                                <rect key="frame" x="87" y="50" width="200" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="23"/>
+                                <color key="textColor" red="0.99112719297409058" green="0.99630016088485718" blue="0.99602895975112915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multisign wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPG-3F-O6l">
+                                <rect key="frame" x="47" y="122.5" width="281" height="28.5"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="24"/>
+                                <color key="textColor" red="0.77179580926895142" green="0.94310325384140015" blue="0.8746873140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO5-El-Aan">
+                                <rect key="frame" x="54" y="527" width="266" height="50"/>
+                                <color key="backgroundColor" red="0.27866926789283752" green="0.61603480577468872" blue="0.58821505308151245" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="PCR-M5-nyN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                                <state key="normal" title="Start from here">
+                                    <color key="titleColor" red="0.85675239562988281" green="0.96452063322067261" blue="0.93200874328613281" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startButton:" destination="B4a-Jg-mzh" eventType="touchUpInside" id="QPu-jL-AXb"/>
+                                    <segue destination="4bC-QA-rzS" kind="show" identifier="MainSB" id="JRn-ro-Ir8"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CyO-9X-Akd" firstAttribute="bottom" secondItem="aO5-El-Aan" secondAttribute="bottom" constant="90" id="0wo-Uz-Wkr"/>
+                            <constraint firstItem="QPG-3F-O6l" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="47" id="5N6-aQ-ZGQ"/>
+                            <constraint firstItem="4Cc-yP-sbb" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="87" id="7h3-eo-8YO"/>
+                            <constraint firstItem="4Cc-yP-sbb" firstAttribute="top" secondItem="CyO-9X-Akd" secondAttribute="top" constant="30" id="EhG-WO-A3S"/>
+                            <constraint firstItem="aO5-El-Aan" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="54" id="L8d-6a-bsO"/>
+                            <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="aO5-El-Aan" secondAttribute="trailing" constant="55" id="QJz-2G-EEB"/>
+                            <constraint firstItem="QPG-3F-O6l" firstAttribute="top" secondItem="4Cc-yP-sbb" secondAttribute="bottom" constant="45" id="RXd-5p-JuS"/>
+                            <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="QPG-3F-O6l" secondAttribute="trailing" constant="47" id="kcE-o7-OsR"/>
+                            <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="4Cc-yP-sbb" secondAttribute="trailing" constant="88" id="lsj-gx-9Su"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CyO-9X-Akd"/>
                     </view>
+                    <connections>
+                        <outlet property="imagePage1" destination="f0e-sU-XRv" id="ZjD-di-Bek"/>
+                        <outlet property="startButton" destination="aO5-El-Aan" id="xG0-Ct-iaZ"/>
+                        <outlet property="subTitle" destination="QPG-3F-O6l" id="dxt-Wd-tYK"/>
+                        <outlet property="titleLabel" destination="4Cc-yP-sbb" id="vFT-i8-VUS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52Y-FQ-zzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1652" y="330"/>
+            <point key="canvasLocation" x="-1535.2" y="329.68515742128938"/>
         </scene>
         <!--On View Controller2-->
         <scene sceneID="nQj-zD-bbO">
@@ -82,13 +144,48 @@
                     <view key="view" contentMode="scaleToFill" id="aYY-Rd-lo8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDm-sw-2oR">
+                                <rect key="frame" x="16" y="213" width="343" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZB-Od-LKe">
+                                <rect key="frame" x="87" y="50" width="200" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="23"/>
+                                <color key="textColor" red="0.99112719297409058" green="0.99630016088485718" blue="0.99602895975112915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN1-9Z-Ce8">
+                                <rect key="frame" x="47" y="123" width="281" height="21.5"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
+                                <color key="textColor" red="0.77179580926895142" green="0.94310325384140015" blue="0.8746873140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FZB-Od-LKe" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="87" id="1B6-X7-xEO"/>
+                            <constraint firstItem="FZB-Od-LKe" firstAttribute="top" secondItem="8wb-IF-jFZ" secondAttribute="top" constant="30" id="5J1-fq-cGr"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="FZB-Od-LKe" secondAttribute="trailing" constant="88" id="X2O-eN-x9t"/>
+                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="45" id="uDL-hb-K9x"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8wb-IF-jFZ"/>
                     </view>
+                    <connections>
+                        <outlet property="imagePage2" destination="fDm-sw-2oR" id="agw-ur-aMC"/>
+                        <outlet property="subTitle" destination="xN1-9Z-Ce8" id="Dct-uH-voL"/>
+                        <outlet property="titleLabel" destination="FZB-Od-LKe" id="VoI-N7-XzQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83K-Lu-YvW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-798" y="325"/>
+            <point key="canvasLocation" x="-791.20000000000005" y="329.68515742128938"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="onImg1" width="318" height="523"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="JRn-ro-Ir8"/>
+    </inferredMetricsTieBreakers>
 </document>
