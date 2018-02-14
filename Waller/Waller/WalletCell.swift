@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol WalletCellDelegate
+{
+    func listTransactionsButtonPressed(walletCell:WalletCell)
+    func makeAPaymentButtonPressed(walletCell:WalletCell)
+    func showQRCodeButtonPressed(walletCell:WalletCell)
+}
+
 class WalletCell: HFCardCollectionViewCell
 {
     var headerImage:UIImageView!
@@ -15,6 +22,8 @@ class WalletCell: HFCardCollectionViewCell
     var nameLabel:UILabel!
     var subtitleLabel:UILabel!
     var amountLabel:UILabel!
+    var delegate:WalletCellDelegate!
+    var cardCollectionViewLayout: HFCardCollectionViewLayout?
 
     override func awakeFromNib()
     {
@@ -62,38 +71,48 @@ class WalletCell: HFCardCollectionViewCell
         amountLabel.adjustsFontSizeToFitWidth = true
         self.addSubview(amountLabel)
         
-        let makeAPaymentButton = UIButton.init(type: .roundedRect)
-        makeAPaymentButton.frame = CGRect.init(x: 20, y: 250, width: 45, height: 45)
+        let y = 210
+        let makeAPaymentButton = UIButton.init(type: .custom)
+        makeAPaymentButton.frame = CGRect.init(x: 10, y: y, width: 45, height: 45)
         makeAPaymentButton.addTarget(self, action: #selector(makeAPaymentButtonPressed), for: .touchUpInside)
-        makeAPaymentButton.backgroundColor = UIColor.gray
+        makeAPaymentButton.backgroundColor = UIColor.clear
+        makeAPaymentButton.setImage(UIImage.init(named: "MakeAPayment"), for: .normal)
         self.addSubview(makeAPaymentButton)
         
-        let listTransactionButton = UIButton.init(type: .roundedRect)
-        listTransactionButton.frame = CGRect.init(x: 85, y: 250, width: 45, height: 45)
+        let listTransactionButton = UIButton.init(type: .custom)
+        listTransactionButton.frame = CGRect.init(x: 75, y: y + 5, width: 35, height: 36)
         listTransactionButton.addTarget(self, action: #selector(listTransactionsButtonPressed), for: .touchUpInside)
-        listTransactionButton.backgroundColor = UIColor.gray
+        listTransactionButton.backgroundColor = UIColor.clear
+        listTransactionButton.setImage(UIImage.init(named: "allTransactionIcon"), for: .normal)
         self.addSubview(listTransactionButton)
         
-        let showQRCodeButton = UIButton.init(type: .roundedRect)
-        showQRCodeButton.frame = CGRect.init(x: UIScreen.main.bounds.width - 10 - 45 - 20, y: 250, width: 45, height: 45)
+        let showQRCodeButton = UIButton.init(type: .custom)
+        showQRCodeButton.frame = CGRect.init(x: 310 - 10 - 40, y: y + 5, width: 36, height: 36)
         showQRCodeButton.addTarget(self, action: #selector(showQRCodeButtonPressed), for: .touchUpInside)
-        showQRCodeButton.backgroundColor = UIColor.gray
+        showQRCodeButton.backgroundColor = UIColor.clear
+        showQRCodeButton.setImage(UIImage.init(named: "ShowQRCode"), for: .normal)
         self.addSubview(showQRCodeButton)
     }
     
     @objc func listTransactionsButtonPressed()
     {
         print("listTransactionsButtonPressed")
+        guard let _ = delegate?.listTransactionsButtonPressed(walletCell: self) else
+        {return}
     }
     
     @objc func makeAPaymentButtonPressed()
     {
         print("makeAPaymentButtonPressed")
+        guard let _ = delegate?.makeAPaymentButtonPressed(walletCell: self) else
+        {return}
     }
     
     @objc func showQRCodeButtonPressed()
     {
         print("showQRCodeButtonPressed")
+        guard let _ = delegate?.showQRCodeButtonPressed(walletCell: self) else
+        {return}
     }
     
 }

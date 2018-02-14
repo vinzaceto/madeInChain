@@ -141,7 +141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pt-sr-Ix4" customClass="HFCardCollectionView" customModule="Waller">
-                                <rect key="frame" x="16" y="189" width="382" height="457"/>
+                                <rect key="frame" x="16" y="274" width="382" height="457"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1Yg-aB-HNg" customClass="HFCardCollectionViewLayout" customModule="Waller">
@@ -168,7 +168,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eva-u1-Qcs">
-                                <rect key="frame" x="16" y="151" width="135" height="30"/>
+                                <rect key="frame" x="16" y="241" width="116" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Quick import"/>
@@ -176,11 +176,10 @@
                                     <action selector="quickImportButtonPressed:" destination="NDG-Gg-Nol" eventType="touchUpInside" id="dNO-pP-jnG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
-                                <rect key="frame" x="368" y="151" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
+                                <rect key="frame" x="362" y="241" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="+"/>
+                                <state key="normal" title="+" image="AddButton"/>
                                 <connections>
                                     <action selector="addButtonPressed:" destination="NDG-Gg-Nol" eventType="touchUpInside" id="D5V-8t-HUm"/>
                                 </connections>
@@ -191,6 +190,11 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="InfoSection"/>
                                 </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6FK-kb-Mqu" customClass="LineChart" customModule="Waller" customModuleProvider="target">
+                                <rect key="frame" x="20" y="136" width="379" height="97"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -204,6 +208,7 @@
                     <connections>
                         <outlet property="adButton" destination="4RK-uK-YEx" id="yTA-EK-YeK"/>
                         <outlet property="collectionView" destination="9Pt-sr-Ix4" id="JOC-VZ-juw"/>
+                        <outlet property="lineChart" destination="6FK-kb-Mqu" id="KrD-5w-oX0"/>
                         <outlet property="quickImportButton" destination="eva-u1-Qcs" id="NSs-yJ-Mz3"/>
                     </connections>
                 </viewController>
@@ -248,4 +253,7 @@
             <point key="canvasLocation" x="516" y="-621"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AddButton" width="30" height="30"/>
+    </resources>
 </document>
