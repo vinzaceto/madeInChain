@@ -9,12 +9,14 @@
 import UIKit
 
 
-class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate {
+class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate {
+    
 
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
     @IBOutlet weak var currentBtcAmount: UILabel!
+    @IBOutlet weak var lineChart: LineChart!
     @IBOutlet weak var adButton: UIButton!
     @IBOutlet weak var quickImportButton: UIButton!
 
@@ -25,8 +27,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.frame.origin.y = 200
-        collectionView?.frame.size.height = self.view.frame.size.height - 200
+        collectionView?.frame.origin.y = 350
+        collectionView?.frame.size.height = self.view.frame.size.height - 350
         collectionView?.frame.size.width = 310
         collectionView?.center.x = self.view.center.x
 
@@ -38,21 +40,41 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         adButton.frame.origin.x = (collectionView?.frame.origin.x)! + (collectionView?.frame.size.width)! - adButton.frame.width
         adButton.frame.origin.y = (collectionView?.frame.origin.y)! - adButton.frame.height - 10
         //adButton.frame.origin.y = 200
-
-        adButton.clipsToBounds = true
-        adButton.layer.cornerRadius = adButton.frame.width / 2
-        adButton.backgroundColor = UIColor.blue
-        adButton.setTitleColor(UIColor.white, for: .normal)
         
         quickImportButton.frame.origin.x = (collectionView?.frame.origin.x)!
         quickImportButton.frame.origin.y = adButton.frame.origin.y
         
         quickImportButton.clipsToBounds = true
         quickImportButton.layer.cornerRadius = adButton.layer.cornerRadius
-        quickImportButton.backgroundColor = UIColor.blue
-        quickImportButton.setTitleColor(UIColor.white, for: .normal)
+        quickImportButton.backgroundColor = UIColor.clear
+        quickImportButton.titleLabel?.textAlignment = .left
+        quickImportButton.setTitleColor(UIColor.darkText, for: .normal)
         
         loadWallets()
+        
+        lineChart.frame = CGRect.init(x: 10, y: 140, width: self.view.frame.size.width-20, height: 160)
+        lineChart.layer.cornerRadius = 6
+        lineChart.clipsToBounds = true
+        let dataEntries = generateRandomEntries()
+        lineChart.dataEntries = dataEntries
+        lineChart.isCurved = true
+        
+    }
+    
+    //  test
+    private func generateRandomEntries() -> [PointEntry] {
+        var result: [PointEntry] = []
+        for i in 0..<100 {
+            let value = Int(arc4random() % 500)
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "d MMM"
+            var date = Date()
+            date.addTimeInterval(TimeInterval(24*60*60*i))
+            
+            result.append(PointEntry(value: value, label: formatter.string(from: date)))
+        }
+        return result
     }
     
     
@@ -130,6 +152,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             cell.nameLabel.text = walletsList[indexPath.row-1].label
             cell.subtitleLabel.text = walletsList[indexPath.row-1].address
             cell.amountLabel.text = "0.00000001"
+            cell.cardCollectionViewLayout = cardCollectionViewLayout
+            cell.delegate = self
         }
         return cell
     }
@@ -144,6 +168,31 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         //let tempItem = self.cardArray[sourceIndexPath.item]
         //self.cardArray.remove(at: sourceIndexPath.item)
         //self.cardArray.insert(tempItem, at: destinationIndexPath.item)
+    }
+    
+    
+    
+    
+    
+    func listTransactionsButtonPressed(walletCell:WalletCell)
+    {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.backgroundColor = UIColor.yellow
+        walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
+    }
+    
+    func makeAPaymentButtonPressed(walletCell:WalletCell)
+    {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.backgroundColor = UIColor.green
+        walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
+    }
+    
+    func showQRCodeButtonPressed(walletCell:WalletCell)
+    {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.backgroundColor = UIColor.purple
+        walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
 
 }
