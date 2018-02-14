@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XibView" customModule="Waller" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoSectionXibController" customModule="Waller" customModuleProvider="target">
             <connections>
                 <outlet property="currentAmount" destination="Tql-bo-KRD" id="UqK-gU-si6"/>
                 <outlet property="currentBTCvalue" destination="Khv-U6-3s5" id="H9V-wy-mGE"/>

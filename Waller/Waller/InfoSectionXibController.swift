@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class XibView: UIView {
+class InfoSectionXibController: UIView {
 
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
