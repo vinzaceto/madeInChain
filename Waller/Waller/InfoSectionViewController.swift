@@ -9,19 +9,14 @@
 import UIKit
 
 class InfoSectionViewController: UIViewController {
-    
-    @IBOutlet weak var currentCurrancy: UILabel!
-    @IBOutlet weak var currentBTCvalue: UILabel!
-    @IBOutlet weak var currentAmount: UILabel!
-    @IBOutlet weak var currentBtcAmount: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let lastBtcValueTemp = UserDefaults.standard.string(forKey: Props.lastBtcValue) {
-            self.currentBTCvalue.text = lastBtcValueTemp
+//            self.currentBTCvalue.text = lastBtcValueTemp
         } else {
-            self.currentBTCvalue.text = "0$"
+//            self.currentBTCvalue.text = "0$"
         }
         
         let dataConnection = DataConnections()
@@ -30,7 +25,7 @@ class InfoSectionViewController: UIViewController {
             case .success(let posts):
                 print(posts.last+"$")
                 UserDefaults.standard.set(posts.last+"$", forKey: Props.lastBtcValue)
-                self.currentBTCvalue.text = posts.last+"$"
+//                self.currentBTCvalue.text = posts.last+"$"
             case .failure(let error):
                 fatalError("error: \(error)")
             }

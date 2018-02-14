@@ -103,6 +103,7 @@
 		74B76DA520343C0400E1C6F3 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DA420343C0400E1C6F3 /* Tools.swift */; };
 		74B76DE720347D7100E1C6F3 /* InfoSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DE520347D7100E1C6F3 /* InfoSectionViewController.swift */; };
 		74B76DE820347D7100E1C6F3 /* InfoSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B76DE620347D7100E1C6F3 /* InfoSectionViewController.xib */; };
+		74B76DEA2034846600E1C6F3 /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DE92034846600E1C6F3 /* XibView.swift */; };
 		D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */; };
 /* End PBXBuildFile section */
 
@@ -211,6 +212,7 @@
 		74B76DA420343C0400E1C6F3 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		74B76DE520347D7100E1C6F3 /* InfoSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSectionViewController.swift; sourceTree = "<group>"; };
 		74B76DE620347D7100E1C6F3 /* InfoSectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoSectionViewController.xib; sourceTree = "<group>"; };
+		74B76DE92034846600E1C6F3 /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -432,6 +434,7 @@
 				74B76DA420343C0400E1C6F3 /* Tools.swift */,
 				74B76DE520347D7100E1C6F3 /* InfoSectionViewController.swift */,
 				74B76DE620347D7100E1C6F3 /* InfoSectionViewController.xib */,
+				74B76DE92034846600E1C6F3 /* XibView.swift */,
 			);
 			path = Waller;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				74B76DA520343C0400E1C6F3 /* Tools.swift in Sources */,
 				610B1DD8202DB7B9005B1105 /* Requestable.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
+				74B76DEA2034846600E1C6F3 /* XibView.swift in Sources */,
 				74435902202B320900CD1982 /* HFCardCollectionView.swift in Sources */,
 				6609836C202CEBFB00639EE3 /* SetPasswordView.swift in Sources */,
 				6609836A202CE29C00639EE3 /* SetSaveTypeView.swift in Sources */,

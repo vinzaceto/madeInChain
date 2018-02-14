@@ -14,13 +14,12 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoSectionViewController" customModule="Waller" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XibView" customModule="Waller" customModuleProvider="target">
             <connections>
-                <outlet property="currentAmount" destination="Tql-bo-KRD" id="rAy-mE-Chg"/>
-                <outlet property="currentBTCvalue" destination="Khv-U6-3s5" id="ue7-7j-nSF"/>
-                <outlet property="currentBtcAmount" destination="j8V-Bm-xhO" id="kpG-4H-bvI"/>
-                <outlet property="currentCurrancy" destination="IDx-ri-elx" id="5Ql-xx-rt7"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="currentAmount" destination="Tql-bo-KRD" id="UqK-gU-si6"/>
+                <outlet property="currentBTCvalue" destination="Khv-U6-3s5" id="H9V-wy-mGE"/>
+                <outlet property="currentBtcAmount" destination="j8V-Bm-xhO" id="ZKe-74-mm1"/>
+                <outlet property="currentCurrancy" destination="IDx-ri-elx" id="vAe-26-dbR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
