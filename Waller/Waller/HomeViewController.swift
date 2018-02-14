@@ -47,34 +47,12 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         quickImportButton.frame.origin.x = (collectionView?.frame.origin.x)!
         quickImportButton.frame.origin.y = adButton.frame.origin.y
         
-        
         quickImportButton.clipsToBounds = true
         quickImportButton.layer.cornerRadius = adButton.layer.cornerRadius
         quickImportButton.backgroundColor = UIColor.blue
         quickImportButton.setTitleColor(UIColor.white, for: .normal)
         
         loadWallets()
-        
-//        self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-//
-//        if let lastBtcValueTemp = UserDefaults.standard.string(forKey: Props.lastBtcValue) {
-//            self.currentBTCvalue.text = lastBtcValueTemp
-//        } else {
-//            self.currentBTCvalue.text = "0$"
-//        }
-//        
-//        let dataConnection = DataConnections()
-//        dataConnection.getBitcoinValue(currency: Props.btcUsd) { (result) in
-//            switch result {
-//            case .success(let posts):
-//                print(posts.last+"$")
-//                UserDefaults.standard.set(posts.last+"$", forKey: Props.lastBtcValue)
-//                self.currentBTCvalue.text = posts.last+"$"
-//            case .failure(let error):
-//                fatalError("error: \(error)")
-//            }
-//        }
-        
     }
     
     

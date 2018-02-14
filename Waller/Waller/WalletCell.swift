@@ -20,34 +20,35 @@ class WalletCell: HFCardCollectionViewCell
     {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.red
         
-        let bkgImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width-10, height: 200))
-        bkgImage.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        let leftMargin = (UIScreen.main.bounds.width - 310) / 2
+        
+        let bkgImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 310, height: 200))
+        bkgImage.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
         self.addSubview(bkgImage)
 
         headerImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 220, height: 11))
-        headerImage.center.x = (UIScreen.main.bounds.width / 2) - 5
+        headerImage.center.x = 155
         let image = UIImage.init(named: "WalletHeaderImage")
-        headerImage.center.x = (UIScreen.main.bounds.width / 2) - 5
         headerImage.image = image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         self.addSubview(headerImage)
         
         iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 20, width: 40, height: 40))
         self.addSubview(iconImage)
         
-        nameLabel = UILabel.init(frame: CGRect.init(x: 60, y: 35, width: UIScreen.main.bounds.width - 170, height: 25))
+        nameLabel = UILabel.init(frame: CGRect.init(x: 60, y: 35, width: 310 - 170, height: 25))
         nameLabel.backgroundColor = UIColor.clear
         nameLabel.font = UIFont.systemFont(ofSize: 24)
         self.addSubview(nameLabel)
         
-        subtitleLabel = UILabel.init(frame: CGRect.init(x: 10, y: 70, width: UIScreen.main.bounds.width - 30, height: 20))
+        subtitleLabel = UILabel.init(frame: CGRect.init(x: 10, y: 70, width: 310 - 30, height: 20))
         subtitleLabel.backgroundColor = UIColor.clear
         subtitleLabel.adjustsFontSizeToFitWidth = true
         self.addSubview(subtitleLabel)
         
         let x = nameLabel.frame.origin.x + nameLabel.frame.size.width + 5
-        let w = UIScreen.main.bounds.width - nameLabel.frame.size.width - 85
+        let w = 310 - nameLabel.frame.size.width - 85
         let btcLabel = UILabel.init(frame: CGRect.init(x: x, y: 30, width: w, height: 10))
         btcLabel.backgroundColor = UIColor.clear
         btcLabel.textAlignment = .right
