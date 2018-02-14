@@ -58,32 +58,6 @@ class WalletGeneratedView: UIView
         completeButton.setTitle("complete", for: .normal)
         self.addSubview(completeButton)
     }
-    
-    
-    
-
-    
-    
-    
-    // Convert from NSData to json object
-    func nsdataToJSON(data: Data) -> AnyObject? {
-        do {
-            return try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as AnyObject
-        } catch let myJSONError {
-            print(myJSONError)
-        }
-        return nil
-    }
-    
-    // Convert from JSON to nsdata
-    func jsonToNSData(json: Any) -> Data?{
-        do {
-            return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
-        } catch let myJSONError {
-            print(myJSONError)
-        }
-        return nil;
-    }
         
     @objc func completeButtonPressed()
     {

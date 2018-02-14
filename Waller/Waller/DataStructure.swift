@@ -29,23 +29,17 @@ enum SaveType
     case Mnemonic
 }
 
-struct FullWallet: Codable
+enum ImportType
+{
+    case Text
+    case QRCode
+}
+
+struct Wallet: Codable
 {
     var label:String
     var address: String
-    var encryptedPrivatekey: String
-}
-
-struct WatchOnlyWallet: Codable
-{
-    var label:String
-    var address:String
-}
-
-struct WalletsList
-{
-    let fullWallets:[FullWallet]
-    let watchOnlyWallets:[WatchOnlyWallet]
+    var privatekey: String!
 }
 
 struct BitstampValue : Codable
