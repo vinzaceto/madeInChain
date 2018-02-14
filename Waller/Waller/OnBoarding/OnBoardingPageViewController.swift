@@ -19,25 +19,13 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         let controller1 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
         controller1.view.backgroundColor = UIColor.green
         
-        let backGroundImage = UIImage(named: "noun_1274046_cc.png")
-        var imageView = UIImageView()
-        imageView.image = backGroundImage
-        imageView.frame = self.view.bounds
-        imageView.contentMode = .scaleAspectFit
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = self.view.bounds
-        //imageView.addSubview(blurView)
-        view.addSubview(imageView)
+        
         var controller2 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
         controller2.view.backgroundColor = UIColor.blue
-        
         
         let controller3 = st.instantiateViewController(withIdentifier: "onPage0") as! OnViewController
         controller3.view.backgroundColor = UIColor.yellow
 
-        
-        
         return [controller1,controller2,
                 controller3]
     }()
