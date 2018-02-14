@@ -18,4 +18,13 @@ class Props:NSObject
     
     static let hasBeenSeen:String = "visualized"
 
+    
+    static let lastBtcValue = "LASTBTCVALUE"
+    
+    
+    static let httpsSchema = "https"
+    static let bitstampHost = "www.bitstamp.net"
+    
+    static let btcUsd = "btcusd/"
+    static let btcEur = "btceur/"
 }

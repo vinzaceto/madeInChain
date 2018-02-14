@@ -47,3 +47,8 @@ struct WalletsList
     let fullWallets:[FullWallet]
     let watchOnlyWallets:[WatchOnlyWallet]
 }
+
+struct BitstampValue : Codable
+{
+    var last: String
+}
