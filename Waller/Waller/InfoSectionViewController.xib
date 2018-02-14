@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoSectionViewController" customModule="Waller" customModuleProvider="target">
+            <connections>
+                <outlet property="currentAmount" destination="Tql-bo-KRD" id="rAy-mE-Chg"/>
+                <outlet property="currentBTCvalue" destination="Khv-U6-3s5" id="ue7-7j-nSF"/>
+                <outlet property="currentBtcAmount" destination="j8V-Bm-xhO" id="kpG-4H-bvI"/>
+                <outlet property="currentCurrancy" destination="IDx-ri-elx" id="5Ql-xx-rt7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BTC AMOUND" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEc-Lp-GBS">
+                    <rect key="frame" x="301" y="64" width="74" height="12"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENCY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuX-Vs-9aa">
+                    <rect key="frame" x="0.0" y="0.0" width="53" height="12"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8V-Bm-xhO">
+                    <rect key="frame" x="332" y="81" width="43" height="20"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/US$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdF-Te-wA5">
+                    <rect key="frame" x="0.0" y="65" width="43" height="12"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="US$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDx-ri-elx">
+                    <rect key="frame" x="0.0" y="17" width="33" height="20"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 $" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khv-U6-3s5">
+                    <rect key="frame" x="0.0" y="81" width="25.5" height="21"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="US$ AMOUND" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRM-3p-gD0">
+                    <rect key="frame" x="311" y="0.0" width="64" height="12"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tql-bo-KRD">
+                    <rect key="frame" x="335" y="16" width="40" height="38"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="32"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kuX-Vs-9aa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1ld-q6-Mzo"/>
+                <constraint firstItem="nEc-Lp-GBS" firstAttribute="top" secondItem="Tql-bo-KRD" secondAttribute="bottom" constant="10" id="2bc-K9-RTK"/>
+                <constraint firstItem="Tql-bo-KRD" firstAttribute="top" secondItem="IRM-3p-gD0" secondAttribute="bottom" constant="5" id="5yx-dz-7M2"/>
+                <constraint firstItem="Tql-bo-KRD" firstAttribute="top" secondItem="IRM-3p-gD0" secondAttribute="bottom" constant="4" id="69d-p6-ruP"/>
+                <constraint firstItem="qdF-Te-wA5" firstAttribute="top" secondItem="IDx-ri-elx" secondAttribute="bottom" constant="28" id="7qM-fg-mdN"/>
+                <constraint firstAttribute="trailing" secondItem="IRM-3p-gD0" secondAttribute="trailing" id="8JB-l4-s7U"/>
+                <constraint firstItem="Khv-U6-3s5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="AC5-FG-mF8"/>
+                <constraint firstItem="qdF-Te-wA5" firstAttribute="top" secondItem="IDx-ri-elx" secondAttribute="bottom" constant="28" id="EOr-OE-LSD"/>
+                <constraint firstItem="IDx-ri-elx" firstAttribute="top" secondItem="kuX-Vs-9aa" secondAttribute="bottom" constant="4" id="EXj-7k-KZQ"/>
+                <constraint firstItem="j8V-Bm-xhO" firstAttribute="top" secondItem="nEc-Lp-GBS" secondAttribute="bottom" constant="4" id="HZh-qD-jrK"/>
+                <constraint firstItem="nEc-Lp-GBS" firstAttribute="top" secondItem="Tql-bo-KRD" secondAttribute="bottom" constant="10" id="KN3-T1-FYP"/>
+                <constraint firstItem="Tql-bo-KRD" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="MqO-Vf-Xcn"/>
+                <constraint firstItem="Khv-U6-3s5" firstAttribute="top" secondItem="qdF-Te-wA5" secondAttribute="bottom" constant="5" id="Rk5-sm-wca"/>
+                <constraint firstItem="j8V-Bm-xhO" firstAttribute="top" secondItem="nEc-Lp-GBS" secondAttribute="bottom" constant="5" id="TQ6-eh-9lC"/>
+                <constraint firstItem="qdF-Te-wA5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="boc-oj-MlL"/>
+                <constraint firstItem="Khv-U6-3s5" firstAttribute="top" secondItem="qdF-Te-wA5" secondAttribute="bottom" constant="4" id="eNT-aa-sh3"/>
+                <constraint firstItem="IRM-3p-gD0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iIG-WQ-1At"/>
+                <constraint firstItem="nEc-Lp-GBS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="nox-2h-sVc"/>
+                <constraint firstItem="IDx-ri-elx" firstAttribute="top" secondItem="kuX-Vs-9aa" secondAttribute="bottom" constant="5" id="q8S-DG-1A9"/>
+                <constraint firstItem="IDx-ri-elx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rYr-E6-kiR"/>
+                <constraint firstItem="kuX-Vs-9aa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uEP-Ge-iof"/>
+                <constraint firstItem="j8V-Bm-xhO" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ufP-OD-lsm"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>
