@@ -133,6 +133,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         addWallet.delegate = self
         let navigationVC = UINavigationController(rootViewController: addWallet)
         present(navigationVC, animated: true, completion: nil)
+        self.cardCollectionViewLayout?.unrevealCard()
+
     }
     
     @IBAction func quickImportButtonPressed(_ sender: Any)
