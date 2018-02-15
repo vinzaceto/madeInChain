@@ -72,7 +72,7 @@ class WalletCell: HFCardCollectionViewCell
         amountLabel.adjustsFontSizeToFitWidth = true
         self.addSubview(amountLabel)
         
-        let y = 380 - 55
+        let y = 340 - 55
         
         let makeAPaymentButton = UIButton.init(type: .custom)
         makeAPaymentButton.frame = CGRect.init(x: 10, y: y, width: 45, height: 45)
