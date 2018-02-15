@@ -42,6 +42,7 @@
 		610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DF82030D647005B1105 /* SelectWalletCell.swift */; };
 		611D7F1320337B8000C6C70F /* SetImportTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D7F1220337B8000C6C70F /* SetImportTypeView.swift */; };
 		611D7F15203381AB00C6C70F /* ImportUsingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D7F14203381AB00C6C70F /* ImportUsingTextView.swift */; };
+		611EA1C22034F47E003A6AA8 /* QRCodeWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611EA1C12034F47E003A6AA8 /* QRCodeWalletView.swift */; };
 		61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61294A6C2024C7D0009F9886 /* AppDelegate.swift */; };
 		61294A752024C7D0009F9886 /* Waller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61294A732024C7D0009F9886 /* Waller.xcdatamodeld */; };
 		61294A772024C7D0009F9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61294A762024C7D0009F9886 /* Assets.xcassets */; };
@@ -147,6 +148,7 @@
 		610B1DF82030D647005B1105 /* SelectWalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWalletCell.swift; sourceTree = "<group>"; };
 		611D7F1220337B8000C6C70F /* SetImportTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImportTypeView.swift; sourceTree = "<group>"; };
 		611D7F14203381AB00C6C70F /* ImportUsingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportUsingTextView.swift; sourceTree = "<group>"; };
+		611EA1C12034F47E003A6AA8 /* QRCodeWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeWalletView.swift; sourceTree = "<group>"; };
 		61294A692024C7D0009F9886 /* Waller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61294A6C2024C7D0009F9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61294A712024C7D0009F9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OnBoarding.storyboard; sourceTree = "<group>"; };
@@ -419,11 +421,11 @@
 				744358FC202B31D400CD1982 /* HFCardCollectionView */,
 				664263FF202E709D0010828E /* EMAlertController */,
 				618CAD102034DA1D001BD5A0 /* LineChart */,
+				618CAD112034E54C001BD5A0 /* RNCryptor */,
 				66306597202FDF8F00DBD516 /* SelectItemController */,
 				61B6284C20323D4300EE6ABB /* OnBoarding */,
 				66904435202E450A0021BEE2 /* WalletsDatabase.swift */,
 				61B6284A20323CE600EE6ABB /* WalletsGenerator.swift */,
-				66904433202E3B050021BEE2 /* RNCryptor.swift */,
 				61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */,
 				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
 				74B76DA2203429B100E1C6F3 /* DataConnections.swift */,
@@ -432,6 +434,7 @@
 				249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */,
 				74435905202B380A00CD1982 /* WalletCell.swift */,
 				613C648020335C4E000BC5A6 /* QuickImportViewController.swift */,
+				611EA1C12034F47E003A6AA8 /* QRCodeWalletView.swift */,
 				66098371202D276700639EE3 /* AddWallet */,
 				61294A762024C7D0009F9886 /* Assets.xcassets */,
 				24365668202C60B200E33A6E /* Main.storyboard */,
@@ -454,6 +457,14 @@
 				618CAD0C2034DA19001BD5A0 /* LineChart.swift */,
 			);
 			path = LineChart;
+			sourceTree = "<group>";
+		};
+		618CAD112034E54C001BD5A0 /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				66904433202E3B050021BEE2 /* RNCryptor.swift */,
+			);
+			path = RNCryptor;
 			sourceTree = "<group>";
 		};
 		618E4B1A202A5504007F0D32 /* MultiOptionClass */ = {
@@ -743,6 +754,7 @@
 				611D7F15203381AB00C6C70F /* ImportUsingTextView.swift in Sources */,
 				610B1DDD202DB7B9005B1105 /* Storage.swift in Sources */,
 				61CDB2EB202CCF210004C02B /* AddWalletViewController.swift in Sources */,
+				611EA1C22034F47E003A6AA8 /* QRCodeWalletView.swift in Sources */,
 				61B6285720323D4300EE6ABB /* OnBoardingPageViewController.swift in Sources */,
 				61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */,
 				610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */,

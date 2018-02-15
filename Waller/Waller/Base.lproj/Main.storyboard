@@ -153,13 +153,14 @@
                                 </collectionViewLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WalletCell" id="en5-VK-X5s" customClass="WalletCell" customModule="Waller" customModuleProvider="target">
-                                        <rect key="frame" x="1.6666666666666667" y="0.0" width="379" height="364"/>
+                                        <rect key="frame" x="1.6666666666666667" y="0.0" width="379" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="379" height="364"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="379" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
-                                        <size key="customSize" width="379" height="364"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="customSize" width="379" height="280"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

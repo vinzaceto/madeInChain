@@ -9,7 +9,9 @@
 import UIKit
 
 
-class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate {
+class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
+    
+    
     
 
     @IBOutlet weak var currentCurrancy: UILabel!
@@ -19,6 +21,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var lineChart: LineChart!
     @IBOutlet weak var adButton: UIButton!
     @IBOutlet weak var quickImportButton: UIButton!
+    var loadingLabel:UILabel!
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
@@ -31,6 +34,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         collectionView?.frame.size.height = self.view.frame.size.height - 350
         collectionView?.frame.size.width = 310
         collectionView?.center.x = self.view.center.x
+        collectionView?.backgroundView?.backgroundColor = UIColor.clear
+        collectionView?.backgroundColor = UIColor.clear
 
         if let layout = self.collectionView?.collectionViewLayout as? HFCardCollectionViewLayout
         {
@@ -55,28 +60,62 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         lineChart.frame = CGRect.init(x: 10, y: 140, width: self.view.frame.size.width-20, height: 160)
         lineChart.layer.cornerRadius = 6
         lineChart.clipsToBounds = true
-        let dataEntries = generateRandomEntries()
-        lineChart.dataEntries = dataEntries
+        
+        getChartData()
+    }
+    
+    func getChartData()
+    {
+        loadingLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: lineChart.frame.size.width, height: lineChart.frame.size.height))
+        loadingLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        loadingLabel.text = "Loading chart data..."
+        loadingLabel.textColor = UIColor.lightText
+        loadingLabel.font = UIFont.systemFont(ofSize: 28)
+        loadingLabel.textAlignment = .center
+        lineChart.addSubview(loadingLabel)
+        
+        let connection = DataConnections.init()
+        connection.getBitcoinChartData
+            {
+                (result) in
+                
+                switch result
+                {
+                case .success(let chartData):
+                    self.parseChartData(chartData: chartData.data)
+                    
+                case .failure(let error):
+                    print("no chart data")
+                }
+        }
+    }
+    
+    func parseChartData(chartData:[ChartData])
+    {
+        print(chartData)
+        
+        var result: [PointEntry] = []
+        for data in chartData
+        {
+            let calendar = Calendar.current
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
+            let d = dateFormatter.date (from: data.date)
+            let date = "\(calendar.component(.month, from: d!))-\(calendar.component(.day, from: d!))"
+            let float = Float(data.closingprice)
+            result.append(PointEntry(value: Int(float!), label: date))
+        }
+
+        lineChart.dataEntries = result
         lineChart.isCurved = true
         
+        perform(#selector(removeLoadingView), with: nil, afterDelay: 2)
     }
     
-    //  test
-    private func generateRandomEntries() -> [PointEntry] {
-        var result: [PointEntry] = []
-        for i in 0..<100 {
-            let value = Int(arc4random() % 500)
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "d MMM"
-            var date = Date()
-            date.addTimeInterval(TimeInterval(24*60*60*i))
-            
-            result.append(PointEntry(value: value, label: formatter.string(from: date)))
-        }
-        return result
+   @objc func removeLoadingView()
+    {
+        loadingLabel.removeFromSuperview()
     }
-    
     
     func loadWallets()
     {
@@ -185,14 +224,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.backgroundColor = UIColor.green
+        
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
     func showQRCodeButtonPressed(walletCell:WalletCell)
     {
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
-        view.backgroundColor = UIColor.purple
+        let address = walletCell.subtitleLabel.text
+        let view = QRCodeWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.setAddress(address: address!)
+        view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
+        
+    }
+    
+    func unflipCard()
+    {
+        self.cardCollectionViewLayout?.flipRevealedCardBack()
     }
 
 }
