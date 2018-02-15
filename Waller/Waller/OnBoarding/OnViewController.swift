@@ -12,6 +12,8 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     
     let transition = CircleTransition()
     
+    @IBOutlet weak var startButton: UIButton!
+    
     @IBOutlet weak var ButtonSkip: UIButton!
     
     @IBAction func skipButt(_ sender: Any) {
@@ -48,6 +50,10 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
         gradientView.SecondColor = onBoardingBackgroundColor2
         self.view.addSubview(gradientView)
         self.view.addSubview(ButtonSkip)
+        startButton.layer.cornerRadius = 10;
+        
+        
+        self.view.addSubview(startButton)
         
      
    }
