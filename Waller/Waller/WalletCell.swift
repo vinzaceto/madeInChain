@@ -29,13 +29,13 @@ class WalletCell: HFCardCollectionViewCell
     {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         
         let leftMargin = (UIScreen.main.bounds.width - 310) / 2
         
         let bkgImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 310, height: 200))
         bkgImage.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
-        self.addSubview(bkgImage)
+        //self.addSubview(bkgImage)
 
         headerImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 220, height: 11))
         headerImage.center.x = 155
@@ -71,7 +71,7 @@ class WalletCell: HFCardCollectionViewCell
         amountLabel.adjustsFontSizeToFitWidth = true
         self.addSubview(amountLabel)
         
-        let y = 210
+        let y = subtitleLabel.frame.origin.y + subtitleLabel.frame.size.height + 20
         let makeAPaymentButton = UIButton.init(type: .custom)
         makeAPaymentButton.frame = CGRect.init(x: 10, y: y, width: 45, height: 45)
         makeAPaymentButton.addTarget(self, action: #selector(makeAPaymentButtonPressed), for: .touchUpInside)

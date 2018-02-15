@@ -46,3 +46,15 @@ struct BitstampValue : Codable
 {
     var last: String
 }
+
+struct ChartResponse : Codable
+{
+    var status:Int
+    var data:[ChartData]
+}
+
+struct ChartData : Codable
+{
+    var date:String
+    var closingprice:String
+}
