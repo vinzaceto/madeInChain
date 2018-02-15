@@ -146,8 +146,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1Yg-aB-HNg" customClass="HFCardCollectionViewLayout" customModule="Waller">
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="firstMovableIndex">
-                                            <integer key="value" value="1"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="spaceAtTopForBackgroundView">
+                                            <real key="value" value="170"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </collectionViewLayout>
@@ -162,29 +162,22 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="379" height="280"/>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="AWCell" reuseIdentifier="AWCell" id="cuO-le-hLm" customClass="AddWalletCell" customModule="Waller" customModuleProvider="target">
+                                        <rect key="frame" x="1.6666666666666667" y="290" width="379" height="280"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="379" height="280"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="customSize" width="379" height="280"/>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="NDG-Gg-Nol" id="klD-pd-un7"/>
                                     <outlet property="delegate" destination="NDG-Gg-Nol" id="HPL-hC-rhF"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eva-u1-Qcs">
-                                <rect key="frame" x="16" y="241" width="116" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Quick import"/>
-                                <connections>
-                                    <action selector="quickImportButtonPressed:" destination="NDG-Gg-Nol" eventType="touchUpInside" id="dNO-pP-jnG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-uK-YEx">
-                                <rect key="frame" x="362" y="241" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="+" image="AddButton"/>
-                                <connections>
-                                    <action selector="addButtonPressed:" destination="NDG-Gg-Nol" eventType="touchUpInside" id="D5V-8t-HUm"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kBu-sU-dFV" customClass="InfoSectionXibController" customModule="Waller" customModuleProvider="target">
                                 <rect key="frame" x="15" y="20" width="384" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -207,10 +200,8 @@
                         <viewLayoutGuide key="safeArea" id="yrT-DB-bZU"/>
                     </view>
                     <connections>
-                        <outlet property="adButton" destination="4RK-uK-YEx" id="yTA-EK-YeK"/>
                         <outlet property="collectionView" destination="9Pt-sr-Ix4" id="JOC-VZ-juw"/>
                         <outlet property="lineChart" destination="6FK-kb-Mqu" id="KrD-5w-oX0"/>
-                        <outlet property="quickImportButton" destination="eva-u1-Qcs" id="NSs-yJ-Mz3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqW-A2-O9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -254,7 +245,4 @@
             <point key="canvasLocation" x="516" y="-621"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="AddButton" width="30" height="30"/>
-    </resources>
 </document>

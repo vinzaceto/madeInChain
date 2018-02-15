@@ -82,6 +82,8 @@ open class HFCardCollectionViewLayout: UICollectionViewLayout, UIGestureRecogniz
         }
     }
     
+    var cardHeight: CGFloat = 0
+    
     /// Count of bottom stacked cards when a card is revealed.
     ///
     /// Value must be between 0 and 10
@@ -683,7 +685,10 @@ open class HFCardCollectionViewLayout: UICollectionViewLayout, UIGestureRecogniz
     private func generateCellSize() -> CGSize {
         let width = self.collectionView!.frame.width - (self.contentInset.left + self.contentInset.right)
         let maxHeight = self.collectionView!.frame.height - (self.bottomCardLookoutMargin * CGFloat(self.bottomNumberOfStackedCards)) - (self.contentInset.top + self.contentInsetBottom) - 2
-        let height = (self.cardMaximumHeight == 0 || self.cardMaximumHeight > maxHeight) ? maxHeight : self.cardMaximumHeight
+        var height = (self.cardMaximumHeight == 0 || self.cardMaximumHeight > maxHeight) ? maxHeight : self.cardMaximumHeight
+        
+        // super hack
+        height = cardHeight
         let size = CGSize.init(width: width, height: height)
         return size
     }

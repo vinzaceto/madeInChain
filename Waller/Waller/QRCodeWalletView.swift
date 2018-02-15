@@ -28,7 +28,7 @@ class QRCodeWalletView: UIView {
         clipsToBounds = true
         
         let flipButton = UIButton.init(type: .roundedRect)
-        flipButton.frame = CGRect.init(x: 0, y: 5, width:60, height: 25)
+        flipButton.frame = CGRect.init(x: 0, y: 20, width:60, height: 25)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
         flipButton.backgroundColor = UIColor.clear
         flipButton.setTitle("close", for: .normal)
@@ -50,7 +50,7 @@ class QRCodeWalletView: UIView {
         addressLabel.adjustsFontSizeToFitWidth = true
         addressLabel.backgroundColor = UIColor.clear
         addressLabel.center.x = self.center.x
-        addressLabel.center.y = self.center.y + 125
+        addressLabel.center.y = self.center.y + 135
         self.addSubview(addressLabel)
         
         let copyButton = UIButton.init(type: .roundedRect)
@@ -59,7 +59,7 @@ class QRCodeWalletView: UIView {
         copyButton.backgroundColor = UIColor.clear
         copyButton.setTitle("copy to clipboard", for: .normal)
         copyButton.center.x = self.center.x
-        copyButton.center.y = self.center.y + 150
+        copyButton.center.y = self.center.y + 165
         addSubview(copyButton)
     }
     
