@@ -68,7 +68,8 @@ class InfoSectionXibController: UIView {
                     UserDefaults.standard.set(posts.last + "$", forKey: Props.lastBtcValue)
                     self?.currentBTCvalue.text = posts.last + "$"
                 case .failure(let error):
-                    fatalError("error: \(error)")
+                    print("No connection")
+                   // fatalError("error: \(error)")
                 }
             }
         }

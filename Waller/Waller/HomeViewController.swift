@@ -22,6 +22,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var adButton: UIButton!
     @IBOutlet weak var quickImportButton: UIButton!
     var loadingLabel:UILabel!
+    
+    let gradientView:GradientView = GradientView()
+
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
@@ -29,6 +32,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let onBoardingBackgroundColor1 = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
+        let onBoardingBackgroundColor2 = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+        
+        gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        gradientView.FirstColor = onBoardingBackgroundColor1
+        gradientView.SecondColor = onBoardingBackgroundColor2
+        self.view.addSubview(gradientView)
+        self.view.sendSubview(toBack: gradientView)
+        
+        
         
         collectionView?.frame.origin.y = 350
         collectionView?.frame.size.height = self.view.frame.size.height - 350
