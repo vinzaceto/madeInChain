@@ -71,6 +71,7 @@
 		61DDBDA92029B72100F270DF /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDA82029B72100F270DF /* OptionView.swift */; };
 		61DDBDAB2029BCBE00F270DF /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDAA2029BCBE00F270DF /* Properties.swift */; };
 		61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DDBDAC202A4CD600F270DF /* DataStructure.swift */; };
+		61F77D2D203593CB0013CBAE /* AddWalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F77D2C203593CB0013CBAE /* AddWalletCell.swift */; };
 		66098368202CD31C00639EE3 /* AddTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66098367202CD31C00639EE3 /* AddTypeView.swift */; };
 		6609836A202CE29C00639EE3 /* SetSaveTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66098369202CE29C00639EE3 /* SetSaveTypeView.swift */; };
 		6609836C202CEBFB00639EE3 /* SetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6609836B202CEBFB00639EE3 /* SetPasswordView.swift */; };
@@ -183,6 +184,7 @@
 		61DDBDA82029B72100F270DF /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		61DDBDAA2029BCBE00F270DF /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		61DDBDAC202A4CD600F270DF /* DataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStructure.swift; sourceTree = "<group>"; };
+		61F77D2C203593CB0013CBAE /* AddWalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWalletCell.swift; sourceTree = "<group>"; };
 		62D248798B62B430FC2E862D /* Pods-Waller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.debug.xcconfig"; sourceTree = "<group>"; };
 		66098367202CD31C00639EE3 /* AddTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeView.swift; sourceTree = "<group>"; };
 		66098369202CE29C00639EE3 /* SetSaveTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSaveTypeView.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
 				249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */,
 				74435905202B380A00CD1982 /* WalletCell.swift */,
+				61F77D2C203593CB0013CBAE /* AddWalletCell.swift */,
 				613C648020335C4E000BC5A6 /* QuickImportViewController.swift */,
 				611EA1C12034F47E003A6AA8 /* QRCodeWalletView.swift */,
 				66098371202D276700639EE3 /* AddWallet */,
@@ -796,6 +799,7 @@
 				610B1DE9202DB7B9005B1105 /* CoreDataStore.swift in Sources */,
 				610B1DD3202DB7B9005B1105 /* DirUtils.swift in Sources */,
 				66306596202FD91F00DBD516 /* SetAddressForMultisigView.swift in Sources */,
+				61F77D2D203593CB0013CBAE /* AddWalletCell.swift in Sources */,
 				610B1DE7202DB7B9005B1105 /* CoreDataObjectModel.swift in Sources */,
 				610B1DE0202DB7B9005B1105 /* CoreDataDefaultStorage.swift in Sources */,
 				610B1DE2202DB7B9005B1105 /* NSManagedObjectMemoryContext.swift in Sources */,
@@ -980,7 +984,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EZ8Q48MF9W;
+				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1000,7 +1004,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EZ8Q48MF9W;
+				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

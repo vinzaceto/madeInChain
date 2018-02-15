@@ -13,6 +13,7 @@ protocol WalletCellDelegate
     func listTransactionsButtonPressed(walletCell:WalletCell)
     func makeAPaymentButtonPressed(walletCell:WalletCell)
     func showQRCodeButtonPressed(walletCell:WalletCell)
+    func addButtonPressed()
 }
 
 class WalletCell: HFCardCollectionViewCell
@@ -71,7 +72,8 @@ class WalletCell: HFCardCollectionViewCell
         amountLabel.adjustsFontSizeToFitWidth = true
         self.addSubview(amountLabel)
         
-        let y = subtitleLabel.frame.origin.y + subtitleLabel.frame.size.height + 20
+        let y = 380 - 55
+        
         let makeAPaymentButton = UIButton.init(type: .custom)
         makeAPaymentButton.frame = CGRect.init(x: 10, y: y, width: 45, height: 45)
         makeAPaymentButton.addTarget(self, action: #selector(makeAPaymentButtonPressed), for: .touchUpInside)

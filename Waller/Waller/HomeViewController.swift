@@ -10,17 +10,12 @@ import UIKit
 
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
-    
-    
-    
 
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
     @IBOutlet weak var currentBtcAmount: UILabel!
     @IBOutlet weak var lineChart: LineChart!
-    @IBOutlet weak var adButton: UIButton!
-    @IBOutlet weak var quickImportButton: UIButton!
     var loadingLabel:UILabel!
 
     @IBOutlet var collectionView: UICollectionView?
@@ -30,8 +25,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.frame.origin.y = 350
-        collectionView?.frame.size.height = self.view.frame.size.height - 350
+        collectionView?.frame.origin.y = 140
+        collectionView?.frame.size.height = self.view.frame.size.height - 140
         collectionView?.frame.size.width = 310
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
@@ -40,26 +35,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         if let layout = self.collectionView?.collectionViewLayout as? HFCardCollectionViewLayout
         {
             self.cardCollectionViewLayout = layout
+            self.cardCollectionViewLayout?.cardHeight = 340
         }
-        
-        adButton.frame.origin.x = (collectionView?.frame.origin.x)! + (collectionView?.frame.size.width)! - adButton.frame.width
-        adButton.frame.origin.y = (collectionView?.frame.origin.y)! - adButton.frame.height - 10
-        //adButton.frame.origin.y = 200
-        
-        quickImportButton.frame.origin.x = (collectionView?.frame.origin.x)!
-        quickImportButton.frame.origin.y = adButton.frame.origin.y
-        
-        quickImportButton.clipsToBounds = true
-        quickImportButton.layer.cornerRadius = adButton.layer.cornerRadius
-        quickImportButton.backgroundColor = UIColor.clear
-        quickImportButton.titleLabel?.textAlignment = .left
-        quickImportButton.setTitleColor(UIColor.darkText, for: .normal)
         
         loadWallets()
         
         lineChart.frame = CGRect.init(x: 10, y: 140, width: self.view.frame.size.width-20, height: 160)
         lineChart.layer.cornerRadius = 6
-        lineChart.clipsToBounds = true
+        lineChart.clipsToBounds = false
+        self.view.bringSubview(toFront: collectionView!)
         
         getChartData()
     }
@@ -124,8 +108,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         print("saved wallets : \(walletsList)")
     }
     
+
     
-    @IBAction func addButtonPressed(_ sender: Any)
+    func addButtonPressed()
     {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addWallet = storyboard.instantiateViewController(withIdentifier: "AWController") as! AddWalletViewController
@@ -165,36 +150,37 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             //cell.cardIsRevealed(false)
         }
     }
-    
-    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if(walletsList.count==0)
+        if walletsList.count == 0
         {
             return 1
         }
+        
         return walletsList.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
-        if indexPath.row == 0
-        {
-            
-        }
-        else
-        {
-            cell.headerImage.tintColor = UIColor.green
-            cell.iconImage.image = UIImage.init(named: "done")
-            cell.nameLabel.text = walletsList[indexPath.row-1].label
-            cell.subtitleLabel.text = walletsList[indexPath.row-1].address
-            cell.amountLabel.text = "0.00000001"
-            cell.cardCollectionViewLayout = cardCollectionViewLayout
-            cell.delegate = self
-        }
-        return cell
+            if indexPath.row == 0
+            {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AWCell", for: indexPath) as! AddWalletCell
+                cell.delegate = self
+                return cell
+            }
+            else
+            {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
+                cell.headerImage.tintColor = UIColor.green
+                cell.iconImage.image = UIImage.init(named: "done")
+                cell.nameLabel.text = walletsList[indexPath.row-1].label
+                cell.subtitleLabel.text = walletsList[indexPath.row-1].address
+                cell.amountLabel.text = "0.00000001"
+                cell.cardCollectionViewLayout = cardCollectionViewLayout
+                cell.delegate = self
+                return cell
+            }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
@@ -236,6 +222,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
         
+    }
+    
+    func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, didUnrevealCardAtIndex index: Int)
+    {
+
     }
     
     func unflipCard()
