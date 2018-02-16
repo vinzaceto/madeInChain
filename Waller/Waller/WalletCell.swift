@@ -13,6 +13,7 @@ protocol WalletCellDelegate
     func listTransactionsButtonPressed(walletCell:WalletCell)
     func makeAPaymentButtonPressed(walletCell:WalletCell)
     func showQRCodeButtonPressed(walletCell:WalletCell)
+    func deleteButtonPressed(walletCell:WalletCell)
     func addButtonPressed()
     func scanButtonPressed()
 }
@@ -95,34 +96,52 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         tableView.isScrollEnabled = false
         self.addSubview(tableView)
         
-        
-        
-        
-        
-        
-        let y = 340 - 55
-        
+        let margin:CGFloat = 10
+        let size:CGFloat = (viewWidth - (margin * 6)) / 5
+        let by:CGFloat = 340 - size - margin
+
         let makeAPaymentButton = UIButton.init(type: .custom)
-        makeAPaymentButton.frame = CGRect.init(x: 10, y: y, width: 45, height: 45)
+        makeAPaymentButton.frame = CGRect.init(x: margin, y: by, width: size, height:size)
         makeAPaymentButton.addTarget(self, action: #selector(makeAPaymentButtonPressed), for: .touchUpInside)
         makeAPaymentButton.backgroundColor = UIColor.clear
         makeAPaymentButton.setImage(UIImage.init(named: "MakeAPayment"), for: .normal)
         self.addSubview(makeAPaymentButton)
         
+        var newMargin = (margin * 2) + (size * 1)
+        
         let listTransactionButton = UIButton.init(type: .custom)
-        listTransactionButton.frame = CGRect.init(x: 75, y: y + 5, width: 35, height: 36)
+        listTransactionButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
         listTransactionButton.addTarget(self, action: #selector(listTransactionsButtonPressed), for: .touchUpInside)
         listTransactionButton.backgroundColor = UIColor.clear
         listTransactionButton.setImage(UIImage.init(named: "allTransactionIcon"), for: .normal)
         self.addSubview(listTransactionButton)
         
+        newMargin = (margin * 3) + (size * 2)
+        
+        let exportButton = UIButton.init(type: .custom)
+        exportButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
+        //listTransactionButton.addTarget(self, action: #selector(listTransactionsButtonPressed), for: .touchUpInside)
+        exportButton.backgroundColor = UIColor.black
+        //listTransactionButton.setImage(UIImage.init(named: "allTransactionIcon"), for: .normal)
+        self.addSubview(exportButton)
+        
+        newMargin = (margin * 4) + (size * 3)
+        
+        let trashButton = UIButton.init(type: .custom)
+        trashButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
+        trashButton.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
+        trashButton.backgroundColor = UIColor.black
+        //trashButton.setImage(UIImage.init(named: "allTransactionIcon"), for: .normal)
+        self.addSubview(trashButton)
+        
+        newMargin = (margin * 5) + (size * 4)
+        
         let showQRCodeButton = UIButton.init(type: .custom)
-        showQRCodeButton.frame = CGRect.init(x: Int(viewWidth - 46), y: y + 5, width: 36, height: 36)
+        showQRCodeButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
         showQRCodeButton.addTarget(self, action: #selector(showQRCodeButtonPressed), for: .touchUpInside)
         showQRCodeButton.backgroundColor = UIColor.clear
         showQRCodeButton.setImage(UIImage.init(named: "ShowQRCode"), for: .normal)
         self.addSubview(showQRCodeButton)
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -150,6 +169,13 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     {
         print("makeAPaymentButtonPressed")
         guard let _ = delegate?.makeAPaymentButtonPressed(walletCell: self) else
+        {return}
+    }
+    
+    @objc func deleteButtonPressed()
+    {
+        print("deleteButtonPressed")
+        guard let _ = delegate?.deleteButtonPressed(walletCell: self) else
         {return}
     }
     

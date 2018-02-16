@@ -10,9 +10,8 @@ import UIKit
 
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
-
     
-
+    
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
@@ -237,6 +236,12 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
         
+    }
+    
+    func deleteButtonPressed(walletCell: WalletCell)
+    {
+        let view = DeleteWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
     func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, didUnrevealCardAtIndex index: Int)
