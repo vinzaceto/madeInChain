@@ -241,6 +241,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func deleteButtonPressed(walletCell: WalletCell)
     {
         let view = DeleteWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -254,5 +255,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.cardCollectionViewLayout?.flipRevealedCardBack()
     }
 
+    //TODO
+    func unflipAndRemove()
+    {
+        self.cardCollectionViewLayout?.flipRevealedCardBack()
+    }
 }
 

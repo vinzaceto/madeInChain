@@ -8,9 +8,10 @@
 
 import UIKit
 
-class DeleteWalletView: UIView, OptionLabelDelegate {
-
+class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
+    
     let deleteButton = UIButton.init(type: .roundedRect)
+    var delegate:WalletFunctionDelegate!
     
     override init(frame: CGRect)
     {
@@ -47,7 +48,14 @@ class DeleteWalletView: UIView, OptionLabelDelegate {
         deleteButton.isEnabled = false
         self.addSubview(deleteButton)
         
-        
+        let slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: y + 60, width: viewWidth - 60, height: 80))
+        slider.buttonText = "Slide to Delete Wallet"
+        slider.buttonCornerRadius = 6
+        slider.buttonUnlockedText = "Wallet Deleted"
+        slider.buttonColor = UIColor.gray
+        slider.animationFinished()
+        slider.delegate = self
+        self.addSubview(slider)
     }
     
     func checkBoxChange(isChecked: Bool)
@@ -63,6 +71,15 @@ class DeleteWalletView: UIView, OptionLabelDelegate {
     @objc func deleteButtonPressed()
     {
         
+    }
+    
+    func buttonStatus(unlocked: Bool, sender: MMSlidingButton) {
+        print("slide unlocked \(unlocked)")
+        if(unlocked) {
+            guard let _ = delegate?.unflipAndRemove() else {
+                return
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder)

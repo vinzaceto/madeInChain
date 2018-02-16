@@ -116,6 +116,7 @@
 		74B76DA520343C0400E1C6F3 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DA420343C0400E1C6F3 /* Tools.swift */; };
 		74B76DE820347D7100E1C6F3 /* InfoSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74B76DE620347D7100E1C6F3 /* InfoSection.xib */; };
 		74B76DEA2034846600E1C6F3 /* InfoSectionXibController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DE92034846600E1C6F3 /* InfoSectionXibController.swift */; };
+		74C6FB882037163A009B92CA /* MMSlidingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6FB872037163A009B92CA /* MMSlidingButton.swift */; };
 		D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */; };
 /* End PBXBuildFile section */
 
@@ -237,6 +238,7 @@
 		74B76DA420343C0400E1C6F3 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		74B76DE620347D7100E1C6F3 /* InfoSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoSection.xib; sourceTree = "<group>"; };
 		74B76DE92034846600E1C6F3 /* InfoSectionXibController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSectionXibController.swift; sourceTree = "<group>"; };
+		74C6FB872037163A009B92CA /* MMSlidingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
 		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -466,6 +468,7 @@
 				74B76DA420343C0400E1C6F3 /* Tools.swift */,
 				74B76DE620347D7100E1C6F3 /* InfoSection.xib */,
 				74B76DE92034846600E1C6F3 /* InfoSectionXibController.swift */,
+				74C6FB872037163A009B92CA /* MMSlidingButton.swift */,
 			);
 			path = Waller;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				66904434202E3B050021BEE2 /* RNCryptor.swift in Sources */,
 				610B1DE9202DB7B9005B1105 /* CoreDataStore.swift in Sources */,
 				610B1DD3202DB7B9005B1105 /* DirUtils.swift in Sources */,
+				74C6FB882037163A009B92CA /* MMSlidingButton.swift in Sources */,
 				66306596202FD91F00DBD516 /* SetAddressForMultisigView.swift in Sources */,
 				61F77D2D203593CB0013CBAE /* AddWalletCell.swift in Sources */,
 				610B1DE7202DB7B9005B1105 /* CoreDataObjectModel.swift in Sources */,
