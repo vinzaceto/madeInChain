@@ -172,7 +172,7 @@ class LineChart: UIView {
         if let path = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
             let lineLayer = CAShapeLayer()
             lineLayer.path = path.cgPath
-            lineLayer.strokeColor = UIColor.white.cgColor
+            lineLayer.strokeColor = UIColor.yellow.cgColor
             lineLayer.fillColor = UIColor.clear.cgColor
             dataLayer.addSublayer(lineLayer)
         }
@@ -194,8 +194,8 @@ class LineChart: UIView {
             } else if let straightPath = createPath() {
                 path.append(straightPath)
             }
-            path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: dataLayer.frame.height))
-            path.addLine(to: CGPoint(x: dataPoints[0].x, y: dataLayer.frame.height))
+            path.addLine(to: CGPoint(x: dataPoints[dataPoints.count-1].x, y: dataLayer.frame.height*2))
+            path.addLine(to: CGPoint(x: dataPoints[0].x, y: dataLayer.frame.height*2))
             
             let maskLayer = CAShapeLayer()
             maskLayer.path = path.cgPath
@@ -216,7 +216,7 @@ class LineChart: UIView {
             for i in 0..<dataEntries.count {
                 let textLayer = CATextLayer()
                 textLayer.frame = CGRect(x: lineGap*CGFloat(i) - lineGap/2 + 40, y: mainLayer.frame.size.height - bottomSpace/2 - 8, width: lineGap, height: 16)
-                textLayer.foregroundColor = #colorLiteral(red: 0.5019607843, green: 0.6784313725, blue: 0.8078431373, alpha: 1).cgColor
+                textLayer.foregroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
                 textLayer.backgroundColor = UIColor.clear.cgColor
                 textLayer.alignmentMode = kCAAlignmentCenter
                 textLayer.contentsScale = UIScreen.main.scale
@@ -253,8 +253,9 @@ class LineChart: UIView {
                 let lineLayer = CAShapeLayer()
                 lineLayer.path = path.cgPath
                 lineLayer.fillColor = UIColor.clear.cgColor
-                lineLayer.strokeColor = #colorLiteral(red: 0.2784313725, green: 0.5411764706, blue: 0.7333333333, alpha: 1).cgColor
-                lineLayer.lineWidth = 0.5
+                lineLayer.strokeColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1).cgColor
+                lineLayer.lineWidth = 0.1
+
                 if (value > 0.0 && value < 1.0) {
                     lineLayer.lineDashPattern = [4, 4]
                 }
@@ -271,7 +272,7 @@ class LineChart: UIView {
                 
                 let textLayer = CATextLayer()
                 textLayer.frame = CGRect(x: 4, y: height, width: 50, height: 16)
-                textLayer.foregroundColor = #colorLiteral(red: 0.5019607843, green: 0.6784313725, blue: 0.8078431373, alpha: 1).cgColor
+                textLayer.foregroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor
                 textLayer.backgroundColor = UIColor.clear.cgColor
                 textLayer.contentsScale = UIScreen.main.scale
                 textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 0).fontName as CFString, 0, nil)

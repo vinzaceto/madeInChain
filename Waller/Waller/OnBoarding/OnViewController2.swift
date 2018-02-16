@@ -17,7 +17,8 @@ class OnViewController2: UIViewController {
     @IBOutlet weak var imagePage2: UIImageView!
     
     
-
+    @IBOutlet weak var startButton: UIButton!
+    
         let gradientView:GradientView = GradientView()
         
         override func viewDidLoad() {
@@ -33,6 +34,11 @@ class OnViewController2: UIViewController {
             self.view.addSubview(titleLabel)
             self.view.addSubview(subTitle)
             self.view.addSubview(imagePage2)
+            
+            startButton.layer.cornerRadius = 10;
+            
+       
+            self.view.addSubview(startButton)
             
             
         }
