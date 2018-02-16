@@ -23,6 +23,14 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         
         let viewWidth = UIScreen.main.bounds.width - 30
         
+        let flipButton = UIButton.init(type: .roundedRect)
+        flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
+        flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
+        flipButton.backgroundColor = UIColor.clear
+        flipButton.setTitle("close", for: .normal)
+        flipButton.center.x = self.center.x
+        addSubview(flipButton)
+        
         let infoLabel = UILabel.init(frame: CGRect.init(x: 30, y: 80, width: viewWidth - 60, height: 120))
         infoLabel.backgroundColor = UIColor.clear
         infoLabel.text = "Warning\nDo you want to remove this wallet? The action isn't reversible, remember to backup your wallet first."
@@ -56,6 +64,12 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         slider.animationFinished()
         slider.delegate = self
         self.addSubview(slider)
+    }
+    
+    @objc func flipButtonPressed()
+    {
+        print("flipButtonPressed")
+        guard let _ = delegate?.unflipCard() else { return }
     }
     
     func checkBoxChange(isChecked: Bool)

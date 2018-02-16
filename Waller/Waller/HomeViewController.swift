@@ -126,10 +126,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addWallet = storyboard.instantiateViewController(withIdentifier: "AWController") as! AddWalletViewController
         addWallet.delegate = self
-        let navigationVC = storyboard.instantiateViewController(withIdentifier: "NavController") as! UINavigationController
+        let navigationVC = UINavigationController.init(rootViewController: addWallet)
         present(navigationVC, animated: true, completion: nil)
         self.cardCollectionViewLayout?.unrevealCard()
-
     }
     
     func scanButtonPressed()
