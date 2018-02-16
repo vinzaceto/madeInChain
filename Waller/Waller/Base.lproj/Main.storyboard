@@ -218,7 +218,6 @@
         <!--Navigation Controller-->
         <scene sceneID="0nB-PE-yWb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9U7-9f-JPs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ML7-QE-EkI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="abT-mX-W96">
@@ -230,13 +229,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bW5-MO-QJs"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9U7-9f-JPs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-402" y="129"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kcN-N0-bwN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HX4-yf-JsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r7B-ts-fhS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F4A-y4-RaT">
@@ -248,6 +247,7 @@
                         <segue destination="28f-3V-fjs" kind="relationship" relationship="rootViewController" id="kZj-0M-Mbb"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HX4-yf-JsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="516" y="-621"/>
         </scene>
