@@ -18,8 +18,8 @@ class SetImportTypeView: UIView,MultiOptionViewDelegate {
         super.init(frame: frame)
     
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        self.backgroundColor = UIColor.lightGray
-        
+        self.backgroundColor = Props().addViewsBackgroundColor
+
         var data:[Option] = []
         
         let option1 = Option.init(title: "Import from text", text: "Insert a text represensting a PrivateKey or a mnemonic to import a wallet.", buttonTitle: "insert a text")

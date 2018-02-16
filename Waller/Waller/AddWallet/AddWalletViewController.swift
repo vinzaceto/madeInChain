@@ -57,13 +57,20 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     var saveType:SaveType!
     var importType:ImportType!
     var importedKeychain:BTCKeychain!
+    
+    let gradientView:GradientView = GradientView()
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-
+        //self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        
+        gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        gradientView.FirstColor = Props().firstGradientColor
+        gradientView.SecondColor = Props().secondGradientColor
+        self.view.addSubview(gradientView)
+        
         setupViews()
         
         backButton.setTitle("Back", for: .normal)
@@ -470,6 +477,7 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     
     func setupViews()
     {
+        
         addTypeView = AddTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         addTypeView.delegate = self
         

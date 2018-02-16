@@ -23,12 +23,12 @@ class QRCodeWalletView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.lightGray
+        backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         layer.cornerRadius = 6
         clipsToBounds = true
         
         let flipButton = UIButton.init(type: .roundedRect)
-        flipButton.frame = CGRect.init(x: 0, y: 20, width:60, height: 25)
+        flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
         flipButton.backgroundColor = UIColor.clear
         flipButton.setTitle("close", for: .normal)
@@ -43,14 +43,14 @@ class QRCodeWalletView: UIView {
         qrCodeImage.center.y = self.center.y - 10
         self.addSubview(qrCodeImage)
         
-        addressLabel = UILabel.init(frame:CGRect.init(x: 0, y:120, width: 260, height: 25))
+        addressLabel = UILabel.init(frame:CGRect.init(x: 0, y:0, width: 260, height: 25))
         addressLabel.textColor = UIColor.gray
         addressLabel.text = ""
         addressLabel.textAlignment = .center
         addressLabel.adjustsFontSizeToFitWidth = true
         addressLabel.backgroundColor = UIColor.clear
         addressLabel.center.x = self.center.x
-        addressLabel.center.y = self.center.y + 135
+        addressLabel.center.y = self.center.y + 125
         self.addSubview(addressLabel)
         
         let copyButton = UIButton.init(type: .roundedRect)
@@ -59,7 +59,7 @@ class QRCodeWalletView: UIView {
         copyButton.backgroundColor = UIColor.clear
         copyButton.setTitle("copy to clipboard", for: .normal)
         copyButton.center.x = self.center.x
-        copyButton.center.y = self.center.y + 165
+        copyButton.center.y = self.center.y + 150
         addSubview(copyButton)
     }
     

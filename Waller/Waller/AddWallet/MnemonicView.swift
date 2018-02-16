@@ -17,8 +17,7 @@ class MnemonicView: UIView {
     {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = Props().addViewsBackgroundColor
         
         /*
         let doneImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 100))

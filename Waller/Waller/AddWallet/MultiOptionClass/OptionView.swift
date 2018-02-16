@@ -24,7 +24,7 @@ class OptionView: UIView {
     init(frame: CGRect, data:Option, index:Int) {
         
         super.init(frame: frame)
-        self.backgroundColor = UIColor.white 
+        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         self.clipsToBounds = true
         self.layer.cornerRadius = CGFloat(Props.optionCornerRadius)
         self.index = index
@@ -32,7 +32,7 @@ class OptionView: UIView {
         let optionTitleFrame = CGRect.init(x: 0, y: Props.optionViewMargin, width: Int(frame.size.width), height: Props.optionTitleHeight)
         let optionTitle = UILabel.init(frame: optionTitleFrame)
         optionTitle.backgroundColor = UIColor.clear
-        optionTitle.textColor = UIColor.lightGray
+        optionTitle.textColor = UIColor.darkGray
         optionTitle.textAlignment = .center
         optionTitle.font = UIFont.boldSystemFont(ofSize: 20)
         optionTitle.text = data.title

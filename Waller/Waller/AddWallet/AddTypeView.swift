@@ -21,7 +21,7 @@ class AddTypeView: UIView, MultiOptionViewDelegate {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = Props().addViewsBackgroundColor
 
         var data:[Option] = []
         
@@ -34,12 +34,12 @@ class AddTypeView: UIView, MultiOptionViewDelegate {
         data.append(option3)
         
         multiView = MultiOptionView.init(frame:CGRect.init(x: 0, y: 100, width: 300, height: 0),data:data)
-        multiView.center.x = self.center.x
         multiView.delegate = self
         multiView.setDefaultIndex(index: 0)
         self.addSubview(multiView)
         
-        multiView.center = self.center
+        multiView.center.x = self.center.x
+        multiView.center.y = self.center.y + 40
     }
     
     func optionSelected(selectedIndex: Int) {

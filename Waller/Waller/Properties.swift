@@ -28,7 +28,10 @@ class Props:NSObject
     static let bitstampHost = "www.bitstamp.net"
     static let istampHost = "istamp.mskaline.com"
     
-    
     static let btcUsd = "btcusd/"
     static let btcEur = "btceur/"
+    
+    let firstGradientColor = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
+    let secondGradientColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+    let addViewsBackgroundColor = UIColor.clear
 }
