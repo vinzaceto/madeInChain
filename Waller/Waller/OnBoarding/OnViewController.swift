@@ -10,6 +10,10 @@ import UIKit
 
 class OnViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    @IBOutlet weak var checkBoxButton: CheckBox!
+    
+    @IBOutlet weak var textView: UITextView!
+    
     let transition = CircleTransition()
     
     @IBOutlet weak var startButton: UIButton!
@@ -53,7 +57,8 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
         startButton.layer.cornerRadius = 10;
         
         
-        self.view.addSubview(startButton)
+        self.view.addSubview(checkBoxButton)
+        self.view.addSubview(textView)
         
      
    }

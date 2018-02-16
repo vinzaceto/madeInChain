@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Waller/OnBoarding/CheckBox.swift">
-   </FileRef>
-   <FileRef
       location = "group:Waller.xcodeproj">
    </FileRef>
    <FileRef
