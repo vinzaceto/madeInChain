@@ -21,7 +21,7 @@ class SetPasswordView: UIView, UITextFieldDelegate
         
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        self.backgroundColor = Props().addViewsBackgroundColor
         
         let infoString = "Set a strong password for your wallet, these are some tips:\n\n• use more than 12 characters\n• don’t use always the same password\n• use special characters."
         

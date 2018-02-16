@@ -19,7 +19,7 @@ class WalletGeneratedView: UIView
         
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        self.backgroundColor = Props().addViewsBackgroundColor
         
         infoText = UILabel.init(frame:CGRect.init(x: 0, y:120, width: 280, height: 75))
         infoText.center.x = self.center.x
@@ -30,8 +30,10 @@ class WalletGeneratedView: UIView
         self.addSubview(infoText)
         
         let doneImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 130))
-        doneImage.image = UIImage.init(named: "done")
-        doneImage.alpha = 0.1
+        let image = UIImage.init(named: "done")
+        doneImage.image = image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        doneImage.tintColor = UIColor.lightGray
+        doneImage.alpha = 0.5
         doneImage.frame.origin.y = infoText.frame.origin.y + infoText.frame.size.height + 10
         doneImage.center.x = self.center.x
         self.addSubview(doneImage)

@@ -24,7 +24,7 @@ class SetNameView: UIView,UITextFieldDelegate {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = Props().addViewsBackgroundColor
         
         // centered y with keyboard
         let top = ((self.frame.size.height - 230) / 2) - 50

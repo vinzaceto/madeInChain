@@ -13,13 +13,16 @@ class QuickImportViewController: UIViewController
     
     var canScan = true
     var borderImage:UIImageView!
+    let gradientView:GradientView = GradientView()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        self.view.backgroundColor = UIColor.lightGray
+        gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        gradientView.FirstColor = Props().firstGradientColor
+        gradientView.SecondColor = Props().secondGradientColor
+        self.view.addSubview(gradientView)
         
         borderImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 280, height: 280))
         borderImage.image = UIImage.init(named: "QRBorders")
