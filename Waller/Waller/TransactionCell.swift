@@ -22,7 +22,8 @@ class TransactionCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.none
         
         icon = UIImageView.init(frame: CGRect.init(x: 5, y: 10, width: 25, height: 25))
-        icon.backgroundColor = UIColor.gray
+//        icon.backgroundColor = UIColor.gray
+        icon.image = #imageLiteral(resourceName: "in")
         self.addSubview(icon)
         
         let aw = viewWidth - 25 - 10 - 5 - 55
