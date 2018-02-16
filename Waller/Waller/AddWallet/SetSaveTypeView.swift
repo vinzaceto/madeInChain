@@ -18,7 +18,7 @@ class SetSaveTypeView: UIView, MultiOptionViewDelegate {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = Props().addViewsBackgroundColor
 
         let centeredWrapper = UIView.init(frame: CGRect.init(x: 0, y: 0, width: frame.size.width, height: 0))
         self.addSubview(centeredWrapper)

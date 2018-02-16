@@ -11,15 +11,16 @@ import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
 
+    
+
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
     @IBOutlet weak var currentBtcAmount: UILabel!
     @IBOutlet weak var lineChart: LineChart!
-    var loadingLabel:UILabel!
     
+    var loadingLabel:UILabel!
     let gradientView:GradientView = GradientView()
-
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
@@ -28,22 +29,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let onBoardingBackgroundColor1 = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
-        let onBoardingBackgroundColor2 = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
-        
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        gradientView.FirstColor = onBoardingBackgroundColor1
-        gradientView.SecondColor = onBoardingBackgroundColor2
+        gradientView.FirstColor = Props().firstGradientColor
+        gradientView.SecondColor = Props().secondGradientColor
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
+                
+        lineChart.frame = CGRect.init(x: 10, y: 110, width: self.view.frame.size.width-20, height: 190)
+        lineChart.layer.cornerRadius = 6
+        lineChart.clipsToBounds = false
+        self.view.bringSubview(toFront: collectionView!)
         
+        getChartData()
         
-        
-        collectionView?.frame.origin.y = 350
-        collectionView?.frame.size.height = self.view.frame.size.height - 350
-        collectionView?.frame.origin.y = 140
-        collectionView?.frame.size.height = self.view.frame.size.height - 140
-        collectionView?.frame.size.width = 310
+        collectionView?.layer.cornerRadius = 6
+        collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
+        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28
+        collectionView?.frame.size.width = self.view.frame.size.width - 30
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
         collectionView?.backgroundColor = UIColor.clear
@@ -56,17 +58,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         loadWallets()
         
-        lineChart.frame = CGRect.init(x: 10, y: 140, width: self.view.frame.size.width-20, height: 160)
-        lineChart.layer.cornerRadius = 6
-        lineChart.clipsToBounds = false
-        self.view.bringSubview(toFront: collectionView!)
-        
-        getChartData()
     }
     
     func getChartData()
     {
-        loadingLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: lineChart.frame.size.width, height: lineChart.frame.size.height))
+        loadingLabel = UILabel.init(frame: CGRect.init(x: 0, y: 38, width: lineChart.frame.size.width, height: lineChart.frame.size.height-50))
         loadingLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         loadingLabel.text = "Loading chart data..."
         loadingLabel.textColor = UIColor.lightText
@@ -131,13 +127,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addWallet = storyboard.instantiateViewController(withIdentifier: "AWController") as! AddWalletViewController
         addWallet.delegate = self
-        let navigationVC = UINavigationController(rootViewController: addWallet)
+        let navigationVC = storyboard.instantiateViewController(withIdentifier: "NavController") as! UINavigationController
         present(navigationVC, animated: true, completion: nil)
         self.cardCollectionViewLayout?.unrevealCard()
 
     }
     
-    @IBAction func quickImportButtonPressed(_ sender: Any)
+    func scanButtonPressed()
     {
         print("quick import button pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -145,6 +141,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let navigationVC = UINavigationController(rootViewController: quickImport)
         present(navigationVC, animated: true, completion: nil)
     }
+    
     func walletAdded(success: Bool)
     {
         if success == true
@@ -190,11 +187,12 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             else
             {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
-                cell.headerImage.tintColor = UIColor.green
+                cell.headerImage.tintColor = UIColor.darkGray
                 cell.iconImage.image = UIImage.init(named: "done")
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
-                cell.subtitleLabel.text = walletsList[indexPath.row-1].address
+                cell.addressLabel.text = walletsList[indexPath.row-1].address
                 cell.amountLabel.text = "0.00000001"
+                cell.currencyAmount.text = "10,00 $"
                 cell.cardCollectionViewLayout = cardCollectionViewLayout
                 cell.delegate = self
                 return cell
@@ -216,11 +214,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     
     
-    
     func listTransactionsButtonPressed(walletCell:WalletCell)
     {
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
-        view.backgroundColor = UIColor.yellow
+        let view = TransactionsWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -234,7 +231,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     func showQRCodeButtonPressed(walletCell:WalletCell)
     {
-        let address = walletCell.subtitleLabel.text
+        let address = walletCell.addressLabel.text
         let view = QRCodeWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.setAddress(address: address!)
         view.delegate = self
