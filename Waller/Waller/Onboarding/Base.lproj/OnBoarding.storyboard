@@ -103,13 +103,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Cc-yP-sbb">
-                                <rect key="frame" x="87" y="50" width="200" height="27.5"/>
+                                <rect key="frame" x="87" y="50" width="200" height="27"/>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="23"/>
                                 <color key="textColor" red="0.99112719297409058" green="0.99630016088485718" blue="0.99602895975112915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multisign wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPG-3F-O6l">
-                                <rect key="frame" x="47" y="122.5" width="281" height="28.5"/>
+                                <rect key="frame" x="47" y="122" width="281" height="28"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="24"/>
                                 <color key="textColor" red="0.77179580926895142" green="0.94310325384140015" blue="0.8746873140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -168,13 +168,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZB-Od-LKe">
-                                <rect key="frame" x="87" y="50" width="200" height="27.5"/>
+                                <rect key="frame" x="87" y="50" width="200" height="27"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="23"/>
                                 <color key="textColor" red="0.99112719297409058" green="0.99630016088485718" blue="0.99602895975112915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN1-9Z-Ce8">
-                                <rect key="frame" x="47" y="123" width="281" height="21.5"/>
+                                <rect key="frame" x="47" y="122.5" width="281" height="21"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                 <color key="textColor" red="0.77179580926895142" green="0.94310325384140015" blue="0.8746873140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
