@@ -12,6 +12,7 @@ import UIKit
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
     
     
+    
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
@@ -126,10 +127,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addWallet = storyboard.instantiateViewController(withIdentifier: "AWController") as! AddWalletViewController
         addWallet.delegate = self
-        let navigationVC = storyboard.instantiateViewController(withIdentifier: "NavController") as! UINavigationController
+        let navigationVC = UINavigationController.init(rootViewController: addWallet)
         present(navigationVC, animated: true, completion: nil)
         self.cardCollectionViewLayout?.unrevealCard()
-
     }
     
     func scanButtonPressed()
@@ -211,7 +211,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     
-    
+    func makeAPaymentButtonPressed(walletCell:WalletCell)
+    {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.backgroundColor = UIColor.green
+        
+        walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
+    }
     
     func listTransactionsButtonPressed(walletCell:WalletCell)
     {
@@ -220,11 +226,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
-    func makeAPaymentButtonPressed(walletCell:WalletCell)
+    func exportButtonPressed(walletCell: WalletCell)
     {
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
-        view.backgroundColor = UIColor.green
-        
+        let view = ExportWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -241,6 +246,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func deleteButtonPressed(walletCell: WalletCell)
     {
         let view = DeleteWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -249,10 +255,20 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     }
     
+    func exportUsing(exportType: ExportType)
+    {
+        print("export using \(exportType)")
+    }
+    
     func unflipCard()
     {
         self.cardCollectionViewLayout?.flipRevealedCardBack()
     }
 
+    //TODO
+    func unflipAndRemove()
+    {
+        self.cardCollectionViewLayout?.flipRevealedCardBack()
+    }
 }
 

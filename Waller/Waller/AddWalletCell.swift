@@ -37,8 +37,8 @@ class AddWalletCell: HFCardCollectionViewCell
         self.addSubview(addButton)
         
         let scanButton = UIButton.init(type: .custom)
-        scanButton.frame = CGRect.init(x: viewWidth-35-10-35-20, y: 15, width: 35, height: 35)
-        scanButton.setImage(UIImage.init(named: "ScanIcon"), for: .normal)
+        scanButton.frame = CGRect.init(x: viewWidth-35-10-35-20, y: 15, width: 38*0.8, height: 49*0.8)
+        scanButton.setImage(UIImage.init(named: "scan"), for: .normal)
         scanButton.addTarget(self, action: #selector(scanButtonPressed), for: .touchUpInside)
         self.addSubview(scanButton)
         

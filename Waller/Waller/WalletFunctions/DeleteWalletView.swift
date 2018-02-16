@@ -8,9 +8,10 @@
 
 import UIKit
 
-class DeleteWalletView: UIView, OptionLabelDelegate {
-
+class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
+    
     let deleteButton = UIButton.init(type: .roundedRect)
+    var delegate:WalletFunctionDelegate!
     
     override init(frame: CGRect)
     {
@@ -21,6 +22,14 @@ class DeleteWalletView: UIView, OptionLabelDelegate {
         clipsToBounds = true
         
         let viewWidth = UIScreen.main.bounds.width - 30
+        
+        let flipButton = UIButton.init(type: .roundedRect)
+        flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
+        flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
+        flipButton.backgroundColor = UIColor.clear
+        flipButton.setTitle("close", for: .normal)
+        flipButton.center.x = self.center.x
+        addSubview(flipButton)
         
         let infoLabel = UILabel.init(frame: CGRect.init(x: 30, y: 80, width: viewWidth - 60, height: 120))
         infoLabel.backgroundColor = UIColor.clear
@@ -47,7 +56,20 @@ class DeleteWalletView: UIView, OptionLabelDelegate {
         deleteButton.isEnabled = false
         self.addSubview(deleteButton)
         
-        
+        let slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: y + 60, width: viewWidth - 60, height: 80))
+        slider.buttonText = "Slide to Delete Wallet"
+        slider.buttonCornerRadius = 6
+        slider.buttonUnlockedText = "Wallet Deleted"
+        slider.buttonColor = UIColor.gray
+        slider.animationFinished()
+        slider.delegate = self
+        self.addSubview(slider)
+    }
+    
+    @objc func flipButtonPressed()
+    {
+        print("flipButtonPressed")
+        guard let _ = delegate?.unflipCard() else { return }
     }
     
     func checkBoxChange(isChecked: Bool)
@@ -63,6 +85,15 @@ class DeleteWalletView: UIView, OptionLabelDelegate {
     @objc func deleteButtonPressed()
     {
         
+    }
+    
+    func buttonStatus(unlocked: Bool, sender: MMSlidingButton) {
+        print("slide unlocked \(unlocked)")
+        if(unlocked) {
+            guard let _ = delegate?.unflipAndRemove() else {
+                return
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder)

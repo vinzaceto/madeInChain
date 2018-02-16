@@ -407,6 +407,7 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         
         if nextView == walletGeneratedView
         {
+            backButton.isEnabled = false
             addNameView.nameField.resignFirstResponder()
             addPasswordView.passField.textField.resignFirstResponder()
             addPasswordView.retypePassField.textField.resignFirstResponder()

@@ -11,6 +11,8 @@ import UIKit
 protocol WalletFunctionDelegate
 {
     func unflipCard()
+    func unflipAndRemove()
+    func exportUsing(exportType:ExportType)
 }
 
 class QRCodeWalletView: UIView {
