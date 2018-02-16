@@ -14,6 +14,8 @@ protocol WalletCellDelegate
     func makeAPaymentButtonPressed(walletCell:WalletCell)
     func showQRCodeButtonPressed(walletCell:WalletCell)
     func deleteButtonPressed(walletCell:WalletCell)
+    func exportButtonPressed(walletCell:WalletCell)
+    
     func addButtonPressed()
     func scanButtonPressed()
 }
@@ -96,52 +98,56 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         tableView.isScrollEnabled = false
         self.addSubview(tableView)
         
-        let margin:CGFloat = 10
-        let size:CGFloat = (viewWidth - (margin * 6)) / 5
-        let by:CGFloat = 340 - size - margin
+        let mod:CGFloat = 0.8
+        let width:CGFloat = 38 * mod
+        let height:CGFloat = 49 * mod
+        let by:CGFloat = 340 - height - 15
 
+        let margin:CGFloat = (viewWidth - (width * 5)) / 6
+        
         let makeAPaymentButton = UIButton.init(type: .custom)
-        makeAPaymentButton.frame = CGRect.init(x: margin, y: by, width: size, height:size)
+        makeAPaymentButton.frame = CGRect.init(x: margin, y: by, width: width, height:height)
         makeAPaymentButton.addTarget(self, action: #selector(makeAPaymentButtonPressed), for: .touchUpInside)
         makeAPaymentButton.backgroundColor = UIColor.clear
-        makeAPaymentButton.setImage(UIImage.init(named: "MakeAPayment"), for: .normal)
+        makeAPaymentButton.setImage(UIImage.init(named: "out"), for: .normal)
         self.addSubview(makeAPaymentButton)
         
-        var newMargin = (margin * 2) + (size * 1)
+        var newMargin = (margin * 2) + (width * 1)
         
         let listTransactionButton = UIButton.init(type: .custom)
-        listTransactionButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
+        listTransactionButton.frame = CGRect.init(x: newMargin, y: by+4, width: width, height: height)
         listTransactionButton.addTarget(self, action: #selector(listTransactionsButtonPressed), for: .touchUpInside)
         listTransactionButton.backgroundColor = UIColor.clear
-        listTransactionButton.setImage(UIImage.init(named: "allTransactionIcon"), for: .normal)
+        listTransactionButton.setImage(UIImage.init(named: "list"), for: .normal)
         self.addSubview(listTransactionButton)
         
-        newMargin = (margin * 3) + (size * 2)
+        newMargin = (margin * 3) + (width * 2)
         
         let exportButton = UIButton.init(type: .custom)
-        exportButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
-        //listTransactionButton.addTarget(self, action: #selector(listTransactionsButtonPressed), for: .touchUpInside)
-        exportButton.backgroundColor = UIColor.black
-        //listTransactionButton.setImage(UIImage.init(named: "allTransactionIcon"), for: .normal)
+        exportButton.frame = CGRect.init(x: newMargin, y: by+1, width: width, height: height)
+        exportButton.addTarget(self, action: #selector(exportButtonPressed), for: .touchUpInside)
+        exportButton.backgroundColor = UIColor.clear
+        exportButton.setImage(UIImage.init(named: "export"), for: .normal)
         self.addSubview(exportButton)
         
-        newMargin = (margin * 4) + (size * 3)
+        newMargin = (margin * 4) + (width * 3)
         
         let trashButton = UIButton.init(type: .custom)
-        trashButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
+        trashButton.frame = CGRect.init(x: newMargin, y: by+1, width: width, height: height)
         trashButton.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
-        trashButton.backgroundColor = UIColor.black
-        //trashButton.setImage(UIImage.init(named: "allTransactionIcon"), for: .normal)
+        trashButton.backgroundColor = UIColor.clear
+        trashButton.setImage(UIImage.init(named: "trash"), for: .normal)
         self.addSubview(trashButton)
         
-        newMargin = (margin * 5) + (size * 4)
+        newMargin = (margin * 5) + (width * 4)
         
         let showQRCodeButton = UIButton.init(type: .custom)
-        showQRCodeButton.frame = CGRect.init(x: newMargin, y: by, width: size, height: size)
+        showQRCodeButton.frame = CGRect.init(x: newMargin, y: by+2, width: width, height: height)
         showQRCodeButton.addTarget(self, action: #selector(showQRCodeButtonPressed), for: .touchUpInside)
         showQRCodeButton.backgroundColor = UIColor.clear
-        showQRCodeButton.setImage(UIImage.init(named: "ShowQRCode"), for: .normal)
+        showQRCodeButton.setImage(UIImage.init(named: "qrCode"), for: .normal)
         self.addSubview(showQRCodeButton)
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -156,7 +162,13 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         cell.backgroundColor = UIColor.clear
         return cell
     }
-    
+ 
+    @objc func makeAPaymentButtonPressed()
+    {
+        print("makeAPaymentButtonPressed")
+        guard let _ = delegate?.makeAPaymentButtonPressed(walletCell: self) else
+        {return}
+    }
     
     @objc func listTransactionsButtonPressed()
     {
@@ -165,10 +177,10 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         {return}
     }
     
-    @objc func makeAPaymentButtonPressed()
+    @objc func exportButtonPressed()
     {
-        print("makeAPaymentButtonPressed")
-        guard let _ = delegate?.makeAPaymentButtonPressed(walletCell: self) else
+        print("exportButtonPressed")
+        guard let _ = delegate?.exportButtonPressed(walletCell: self) else
         {return}
     }
     

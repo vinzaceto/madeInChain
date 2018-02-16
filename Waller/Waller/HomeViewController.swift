@@ -12,6 +12,7 @@ import UIKit
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
     
     
+    
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
@@ -210,7 +211,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     
-    
+    func makeAPaymentButtonPressed(walletCell:WalletCell)
+    {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.backgroundColor = UIColor.green
+        
+        walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
+    }
     
     func listTransactionsButtonPressed(walletCell:WalletCell)
     {
@@ -219,11 +226,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
-    func makeAPaymentButtonPressed(walletCell:WalletCell)
+    func exportButtonPressed(walletCell: WalletCell)
     {
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
-        view.backgroundColor = UIColor.green
-        
+        let view = ExportWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -247,6 +253,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, didUnrevealCardAtIndex index: Int)
     {
 
+    }
+    
+    func exportUsing(exportType: ExportType)
+    {
+        print("export using \(exportType)")
     }
     
     func unflipCard()
