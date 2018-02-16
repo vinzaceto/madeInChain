@@ -191,6 +191,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startButton:" destination="B4a-Jg-mzh" eventType="touchUpInside" id="fha-E4-qhs"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="0zz-to-UiY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -224,6 +225,6 @@
         <image name="onImg1" width="318" height="523"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p0k-Tv-tTs"/>
+        <segue reference="JRn-ro-Ir8"/>
     </inferredMetricsTieBreakers>
 </document>
