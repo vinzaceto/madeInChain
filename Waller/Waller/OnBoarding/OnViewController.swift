@@ -10,7 +10,11 @@ import UIKit
 
 class OnViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    
     let transition = CircleTransition()
+    
     
     @IBOutlet weak var checkBoxButton: CheckBox!
     @IBOutlet weak var checkBoxButton2: CheckBox!
@@ -19,11 +23,32 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     let gradientView:GradientView = GradientView()
     
     @IBAction func checkBoxButton(_ sender: Any){
-        self.view.addSubview(checkBoxButton2)
-        self.view.addSubview(textView2)
+
+        self.checkBoxButton2.alpha = 0
+        self.textView2.alpha = 0
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.view.addSubview(self.checkBoxButton2)
+            self.view.addSubview(self.textView2)
+            self.checkBoxButton2.alpha = 1
+            self.textView2.alpha = 1
+
+        }) { (true) in
+            UIView.animate(withDuration: 1, animations: {
+            }, completion: nil)
+        }
     }
     
     @IBAction func checkBoxButton2(_ sender: Any){
+        self.startButton.alpha = 0
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.view.addSubview(self.startButton)
+            self.startButton.alpha = 1
+        }) { (true) in
+            UIView.animate(withDuration: 1, animations: {
+            }, completion: nil)
+        }
         startButton.isHidden = false
     }
     
@@ -67,18 +92,29 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
         
         startButton.isHidden = true
         self.view.addSubview(startButton)
-        self.view.addSubview(checkBoxButton)
-        self.view.addSubview(textView)
+        self.view.addSubview(firstLabel)
+        self.view.addSubview(secondLabel)
+
+        
 
    }
     
-    
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        self.checkBoxButton.alpha = 0
+        self.textView.alpha = 0
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.view.addSubview(self.checkBoxButton)
+            self.view.addSubview(self.textView)
+            self.checkBoxButton.alpha = 1
+            self.textView.alpha = 1
+            
+        }) { (true) in
+            UIView.animate(withDuration: 1, animations: {
+            }, completion: nil)
+        }
     }
-
+    
+    
 }
 
