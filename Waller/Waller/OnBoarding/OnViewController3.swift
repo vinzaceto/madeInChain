@@ -23,6 +23,7 @@ class OnViewController3: UIViewController, UIViewControllerTransitioningDelegate
     
     @IBOutlet weak var startButton: UIButton!
     
+    
     @IBAction func startButton(_ sender: Any) {
         performSegue(withIdentifier: "segueToMain", sender: self)
         UserDefaults.standard.set(false, forKey: Props.hasBeenSeen)
@@ -33,6 +34,9 @@ class OnViewController3: UIViewController, UIViewControllerTransitioningDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePage1.alpha = 0
+        self.imagePage1.frame.origin.y = imagePage1.frame.size.height+80
         
         let onBoardingBackgroundColor1 = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
         let onBoardingBackgroundColor2 = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
@@ -46,9 +50,21 @@ class OnViewController3: UIViewController, UIViewControllerTransitioningDelegate
         self.view.addSubview(subTitle)
         self.view.addSubview(imagePage1)
         self.view.addSubview(bottomLabel)
-   
 
-        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       
+            UIView.animate(withDuration: 2, animations: {
+                self.imagePage1.alpha = 1
+                self.imagePage1.frame.origin.y = self.imagePage1.frame.size.height-30
+            }) { (true) in
+                UIView.animate(withDuration: 1, animations: {
+                    //self.imagePage1.frame.origin.y -= 150
+                }, completion: nil)
+            }
+
     }
 }
+
 

@@ -57,7 +57,7 @@
                                 <connections>
                                     <action selector="startButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HmT-QF-h92"/>
                                     <action selector="startButton:" destination="B4a-Jg-mzh" eventType="touchUpInside" id="mmP-I3-Dls"/>
-                                    <segue destination="4bC-QA-rzS" kind="custom" identifier="segueToMain" animates="NO" id="9pg-7J-ufC"/>
+                                    <segue destination="4bC-QA-rzS" kind="show" identifier="MainSB" id="9pg-7J-ufC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-wt-fKX" customClass="CheckBox" customModule="Waller" customModuleProvider="target">
@@ -66,9 +66,12 @@
                                     <action selector="checkBoxButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hAo-rf-B9J"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="I understood thath my founds are safely stored in this device not in a company." translatesAutoresizingMaskIntoConstraints="NO" id="slS-Uz-tZN">
-                                <rect key="frame" x="108" y="110" width="240" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="I understood thath my founds are safely stored in this device not in a company." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slS-Uz-tZN">
+                                <rect key="frame" x="108" y="110" width="212" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -79,9 +82,12 @@
                                     <action selector="checkBoxButton2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOB-Qy-6Yb"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-2E-wBf">
-                                <rect key="frame" x="108" y="269" width="240" height="151"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-2E-wBf">
+                                <rect key="frame" x="108" y="269" width="212" height="212"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <string key="text">I know that  if this app will be transfered in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>

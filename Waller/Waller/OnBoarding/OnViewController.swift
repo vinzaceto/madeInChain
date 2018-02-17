@@ -32,6 +32,11 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     @IBOutlet weak var textView2: UITextView!
     
 
+    @IBAction func startButton(_ sender: Any) {
+        performSegue(withIdentifier: "MainSB", sender: self)
+        UserDefaults.standard.set(false, forKey: Props.hasBeenSeen)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let secondVC = segue.destination as! HomeViewController
         secondVC.transitioningDelegate = self
