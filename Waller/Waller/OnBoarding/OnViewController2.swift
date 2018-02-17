@@ -13,17 +13,15 @@ class OnViewController2: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet weak var multisignLabel: UILabel!
+    @IBOutlet weak var importingLabel: UILabel!
     
-    @IBOutlet weak var imagePage2: UIImageView!
-    
-    
-    @IBOutlet weak var startButton: UIButton!
     
         let gradientView:GradientView = GradientView()
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+
             let onBoardingBackgroundColor1 = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
             let onBoardingBackgroundColor2 = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
             
@@ -33,6 +31,10 @@ class OnViewController2: UIViewController {
             self.view.addSubview(gradientView)
             self.view.addSubview(titleLabel)
             self.view.addSubview(subTitle)
+            self.view.addSubview(multisignLabel)
+            self.view.addSubview(importingLabel)
+
+
             
             
         }
