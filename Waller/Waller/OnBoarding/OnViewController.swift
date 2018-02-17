@@ -42,11 +42,11 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     @IBAction func checkBoxButton2(_ sender: Any){
         self.startButton.alpha = 0
         
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.view.addSubview(self.startButton)
             self.startButton.alpha = 1
         }) { (true) in
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.4, animations: {
             }, completion: nil)
         }
         startButton.isHidden = false
