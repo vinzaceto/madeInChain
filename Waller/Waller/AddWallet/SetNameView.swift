@@ -43,6 +43,7 @@ class SetNameView: UIView,UITextFieldDelegate {
         nameField.frame = CGRect.init(x: 0, y: fy, width: 260, height: 40)
         nameField.center.x = self.center.x
         nameField.delegate = self
+        nameField.textColor = UIColor.lightText
         nameField.font = UIFont.systemFont(ofSize: 24)
         nameField.autocorrectionType = UITextAutocorrectionType.no
         changePlaceholderColor(field: nameField, color: UIColor.gray, text: nameFieldPlaceholder)
@@ -50,9 +51,10 @@ class SetNameView: UIView,UITextFieldDelegate {
         
         let ly = fy + nameField.frame.size.height - 3
         
-        let line = UIView.init(frame: CGRect.init(x: 20, y: ly, width: 280, height: 3))
+        let line = UIView.init(frame: CGRect.init(x: 20, y: ly, width: 280, height: 2))
         line.center.x = nameField.center.x
-        line.backgroundColor = UIColor.white
+        line.backgroundColor = UIColor.lightText
+        line.layer.cornerRadius = 1
         self.addSubview(line)
         
         let w:CGFloat = 65

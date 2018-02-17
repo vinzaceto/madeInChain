@@ -24,18 +24,61 @@ struct BTCUtx:Codable
     let confirmations:UInt
 }
 
-class BTCTestnetInfo: NSObject
+struct WalletBalance:Codable
+{
+    let hash160:String
+    let address:String
+    let n_tx:UInt32
+    let total_received:BTCAmount
+    let total_sent:BTCAmount
+    let final_balance:BTCAmount
+    let txs:[BTCTx]
+}
+
+struct BTCTx:Codable
 {
     
-    func requestForUnspentOutputsWithAddresses(address:String) -> URLRequest
+}
+
+
+class BTCTestnetInfo: NSObject
+{    
+    func getWalletBalance(address:String) -> WalletBalance?
     {
-        let url = URL(string: "https://testnet.blockchain.info/unspent?active=\(address)")!
-        return URLRequest(url: url)
+        let url = URL(string: "https://testnet.blockchain.info/it/rawaddr/\(address)")!
+        let request = URLRequest(url: url)
+        let semaphore = DispatchSemaphore(value: 0)
+        var data: Data? = nil
+        
+        URLSession.shared.dataTask(with: request)
+        {
+            (responseData, _, _) -> Void in
+            data = responseData
+            semaphore.signal()
+        }.resume()
+        semaphore.wait(timeout: .distantFuture)
+
+        let reply = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
+        //print(reply)
+        
+        let decoder = JSONDecoder()
+        do
+        {
+            let decodedResponse = try decoder.decode(WalletBalance.self, from: data!)
+            return decodedResponse
+        }
+        catch
+        {
+            print("error converting data to JSON")
+            return nil
+        }
     }
+
     
     func unspentOutputsWithAddress(address:String) -> [BTCTransactionOutput]?
     {
-        let request = requestForUnspentOutputsWithAddresses(address: address)
+        let url = URL(string: "https://testnet.blockchain.info/unspent?active=\(address)")!
+        let request = URLRequest(url: url)
         let semaphore = DispatchSemaphore(value: 0)
         var data: Data? = nil
         

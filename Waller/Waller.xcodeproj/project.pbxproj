@@ -73,7 +73,7 @@
 		61B6285820323D4300EE6ABB /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6285220323D4300EE6ABB /* GradientView.swift */; };
 		61B6285920323D4300EE6ABB /* OnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6285320323D4300EE6ABB /* OnViewController.swift */; };
 		61B6285A20323DD100EE6ABB /* OnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B6284F20323D4300EE6ABB /* OnBoarding.storyboard */; };
-		61B9D2A0202B765000E22B0D /* GenerateWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D29F202B765000E22B0D /* GenerateWalletController.swift */; };
+		61B9D2A0202B765000E22B0D /* TEST+GenerateWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D29F202B765000E22B0D /* TEST+GenerateWalletController.swift */; };
 		61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A1202B796D00E22B0D /* ACProgressView.swift */; };
 		61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */; };
 		61B9D2A7202B796D00E22B0D /* ACProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */; };
@@ -202,7 +202,7 @@
 		61B6285120323D4300EE6ABB /* OnBoardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingPageViewController.swift; sourceTree = "<group>"; };
 		61B6285220323D4300EE6ABB /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		61B6285320323D4300EE6ABB /* OnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnViewController.swift; sourceTree = "<group>"; };
-		61B9D29F202B765000E22B0D /* GenerateWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateWalletController.swift; sourceTree = "<group>"; };
+		61B9D29F202B765000E22B0D /* TEST+GenerateWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TEST+GenerateWalletController.swift"; sourceTree = "<group>"; };
 		61B9D2A1202B796D00E22B0D /* ACProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACProgressView.swift; sourceTree = "<group>"; };
 		61B9D2A2202B796D00E22B0D /* ACHUD+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACHUD+Animation.swift"; sourceTree = "<group>"; };
 		61B9D2A3202B796D00E22B0D /* ACProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACProgressHUD.swift; sourceTree = "<group>"; };
@@ -450,37 +450,27 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
-				7443590C202DC18300CD1982 /* Resources */,
-				610B1DA9202DB7B9005B1105 /* SugarData */,
-				61B9D2A9202B797800E22B0D /* ACProgressHUD */,
-				744358FC202B31D400CD1982 /* HFCardCollectionView */,
-				664263FF202E709D0010828E /* EMAlertController */,
-				618CAD102034DA1D001BD5A0 /* LineChart */,
-				618CAD112034E54C001BD5A0 /* RNCryptor */,
-				66306597202FDF8F00DBD516 /* SelectItemController */,
+				6192037D20387AC400443521 /* Frameworks */,
 				61B6284C20323D4300EE6ABB /* OnBoarding */,
 				61920362203738AB00443521 /* Datadase+Generator */,
-				6192036620373C8F00443521 /* PDFGenerator */,
-				61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */,
-				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
-				74B76DA2203429B100E1C6F3 /* DataConnections.swift */,
+				6192037C2038790800443521 /* DataStructure+Connections */,
+				61294A762024C7D0009F9886 /* Assets.xcassets */,
+				24365668202C60B200E33A6E /* Main.storyboard */,
 				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
-				619203612037389700443521 /* InfoSection */,
 				249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */,
-				74435905202B380A00CD1982 /* WalletCell.swift */,
+				619203612037389700443521 /* InfoSection */,
 				61F77D2C203593CB0013CBAE /* AddWalletCell.swift */,
+				74435905202B380A00CD1982 /* WalletCell.swift */,
 				613C648020335C4E000BC5A6 /* QuickImportViewController.swift */,
 				61920363203738FB00443521 /* WalletFunctions */,
 				66098371202D276700639EE3 /* AddWallet */,
-				61294A762024C7D0009F9886 /* Assets.xcassets */,
-				24365668202C60B200E33A6E /* Main.storyboard */,
-				61B9D29F202B765000E22B0D /* GenerateWalletController.swift */,
+				61B9D29F202B765000E22B0D /* TEST+GenerateWalletController.swift */,
 				61294A7B2024C7D0009F9886 /* Info.plist */,
 				61294A732024C7D0009F9886 /* Waller.xcdatamodeld */,
 				61294A782024C7D0009F9886 /* LaunchScreen.storyboard */,
 				618E4B25202A6E79007F0D32 /* Waller-Bridging-Header.h */,
-				74C6FB872037163A009B92CA /* MMSlidingButton.swift */,
+				7443590C202DC18300CD1982 /* Resources */,
 			);
 			path = Waller;
 			sourceTree = "<group>";
@@ -539,6 +529,7 @@
 				6192035D2036F69A00443521 /* DeleteWalletView.swift */,
 				6192035F2036F86100443521 /* OptionLabel.swift */,
 				611EA1C12034F47E003A6AA8 /* QRCodeWalletView.swift */,
+				74C6FB872037163A009B92CA /* MMSlidingButton.swift */,
 			);
 			path = WalletFunctions;
 			sourceTree = "<group>";
@@ -557,6 +548,31 @@
 				6192036E20373C8F00443521 /* PDFGenerator.h */,
 			);
 			path = PDFGenerator;
+			sourceTree = "<group>";
+		};
+		6192037C2038790800443521 /* DataStructure+Connections */ = {
+			isa = PBXGroup;
+			children = (
+				61B9D2AC202BAACE00E22B0D /* BTCTestnetInfo.swift */,
+				61DDBDAC202A4CD600F270DF /* DataStructure.swift */,
+				74B76DA2203429B100E1C6F3 /* DataConnections.swift */,
+			);
+			path = "DataStructure+Connections";
+			sourceTree = "<group>";
+		};
+		6192037D20387AC400443521 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				610B1DA9202DB7B9005B1105 /* SugarData */,
+				61B9D2A9202B797800E22B0D /* ACProgressHUD */,
+				744358FC202B31D400CD1982 /* HFCardCollectionView */,
+				664263FF202E709D0010828E /* EMAlertController */,
+				618CAD102034DA1D001BD5A0 /* LineChart */,
+				618CAD112034E54C001BD5A0 /* RNCryptor */,
+				66306597202FDF8F00DBD516 /* SelectItemController */,
+				6192036620373C8F00443521 /* PDFGenerator */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		61B6284920323C8D00EE6ABB /* Recovered References */ = {
@@ -847,7 +863,6 @@
 				610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */,
 				61920379203740BD00443521 /* PDFPreviewVC.swift in Sources */,
 				61CDB2E9202CCD5C0004C02B /* SetNameView.swift in Sources */,
-				74B76DA520343C0400E1C6F3 /* Tools.swift in Sources */,
 				240E02F4203716B6009FE6E4 /* CheckBox.swift in Sources */,
 				610B1DD8202DB7B9005B1105 /* Requestable.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
@@ -859,7 +874,7 @@
 				6192037020373C8F00443521 /* PDFPageRenderable.swift in Sources */,
 				6609836C202CEBFB00639EE3 /* SetPasswordView.swift in Sources */,
 				6609836A202CE29C00639EE3 /* SetSaveTypeView.swift in Sources */,
-				61B9D2A0202B765000E22B0D /* GenerateWalletController.swift in Sources */,
+				61B9D2A0202B765000E22B0D /* TEST+GenerateWalletController.swift in Sources */,
 				610B1DE4202DB7B9005B1105 /* NSManagedObjectContext.swift in Sources */,
 				61294A6D2024C7D0009F9886 /* AppDelegate.swift in Sources */,
 				61B9D2A6202B796D00E22B0D /* ACHUD+Animation.swift in Sources */,
@@ -1079,7 +1094,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L2SQ7F4N43;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1099,7 +1114,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L2SQ7F4N43;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

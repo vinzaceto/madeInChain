@@ -11,6 +11,9 @@ import UIKit
 @IBDesignable
 class InfoSectionXibController: UIView {
 
+    var btcValue:NSNumber = 0.0
+    var btcTotalAmount:NSNumber = 0.0
+    
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
@@ -25,12 +28,16 @@ class InfoSectionXibController: UIView {
         super.awakeFromNib()
         xibSetup()
 
+        /*
         if let lastBtcValueTemp = UserDefaults.standard.string(forKey: Props.lastBtcValue) {
             self.currentBTCvalue.text = lastBtcValueTemp
         } else {
             self.currentBTCvalue.text = "--"
         }
+        */
+        self.currentBTCvalue.text = "--"
         startTimer()
+        requestPrice()
     }
 
     func xibSetup() {
@@ -59,20 +66,42 @@ class InfoSectionXibController: UIView {
 
     func startTimer() {
         timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [weak self] _ in
-            let dataConnection = DataConnections()
+        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true)
+        {
+            [weak self] _ in
+            self?.requestPrice()
+        }
+    }
+    
+    func requestPrice()
+    {
+        let dataConnection = DataConnections()
             dataConnection.getBitcoinValue(currency: Props.btcUsd) { (result) in
                 switch result {
                 case .success(let posts):
-                    print(posts.last + "$")
-                    UserDefaults.standard.set(posts.last + "$", forKey: Props.lastBtcValue)
-                    self?.currentBTCvalue.text = posts.last + "$"
+
+                    let formatter = NumberFormatter()
+                    formatter.locale = Locale.current
+                    formatter.numberStyle = .currency
+                    
+                    guard let value = Double(posts.last) else { return }
+                    self.btcValue = NSNumber.init(value: value)
+
+                    guard let formattedBTCValue = formatter.string(from: self.btcValue as! NSNumber) else { return }
+                    self.currentBTCvalue.text = formattedBTCValue
+
+
+                    //UserDefaults.standard.set(posts.last + "$", forKey: Props.lastBtcValue)
+                    
+                    let currencyTotal = self.btcValue.doubleValue * self.btcTotalAmount.doubleValue
+                    guard let formattedTotal = formatter.string(from: currencyTotal as! NSNumber) else { return }
+                    self.currentAmount.text = formattedTotal
+
+
                 case .failure(let error):
-                    print("No connection")
-                   // fatalError("error: \(error)")
+                    print("No connection \(error.localizedDescription)")
                 }
             }
-        }
     }
 
     func stopTimer() {
@@ -83,5 +112,16 @@ class InfoSectionXibController: UIView {
 
     deinit {
         stopTimer()
+    }
+    
+    func updateWith(total:BTCAmount)
+    {
+        let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+        let amount = formatter?.string(fromAmount: total)
+
+        guard let totalBTCAmount = Double(amount!) else { return }
+        self.btcTotalAmount = NSNumber.init(value: totalBTCAmount)
+        
+        self.currentBtcAmount.text = "\(self.btcTotalAmount)"
     }
 }
