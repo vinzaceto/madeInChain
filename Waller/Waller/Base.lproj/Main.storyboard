@@ -102,36 +102,6 @@
             </objects>
             <point key="canvasLocation" x="2415.9420289855075" y="-635.054347826087"/>
         </scene>
-        <!--Saving type-->
-        <scene sceneID="zIQ-dh-bY6">
-            <objects>
-                <viewController storyboardIdentifier="STController" title="Saving type" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y7X-IB-uhY" customClass="SetSaveTypeController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cPt-3j-rAs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="mZy-3a-rvg"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yRN-rx-o4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2111" y="129"/>
-        </scene>
-        <!--Set Password View Controller-->
-        <scene sceneID="4sF-1y-4UJ">
-            <objects>
-                <viewController storyboardIdentifier="SPController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i9C-Rm-dMB" customClass="SetPasswordViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eer-iH-0Cc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="7m0-2h-vMl"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WAr-FD-8BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2899" y="128"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="R8W-Yv-ECj">
             <objects>
@@ -209,6 +179,7 @@
                     <connections>
                         <outlet property="collectionView" destination="9Pt-sr-Ix4" id="JOC-VZ-juw"/>
                         <outlet property="lineChart" destination="6FK-kb-Mqu" id="KrD-5w-oX0"/>
+                        <outlet property="totalView" destination="kBu-sU-dFV" id="WiA-3s-t4D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqW-A2-O9m" userLabel="First Responder" sceneMemberID="firstResponder"/>

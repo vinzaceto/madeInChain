@@ -19,8 +19,8 @@ class AddWalletCell: HFCardCollectionViewCell
         
         let viewWidth = (UIScreen.main.bounds.width - 30)
         
-        let iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 10, width: 34, height: 35))
-        iconImage.image = UIImage.init(named: "newWalletIcon")
+        let iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 5, width: 38, height: 49))
+        iconImage.image = UIImage.init(named: "newWallet")
         self.addSubview(iconImage)
         
         let newLabel = UILabel.init(frame: CGRect.init(x: 60, y: 15, width: viewWidth - 170, height: 40))

@@ -30,11 +30,13 @@ class PWTextField: UIView {
         let showButton = UIButton.init(type: UIButtonType.roundedRect)
         showButton.frame = CGRect.init(x: textField.frame.size.width+2, y: 0, width: frame.size.height, height: frame.size.height)
         showButton.layer.cornerRadius = cornerRadius
+        showButton.tintColor = UIColor.lightText
+        showButton.setImage(UIImage.init(named: "eye"), for: .normal)
         showButton.clipsToBounds = true
         showButton.addTarget(self, action: #selector(revealText), for: .touchDown)
         showButton.addTarget(self, action: #selector(hideText), for: .touchDragExit)
         showButton.addTarget(self, action: #selector(hideText), for: .touchUpInside)
-        showButton.backgroundColor = UIColor.gray
+        showButton.backgroundColor = UIColor.clear
         self.addSubview(showButton)
     }
  

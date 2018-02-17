@@ -8,15 +8,12 @@
 
 import UIKit
 
-
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
     
     
     
-    @IBOutlet weak var currentCurrancy: UILabel!
-    @IBOutlet weak var currentBTCvalue: UILabel!
-    @IBOutlet weak var currentAmount: UILabel!
-    @IBOutlet weak var currentBtcAmount: UILabel!
+
+    @IBOutlet weak var totalView: InfoSectionXibController!
     @IBOutlet weak var lineChart: LineChart!
     
     var loadingLabel:UILabel!
@@ -24,10 +21,12 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
-    var walletsList:[Wallet]!
+    var walletsList:[WalletCellData]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        walletsList = []
         
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         gradientView.FirstColor = Props().firstGradientColor
@@ -116,11 +115,31 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func loadWallets()
     {
         let walletsKeychain = WalletsDatabase.init()
-        walletsList = walletsKeychain.getAllWallets()
-        print("saved wallets : \(walletsList)")
+        let walletsList = walletsKeychain.getAllWallets()
+        parseWallets(wallets: walletsList)
     }
     
-
+    func parseWallets(wallets:[Wallet])
+    {
+        //print("saved wallets : \(walletsList)")
+        
+        var total:BTCAmount = 0
+        
+        // check balance
+        for w in wallets
+        {
+            let testnet = BTCTestnetInfo.init()
+            let balance = testnet.getWalletBalance(address: w.address)
+            let walletCellData = WalletCellData.init(label: w.label, address: w.address, privateKey: w.privatekey, balance: balance!)
+            walletsList.append(walletCellData)
+            total = total + (balance?.final_balance)!
+            print(balance)
+        }
+        
+        totalView.updateWith(total: total)
+        
+        self.collectionView?.reloadData()
+    }
     
     func addButtonPressed()
     {
@@ -190,11 +209,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 cell.iconImage.image = UIImage.init(named: "done")
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
                 cell.addressLabel.text = walletsList[indexPath.row-1].address
-                cell.amountLabel.text = "0.00000001"
+                let satoshi:BTCAmount = walletsList[indexPath.row-1].balance.final_balance
+                let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+                let amount = formatter?.string(fromAmount: satoshi)
+                cell.amountLabel.text = amount
                 cell.currencyAmount.text = "10,00 $"
                 cell.cardCollectionViewLayout = cardCollectionViewLayout
                 cell.delegate = self
                 return cell
+                
             }
     }
     
@@ -247,6 +270,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = DeleteWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
+        view.address = walletCell.addressLabel.text!
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -266,9 +290,32 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
 
     //TODO
-    func unflipAndRemove()
+    func unflipAndRemove(address:String)
     {
-        self.cardCollectionViewLayout?.flipRevealedCardBack()
+        print("remove address : \(address)")
+        self.cardCollectionViewLayout?.unrevealRevealedCardAction()
+        removeWallet(address: address)
+    }
+    
+    func removeWallet(address:String)
+    {
+        let database = WalletsDatabase.init()
+        database.removeWalletBy(address: address)
+        {
+            (success, error) in
+            
+            if success == true
+            {
+                print("address removed")
+                DispatchQueue.main.async
+                {
+                    self.loadWallets()
+                    self.collectionView?.reloadData()
+                }
+                return
+            }
+            print("remove address failed")
+        }
     }
 }
 

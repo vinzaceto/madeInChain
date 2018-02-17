@@ -43,7 +43,7 @@ class SetPasswordView: UIView, UITextFieldDelegate
         let py = infoText.frame.origin.y + infoText.frame.size.height + 5
 
         passField = PWTextField.init(frame: CGRect.init(x: 0, y: py, width: 260, height: 35))
-        passField.center.x = self.center.x
+        passField.center.x = self.center.x + 17
         changePlaceholderColor(field: passField.textField, color: UIColor.lightText, text: "type a password here")
         passField.textField.delegate = self
         self.addSubview(passField)
@@ -51,12 +51,12 @@ class SetPasswordView: UIView, UITextFieldDelegate
         let rpy = passField.frame.origin.y + passField.frame.size.height + 10
     
         retypePassField = PWTextField.init(frame: CGRect.init(x: 0, y: rpy, width: passField.frame.width, height: 35))
-        retypePassField.center.x = self.center.x
+        retypePassField.center.x = passField.center.x
         changePlaceholderColor(field: retypePassField.textField, color: UIColor.lightText, text: "re-type the password here")
         retypePassField.textField.delegate = self
         self.addSubview(retypePassField)
         
-        let by = retypePassField.frame.origin.y + retypePassField.frame.size.height + 10
+        let by = retypePassField.frame.origin.y + retypePassField.frame.size.height + 20
 
         let generateButton = UIButton.init(type: .roundedRect)
         generateButton.frame = CGRect.init(x: 0, y: by, width: 160, height: 35)
@@ -98,6 +98,7 @@ class SetPasswordView: UIView, UITextFieldDelegate
         print("check password")
         
         guard let p = passField.textField.text else { return }
+        guard let rp = retypePassField.textField.text else { return }
         
         // check for empty pass
         if p.trimmingCharacters(in: .whitespaces).isEmpty
@@ -108,8 +109,6 @@ class SetPasswordView: UIView, UITextFieldDelegate
         }
         
         //print("First password is \(p)")
-
-        guard let rp = retypePassField.textField.text else { return }
         
         // check for empty retype-pass
         if rp.trimmingCharacters(in: .whitespaces).isEmpty
@@ -143,6 +142,11 @@ class SetPasswordView: UIView, UITextFieldDelegate
     
     func printErrorOnField(error:String, field:UITextField)
     {
+        if lockWrite == true
+        {
+            return
+        }
+        
         guard let pass = field.text else { return }
         guard let placeholder = field.attributedPlaceholder else { return }
 
