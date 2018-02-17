@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240E02F4203716B6009FE6E4 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E02F3203716B6009FE6E4 /* CheckBox.swift */; };
 		243594A42034D14C00D328D9 /* OnViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243594A32034D14C00D328D9 /* OnViewController3.swift */; };
 		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
 		249C73A7202DAE1E00A0EB36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */; };
@@ -129,6 +130,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		240E02F3203716B6009FE6E4 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		243594A32034D14C00D328D9 /* OnViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController3.swift; sourceTree = "<group>"; };
 		24365669202C60B200E33A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 			children = (
 				61B6284D20323D4300EE6ABB /* CircleTransition.swift */,
 				61B6284E20323D4300EE6ABB /* UIImgWithMask.swift */,
+				240E02F3203716B6009FE6E4 /* CheckBox.swift */,
 				61B6284F20323D4300EE6ABB /* OnBoarding.storyboard */,
 				61B6285120323D4300EE6ABB /* OnBoardingPageViewController.swift */,
 				61B6285220323D4300EE6ABB /* GradientView.swift */,
@@ -860,6 +863,7 @@
 				610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */,
 				61920379203740BD00443521 /* PDFPreviewVC.swift in Sources */,
 				61CDB2E9202CCD5C0004C02B /* SetNameView.swift in Sources */,
+				240E02F4203716B6009FE6E4 /* CheckBox.swift in Sources */,
 				610B1DD8202DB7B9005B1105 /* Requestable.swift in Sources */,
 				61DDBDAD202A4CD600F270DF /* DataStructure.swift in Sources */,
 				6192037520373C8F00443521 /* PDFPage.swift in Sources */,
@@ -1090,7 +1094,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L2SQ7F4N43;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1110,7 +1114,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L2SQ7F4N43;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

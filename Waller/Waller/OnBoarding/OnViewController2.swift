@@ -33,12 +33,6 @@ class OnViewController2: UIViewController {
             self.view.addSubview(gradientView)
             self.view.addSubview(titleLabel)
             self.view.addSubview(subTitle)
-            self.view.addSubview(imagePage2)
-            
-            startButton.layer.cornerRadius = 10;
-            
-       
-            self.view.addSubview(startButton)
             
             
         }

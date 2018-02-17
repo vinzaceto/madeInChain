@@ -12,11 +12,27 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     
     let transition = CircleTransition()
     
+    @IBOutlet weak var checkBoxButton: CheckBox!
+    @IBOutlet weak var checkBoxButton2: CheckBox!
     @IBOutlet weak var startButton: UIButton!
     
-    @IBOutlet weak var ButtonSkip: UIButton!
+    let gradientView:GradientView = GradientView()
     
-    @IBAction func skipButt(_ sender: Any) {
+    @IBAction func checkBoxButton(_ sender: Any){
+        self.view.addSubview(checkBoxButton2)
+        self.view.addSubview(textView2)
+    }
+    
+    @IBAction func checkBoxButton2(_ sender: Any){
+        startButton.isHidden = false
+    }
+    
+    @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var textView2: UITextView!
+    
+
+    @IBAction func startButton(_ sender: Any) {
         performSegue(withIdentifier: "MainSB", sender: self)
         UserDefaults.standard.set(false, forKey: Props.hasBeenSeen)
     }
@@ -27,17 +43,15 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
         secondVC.modalPresentationStyle = .custom
     }
     
-    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
-        transition.startingPoint = ButtonSkip.center
+        transition.startingPoint = startButton.center
         transition.circleColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
         
         return transition
     }
 
-
-    let gradientView:GradientView = GradientView()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +63,13 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
         gradientView.FirstColor = onBoardingBackgroundColor1
         gradientView.SecondColor = onBoardingBackgroundColor2
         self.view.addSubview(gradientView)
-        self.view.addSubview(ButtonSkip)
         startButton.layer.cornerRadius = 10;
         
-        
+        startButton.isHidden = true
         self.view.addSubview(startButton)
-        
-     
+        self.view.addSubview(checkBoxButton)
+        self.view.addSubview(textView)
+
    }
     
     
