@@ -11,7 +11,7 @@ import UIKit
 protocol WalletFunctionDelegate
 {
     func unflipCard()
-    func unflipAndRemove()
+    func unflipAndRemove(address:String)
     func exportUsing(exportType:ExportType)
 }
 

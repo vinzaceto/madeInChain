@@ -12,6 +12,7 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
     
     let deleteButton = UIButton.init(type: .roundedRect)
     var delegate:WalletFunctionDelegate!
+    var address:String = ""
     
     override init(frame: CGRect)
     {
@@ -90,7 +91,7 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
     func buttonStatus(unlocked: Bool, sender: MMSlidingButton) {
         print("slide unlocked \(unlocked)")
         if(unlocked) {
-            guard let _ = delegate?.unflipAndRemove() else {
+            guard let _ = delegate?.unflipAndRemove(address: address) else {
                 return
             }
         }
