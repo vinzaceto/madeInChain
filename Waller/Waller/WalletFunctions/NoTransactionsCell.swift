@@ -10,6 +10,8 @@ import UIKit
 
 class NoTransactionsCell: UITableViewCell
 {
+    var infoLabel:UILabel!
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -17,9 +19,9 @@ class NoTransactionsCell: UITableViewCell
         let viewWidth = UIScreen.main.bounds.width - 30
         self.selectionStyle = UITableViewCellSelectionStyle.none
 
-        let infoLabel = UILabel.init(frame: CGRect.init(x: 40, y: 80, width: viewWidth - 80, height: 120))
+        infoLabel = UILabel.init(frame: CGRect.init(x: 40, y: 0, width: viewWidth - 80, height: 0))
         infoLabel.backgroundColor = UIColor.clear
-        infoLabel.text = "No transactions found for this wallet, all the transactions for this wallet will be shown here"
+        infoLabel.text = ""
         infoLabel.adjustsFontSizeToFitWidth = true
         infoLabel.textColor = UIColor.lightGray
         infoLabel.textAlignment = .center

@@ -33,9 +33,12 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     var addressLabel:UILabel!
     var amountLabel:UILabel!
     var currencyAmount:UILabel!
+    var tableView:UITableView!
     var delegate:WalletCellDelegate!
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
     weak var timer: Timer?
+    
+    var txs:[Transaction] = []
 
     override func awakeFromNib()
     {
@@ -95,9 +98,10 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         
         
         let tvh = addressLabel.frame.origin.y + 40
-        let tableView = UITableView.init(frame: CGRect.init(x: 0, y: tvh, width: viewWidth, height: 150))
+        tableView = UITableView.init(frame: CGRect.init(x: 0, y: tvh, width: viewWidth, height: 150))
         tableView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         tableView.register(TransactionCell.self, forCellReuseIdentifier: "TransactionCell")
+        tableView.register(NoTransactionsCell.self, forCellReuseIdentifier: "NoTransactionsCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
@@ -155,16 +159,78 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
 
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if txs.count == 0
+        {
+            return tableView.frame.size.height
+        }
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 3
+        if txs.count == 0
+        {
+            return 1
+        }
+        if txs.count > 3
+        {
+            return 3
+        }
+        return txs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        if txs.count == 0
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoTransactionsCell", for: indexPath) as! NoTransactionsCell
+            cell.awakeFromNib()
+            cell.backgroundColor = UIColor.clear
+            cell.infoLabel.frame.size.height = tableView.frame.size.height
+            cell.infoLabel.text = "No transactions found for this wallet, the latest 3 transactions for this wallet will be shown here"
+            return cell
+        }
+        
+        let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as! TransactionCell
+        let tx = txs[indexPath.row]
+        var mod = ""
+        
         cell.awakeFromNib()
         cell.backgroundColor = UIColor.clear
+        
+        if tx.input
+        {
+            mod = "+"
+            cell.icon.image = UIImage.init(named: "in")
+        }
+        else
+        {
+            mod = "-"
+            cell.icon.image = UIImage.init(named: "out")
+        }
+        
+        if let amount = formatter?.string(fromAmount: tx.value)
+        {
+            cell.amountLabel.text = "\(mod) \(amount)"
+        }
+        else
+        {
+            cell.amountLabel.text = "- - -"
+        }
+        
+        let date = Date.init(timeIntervalSince1970: TimeInterval(tx.time))
+        let calendar = Calendar.current
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "LLL"
+        let month = dateformatter.string(from: date)
+        let year = calendar.component(.year, from: date)
+        let day = calendar.component(.day, from: date)
+        
+        cell.dateLabel.text = "\(month) \(day) \(year)"
+        
         return cell
     }
  
@@ -216,18 +282,51 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     
     func updateBalance()
     {
-        print("Updating balance for address : \(String(describing: addressLabel.text))")
+        //print("Updating balance for address : \(String(describing: addressLabel.text))")
         guard let balance = delegate.getBTCBalanceByAddress(address: addressLabel.text!) else {return}
+        //print(balance)
+        if balance.final_balance == 0
+        {
+            self.amountLabel.text = "--"
+            return
+        }
         let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
         let amount = formatter?.string(fromAmount: balance.final_balance)
         self.amountLabel.text = amount
-        print(balance)
+        
+        filterTransactions(transactions: balance.txs)
     }
     
     func updateCurrencyPrice()
     {
         guard let btcPrice = delegate.getUSDBalanceByAddress(address: addressLabel.text!) else {return}
         self.currencyAmount.text = btcPrice
+    }
+    
+    func filterTransactions(transactions:[TXs])
+    {
+        var txsInput:[TXin] = []
+        for tx in transactions
+        {
+            for input in tx.inputs
+            {
+                if input.prev_out.addr == addressLabel.text
+                {
+                    txsInput.append(input)
+                }
+            }
+            
+            for outputs in tx.out
+            {
+                if outputs.addr == addressLabel.text
+                {
+                    let tx = Transaction.init(input: true, value: outputs.value, time: tx.time)
+                    txs.append(tx)
+                }
+            }
+        }
+        print("txsInput \(txsInput)")
+        tableView.reloadData()
     }
     
 }

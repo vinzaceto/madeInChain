@@ -118,6 +118,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
                 let amount = formatter?.string(fromAmount: balance.final_balance)
                 guard let totalBTCAmount = Double(amount!) else { return nil }
+                if totalBTCAmount == 0{return "--"}
                 let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
                 return formattedBalance
             }

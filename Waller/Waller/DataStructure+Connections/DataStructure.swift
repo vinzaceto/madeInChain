@@ -42,15 +42,12 @@ struct Wallet: Codable
     var privatekey: String!
 }
 
-/*
-struct WalletCellData
+struct Transaction
 {
-    let label:String
-    let address:String
-    let privateKey:String
-    let balance:WalletBalance
+    let input:Bool
+    let value:BTCAmount
+    let time:UInt32
 }
- */
 
 struct BitstampValue : Codable
 {
