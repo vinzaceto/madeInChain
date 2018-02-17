@@ -10,11 +10,29 @@ import UIKit
 
 class OnViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+
+    
+    @IBOutlet weak var checkBoxButton: CheckBox!
+    
+    @IBOutlet weak var checkBoxButton2: CheckBox!
+    
+    
+    @IBAction func checkBoxButton(_ sender: Any){
+        if (checkBoxButton.isChecked &&  checkBoxButton2.isChecked) {
+        }
+        startButton.isHidden = false
+        print("\(checkBoxButton.isChecked)")
+    }
+    
+    
+    @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var textView2: UITextView!
+    
     let transition = CircleTransition()
     
     @IBOutlet weak var startButton: UIButton!
     
-    @IBOutlet weak var ButtonSkip: UIButton!
     
     @IBAction func skipButt(_ sender: Any) {
         performSegue(withIdentifier: "MainSB", sender: self)
@@ -28,14 +46,6 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     }
     
     
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .present
-        transition.startingPoint = ButtonSkip.center
-        transition.circleColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
-        
-        return transition
-    }
-
 
     let gradientView:GradientView = GradientView()
 
@@ -49,12 +59,16 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
         gradientView.FirstColor = onBoardingBackgroundColor1
         gradientView.SecondColor = onBoardingBackgroundColor2
         self.view.addSubview(gradientView)
-        self.view.addSubview(ButtonSkip)
         startButton.layer.cornerRadius = 10;
         
-        
+        startButton.isHidden = true
         self.view.addSubview(startButton)
+        self.view.addSubview(checkBoxButton)
+        self.view.addSubview(textView)
+        self.view.addSubview(checkBoxButton2)
+        self.view.addSubview(textView2)
         
+     
      
    }
     

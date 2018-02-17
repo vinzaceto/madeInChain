@@ -62,6 +62,7 @@ class OnViewController3: UIViewController, UIViewControllerTransitioningDelegate
         self.view.addSubview(subTitle)
         self.view.addSubview(imagePage1)
         self.view.addSubview(startButton)
+   
 
         
     }
