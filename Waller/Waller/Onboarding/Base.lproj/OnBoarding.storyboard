@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Rubik-Light.ttf">
+            <string>Rubik-Light</string>
+        </array>
         <array key="Rubik-Medium.ttf">
             <string>Rubik-Medium</string>
         </array>
@@ -23,7 +26,7 @@
                 <pageViewController storyboardIdentifier="onBoardingPWC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="MzT-9g-BJQ" customClass="OnBoardingPageViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yF7-IN-Ozq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="-402"/>
+            <point key="canvasLocation" x="-53" y="-582"/>
         </scene>
         <!--Main-->
         <scene sceneID="PTx-x4-uxo">
@@ -52,7 +55,9 @@
                                     <color key="titleColor" red="0.85675239560000005" green="0.96452063320000003" blue="0.93200874330000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="startButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HmT-QF-h92"/>
                                     <action selector="startButton:" destination="B4a-Jg-mzh" eventType="touchUpInside" id="mmP-I3-Dls"/>
+                                    <segue destination="4bC-QA-rzS" kind="show" identifier="MainSB" id="9pg-7J-ufC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-wt-fKX" customClass="CheckBox" customModule="Waller" customModuleProvider="target">
@@ -61,9 +66,12 @@
                                     <action selector="checkBoxButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hAo-rf-B9J"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="I understood thath my founds are safely stored in this device not in a company." translatesAutoresizingMaskIntoConstraints="NO" id="slS-Uz-tZN">
-                                <rect key="frame" x="108" y="110" width="240" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="I understood thath my founds are safely stored in this device not in a company." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slS-Uz-tZN">
+                                <rect key="frame" x="108" y="110" width="212" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -71,12 +79,15 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWU-H4-Xkq" customClass="CheckBox" customModule="Waller" customModuleProvider="target">
                                 <rect key="frame" x="50" y="269" width="30" height="34"/>
                                 <connections>
-                                    <action selector="checkBoxButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZuY-bG-btF"/>
+                                    <action selector="checkBoxButton2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOB-Qy-6Yb"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-2E-wBf">
-                                <rect key="frame" x="108" y="269" width="240" height="151"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-2E-wBf">
+                                <rect key="frame" x="108" y="269" width="212" height="212"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <string key="text">I know that  if this app will be transfered in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -116,11 +127,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onImg1" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-sU-XRv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WallE" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-sU-XRv">
                                 <rect key="frame" x="16" y="213" width="343" height="279"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Cc-yP-sbb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WALLER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Cc-yP-sbb">
                                 <rect key="frame" x="87" y="50" width="200" height="27"/>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="23"/>
                                 <color key="textColor" red="0.99112719297409058" green="0.99630016088485718" blue="0.99602895975112915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -132,30 +143,19 @@
                                 <color key="textColor" red="0.77179580926895142" green="0.94310325384140015" blue="0.8746873140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO5-El-Aan">
-                                <rect key="frame" x="54" y="537" width="266" height="50"/>
-                                <color key="backgroundColor" red="0.27866926789283752" green="0.61603480577468872" blue="0.58821505308151245" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="PCR-M5-nyN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
-                                <state key="normal" title="Start from here">
-                                    <color key="titleColor" red="0.85675239562988281" green="0.96452063322067261" blue="0.93200874328613281" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startButton:" destination="B4a-Jg-mzh" eventType="touchUpInside" id="QPu-jL-AXb"/>
-                                    <segue destination="4bC-QA-rzS" kind="show" identifier="MainSB" id="JRn-ro-Ir8"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="blockchain technology" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCA-ll-FJo">
+                                <rect key="frame" x="47" y="577" width="281" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Rubik-Light" family="Rubik" pointSize="18"/>
+                                <color key="textColor" red="0.77179580930000002" green="0.94310325380000004" blue="0.87468731399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="CyO-9X-Akd" firstAttribute="bottom" secondItem="aO5-El-Aan" secondAttribute="bottom" constant="80" id="0wo-Uz-Wkr"/>
                             <constraint firstItem="QPG-3F-O6l" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="47" id="5N6-aQ-ZGQ"/>
                             <constraint firstItem="4Cc-yP-sbb" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="87" id="7h3-eo-8YO"/>
                             <constraint firstItem="4Cc-yP-sbb" firstAttribute="top" secondItem="CyO-9X-Akd" secondAttribute="top" constant="30" id="EhG-WO-A3S"/>
-                            <constraint firstItem="aO5-El-Aan" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="54" id="L8d-6a-bsO"/>
-                            <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="aO5-El-Aan" secondAttribute="trailing" constant="55" id="QJz-2G-EEB"/>
                             <constraint firstItem="QPG-3F-O6l" firstAttribute="top" secondItem="4Cc-yP-sbb" secondAttribute="bottom" constant="45" id="RXd-5p-JuS"/>
                             <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="QPG-3F-O6l" secondAttribute="trailing" constant="47" id="kcE-o7-OsR"/>
                             <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="4Cc-yP-sbb" secondAttribute="trailing" constant="88" id="lsj-gx-9Su"/>
@@ -163,8 +163,8 @@
                         <viewLayoutGuide key="safeArea" id="CyO-9X-Akd"/>
                     </view>
                     <connections>
+                        <outlet property="bottomLabel" destination="kCA-ll-FJo" id="IbL-Ho-55H"/>
                         <outlet property="imagePage1" destination="f0e-sU-XRv" id="ZjD-di-Bek"/>
-                        <outlet property="startButton" destination="aO5-El-Aan" id="xG0-Ct-iaZ"/>
                         <outlet property="subTitle" destination="QPG-3F-O6l" id="dxt-Wd-tYK"/>
                         <outlet property="titleLabel" destination="4Cc-yP-sbb" id="vFT-i8-VUS"/>
                     </connections>
@@ -181,10 +181,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDm-sw-2oR">
-                                <rect key="frame" x="16" y="213" width="343" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZB-Od-LKe">
                                 <rect key="frame" x="87" y="50" width="200" height="27"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="23"/>
@@ -197,39 +193,19 @@
                                 <color key="textColor" red="0.77179580926895142" green="0.94310325384140015" blue="0.8746873140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6d-iQ-THE">
-                                <rect key="frame" x="54" y="537" width="266" height="50"/>
-                                <color key="backgroundColor" red="0.27866926790000002" green="0.61603480580000003" blue="0.5882150531" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bDW-Vh-7Hq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
-                                <state key="normal" title="Let's start">
-                                    <color key="titleColor" red="0.85675239560000005" green="0.96452063320000003" blue="0.93200874330000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startButton:" destination="B4a-Jg-mzh" eventType="touchUpInside" id="fha-E4-qhs"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="0zz-to-UiY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FZB-Od-LKe" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="87" id="1B6-X7-xEO"/>
                             <constraint firstItem="FZB-Od-LKe" firstAttribute="top" secondItem="8wb-IF-jFZ" secondAttribute="top" constant="30" id="5J1-fq-cGr"/>
                             <constraint firstItem="xN1-9Z-Ce8" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="HZo-gN-Psh"/>
-                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="bottom" secondItem="b6d-iQ-THE" secondAttribute="bottom" constant="80" id="KLO-4d-7nc"/>
                             <constraint firstItem="xN1-9Z-Ce8" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="45" id="Kh3-tT-AVW"/>
-                            <constraint firstItem="b6d-iQ-THE" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="54" id="Srq-Vj-kOK"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="FZB-Od-LKe" secondAttribute="trailing" constant="88" id="X2O-eN-x9t"/>
-                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="b6d-iQ-THE" secondAttribute="trailing" constant="55" id="aNN-LD-a3k"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="xN1-9Z-Ce8" secondAttribute="trailing" constant="47" id="eOm-mI-syf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8wb-IF-jFZ"/>
                     </view>
                     <connections>
-                        <outlet property="imagePage2" destination="fDm-sw-2oR" id="agw-ur-aMC"/>
-                        <outlet property="startButton" destination="b6d-iQ-THE" id="s3c-Gx-K1Z"/>
                         <outlet property="subTitle" destination="xN1-9Z-Ce8" id="Dct-uH-voL"/>
                         <outlet property="titleLabel" destination="FZB-Od-LKe" id="VoI-N7-XzQ"/>
                     </connections>
@@ -240,6 +216,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="onImg1" width="318" height="523"/>
+        <image name="WallE" width="690" height="680"/>
     </resources>
 </document>
