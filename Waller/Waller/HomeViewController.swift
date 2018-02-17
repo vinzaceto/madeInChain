@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
     
     
-    
+    weak var timer: Timer?
 
     @IBOutlet weak var totalView: InfoSectionXibController!
     @IBOutlet weak var lineChart: LineChart!
@@ -21,9 +21,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
-    var walletsList:[WalletCellData]!
+    var walletsList:[Wallet]!
+    var walletsBalancesList:[WalletBalance] = []
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         walletsList = []
@@ -39,8 +41,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         lineChart.clipsToBounds = false
         self.view.bringSubview(toFront: collectionView!)
         
-        getChartData()
-        
         collectionView?.layer.cornerRadius = 6
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
         collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28
@@ -55,130 +55,101 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.cardCollectionViewLayout?.cardHeight = 340
         }
         
+        updateBTCValue()
+        getChartData()
+        
         loadWallets()
-        
-    }
-    
-    func getChartData()
-    {
-        loadingLabel = UILabel.init(frame: CGRect.init(x: 0, y: 38, width: lineChart.frame.size.width, height: lineChart.frame.size.height-50))
-        loadingLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        loadingLabel.text = "Loading chart data..."
-        loadingLabel.textColor = UIColor.lightText
-        loadingLabel.font = UIFont.systemFont(ofSize: 28)
-        loadingLabel.textAlignment = .center
-        lineChart.addSubview(loadingLabel)
-        
-        let connection = DataConnections.init()
-        connection.getBitcoinChartData
-            {
-                (result) in
-                
-                switch result
-                {
-                case .success(let chartData):
-                    self.parseChartData(chartData: chartData.data)
-                    
-                case .failure(let error):
-                    print("no chart data")
-                }
-        }
-    }
-    
-    func parseChartData(chartData:[ChartData])
-    {
-        print(chartData)
-        
-        var result: [PointEntry] = []
-        for data in chartData
-        {
-            let calendar = Calendar.current
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
-            let d = dateFormatter.date (from: data.date)
-            let date = "\(calendar.component(.month, from: d!))-\(calendar.component(.day, from: d!))"
-            let float = Float(data.closingprice)
-            result.append(PointEntry(value: Int(float!), label: date))
-        }
+        loadBalance()
 
-        lineChart.dataEntries = result
-        lineChart.isCurved = true
-        
-        perform(#selector(removeLoadingView), with: nil, afterDelay: 2)
-    }
-    
-   @objc func removeLoadingView()
-    {
-        loadingLabel.removeFromSuperview()
+        startTimer()
     }
     
     func loadWallets()
     {
+        walletsList = []
         let walletsKeychain = WalletsDatabase.init()
-        let walletsList = walletsKeychain.getAllWallets()
-        parseWallets(wallets: walletsList)
+        walletsList = walletsKeychain.getAllWallets()
     }
     
-    func parseWallets(wallets:[Wallet])
+    func startTimer()
     {
-        //print("saved wallets : \(walletsList)")
-        
+        timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
+        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
+        {
+            [weak self] _ in
+            self?.loadBalance()
+            self?.updateBTCValue()
+        }
+    }
+    
+    func loadBalance()
+    {
         var total:BTCAmount = 0
+        walletsBalancesList = []
         
-        // check balance
-        for w in wallets
+        for wallet in walletsList
         {
             let testnet = BTCTestnetInfo.init()
-            let balance = testnet.getWalletBalance(address: w.address)
-            let walletCellData = WalletCellData.init(label: w.label, address: w.address, privateKey: w.privatekey, balance: balance!)
-            walletsList.append(walletCellData)
-            total = total + (balance?.final_balance)!
-            print(balance)
+            guard let balance = testnet.getWalletBalance(address: wallet.address) else {return}
+            walletsBalancesList.append(balance)
+            total = total + balance.final_balance
         }
-        
-        totalView.updateWith(total: total)
-        
-        self.collectionView?.reloadData()
+        totalView.updateBTCTotal(total: total)
     }
     
-    func addButtonPressed()
+    func getBTCBalanceByAddress(address:String) -> WalletBalance?
     {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let addWallet = storyboard.instantiateViewController(withIdentifier: "AWController") as! AddWalletViewController
-        addWallet.delegate = self
-        let navigationVC = UINavigationController.init(rootViewController: addWallet)
-        present(navigationVC, animated: true, completion: nil)
-        self.cardCollectionViewLayout?.unrevealCard()
-    }
-    
-    func scanButtonPressed()
-    {
-        print("quick import button pressed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let quickImport = storyboard.instantiateViewController(withIdentifier: "QIController") as! QuickImportViewController
-        let navigationVC = UINavigationController(rootViewController: quickImport)
-        present(navigationVC, animated: true, completion: nil)
-    }
-    
-    func walletAdded(success: Bool)
-    {
-        if success == true
+        for balance in walletsBalancesList
         {
-            print("reload data")
-            loadWallets()
-            self.collectionView?.reloadData()
+            if balance.address == address
+            {
+                return balance
+            }
         }
+        return nil
     }
+    
+    func getUSDBalanceByAddress(address:String) -> String?
+    {
+        for balance in walletsBalancesList
+        {
+            if balance.address == address
+            {
+                let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+                let amount = formatter?.string(fromAmount: balance.final_balance)
+                guard let totalBTCAmount = Double(amount!) else { return nil }
+                let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
+                return formattedBalance
+            }
+        }
+        return nil
+    }
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    //
+    // MARK: COLLECTION VIEW DELEGATE METHODS
+    //
     
     func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willRevealCardAtIndex index: Int) {
-        if let cell = self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? WalletCell {
+        if (self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? WalletCell) != nil {
             //cell.cardCollectionViewLayout = self.cardCollectionViewLayout
             //cell.cardIsRevealed(true)
         }
     }
     
     func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willUnrevealCardAtIndex index: Int) {
-        if let cell = self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? WalletCell {
+        if (self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? WalletCell) != nil {
             //cell.cardCollectionViewLayout = self.cardCollectionViewLayout
             //cell.cardIsRevealed(false)
         }
@@ -208,14 +179,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 cell.headerImage.tintColor = UIColor.darkGray
                 cell.iconImage.image = UIImage.init(named: "done")
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
-                cell.addressLabel.text = walletsList[indexPath.row-1].address
-                let satoshi:BTCAmount = walletsList[indexPath.row-1].balance.final_balance
-                let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
-                let amount = formatter?.string(fromAmount: satoshi)
-                cell.amountLabel.text = amount
-                cell.currencyAmount.text = "10,00 $"
+                let address = walletsList[indexPath.row-1].address
+                cell.addressLabel.text = address
+                cell.amountLabel.text = "--"
+                cell.currencyAmount.text = "--"
                 cell.cardCollectionViewLayout = cardCollectionViewLayout
                 cell.delegate = self
+                cell.updateBalance()
+                cell.updateCurrencyPrice()
+                cell.startTimer()
                 return cell
                 
             }
@@ -226,13 +198,34 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.cardCollectionViewLayout?.revealCardAt(index: indexPath.item)
     }
     
-    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    
+    
+    //
+    // MARK: NEW WALLET CELL BUTTONS
+    //
+    
+    func addButtonPressed()
     {
-        //let tempItem = self.cardArray[sourceIndexPath.item]
-        //self.cardArray.remove(at: sourceIndexPath.item)
-        //self.cardArray.insert(tempItem, at: destinationIndexPath.item)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let addWallet = storyboard.instantiateViewController(withIdentifier: "AWController") as! AddWalletViewController
+        addWallet.delegate = self
+        let navigationVC = UINavigationController.init(rootViewController: addWallet)
+        present(navigationVC, animated: true, completion: nil)
+        self.cardCollectionViewLayout?.unrevealCard()
     }
     
+    func scanButtonPressed()
+    {
+        print("quick import button pressed")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let quickImport = storyboard.instantiateViewController(withIdentifier: "QIController") as! QuickImportViewController
+        let navigationVC = UINavigationController(rootViewController: quickImport)
+        present(navigationVC, animated: true, completion: nil)
+    }
+    
+    //
+    // WALLET CELL BUTTONS
+    //
     
     func makeAPaymentButtonPressed(walletCell:WalletCell)
     {
@@ -289,13 +282,31 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.cardCollectionViewLayout?.flipRevealedCardBack()
     }
 
-    //TODO
     func unflipAndRemove(address:String)
     {
         print("remove address : \(address)")
         self.cardCollectionViewLayout?.unrevealRevealedCardAction()
         removeWallet(address: address)
     }
+    
+    
+    
+    
+    
+    //
+    // MARK: WALLET OPERATIONS
+    //
+    
+    func walletAdded(success: Bool)
+    {
+        if success == true
+        {
+            print("reload data")
+            loadWallets()
+            self.collectionView?.reloadData()
+        }
+    }
+    
     
     func removeWallet(address:String)
     {
@@ -315,6 +326,88 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 return
             }
             print("remove address failed")
+        }
+    }
+    
+    
+    
+    
+    //
+    // MARK: CHART DATA LOADING
+    //
+    
+    func getChartData()
+    {
+        loadingLabel = UILabel.init(frame: CGRect.init(x: 0, y: 38, width: lineChart.frame.size.width, height: lineChart.frame.size.height-50))
+        loadingLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        loadingLabel.text = "Loading chart data..."
+        loadingLabel.textColor = UIColor.lightText
+        loadingLabel.font = UIFont.systemFont(ofSize: 28)
+        loadingLabel.textAlignment = .center
+        lineChart.addSubview(loadingLabel)
+        
+        let connection = DataConnections.init()
+        connection.getBitcoinChartData
+            {
+                (result) in
+                
+                switch result
+                {
+                case .success(let chartData):
+                    self.parseChartData(chartData: chartData.data)
+                    
+                case .failure(let error):
+                    print("no chart data")
+                }
+        }
+    }
+    
+    func parseChartData(chartData:[ChartData])
+    {
+        print(chartData)
+        
+        var result: [PointEntry] = []
+        for data in chartData
+        {
+            let calendar = Calendar.current
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss"
+            let d = dateFormatter.date (from: data.date)
+            let date = "\(calendar.component(.month, from: d!))-\(calendar.component(.day, from: d!))"
+            let float = Float(data.closingprice)
+            result.append(PointEntry(value: Int(float!), label: date))
+        }
+        
+        lineChart.dataEntries = result
+        lineChart.isCurved = true
+        
+        perform(#selector(removeLoadingView), with: nil, afterDelay: 2)
+    }
+    
+    @objc func removeLoadingView()
+    {
+        loadingLabel.removeFromSuperview()
+    }
+    
+    //
+    // MARK: UPDATE BTC PRICE 
+    //
+    
+    func updateBTCValue()
+    {
+        let dataConnection = DataConnections()
+        dataConnection.getBitcoinValue(currency: Props.btcUsd) { (result) in
+            switch result
+            {
+            case .success(let posts):
+                
+                guard let btcValue = Double(posts.last) else { return }
+                self.totalView.updateBTCPrice(btcPrice: btcValue)
+                
+            case .failure(let error):
+                
+                print("No connection \(error.localizedDescription)")
+            }
         }
     }
 }

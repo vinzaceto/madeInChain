@@ -32,14 +32,7 @@ struct WalletBalance:Codable
     let total_received:BTCAmount
     let total_sent:BTCAmount
     let final_balance:BTCAmount
-    let txs:[BTCTx]
 }
-
-struct BTCTx:Codable
-{
-    
-}
-
 
 class BTCTestnetInfo: NSObject
 {    

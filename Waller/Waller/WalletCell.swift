@@ -18,10 +18,14 @@ protocol WalletCellDelegate
     
     func addButtonPressed()
     func scanButtonPressed()
+    
+    func getBTCBalanceByAddress(address:String) -> WalletBalance?
+    func getUSDBalanceByAddress(address:String) -> String?
 }
 
 class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewDataSource
 {
+    var balance:WalletBalance!
     var magneticBand:UIImageView!
     var headerImage:UIImageView!
     var iconImage:UIImageView!
@@ -31,6 +35,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     var currencyAmount:UILabel!
     var delegate:WalletCellDelegate!
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
+    weak var timer: Timer?
 
     override func awakeFromNib()
     {
@@ -83,7 +88,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         nameLabel.font = UIFont.systemFont(ofSize: 24)
         self.addSubview(nameLabel)
         
-        addressLabel = UILabel.init(frame: CGRect.init(x: 10, y: 80, width: viewWidth-20, height: 20))
+        addressLabel = UILabel.init(frame: CGRect.init(x: 10, y: 90, width: viewWidth-20, height: 20))
         addressLabel.backgroundColor = UIColor.clear
         addressLabel.adjustsFontSizeToFitWidth = true
         self.addSubview(addressLabel)
@@ -196,6 +201,33 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         print("showQRCodeButtonPressed")
         guard let _ = delegate?.showQRCodeButtonPressed(walletCell: self) else
         {return}
+    }
+    
+    func startTimer()
+    {
+        timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
+        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
+        {
+            [weak self] _ in
+            self?.updateBalance()
+            self?.updateCurrencyPrice()
+        }
+    }
+    
+    func updateBalance()
+    {
+        print("Updating balance for address : \(String(describing: addressLabel.text))")
+        guard let balance = delegate.getBTCBalanceByAddress(address: addressLabel.text!) else {return}
+        let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+        let amount = formatter?.string(fromAmount: balance.final_balance)
+        self.amountLabel.text = amount
+        print(balance)
+    }
+    
+    func updateCurrencyPrice()
+    {
+        guard let btcPrice = delegate.getUSDBalanceByAddress(address: addressLabel.text!) else {return}
+        self.currencyAmount.text = btcPrice
     }
     
 }
