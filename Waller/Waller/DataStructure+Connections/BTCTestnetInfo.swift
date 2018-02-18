@@ -32,14 +32,33 @@ struct WalletBalance:Codable
     let total_received:BTCAmount
     let total_sent:BTCAmount
     let final_balance:BTCAmount
-    let txs:[BTCTx]
+    let txs:[TXs]
 }
 
-struct BTCTx:Codable
+struct TXs:Codable
 {
-    
+    let inputs:[TXin]
+    let out:[TXout]
+    let time:UInt32
 }
 
+struct TXin:Codable
+{
+    let sequence:UInt32
+    let prev_out:TXout
+    let script:String
+}
+
+struct TXout:Codable
+{
+    let spent:Bool
+    let tx_index:UInt32
+    let type:Int
+    let addr:String
+    let value:BTCAmount
+    let n:UInt32
+    let script:String
+}
 
 class BTCTestnetInfo: NSObject
 {    

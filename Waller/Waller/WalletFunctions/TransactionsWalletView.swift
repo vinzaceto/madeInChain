@@ -68,6 +68,8 @@ class TransactionsWalletView: UIView, UITableViewDelegate, UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoTransactionCell", for: indexPath) as! NoTransactionsCell
             cell.awakeFromNib()
             cell.backgroundColor = UIColor.clear
+            cell.infoLabel.frame.size.height = self.frame.size.height - 50
+            cell.infoLabel.text = "No transactions found for this wallet, all the transactions for this wallet will be shown here"
             return cell
         }
         
