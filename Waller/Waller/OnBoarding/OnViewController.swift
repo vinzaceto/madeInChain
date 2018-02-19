@@ -23,7 +23,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     let gradientView:GradientView = GradientView()
     
     @IBAction func checkBoxButton(_ sender: Any){
-
+        if checkBoxButton2.isChecked == false {
         self.checkBoxButton2.alpha = 0
         self.textView2.alpha = 0
         
@@ -37,11 +37,14 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
             UIView.animate(withDuration: 1, animations: {
             }, completion: nil)
         }
+        } else {
+            startButton.isHidden = true
+        }
     }
     
     @IBAction func checkBoxButton2(_ sender: Any){
         self.startButton.alpha = 0
-        
+        if checkBoxButton2.isChecked == false && startButton.isHidden == true {
         UIView.animate(withDuration: 0.4, animations: {
             self.view.addSubview(self.startButton)
             self.startButton.alpha = 1
@@ -50,6 +53,10 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
             }, completion: nil)
         }
         startButton.isHidden = false
+        } else {
+            startButton.isHidden = true
+        }
+        
     }
     
     @IBOutlet weak var textView: UITextView!
