@@ -18,7 +18,12 @@ class InfoSectionXibController: UIView {
     @IBOutlet weak var currentBTCvalue: UILabel!
     @IBOutlet weak var currentAmount: UILabel!
     @IBOutlet weak var currentBtcAmount: UILabel!
-
+    
+    @IBOutlet weak var currentCurrencyLabel: UILabel!
+    @IBOutlet weak var currentAmountLabel: UILabel!
+    @IBOutlet weak var currentBTCvalueLabel: UILabel!
+    @IBOutlet weak var currentBtcAmountLabel: UILabel!
+    
     var contentView: UIView?
     @IBInspectable var nibName: String?
 
@@ -34,6 +39,29 @@ class InfoSectionXibController: UIView {
         }
         */
         self.currentBTCvalue.text = "--"
+        
+        print("COLOR SCHEMA CLEAR: \(Props.colorSchemaClear)")
+        if Props.colorSchemaClear {
+            currentAmountLabel.textColor = UIColor.black
+            currentBTCvalueLabel.textColor = UIColor.black
+            currentCurrencyLabel.textColor = UIColor.black
+            currentBtcAmountLabel.textColor = UIColor.black
+            
+            currentAmount.textColor = UIColor.black
+            currentBTCvalue.textColor = UIColor.black
+            currentCurrancy.textColor = UIColor.black
+            currentBtcAmount.textColor = UIColor.black
+        } else {
+            currentAmountLabel.textColor = UIColor.white
+            currentBTCvalueLabel.textColor = UIColor.white
+            currentCurrencyLabel.textColor = UIColor.white
+            currentBtcAmountLabel.textColor = UIColor.white
+            
+            currentAmount.textColor = UIColor.white
+            currentBTCvalue.textColor = UIColor.white
+            currentCurrancy.textColor = UIColor.white
+            currentBtcAmount.textColor = UIColor.white
+        }
     }
 
     func xibSetup() {
@@ -76,7 +104,7 @@ class InfoSectionXibController: UIView {
     
     func updateBTCTotal(total:BTCAmount)
     {
-        print("totallo : \(total)")
+        print("totale : \(total)")
         let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
         let amount = formatter?.string(fromAmount: total)
         guard let totalBTCAmount = Double(amount!) else { return }
