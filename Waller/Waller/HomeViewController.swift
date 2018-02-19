@@ -257,12 +257,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 cell.delegate = self
                 
                 let dashedBorder = CAShapeLayer()
-                dashedBorder.strokeColor = UIColor.black.cgColor
-                dashedBorder.lineDashPattern = [4, 4]
+                dashedBorder.strokeColor = UIColor.iosBlueColor.cgColor
+                dashedBorder.lineDashPattern = [8, 6]
                 dashedBorder.frame = cell.bounds
                 dashedBorder.cornerRadius = 6
                 dashedBorder.masksToBounds = true
                 dashedBorder.fillColor = nil
+                dashedBorder.lineWidth = 5
                 dashedBorder.path = UIBezierPath(rect: cell.bounds).cgPath
                 cell.layer.addSublayer(dashedBorder)
                 cell.clipsToBounds = true
