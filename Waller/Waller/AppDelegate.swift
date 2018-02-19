@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let hasBeenSeen:Bool = UserDefaults.standard.bool(forKey: Props.hasBeenSeen)
         
-        if hasBeenSeen == true
+        if hasBeenSeen == false
         {
-            print("showing onboarding")
+            print("showing onborarding")
             let storyboard = UIStoryboard(name: "OnBoarding", bundle: nil)
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "onBoardingPWC") as! OnBoardingPageViewController
             initialViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
