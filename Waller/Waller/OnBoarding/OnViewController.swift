@@ -59,7 +59,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
 
     @IBAction func startButton(_ sender: Any) {
         performSegue(withIdentifier: "MainSB", sender: self)
-        UserDefaults.standard.set(false, forKey: Props.hasBeenSeen)
+        UserDefaults.standard.set(true, forKey: Props.hasBeenSeen)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
