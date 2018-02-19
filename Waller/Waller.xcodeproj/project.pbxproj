@@ -259,6 +259,9 @@
 		74B76DA2203429B100E1C6F3 /* DataConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConnections.swift; sourceTree = "<group>"; };
 		74B76DE620347D7100E1C6F3 /* InfoSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoSection.xib; sourceTree = "<group>"; };
 		74B76DE92034846600E1C6F3 /* InfoSectionXibController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSectionXibController.swift; sourceTree = "<group>"; };
+		74BDE772203AD28B005A7E81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OnBoarding.strings; sourceTree = "<group>"; };
+		74BDE773203AD28C005A7E81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
+		74BDE774203AD28C005A7E81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		74C6FB872037163A009B92CA /* MMSlidingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
 		FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waller.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -746,6 +749,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = 61294A602024C7D0009F9886;
 			productRefGroup = 61294A6A2024C7D0009F9886 /* Products */;
@@ -953,6 +957,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				24365669202C60B200E33A6E /* Base */,
+				74BDE773203AD28C005A7E81 /* it */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -969,6 +974,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				61294A792024C7D0009F9886 /* Base */,
+				74BDE774203AD28C005A7E81 /* it */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -977,6 +983,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				61B6285020323D4300EE6ABB /* Base */,
+				74BDE772203AD28B005A7E81 /* it */,
 			);
 			name = OnBoarding.storyboard;
 			sourceTree = "<group>";
@@ -988,6 +995,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1045,6 +1053,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

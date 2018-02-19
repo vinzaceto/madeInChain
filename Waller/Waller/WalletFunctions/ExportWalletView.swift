@@ -11,8 +11,8 @@ import UIKit
 enum ExportType
 {
     case iCloud
-    case PDFtoFile
-    case PDFtoMnemonic
+    case PDFFile
+    case Text
 }
 
 class ExportWalletView: UIView, UITextFieldDelegate
@@ -27,8 +27,8 @@ class ExportWalletView: UIView, UITextFieldDelegate
     var passwordField:PWTextField!
     var passTemporaryText:String = ""
     var temporaryPlaceholder:NSAttributedString!
-    var mnemonicWrapper:UIView!
-    var mnemonicLabel:UITextView!
+    var textWrapper:UIView!
+    var privateKeyLabel:UITextView!
     
     let decryptButton = UIButton.init(type: .roundedRect)
     let backButton = UIButton.init(type: .roundedRect)
@@ -83,14 +83,14 @@ class ExportWalletView: UIView, UITextFieldDelegate
         exportOnFile.setTitle("export as PDF on File", for: .normal)
         typeWrapper.addSubview(exportOnFile)
         
-        let exportByMnemonic = UIButton.init(type: .roundedRect)
-        exportByMnemonic.frame = CGRect.init(x: (viewWidth-160)/2, y: 250, width: 160, height: 35)
-        exportByMnemonic.addTarget(self, action: #selector(exportByMnemonicPressed), for: .touchUpInside)
-        exportByMnemonic.layer.borderWidth = 2
-        exportByMnemonic.layer.borderColor = UIColor.gray.cgColor
-        exportByMnemonic.layer.cornerRadius = 6
-        exportByMnemonic.setTitle("export as Mnemonic", for: .normal)
-        typeWrapper.addSubview(exportByMnemonic)
+        let exportAsText = UIButton.init(type: .roundedRect)
+        exportAsText.frame = CGRect.init(x: (viewWidth-160)/2, y: 250, width: 160, height: 35)
+        exportAsText.addTarget(self, action: #selector(exportByFilePressed), for: .touchUpInside)
+        exportAsText.layer.borderWidth = 2
+        exportAsText.layer.borderColor = UIColor.gray.cgColor
+        exportAsText.layer.cornerRadius = 6
+        exportAsText.setTitle("export as Text", for: .normal)
+        typeWrapper.addSubview(exportAsText)
         
         passwordWrapper = UIView.init(frame: CGRect.init(x: viewWidth, y: 0, width: viewWidth, height: 340))
         self.addSubview(passwordWrapper)
@@ -116,16 +116,25 @@ class ExportWalletView: UIView, UITextFieldDelegate
         decryptButton.isEnabled = false
         passwordWrapper.addSubview(decryptButton)
         
+        textWrapper = UIView.init(frame: CGRect.init(x: viewWidth, y: 0, width: viewWidth, height: 340))
+        self.addSubview(textWrapper)
         
-        mnemonicWrapper = UIView.init(frame: CGRect.init(x: viewWidth, y: 0, width: viewWidth, height: 340))
-        self.addSubview(mnemonicWrapper)
+        let infoLabel3 = UILabel.init(frame: CGRect.init(x: 30, y: 60, width: viewWidth - 60, height: 40))
+        infoLabel3.backgroundColor = UIColor.clear
+        infoLabel3.text = "This is the private key of you wallet, keep it in a safe place."
+        infoLabel3.adjustsFontSizeToFitWidth = true
+        infoLabel3.textColor = UIColor.lightGray
+        infoLabel3.textAlignment = .center
+        infoLabel3.numberOfLines = 0
+        textWrapper.addSubview(infoLabel3)
         
-        mnemonicLabel = UITextView.init(frame: CGRect.init(x: (viewWidth-260)/2, y: 80, width: 260, height: 140))
-        mnemonicLabel.layer.cornerRadius = 6
-        mnemonicLabel.backgroundColor = UIColor.darkGray
-        mnemonicLabel.textColor = UIColor.lightText
-        mnemonicLabel.isUserInteractionEnabled = false
-        mnemonicWrapper.addSubview(mnemonicLabel)
+        privateKeyLabel = UITextView.init(frame: CGRect.init(x: (viewWidth-260)/2, y: 120, width: 260, height: 140))
+        privateKeyLabel.layer.cornerRadius = 6
+        privateKeyLabel.backgroundColor = UIColor.darkGray
+        privateKeyLabel.textColor = UIColor.lightText
+        privateKeyLabel.font = UIFont.systemFont(ofSize: 22)
+        privateKeyLabel.allowsEditingTextAttributes = false
+        textWrapper.addSubview(privateKeyLabel)
         
         backButton.frame = CGRect.init(x: 10, y: 10, width: 50, height: 25)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
@@ -189,6 +198,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
     {
         backButton.isHidden = false
         let viewWidth = UIScreen.main.bounds.width - 30
+        passwordField.textField.becomeFirstResponder()
         UIView.animate(withDuration: 0.5)
         {
             self.typeWrapper.frame.origin.x = -viewWidth
@@ -196,7 +206,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
         }
     }
     
-    func goToMnemonicView()
+    func goToTextView()
     {
         let viewWidth = UIScreen.main.bounds.width - 30
         backButton.isHidden = true
@@ -205,7 +215,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
         UIView.animate(withDuration: 0.5)
         {
             self.passwordWrapper.frame.origin.x = -viewWidth
-            self.mnemonicWrapper.frame.origin.x = 0
+            self.textWrapper.frame.origin.x = 0
         }
     }
     
@@ -224,23 +234,13 @@ class ExportWalletView: UIView, UITextFieldDelegate
     
     func export(unencryptedWallet:Wallet)
     {
-        if self.selectedExportType == ExportType.PDFtoMnemonic
+        if self.selectedExportType == ExportType.Text
         {
-            goToMnemonicView()
-            
-            /*
-            let mne = BTCKeychain.init
-            
-            let m = BTCKey.init(privateKey: unencryptedWallet.privatekey.data(using: .utf8))
-            
-            
-            let key = BTCKey.init(privateKey: )
-            key.mne
-            */
-            
-            mnemonicLabel.text = unencryptedWallet.privatekey
+            goToTextView()
+            privateKeyLabel.text = unencryptedWallet.privatekey
         }
-        else
+        
+        if self.selectedExportType == ExportType.PDFFile
         {
             guard let _ = delegate?.exportUsing(exportType: self.selectedExportType, unencryptedWallet:unencryptedWallet) else { return }
         }
@@ -280,13 +280,13 @@ class ExportWalletView: UIView, UITextFieldDelegate
     
     @objc func exportByFilePressed()
     {
-        selectedExportType = ExportType.PDFtoFile
+        selectedExportType = ExportType.PDFFile
         goToPassword()
     }
     
-    @objc func exportByMnemonicPressed()
+    @objc func exportAsTextPressed()
     {
-        selectedExportType = ExportType.PDFtoMnemonic
+        selectedExportType = ExportType.Text
         goToPassword()
     }
     
