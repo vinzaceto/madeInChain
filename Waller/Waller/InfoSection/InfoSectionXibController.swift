@@ -63,7 +63,7 @@ class InfoSectionXibController: UIView {
     func updateBTCPrice(btcPrice:Double)
     {
         let formatter = NumberFormatter()
-        formatter.locale = Locale.current
+        formatter.locale = Locale.init(identifier: "en_US")
         formatter.numberStyle = .currency
         
         self.btcValue = NSNumber.init(value: btcPrice)
@@ -76,6 +76,7 @@ class InfoSectionXibController: UIView {
     
     func updateBTCTotal(total:BTCAmount)
     {
+        print("totallo : \(total)")
         let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
         let amount = formatter?.string(fromAmount: total)
         guard let totalBTCAmount = Double(amount!) else { return }
@@ -87,14 +88,19 @@ class InfoSectionXibController: UIView {
     
     func updateCurrencyTotal()
     {
+        if self.btcTotalAmount.doubleValue == 0
+        {
+            self.currentAmount.text = "--"
+            return
+        }
         let formattedTotal = self.convertBTCAmountToCurrency(amount: self.btcTotalAmount.doubleValue)
         self.currentAmount.text = formattedTotal
     }
-    
+
     func convertBTCAmountToCurrency(amount:Double) -> String
     {
         let formatter = NumberFormatter()
-        formatter.locale = Locale.current
+        formatter.locale = Locale.init(identifier: "en_US")
         formatter.numberStyle = .currency
         
         let total = self.btcValue.doubleValue * amount

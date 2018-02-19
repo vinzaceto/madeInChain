@@ -104,6 +104,7 @@
 		664263FC202E709A0010828E /* UIColor+EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F9202E70990010828E /* UIColor+EMAlertController.swift */; };
 		664263FD202E709A0010828E /* EMAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263FA202E70990010828E /* EMAlertAction.swift */; };
 		664263FE202E709A0010828E /* EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263FB202E709A0010828E /* EMAlertController.swift */; };
+		668F43FA203925DD00D11520 /* PaymentWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668F43F9203925DD00D11520 /* PaymentWalletView.swift */; };
 		66904434202E3B050021BEE2 /* RNCryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66904433202E3B050021BEE2 /* RNCryptor.swift */; };
 		66904436202E450A0021BEE2 /* WalletsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66904435202E450A0021BEE2 /* WalletsDatabase.swift */; };
 		74435901202B320900CD1982 /* HFCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744358FD202B320900CD1982 /* HFCardCollectionViewCell.swift */; };
@@ -236,6 +237,7 @@
 		664263F9202E70990010828E /* UIColor+EMAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EMAlertController.swift"; sourceTree = "<group>"; };
 		664263FA202E70990010828E /* EMAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMAlertAction.swift; sourceTree = "<group>"; };
 		664263FB202E709A0010828E /* EMAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EMAlertController.swift; sourceTree = "<group>"; };
+		668F43F9203925DD00D11520 /* PaymentWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWalletView.swift; sourceTree = "<group>"; };
 		66904433202E3B050021BEE2 /* RNCryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNCryptor.swift; sourceTree = "<group>"; };
 		66904435202E450A0021BEE2 /* WalletsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsDatabase.swift; sourceTree = "<group>"; };
 		744358FD202B320900CD1982 /* HFCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HFCardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -459,10 +461,10 @@
 				61DDBDAA2029BCBE00F270DF /* Properties.swift */,
 				61294A6C2024C7D0009F9886 /* AppDelegate.swift */,
 				249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */,
-				619203612037389700443521 /* InfoSection */,
 				61F77D2C203593CB0013CBAE /* AddWalletCell.swift */,
 				74435905202B380A00CD1982 /* WalletCell.swift */,
 				613C648020335C4E000BC5A6 /* QuickImportViewController.swift */,
+				619203612037389700443521 /* InfoSection */,
 				61920363203738FB00443521 /* WalletFunctions */,
 				66098371202D276700639EE3 /* AddWallet */,
 				61B9D29F202B765000E22B0D /* TEST+GenerateWalletController.swift */,
@@ -522,6 +524,7 @@
 		61920363203738FB00443521 /* WalletFunctions */ = {
 			isa = PBXGroup;
 			children = (
+				668F43F9203925DD00D11520 /* PaymentWalletView.swift */,
 				612F16DB2035F23800F60746 /* TransactionsWalletView.swift */,
 				612F16DD2035F48700F60746 /* TransactionCell.swift */,
 				61CF5A9220364F0A00039D0B /* NoTransactionsCell.swift */,
@@ -936,6 +939,7 @@
 				610B1DEA202DB7B9005B1105 /* CoreDataObservable.swift in Sources */,
 				663065A3202FDF8F00DBD516 /* Protocols.swift in Sources */,
 				74B76DA3203429B100E1C6F3 /* DataConnections.swift in Sources */,
+				668F43FA203925DD00D11520 /* PaymentWalletView.swift in Sources */,
 				610B1DD4202DB7B9005B1105 /* RequestExtension.swift in Sources */,
 				6609836E202D0E7300639EE3 /* PWTextField.swift in Sources */,
 				61B6285520323D4300EE6ABB /* UIImgWithMask.swift in Sources */,

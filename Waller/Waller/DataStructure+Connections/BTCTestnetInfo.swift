@@ -110,12 +110,15 @@ class BTCTestnetInfo: NSObject
         semaphore.wait(timeout: .distantFuture)
         
         let reply = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
-        print(reply)
+        //print(reply)
+        
+        guard let d = data else { return nil }
         
         let decoder = JSONDecoder()
         do
         {
-            let decodedResponse = try decoder.decode(BTCUnspentRespose.self, from: data!)
+            let decodedResponse = try decoder.decode(BTCUnspentRespose.self, from: d)
+            
             return unspentOutputsForResponseData(data: decodedResponse.unspent_outputs)
         }
         catch
@@ -123,7 +126,6 @@ class BTCTestnetInfo: NSObject
             print("error converting data to JSON")
             return nil
         }
-        return nil
     }
     
     func unspentOutputsForResponseData(data:[BTCUtx]) -> [BTCTransactionOutput]?

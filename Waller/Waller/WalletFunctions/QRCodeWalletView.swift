@@ -12,7 +12,7 @@ protocol WalletFunctionDelegate
 {
     func unflipCard()
     func unflipAndRemove(address:String)
-    func exportUsing(exportType:ExportType)
+    func exportUsing(exportType: ExportType, unencryptedWallet:Wallet)
 }
 
 class QRCodeWalletView: UIView {
