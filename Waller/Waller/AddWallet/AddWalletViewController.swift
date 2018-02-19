@@ -154,7 +154,7 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         
         if addType == AddType.Import
         {
-            walletGenerator.importWallet(name: walletLabel, pass: pass, keychain: importedKeychain)
+            walletGenerator.importFullWallet(name: walletLabel, pass: pass, keychain: importedKeychain)
             {
                 (success, error) in
                 if success == true
@@ -219,7 +219,7 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     func importWallet(keychain:BTCKeychain,name:String,pass:String)
     {
         let walletGenerator = WalletsGenerator.init()
-        walletGenerator.importWallet(name: name, pass: pass, keychain: keychain)
+        walletGenerator.importFullWallet(name: name, pass: pass, keychain: keychain)
         {
             (success, error) in
             if success == true

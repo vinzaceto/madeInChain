@@ -85,7 +85,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
         
         let exportAsText = UIButton.init(type: .roundedRect)
         exportAsText.frame = CGRect.init(x: (viewWidth-160)/2, y: 250, width: 160, height: 35)
-        exportAsText.addTarget(self, action: #selector(exportByFilePressed), for: .touchUpInside)
+        exportAsText.addTarget(self, action: #selector(exportAsTextPressed), for: .touchUpInside)
         exportAsText.layer.borderWidth = 2
         exportAsText.layer.borderColor = UIColor.gray.cgColor
         exportAsText.layer.cornerRadius = 6
@@ -128,12 +128,13 @@ class ExportWalletView: UIView, UITextFieldDelegate
         infoLabel3.numberOfLines = 0
         textWrapper.addSubview(infoLabel3)
         
-        privateKeyLabel = UITextView.init(frame: CGRect.init(x: (viewWidth-260)/2, y: 120, width: 260, height: 140))
+        privateKeyLabel = UITextView.init(frame: CGRect.init(x: (viewWidth-280)/2, y: 120, width: 280, height: 200))
         privateKeyLabel.layer.cornerRadius = 6
         privateKeyLabel.backgroundColor = UIColor.darkGray
         privateKeyLabel.textColor = UIColor.lightText
-        privateKeyLabel.font = UIFont.systemFont(ofSize: 22)
+        privateKeyLabel.font = UIFont.systemFont(ofSize: 23)
         privateKeyLabel.allowsEditingTextAttributes = false
+        privateKeyLabel.isEditable = false
         textWrapper.addSubview(privateKeyLabel)
         
         backButton.frame = CGRect.init(x: 10, y: 10, width: 50, height: 25)
@@ -234,31 +235,23 @@ class ExportWalletView: UIView, UITextFieldDelegate
     
     func export(unencryptedWallet:Wallet)
     {
+        print(self.selectedExportType)
         if self.selectedExportType == ExportType.Text
         {
             goToTextView()
             privateKeyLabel.text = unencryptedWallet.privatekey
+            return
         }
         
         if self.selectedExportType == ExportType.PDFFile
         {
-            guard let _ = delegate?.exportUsing(exportType: self.selectedExportType, unencryptedWallet:unencryptedWallet) else { return }
+            passwordField.textField.resignFirstResponder()
+            guard let _ = delegate?.exportWalletAsPDF(unencryptedWallet: unencryptedWallet) else {return}
         }
     }
     
-    /*
- 
- mnemonic : Optional([garlic, stuff, share, candy, neutral, elephant, green, vanish, flower, giraffe, ribbon, skate])
-     
- address : Optional(<BTCPublicKeyAddressTestnet: n2QH9s3K2hrcAjJ5og9heuenBtiVJiKCbX>)
-     
- pubKey : Optional("xpub661MyMwAqRbcEmkHJa9kGSyC6AFe5ECYkQcbVwZhHJLnxGUAHoeTsNDBFtvkH47Nf9bvR1qCQokQjQtDJLT79JNMD9wo8FhMdpbgA1Rfuhv")
-     
- privKey : Optional("xprv9s21ZrQH143K2HfpCYcjuK2TY8R9fmUhPBgzhZA5ixop5U91kGLDKZthQfFMHTRxmhj4SgEXh5dQf9iCwR3ArA15S3tmymauWHMaqBVvqPy")
-     
- encrypted PrivateKey : AwEp/miXCvs5Zt3dJxUzBBkD/0DZEkQX0ymvJkMsK7iiCYU4CiqtuKtVIaClw1iVlIYFPfaNt+ZIIrBZq71+5hiNxO2DbhLO8oqwVqw306NuXJhlvHZ/jgTC5d8Uc09t91GbiPGcyR75AvzJYpaeOTVjocaSlCp16CAWeHCbwTIs1qMKk+O/tK0z5sz6PDvgyVgS+PIb0EGBlNbVsIy9o3XUKmTScgrUcqLfMTaDhaBqzQ==
- 
- */
+
+    
     
     
     

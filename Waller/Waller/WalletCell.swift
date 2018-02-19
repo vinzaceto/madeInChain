@@ -171,11 +171,15 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     
     func showUnconfirmedLabel()
     {
-        unconfirmedAmountLabel = UILabel.init(frame: CGRect.init(x: amountLabel.frame.origin.x, y: amountLabel.frame.origin.y+25, width: amountLabel.frame.size.width, height: 15))
+        amountLabel.clipsToBounds = false
+        
+        if unconfirmedAmountLabel != nil { unconfirmedAmountLabel.removeFromSuperview() }
+        unconfirmedAmountLabel = UILabel.init(frame: CGRect.init(x: 0, y: 25, width: amountLabel.frame.size.width, height: 15))
         unconfirmedAmountLabel.backgroundColor = UIColor.clear
         unconfirmedAmountLabel.textAlignment = .right
         unconfirmedAmountLabel.textColor = UIColor.orange
         unconfirmedAmountLabel.font = UIFont.systemFont(ofSize: 13)
+        amountLabel.addSubview(unconfirmedAmountLabel)
         currencyAmount.frame.origin.y = 80
     }
     

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if hasBeenSeen == true
         {
-            print("showing onboarding")
+            print("showing onborarding")
             let storyboard = UIStoryboard(name: "OnBoarding", bundle: nil)
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "onBoardingPWC") as! OnBoardingPageViewController
             initialViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext

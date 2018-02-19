@@ -41,17 +41,13 @@ class WalletsGenerator: NSObject
         return
     }
     
-    func importWallet(name:String, pass:String, keychain:BTCKeychain, completionHandler: @escaping (Bool, String?) -> Void)
+    func importFullWallet(name:String, pass:String, keychain:BTCKeychain, completionHandler: @escaping (Bool, String?) -> Void)
     {
-        print("importing wallet with name :  \(name) and pass : \(pass)")
+        print("importing full wallet with name :  \(name) and pass : \(pass)")
         
-        /*
         // Private key encryption
         let encryptedPrivateKey = encrypt(privateKey:keychain.extendedPrivateKey, pass: pass)
         print("encrypted PrivateKey : \(encryptedPrivateKey.base64EncodedString())")
-        
-        
-        let wallet = Wallet.init(label: name, address: keychain.key.addressTestnet, privatekey: encryptedPrivateKey.base64EncodedString(), mnemonic: e)
         
         let wallet = Wallet.init(label: name, address: keychain.key.addressTestnet.string, privatekey: encryptedPrivateKey.base64EncodedString())
     
@@ -64,7 +60,23 @@ class WalletsGenerator: NSObject
         }
         
         completionHandler(true, nil)
-        */
+    }
+    
+    func importWatchOnly(name:String, address:String, completionHandler: @escaping (Bool, String?) -> Void)
+    {
+        print("importing watch only wallet with name :  \(name) and pass : \(address)")
+        
+        let wallet = Wallet.init(label: name, address: address, privatekey:nil)
+        
+        let walletsKeychain = WalletsDatabase.init()
+        walletsKeychain.saveWallet(wallet: wallet)
+        {
+            (success, error) in
+            print(error)
+            completionHandler(false, nil)
+        }
+        
+        completionHandler(true, nil)
     }
     
     func generateWallet(name:String, pass:String, completionHandler: @escaping (Bool, String?) -> Void)

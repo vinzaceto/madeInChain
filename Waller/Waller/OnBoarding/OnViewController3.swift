@@ -26,7 +26,6 @@ class OnViewController3: UIViewController, UIViewControllerTransitioningDelegate
     
     @IBAction func startButton(_ sender: Any) {
         performSegue(withIdentifier: "segueToMain", sender: self)
-        UserDefaults.standard.set(false, forKey: Props.hasBeenSeen)
     }
 
     
