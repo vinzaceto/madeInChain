@@ -247,7 +247,7 @@
                                 <color key="textColor" red="0.77179580930000002" green="0.94310325380000004" blue="0.87468731399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXJ-IF-KGY">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXJ-IF-KGY">
                                 <rect key="frame" x="16" y="162" width="343" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Create your wallet, send and receive cryptocurrency
@@ -275,6 +275,7 @@
                     <connections>
                         <outlet property="importingLabel" destination="zUO-7E-SAK" id="Nqe-7c-Lpe"/>
                         <outlet property="multisignLabel" destination="4tg-fu-taA" id="fa2-y6-sFB"/>
+                        <outlet property="subStandardCrypto" destination="OXJ-IF-KGY" id="iSr-Ze-95R"/>
                         <outlet property="subTitle" destination="xN1-9Z-Ce8" id="Dct-uH-voL"/>
                         <outlet property="titleLabel" destination="FZB-Od-LKe" id="VoI-N7-XzQ"/>
                     </connections>

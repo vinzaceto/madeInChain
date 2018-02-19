@@ -15,6 +15,7 @@ class OnViewController2: UIViewController {
     @IBOutlet weak var subTitle: UILabel!
     @IBOutlet weak var multisignLabel: UILabel!
     @IBOutlet weak var importingLabel: UILabel!
+    @IBOutlet weak var subStandardCrypto: UITextView!
     
     
         let gradientView:GradientView = GradientView()
@@ -33,6 +34,8 @@ class OnViewController2: UIViewController {
             self.view.addSubview(subTitle)
             self.view.addSubview(multisignLabel)
             self.view.addSubview(importingLabel)
+            self.view.addSubview(subStandardCrypto)
+
 
 
             
