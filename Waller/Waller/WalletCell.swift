@@ -82,7 +82,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         amountLabel.backgroundColor = UIColor.clear
         amountLabel.textAlignment = .right
         amountLabel.adjustsFontSizeToFitWidth = true
-        amountLabel.textColor = UIColor.darkGray
+        amountLabel.textColor = UIColor.black
         //amountLabel.shadowColor = UIColor.black
         //amountLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
         self.addSubview(amountLabel)
