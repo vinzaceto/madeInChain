@@ -53,8 +53,11 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1)
-        
+        if Props.colorSchemaClear {
+            self.backgroundColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1)
+        } else {
+            self.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
+        }
         let viewWidth = (UIScreen.main.bounds.width - 30)
 
         headerImage = UIImageView.init(frame: CGRect.init(x: (viewWidth-220)/2, y: 0, width: 220, height: 11))
@@ -217,7 +220,11 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoTransactionsCell", for: indexPath) as! NoTransactionsCell
             cell.awakeFromNib()
-            cell.backgroundColor = UIColor.clear
+            if Props.colorSchemaClear {
+                cell.backgroundColor = UIColor(red:1, green:0.8, blue:0, alpha:1)
+            } else {
+                cell.backgroundColor = UIColor.clear
+            }
             cell.infoLabel.frame.size.height = tableView.frame.size.height - 70
             cell.infoLabel.text = "No transactions found for this wallet, the latest 3 transactions for this wallet will be shown here"
             return cell
