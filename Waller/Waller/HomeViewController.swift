@@ -9,6 +9,8 @@
 import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
+ 
+    
     
     
     weak var timer: Timer?
@@ -21,8 +23,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
+    
     var walletsList:[Wallet]!
-    var walletsBalancesList:[WalletBalance] = []
+    var walletsBalancesList:[(address:String,unspent:[BTCTransactionOutput])] = []
 
     override func viewDidLoad()
     {
@@ -38,7 +41,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 
         lineChart.frame = CGRect.init(x: 10, y: 110, width: self.view.frame.size.width-20, height: 190)
         lineChart.layer.cornerRadius = 6
-        lineChart.clipsToBounds = false
+        lineChart.clipsToBounds = true
         self.view.bringSubview(toFront: collectionView!)
         
         collectionView?.layer.cornerRadius = 6
@@ -61,6 +64,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         loadWallets()
         loadBalance()
 
+        /*
+        loadUnspentOutputs()
+        */
+        
         startTimer()
     }
     
@@ -77,10 +84,61 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
         {
             [weak self] _ in
+            //self?.loadUnspentOutputs()
             self?.loadBalance()
             self?.updateBTCValue()
         }
     }
+    
+    func loadBalance()
+    {
+        walletsBalancesList = []
+        
+        var confirmedTotalBalance:BTCAmount = 0
+        for wallet in walletsList
+        {
+            let testnet = BTCTestnetInfo.init()
+            if let unspentOutputs = testnet.unspentOutputsWithAddress(address: wallet.address)
+            {
+                walletsBalancesList.append((address: wallet.address, unspent: unspentOutputs))
+                for output in unspentOutputs
+                {
+                    if output.confirmations >= 3
+                    {
+                        confirmedTotalBalance = confirmedTotalBalance + output.value
+                    }
+                }
+            }
+        }
+        totalView.updateBTCTotal(total: confirmedTotalBalance)
+    }
+    
+    func getTransactions()
+    {
+        
+    }
+    
+    func getOutputBalanceByAddress(address:String) -> [BTCTransactionOutput]?
+    {
+        for balance in walletsBalancesList
+        {
+            if balance.address == address
+            {
+                return balance.unspent
+            }
+        }
+        return nil
+    }
+    
+    func getUSDVAlueFromAmount(amount:String) -> String?
+    {
+        guard let totalBTCAmount = Double(amount) else { return nil }
+        if totalBTCAmount == 0{return "--"}
+        let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
+        return formattedBalance
+    }
+    
+    /*
     
     func loadBalance()
     {
@@ -95,6 +153,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             total = total + balance.final_balance
         }
         totalView.updateBTCTotal(total: total)
+    }
+    
+    func loadUnspentOutputs()
+    {
+        unspentOutputsList = []
+        for wallet in walletsList
+        {
+            let testnet = BTCTestnetInfo.init()
+            guard let unspentOutputs = testnet.unspentOutputsWithAddress(address: wallet.address) else {return}
+            unspentOutputsList.append((address: wallet.address, unspent: unspentOutputs))
+        }
     }
     
     func getBTCBalanceByAddress(address:String) -> WalletBalance?
@@ -126,9 +195,18 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         return nil
     }
     
-
-    
-    
+    func getUnspentOutputsAddress(address:String) -> [BTCTransactionOutput]?
+    {
+        for output in unspentOutputsList
+        {
+            if output.address == address
+            {
+                return output.unspent
+            }
+        }
+        return nil
+    }
+    */
     
     
     
@@ -180,12 +258,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 cell.headerImage.tintColor = UIColor.darkGray
                 cell.iconImage.image = UIImage.init(named: "done")
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
+                cell.addressPrivateKey = walletsList[indexPath.row-1].privatekey
                 let address = walletsList[indexPath.row-1].address
                 cell.addressLabel.text = address
-                cell.amountLabel.text = "--"
+                cell.amountLabel.text = "0"
                 cell.currencyAmount.text = "--"
                 cell.cardCollectionViewLayout = cardCollectionViewLayout
                 cell.delegate = self
+                //cell.updateUnspent()
                 cell.updateBalance()
                 cell.updateCurrencyPrice()
                 cell.startTimer()
@@ -230,9 +310,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     func makeAPaymentButtonPressed(walletCell:WalletCell)
     {
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
-        view.backgroundColor = UIColor.green
-        
+        let view = PaymentWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
+        view.delegate = self
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -247,6 +326,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = ExportWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
+        view.wallet = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -273,10 +353,79 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     }
     
-    func exportUsing(exportType: ExportType)
+    func exportUsing(exportType: ExportType, unencryptedWallet:Wallet)
     {
         print("export using \(exportType)")
+        
+        
+        PDFExport(unencryptedWallet:unencryptedWallet)
     }
+    
+    func PDFExport(unencryptedWallet:Wallet)
+    {
+        print("Generating PDF")
+        let v1 = UIView(frame: CGRect(x: 0.0,y: 0, width: 210, height: 297))
+        v1.backgroundColor = UIColor.lightGray
+
+        // Draw logo
+        let mod:CGFloat = 0.3
+        let logo = UIImageView.init(frame: CGRect.init(x: 10, y:10, width: 153*mod, height: 149*mod))
+        logo.image = UIImage.init(named: "LogoBig")
+        v1.addSubview(logo)
+        
+        // Draw private key as QRCode
+        let privKeyQRCode = BTCQRCode.image(for: unencryptedWallet.privatekey!, size: CGSize.init(width: 50, height: 50 ), scale: 10)
+        let privateKeyImageView = UIImageView.init(frame: CGRect.init(x: 10, y: logo.frame.size.height + 20, width: 50, height: 50))
+        privateKeyImageView.image = privKeyQRCode
+        v1.addSubview(privateKeyImageView)
+
+        // Draw private key label
+        let privateKeyLabel = UILabel.init(frame: CGRect.init(x: 10, y: privateKeyImageView.frame.origin.y+privateKeyImageView.frame.size.height+20, width: privateKeyImageView.frame.size.width, height: 10))
+        privateKeyLabel.text = unencryptedWallet.privatekey
+        privateKeyLabel.adjustsFontSizeToFitWidth = true
+        v1.addSubview(privateKeyLabel)
+        
+        //let dst = URL(fileURLWithPath: NSTemporaryDirectory().appending("sample1.pdf"))
+        /*
+        // outputs as Data
+        do
+        {
+            let data = try PDFGenerator.generated(by: [v1])
+            try data.write(to: dst, options: .atomic)
+        }
+        catch (let error)
+        {
+            print(error)
+        }
+        */
+        
+        // writes to Disk directly.
+        let dst = NSHomeDirectory() + "/sampleeee.pdf"
+        do
+        {
+            try PDFGenerator.generate([v1], to: dst)
+        }
+        catch (let error)
+        {
+            print(error)
+        }
+        openPDFViewer(dst)
+    }
+    
+    fileprivate func openPDFViewer(_ pdfPath: String)
+    {
+        let url = URL(fileURLWithPath: pdfPath)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pdfViewer = storyboard.instantiateViewController(withIdentifier: "PDFPreviewVC") as! PDFPreviewVC
+        pdfViewer.setupWithURL(url)
+        let navigationVC = UINavigationController.init(rootViewController: pdfViewer)
+        present(navigationVC, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
     
     func unflipCard()
     {
@@ -389,7 +538,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         loadingLabel.removeFromSuperview()
     }
-    
+
     //
     // MARK: UPDATE BTC PRICE 
     //

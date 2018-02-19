@@ -47,6 +47,7 @@ struct Transaction
     let input:Bool
     let value:BTCAmount
     let time:UInt32
+    let confirmations:UInt
 }
 
 struct BitstampValue : Codable

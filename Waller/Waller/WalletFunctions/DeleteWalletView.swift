@@ -47,7 +47,7 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         option.delegate = self
         self.addSubview(option)
         
-        deleteButton.frame = CGRect.init(x: (viewWidth-160)/2, y: y + 40, width: 160, height: 30)
+        deleteButton.frame = CGRect.init(x: (viewWidth-160)/2, y: y + 50, width: 160, height: 30)
         deleteButton.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
         deleteButton.center.x = self.center.x
         deleteButton.layer.borderWidth = 3
@@ -64,7 +64,7 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         slider.buttonColor = UIColor.gray
         slider.animationFinished()
         slider.delegate = self
-        self.addSubview(slider)
+        //self.addSubview(slider)
     }
     
     @objc func flipButtonPressed()
@@ -85,7 +85,9 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
     
     @objc func deleteButtonPressed()
     {
-        
+        guard let _ = delegate?.unflipAndRemove(address: address) else {
+            return
+        }
     }
     
     func buttonStatus(unlocked: Bool, sender: MMSlidingButton) {

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let hasBeenSeen:Bool = UserDefaults.standard.bool(forKey: Props.hasBeenSeen)
         
-        if hasBeenSeen == false
+        if hasBeenSeen == true
         {
             print("showing onboarding")
             let storyboard = UIStoryboard(name: "OnBoarding", bundle: nil)

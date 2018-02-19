@@ -12,6 +12,7 @@ class TransactionCell: UITableViewCell {
 
     var icon:UIImageView!
     var amountLabel:UILabel!
+    var confirmationsLabel:UILabel!
     var dateLabel:UILabel!
 
     override func awakeFromNib()
@@ -26,12 +27,21 @@ class TransactionCell: UITableViewCell {
         self.addSubview(icon)
         
         let aw = viewWidth - 25 - 10 - 5 - 55
-        amountLabel = UILabel.init(frame: CGRect.init(x: 40, y: 5, width: aw, height: 35))
+        amountLabel = UILabel.init(frame: CGRect.init(x: 40, y: 5, width: aw, height: 20))
         amountLabel.backgroundColor = UIColor.clear
         amountLabel.text = "+ 0.00000001"
         amountLabel.textAlignment = .center
         amountLabel.adjustsFontSizeToFitWidth = true
         self.addSubview(amountLabel)
+        
+        confirmationsLabel = UILabel.init(frame: CGRect.init(x: 45, y: 28, width: aw, height: 15))
+        confirmationsLabel.backgroundColor = UIColor.clear
+        confirmationsLabel.text = "0 confirms"
+        confirmationsLabel.textAlignment = .center
+        confirmationsLabel.textColor = UIColor.gray
+        //confirmationsLabel.adjustsFontSizeToFitWidth = true
+        confirmationsLabel.font = UIFont.systemFont(ofSize: 13)
+        self.addSubview(confirmationsLabel)
         
         dateLabel = UILabel.init(frame: CGRect.init(x: viewWidth - 40 - 5, y: 5, width: 40, height: 35))
         dateLabel.backgroundColor = UIColor.clear
