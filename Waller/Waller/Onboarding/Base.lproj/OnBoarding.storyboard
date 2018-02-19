@@ -26,7 +26,7 @@
                 <pageViewController storyboardIdentifier="onBoardingPWC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="MzT-9g-BJQ" customClass="OnBoardingPageViewController" customModule="Waller" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yF7-IN-Ozq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-53" y="-582"/>
+            <point key="canvasLocation" x="-791" y="-392"/>
         </scene>
         <!--Main-->
         <scene sceneID="PTx-x4-uxo">
@@ -45,7 +45,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-AF-ldS">
-                                <rect key="frame" x="54" y="537" width="266" height="50"/>
+                                <rect key="frame" x="54" y="577" width="266" height="50"/>
                                 <color key="backgroundColor" red="0.27866926790000002" green="0.61603480580000003" blue="0.5882150531" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dtz-AG-k9f"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="I understood thath my founds are safely stored in this device not in a company." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slS-Uz-tZN">
-                                <rect key="frame" x="108" y="161" width="212" height="137"/>
+                                <rect key="frame" x="123" y="161" width="212" height="137"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -74,13 +74,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWU-H4-Xkq" customClass="CheckBox" customModule="Waller" customModuleProvider="target">
-                                <rect key="frame" x="50" y="370" width="30" height="34"/>
+                                <rect key="frame" x="20" y="370" width="30" height="34"/>
                                 <connections>
                                     <action selector="checkBoxButton2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOB-Qy-6Yb"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7u-2E-wBf">
-                                <rect key="frame" x="108" y="316" width="212" height="212"/>
+                                <rect key="frame" x="123" y="316" width="212" height="212"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -114,7 +114,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-wt-fKX" customClass="CheckBox" customModule="Waller" customModuleProvider="target">
-                                <rect key="frame" x="50" y="201" width="30" height="34"/>
+                                <rect key="frame" x="20" y="201" width="30" height="34"/>
                                 <connections>
                                     <action selector="checkBoxButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hAo-rf-B9J"/>
                                 </connections>
@@ -123,23 +123,23 @@
                         <color key="backgroundColor" red="0.20784313725490194" green="0.29019607843137252" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rSv-AF-ldS" secondAttribute="bottom" constant="80" id="0yM-VL-4EG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rSv-AF-ldS" secondAttribute="bottom" constant="40" id="0yM-VL-4EG"/>
                             <constraint firstItem="iW4-EW-Qny" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="1Eu-w4-W32"/>
                             <constraint firstItem="slS-Uz-tZN" firstAttribute="top" secondItem="i5g-jf-qaO" secondAttribute="bottom" constant="51" id="1gt-NA-pUp"/>
                             <constraint firstItem="rSv-AF-ldS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="54" id="7yc-GY-S7J"/>
                             <constraint firstItem="1zx-wt-fKX" firstAttribute="top" secondItem="i5g-jf-qaO" secondAttribute="bottom" constant="91" id="Df0-QY-yKs"/>
-                            <constraint firstItem="1zx-wt-fKX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="GbM-Mo-53o"/>
+                            <constraint firstItem="1zx-wt-fKX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="GbM-Mo-53o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rSv-AF-ldS" secondAttribute="trailing" constant="55" id="JAj-98-ldd"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="slS-Uz-tZN" secondAttribute="trailing" constant="55" id="JPw-hM-cJt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="slS-Uz-tZN" secondAttribute="trailing" constant="40" id="JPw-hM-cJt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="i5g-jf-qaO" secondAttribute="trailing" constant="55" id="NOw-AO-3fK"/>
                             <constraint firstItem="e7u-2E-wBf" firstAttribute="top" secondItem="slS-Uz-tZN" secondAttribute="bottom" constant="18" id="R8h-8J-EPO"/>
                             <constraint firstItem="i5g-jf-qaO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="Rje-UX-jYy"/>
-                            <constraint firstItem="DWU-H4-Xkq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="ScG-Sc-5Lg"/>
+                            <constraint firstItem="DWU-H4-Xkq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ScG-Sc-5Lg"/>
                             <constraint firstItem="iW4-EW-Qny" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Sni-Al-RN4"/>
                             <constraint firstItem="DWU-H4-Xkq" firstAttribute="top" secondItem="1zx-wt-fKX" secondAttribute="bottom" constant="135" id="Ukm-BK-lZg"/>
                             <constraint firstItem="i5g-jf-qaO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="dA7-lQ-cr5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iW4-EW-Qny" secondAttribute="trailing" constant="55" id="eNO-ck-gky"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e7u-2E-wBf" secondAttribute="trailing" constant="55" id="h9W-fS-4lE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="e7u-2E-wBf" secondAttribute="trailing" constant="40" id="h9W-fS-4lE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -185,7 +185,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blockchain technology" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCA-ll-FJo">
-                                <rect key="frame" x="47" y="577" width="281" height="21.5"/>
+                                <rect key="frame" x="47" y="606" width="281" height="21"/>
                                 <fontDescription key="fontDescription" name="Rubik-Light" family="Rubik" pointSize="18"/>
                                 <color key="textColor" red="0.77179580930000002" green="0.94310325380000004" blue="0.87468731399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -195,16 +195,16 @@
                         <constraints>
                             <constraint firstItem="QPG-3F-O6l" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="47" id="5N6-aQ-ZGQ"/>
                             <constraint firstItem="4Cc-yP-sbb" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="87" id="7h3-eo-8YO"/>
+                            <constraint firstItem="CyO-9X-Akd" firstAttribute="bottom" secondItem="kCA-ll-FJo" secondAttribute="bottom" constant="40" id="8Uu-25-Lm2"/>
                             <constraint firstItem="f0e-sU-XRv" firstAttribute="top" secondItem="QPG-3F-O6l" secondAttribute="bottom" constant="63" id="ABT-mj-RF0"/>
+                            <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="kCA-ll-FJo" secondAttribute="trailing" constant="47" id="DuR-6l-yJG"/>
                             <constraint firstItem="4Cc-yP-sbb" firstAttribute="top" secondItem="CyO-9X-Akd" secondAttribute="top" constant="30" id="EhG-WO-A3S"/>
                             <constraint firstItem="f0e-sU-XRv" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" id="HS7-qw-Wns"/>
                             <constraint firstItem="QPG-3F-O6l" firstAttribute="top" secondItem="4Cc-yP-sbb" secondAttribute="bottom" constant="45" id="RXd-5p-JuS"/>
+                            <constraint firstItem="kCA-ll-FJo" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="47" id="b7Z-xc-EhG"/>
                             <constraint firstItem="f0e-sU-XRv" firstAttribute="trailing" secondItem="CyO-9X-Akd" secondAttribute="trailing" id="j6Z-Zj-u3n"/>
                             <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="QPG-3F-O6l" secondAttribute="trailing" constant="47" id="kcE-o7-OsR"/>
                             <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="4Cc-yP-sbb" secondAttribute="trailing" constant="88" id="lsj-gx-9Su"/>
-                            <constraint firstItem="CyO-9X-Akd" firstAttribute="trailing" secondItem="kCA-ll-FJo" secondAttribute="trailing" constant="47" id="mWB-bH-Oad"/>
-                            <constraint firstItem="kCA-ll-FJo" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="47" id="tyn-EV-LUc"/>
-                            <constraint firstItem="kCA-ll-FJo" firstAttribute="top" secondItem="f0e-sU-XRv" secondAttribute="bottom" constant="85" id="zGP-mN-Hcm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CyO-9X-Akd"/>
                     </view>
