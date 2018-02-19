@@ -45,9 +45,13 @@ class WalletsGenerator: NSObject
     {
         print("importing wallet with name :  \(name) and pass : \(pass)")
         
+        /*
         // Private key encryption
         let encryptedPrivateKey = encrypt(privateKey:keychain.extendedPrivateKey, pass: pass)
         print("encrypted PrivateKey : \(encryptedPrivateKey.base64EncodedString())")
+        
+        
+        let wallet = Wallet.init(label: name, address: keychain.key.addressTestnet, privatekey: encryptedPrivateKey.base64EncodedString(), mnemonic: e)
         
         let wallet = Wallet.init(label: name, address: keychain.key.addressTestnet.string, privatekey: encryptedPrivateKey.base64EncodedString())
     
@@ -60,6 +64,7 @@ class WalletsGenerator: NSObject
         }
         
         completionHandler(true, nil)
+        */
     }
     
     func generateWallet(name:String, pass:String, completionHandler: @escaping (Bool, String?) -> Void)
