@@ -32,6 +32,8 @@ class OptionLabel: UIView {
         
         optionButton = OptionButton.init(frame: CGRect.init(x: self.frame.size.width - 25, y: 5, width: 20, height: 20))
         optionButton.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        
+        optionButton.check(isChecked: false)
         self.addSubview(optionButton)
 
     }
