@@ -31,7 +31,13 @@ class Props:NSObject
     static let btcUsd = "btcusd/"
     static let btcEur = "btceur/"
     
-    let firstGradientColor = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
-    let secondGradientColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+    let firstGradientColorDark = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
+    let secondGradientColorDark = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+    
+    let firstGradientColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+    let secondGradientColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
+    
     let addViewsBackgroundColor = UIColor.clear
+    
+    static let colorSchemaClear = false
 }

@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "WALLER"; ObjectID = "4Cc-yP-sbb"; */
+"4Cc-yP-sbb.text" = "WALLER";
+
+/* Class = "UILabel"; text = "Multisign"; ObjectID = "4tg-fu-taA"; */
+"4tg-fu-taA.text" = "Multisign";
+
+/* Class = "UILabel"; text = "Main features"; ObjectID = "FZB-Od-LKe"; */
+"FZB-Od-LKe.text" = "Main features";
+
+/* Class = "UILabel"; text = "Multisign wallet"; ObjectID = "QPG-3F-O6l"; */
+"QPG-3F-O6l.text" = "Multisign wallet";
+
+/* Class = "UITextView"; text = "I know that  if this app will be transfered in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process."; ObjectID = "e7u-2E-wBf"; */
+"e7u-2E-wBf.text" = "I know that  if this app will be transfered in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process.";
+
+/* Class = "UILabel"; text = "check the box below"; ObjectID = "i5g-jf-qaO"; */
+"i5g-jf-qaO.text" = "check the box below";
+
+/* Class = "UILabel"; text = "Befor to start"; ObjectID = "iW4-EW-Qny"; */
+"iW4-EW-Qny.text" = "Befor to start";
+
+/* Class = "UILabel"; text = "blockchain technology"; ObjectID = "kCA-ll-FJo"; */
+"kCA-ll-FJo.text" = "blockchain technology";
+
+/* Class = "UIButton"; normalTitle = "Create your waller"; ObjectID = "rSv-AF-ldS"; */
+"rSv-AF-ldS.normalTitle" = "Create your waller";
+
+/* Class = "UITextView"; text = "I understood thath my founds are safely stored in this device not in a company."; ObjectID = "slS-Uz-tZN"; */
+"slS-Uz-tZN.text" = "I understood thath my founds are safely stored in this device not in a company.";
+
+/* Class = "UILabel"; text = "Standard crypto wallet"; ObjectID = "xN1-9Z-Ce8"; */
+"xN1-9Z-Ce8.text" = "Standard crypto wallet";
+
+/* Class = "UILabel"; text = "Import existing wallet"; ObjectID = "zUO-7E-SAK"; */
+"zUO-7E-SAK.text" = "Import existing wallet";

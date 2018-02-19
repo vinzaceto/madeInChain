@@ -35,8 +35,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         walletsList = []
         
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        gradientView.FirstColor = Props().firstGradientColor
-        gradientView.SecondColor = Props().secondGradientColor
+        if Props.colorSchemaClear {
+            gradientView.FirstColor = Props().firstGradientColor
+            gradientView.SecondColor = Props().secondGradientColor
+        } else {
+            gradientView.FirstColor = Props().firstGradientColorDark
+            gradientView.SecondColor = Props().secondGradientColorDark
+        }
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
                 
@@ -251,6 +256,19 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AWCell", for: indexPath) as! AddWalletCell
                 cell.delegate = self
+                
+                let dashedBorder = CAShapeLayer()
+                dashedBorder.strokeColor = UIColor.iosBlueColor.cgColor
+                dashedBorder.lineDashPattern = [8, 6]
+                dashedBorder.frame = cell.bounds
+                dashedBorder.cornerRadius = 6
+                dashedBorder.masksToBounds = true
+                dashedBorder.fillColor = nil
+                dashedBorder.lineWidth = 5
+                dashedBorder.path = UIBezierPath(rect: cell.bounds).cgPath
+                cell.layer.addSublayer(dashedBorder)
+                cell.clipsToBounds = true
+                
                 return cell
             }
             else
