@@ -83,7 +83,7 @@ class OptionButton: UIView
     func check(isChecked:Bool)
     {
         self.isChecked = isChecked
-        fillView.isHidden = isChecked
+        fillView.isHidden = !isChecked
     }
     
     required init?(coder aDecoder: NSCoder)
