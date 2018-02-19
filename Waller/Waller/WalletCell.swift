@@ -87,7 +87,17 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         //amountLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
         self.addSubview(amountLabel)
         
-        currencyAmount = UILabel.init(frame: CGRect.init(x: btcx, y: 60, width: btcw, height: 20))
+        let usdLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 60, width: btcw, height: 10))
+        usdLabel.backgroundColor = UIColor.clear
+        usdLabel.textAlignment = .right
+        usdLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        usdLabel.text = "USD"
+        usdLabel.textColor = UIColor.darkGray
+        //btcLabel.shadowColor = UIColor.gray
+        //btcLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
+        self.addSubview(usdLabel)
+        
+        currencyAmount = UILabel.init(frame: CGRect.init(x: btcx, y: 75, width: btcw, height: 20))
         currencyAmount.backgroundColor = UIColor.clear
         currencyAmount.textAlignment = .right
         currencyAmount.adjustsFontSizeToFitWidth = true
