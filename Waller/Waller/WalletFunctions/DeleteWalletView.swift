@@ -44,7 +44,7 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         
         let y = infoLabel.frame.origin.y + infoLabel.frame.size.height + 5
         let option = OptionLabel.init(frame: CGRect.init(x: 30, y: y, width: viewWidth - 60, height: 30))
-        option.label.text = "i'm sure about deleting"
+        option.label.text = "Are you sure to delete it?"
         option.delegate = self
         option.optionButton?.check(isChecked: false)
         self.addSubview(option)
@@ -60,13 +60,15 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         //self.addSubview(deleteButton)
         
         slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: y + 40, width: viewWidth - 60, height: 50))
-        slider.buttonText = "Slide to Delete Wallet"
+        slider.buttonText = "Slide to Delete >>>"
         slider.buttonCornerRadius = 6
         slider.buttonUnlockedText = "Wallet Deleted"
         slider.buttonColor = UIColor.gray
         slider.animationFinished()
+        slider.dragPointWidth = 40
         slider.isUserInteractionEnabled = false
         slider.delegate = self
+        slider.alpha = 0.4
         self.addSubview(slider)
     }
     
@@ -80,10 +82,13 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
     {
         if isChecked == true
         {
+            slider.alpha = 1
             slider.isUserInteractionEnabled = true
             deleteButton.isEnabled = true
             return
         }
+        slider.alpha = 0.4
+
         slider.isUserInteractionEnabled = false
         deleteButton.isEnabled = false
     }
