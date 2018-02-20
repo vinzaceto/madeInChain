@@ -12,6 +12,8 @@
 		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
 		249C73A7202DAE1E00A0EB36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */; };
 		24B0984D2034C0EE00DD8FF5 /* OnViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */; };
+		24E34BDF203CAE51003132FE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E34BDE203CAE51003132FE /* StoreKit.framework */; };
+		24E34BE2203CAE63003132FE /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E34BE1203CAE63003132FE /* PassKit.framework */; };
 		610B1DD2202DB7B9005B1105 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAC202DB7B9005B1105 /* Logger.swift */; };
 		610B1DD3202DB7B9005B1105 /* DirUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAE202DB7B9005B1105 /* DirUtils.swift */; };
 		610B1DD4202DB7B9005B1105 /* RequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DB0202DB7B9005B1105 /* RequestExtension.swift */; };
@@ -136,6 +138,9 @@
 		24365669202C60B200E33A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController2.swift; sourceTree = "<group>"; };
+		24E34BDE203CAE51003132FE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		24E34BE0203CAE59003132FE /* Waller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waller.entitlements; sourceTree = "<group>"; };
+		24E34BE1203CAE63003132FE /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.release.xcconfig"; sourceTree = "<group>"; };
 		610B1DAC202DB7B9005B1105 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		610B1DAE202DB7B9005B1105 /* DirUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirUtils.swift; sourceTree = "<group>"; };
@@ -271,7 +276,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24E34BE2203CAE63003132FE /* PassKit.framework in Frameworks */,
 				D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */,
+				24E34BDF203CAE51003132FE /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +288,8 @@
 		24E6CC41032909971F747B5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24E34BE1203CAE63003132FE /* PassKit.framework */,
+				24E34BDE203CAE51003132FE /* StoreKit.framework */,
 				FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */,
 			);
 			name = Frameworks;
@@ -455,6 +464,7 @@
 		61294A6B2024C7D0009F9886 /* Waller */ = {
 			isa = PBXGroup;
 			children = (
+				24E34BE0203CAE59003132FE /* Waller.entitlements */,
 				6192037D20387AC400443521 /* Frameworks */,
 				61B6284C20323D4300EE6ABB /* OnBoarding */,
 				61920362203738AB00443521 /* Datadase+Generator */,
@@ -739,6 +749,20 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1106,12 +1130,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Waller/Waller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.waller.developp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waller.madeinchain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Waller/Waller-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1126,12 +1151,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Waller/Waller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2SQ7F4N43;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.waller.developp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waller.madeinchain;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Waller/Waller-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
