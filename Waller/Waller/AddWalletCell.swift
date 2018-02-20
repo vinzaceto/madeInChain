@@ -49,7 +49,7 @@ class AddWalletCell: HFCardCollectionViewCell
         subtitleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.font = UIFont.init(name: "Rubik-Italic", size: 19)
         subtitleLabel.textColor = UIColor.lightGray
-        subtitleLabel.textAlignment = .center
+        subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
         self.addSubview(subtitleLabel)
         
