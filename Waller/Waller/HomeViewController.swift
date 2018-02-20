@@ -32,13 +32,28 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         super.viewDidLoad()
         
+        
+        
+        
+        
+        let b = BitcoinTransaction.init()
+        b.initTransaction(recipientAddress: "")
+        
+        
+        
+        
+        
+        
         walletsList = []
         
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        if Props.colorSchemaClear {
+        if Props.colorSchemaClear
+        {
             gradientView.FirstColor = Props().firstGradientColor
             gradientView.SecondColor = Props().secondGradientColor
-        } else {
+        }
+        else
+        {
             gradientView.FirstColor = Props().firstGradientColorDark
             gradientView.SecondColor = Props().secondGradientColorDark
         }

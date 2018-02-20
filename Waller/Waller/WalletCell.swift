@@ -371,6 +371,12 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
                 self.unconfirmedAmountLabel.text = "+ \(formattedAmount)"
             }
         }
+        else
+        {
+            if unconfirmedAmountLabel != nil { unconfirmedAmountLabel.removeFromSuperview() }
+            currencyAmount.frame.origin.y = 50
+            usdLabel.frame.origin.y = 56
+        }
     }
     
     func updateCurrencyPrice()
