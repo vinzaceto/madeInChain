@@ -15,7 +15,6 @@ class GenerateWalletController: UIViewController {
         
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         
-        
         let pk = "92YEdQpKUqAYjyw29VVRuh6Z1TUL4YfC1f9fbCQH7xRpao9d6Xt"
         let privKey = BTCPrivateKeyAddress.init(string: pk)
         let wallet = BTCKey.init(privateKeyAddress:privKey)
@@ -171,6 +170,9 @@ class GenerateWalletController: UIViewController {
         
         perform(#selector(stop), with: nil, afterDelay: 3)
     }
+    
+    
+    
     
     @objc func stop()
     {
