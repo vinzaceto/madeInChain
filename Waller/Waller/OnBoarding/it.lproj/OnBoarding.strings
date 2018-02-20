@@ -2,8 +2,8 @@
 /* Class = "UILabel"; text = "WALLER"; ObjectID = "4Cc-yP-sbb"; */
 "4Cc-yP-sbb.text" = "WALLER";
 
-/* Class = "UILabel"; text = "Multisign"; ObjectID = "4tg-fu-taA"; */
-"4tg-fu-taA.text" = "Multisign";
+/* Class = "UILabel"; text = "Multisign wallet"; ObjectID = "4tg-fu-taA"; */
+"4tg-fu-taA.text" = "Multisign wallet";
 
 /* Class = "UILabel"; text = "Main features"; ObjectID = "FZB-Od-LKe"; */
 "FZB-Od-LKe.text" = "Main features";
@@ -24,7 +24,7 @@
 "kCA-ll-FJo.text" = "blockchain technology";
 
 /* Class = "UIButton"; normalTitle = "Create your waller"; ObjectID = "rSv-AF-ldS"; */
-"rSv-AF-ldS.normalTitle" = "Create your waller";
+"rSv-AF-ldS.normalTitle" = "Let's start";
 
 /* Class = "UITextView"; text = "I understood thath my founds are safely stored in this device not in a company."; ObjectID = "slS-Uz-tZN"; */
 "slS-Uz-tZN.text" = "I understood thath my founds are safely stored in this device not in a company.";
@@ -33,4 +33,4 @@
 "xN1-9Z-Ce8.text" = "Standard crypto wallet";
 
 /* Class = "UILabel"; text = "Import existing wallet"; ObjectID = "zUO-7E-SAK"; */
-"zUO-7E-SAK.text" = "Import existing wallet";
+"zUO-7E-SAK.text" = "Import or export existing wallet";

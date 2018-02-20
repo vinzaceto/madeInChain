@@ -25,12 +25,10 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         clipsToBounds = true
         
         
-        let flipButton = UIButton.init(type: .roundedRect)
-        flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
+        let flipButton = UIButton.init(type: .custom)
+        flipButton.frame = CGRect.init(x: viewWidth - 55, y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
-        flipButton.backgroundColor = UIColor.clear
-        flipButton.setTitle("close", for: .normal)
-        flipButton.center.x = self.center.x
+        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
         addSubview(flipButton)
         
         let infoLabel = UILabel.init(frame: CGRect.init(x: 30, y: 80, width: viewWidth - 60, height: 120))
@@ -59,7 +57,7 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         deleteButton.isEnabled = false
         //self.addSubview(deleteButton)
         
-        slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: y + 40, width: viewWidth - 60, height: 50))
+        slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: y + 40, width: viewWidth - 60, height: 60))
         slider.buttonText = "Slide to Delete >>>"
         slider.buttonCornerRadius = 6
         slider.buttonUnlockedText = "Wallet Deleted"
