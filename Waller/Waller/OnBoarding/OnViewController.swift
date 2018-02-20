@@ -45,6 +45,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     @IBAction func checkBoxButton2(_ sender: Any){
         self.startButton.alpha = 0
         if checkBoxButton2.isChecked == false && startButton.isHidden == true {
+            startButton.isHidden = false
         UIView.animate(withDuration: 0.4, animations: {
             self.view.addSubview(self.startButton)
             self.startButton.alpha = 1
@@ -52,8 +53,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
             UIView.animate(withDuration: 0.4, animations: {
             }, completion: nil)
         }
-        startButton.isHidden = false
-        } else {
+    } else {
             startButton.isHidden = true
         }
         
@@ -66,7 +66,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
 
     @IBAction func startButton(_ sender: Any) {
         performSegue(withIdentifier: "MainSB", sender: self)
-        UserDefaults.standard.set(true, forKey: Props.hasBeenSeen)
+        UserDefaults.standard.set(false, forKey: Props.hasBeenSeen)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

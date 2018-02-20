@@ -51,7 +51,7 @@
                                     <constraint firstAttribute="height" constant="50" id="dtz-AG-k9f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
-                                <state key="normal" title="Create your waller">
+                                <state key="normal" title="Let's start">
                                     <color key="titleColor" red="0.85675239560000005" green="0.96452063320000003" blue="0.93200874330000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -110,7 +110,7 @@
                                     <constraint firstAttribute="height" constant="35" id="qVz-PX-JWa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
-                                <color key="textColor" red="0.96610534979999996" green="0.9614381742" blue="0.97077252540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="1" green="0.8898000949" blue="0.26417354430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-wt-fKX" customClass="CheckBox" customModule="Waller" customModuleProvider="target">
@@ -228,53 +228,155 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main features" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZB-Od-LKe">
-                                <rect key="frame" x="87" y="50" width="200" height="28"/>
-                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="23"/>
+                                <rect key="frame" x="87" y="50" width="200" height="34.5"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="29"/>
                                 <color key="textColor" red="0.99112719297409058" green="0.99630016088485718" blue="0.99602895975112915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multisign wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tg-fu-taA">
+                                <rect key="frame" x="47" y="489" width="281" height="24"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.8898000949" blue="0.26417354430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUO-7E-SAK">
+                                <rect key="frame" x="36" y="339" width="303" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Tui-lT-jd2"/>
+                                </constraints>
+                                <string key="text">Import or export existing wallet
+</string>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.8898000949" blue="0.26417354430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXJ-IF-KGY">
+                                <rect key="frame" x="16" y="141" width="343" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="Lfz-y0-4bg"/>
+                                    <constraint firstAttribute="height" constant="46" id="erf-EC-oWn"/>
+                                </constraints>
+                                <string key="text">Create your wallet, send and receive cryptocurrency
+</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standard crypto wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN1-9Z-Ce8">
-                                <rect key="frame" x="47" y="123" width="281" height="21.5"/>
-                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
-                                <color key="textColor" red="0.77179580926895142" green="0.94310325384140015" blue="0.8746873140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="47" y="121" width="281" height="24"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.8898000949" blue="0.26417354430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multisign" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tg-fu-taA">
-                                <rect key="frame" x="49" y="206.5" width="281" height="44"/>
-                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="37"/>
-                                <color key="textColor" red="0.77179580930000002" green="0.94310325380000004" blue="0.87468731399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import existing wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUO-7E-SAK">
-                                <rect key="frame" x="49" y="336.5" width="281" height="22"/>
-                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
-                                <color key="textColor" red="0.77179580930000002" green="0.94310325380000004" blue="0.87468731399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoBig" translatesAutoresizingMaskIntoConstraints="NO" id="ntp-Tt-yAV">
+                                <rect key="frame" x="129" y="195" width="116" height="86"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="KCi-Jw-eTp"/>
+                                    <constraint firstAttribute="height" constant="86" id="aCp-AC-6Aj"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionInIconW" translatesAutoresizingMaskIntoConstraints="NO" id="8ba-WA-rmr">
+                                <rect key="frame" x="290" y="195" width="60" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="6Pi-oG-FG6"/>
+                                    <constraint firstAttribute="height" constant="54" id="I0T-IP-e4Y"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionOutIconW" translatesAutoresizingMaskIntoConstraints="NO" id="bGc-QH-n62">
+                                <rect key="frame" x="25" y="195" width="60" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="EK4-jg-g7P"/>
+                                    <constraint firstAttribute="height" constant="54" id="OyT-nP-zxc"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Create multi sign wallet and manage it with your friends" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-i5-knO">
+                                <rect key="frame" x="47" y="523" width="281" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="dUf-Bt-aRp"/>
+                                    <constraint firstAttribute="width" constant="281" id="ibF-3u-c4u"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="exportW" translatesAutoresizingMaskIntoConstraints="NO" id="e2b-E6-ggF">
+                                <rect key="frame" x="157" y="382" width="60" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="86r-3z-5lN"/>
+                                    <constraint firstAttribute="width" constant="54" id="Uvy-QA-iNd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrCodeIconW" translatesAutoresizingMaskIntoConstraints="NO" id="Oli-ag-CZf">
+                                <rect key="frame" x="47" y="419" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="IQD-Mo-Jus"/>
+                                    <constraint firstAttribute="height" constant="40" id="UZt-gl-epM"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrCodeIconW" translatesAutoresizingMaskIntoConstraints="NO" id="6Ch-KP-5k1">
+                                <rect key="frame" x="288" y="419" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Bwi-z1-iUD"/>
+                                    <constraint firstAttribute="height" constant="40" id="oYK-VG-hEU"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newWalletIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="bgC-bP-XQj">
+                                <rect key="frame" x="145" y="600" width="85" height="35"/>
+                                <color key="tintColor" red="0.96630391616984679" green="1" blue="0.10685908859245041" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20852026343345642" green="0.2927061915397644" blue="0.36863934993743896" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="FZB-Od-LKe" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="87" id="1B6-X7-xEO"/>
-                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="zUO-7E-SAK" secondAttribute="trailing" constant="45" id="5An-Zo-1c7"/>
+                            <constraint firstItem="ntp-Tt-yAV" firstAttribute="top" secondItem="OXJ-IF-KGY" secondAttribute="bottom" constant="8" id="3Bt-P4-uKU"/>
+                            <constraint firstItem="OXJ-IF-KGY" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="16" id="3uj-Qh-uXv"/>
                             <constraint firstItem="FZB-Od-LKe" firstAttribute="top" secondItem="8wb-IF-jFZ" secondAttribute="top" constant="30" id="5J1-fq-cGr"/>
-                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="xN1-9Z-Ce8" secondAttribute="trailing" constant="47" id="6fd-fA-LHL"/>
-                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="4tg-fu-taA" secondAttribute="trailing" constant="45" id="8BZ-7H-1aD"/>
-                            <constraint firstItem="zUO-7E-SAK" firstAttribute="top" secondItem="4tg-fu-taA" secondAttribute="bottom" constant="86" id="Ggk-if-YWp"/>
-                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="HZo-gN-Psh"/>
-                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="45" id="Hxm-6I-XLT"/>
-                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="45" id="Kh3-tT-AVW"/>
-                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="N4T-3y-Q1N"/>
+                            <constraint firstItem="Oli-ag-CZf" firstAttribute="top" secondItem="zUO-7E-SAK" secondAttribute="bottom" constant="58" id="5w1-AA-Rra"/>
+                            <constraint firstItem="6Ch-KP-5k1" firstAttribute="top" secondItem="zUO-7E-SAK" secondAttribute="bottom" constant="58" id="6ny-vg-zjk"/>
+                            <constraint firstItem="4tg-fu-taA" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="6qC-nL-Gwc"/>
+                            <constraint firstItem="bGc-QH-n62" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="25" id="725-vq-Av2"/>
+                            <constraint firstItem="zUO-7E-SAK" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="36" id="7Xe-dJ-cW7"/>
+                            <constraint firstItem="ntp-Tt-yAV" firstAttribute="leading" secondItem="bGc-QH-n62" secondAttribute="trailing" constant="44" id="8xB-he-7Zl"/>
+                            <constraint firstItem="8ba-WA-rmr" firstAttribute="top" secondItem="OXJ-IF-KGY" secondAttribute="bottom" constant="8" id="CxT-Xo-y8H"/>
+                            <constraint firstItem="bgC-bP-XQj" firstAttribute="top" secondItem="ggZ-i5-knO" secondAttribute="bottom" constant="25" id="Die-EM-G0f"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="ggZ-i5-knO" secondAttribute="trailing" constant="47" id="DjC-qs-Aum"/>
+                            <constraint firstItem="ggZ-i5-knO" firstAttribute="top" secondItem="4tg-fu-taA" secondAttribute="bottom" constant="10" id="Ecj-dq-bVJ"/>
+                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="FGm-HG-4MO"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="4tg-fu-taA" secondAttribute="trailing" constant="47" id="K17-Td-Cxi"/>
+                            <constraint firstItem="e2b-E6-ggF" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="148" id="Kfq-yT-U71"/>
+                            <constraint firstItem="bgC-bP-XQj" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="145" id="NFw-1A-TYL"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="bgC-bP-XQj" secondAttribute="trailing" constant="145" id="Obg-n8-df2"/>
+                            <constraint firstItem="8ba-WA-rmr" firstAttribute="leading" secondItem="ntp-Tt-yAV" secondAttribute="trailing" constant="45" id="TnY-Gs-0lj"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="e2b-E6-ggF" secondAttribute="trailing" constant="149" id="W8b-Ox-mzy"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="FZB-Od-LKe" secondAttribute="trailing" constant="88" id="X2O-eN-x9t"/>
-                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="xN1-9Z-Ce8" secondAttribute="trailing" constant="47" id="eOm-mI-syf"/>
-                            <constraint firstItem="4tg-fu-taA" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="49" id="qlH-VI-he0"/>
-                            <constraint firstItem="4tg-fu-taA" firstAttribute="top" secondItem="xN1-9Z-Ce8" secondAttribute="bottom" constant="62" id="vaY-jV-PEe"/>
-                            <constraint firstItem="zUO-7E-SAK" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="49" id="zbP-i1-J06"/>
+                            <constraint firstItem="zUO-7E-SAK" firstAttribute="top" secondItem="ntp-Tt-yAV" secondAttribute="bottom" constant="58" id="Ynd-vM-FXo"/>
+                            <constraint firstItem="ggZ-i5-knO" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="Ysl-oZ-RPH"/>
+                            <constraint firstItem="e2b-E6-ggF" firstAttribute="top" secondItem="zUO-7E-SAK" secondAttribute="bottom" constant="19" id="ZlD-jb-2CY"/>
+                            <constraint firstItem="4tg-fu-taA" firstAttribute="top" secondItem="Oli-ag-CZf" secondAttribute="bottom" constant="30" id="co5-cS-QFG"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="6Ch-KP-5k1" secondAttribute="trailing" constant="47" id="hgd-QN-ukx"/>
+                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="36.5" id="jvw-Gj-r1X"/>
+                            <constraint firstItem="Oli-ag-CZf" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="rAp-nP-wvE"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="8ba-WA-rmr" secondAttribute="trailing" constant="25" id="roe-PL-CtP"/>
+                            <constraint firstItem="bGc-QH-n62" firstAttribute="top" secondItem="OXJ-IF-KGY" secondAttribute="bottom" constant="8" id="un3-EQ-AL5"/>
+                            <constraint firstItem="OXJ-IF-KGY" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="56.5" id="vZA-Pa-33s"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="zUO-7E-SAK" secondAttribute="trailing" constant="36" id="vbL-Ax-AGg"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="xN1-9Z-Ce8" secondAttribute="trailing" constant="47" id="xip-B4-fFY"/>
+                            <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="OXJ-IF-KGY" secondAttribute="trailing" constant="16" id="zP3-kC-c2C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8wb-IF-jFZ"/>
                     </view>
                     <connections>
+                        <outlet property="exportImage" destination="e2b-E6-ggF" id="7wx-fu-y0t"/>
+                        <outlet property="iconLogo" destination="ntp-Tt-yAV" id="gCS-Su-aLc"/>
                         <outlet property="importingLabel" destination="zUO-7E-SAK" id="Nqe-7c-Lpe"/>
+                        <outlet property="incoming" destination="8ba-WA-rmr" id="3SW-gN-4MM"/>
+                        <outlet property="multiSign" destination="bgC-bP-XQj" id="C8y-zP-wQf"/>
+                        <outlet property="multisignDescription" destination="ggZ-i5-knO" id="3de-eK-VkJ"/>
                         <outlet property="multisignLabel" destination="4tg-fu-taA" id="fa2-y6-sFB"/>
+                        <outlet property="outComing" destination="bGc-QH-n62" id="bg8-QW-GCH"/>
+                        <outlet property="qrCode1" destination="6Ch-KP-5k1" id="QI5-4U-ghZ"/>
+                        <outlet property="qrCode2" destination="Oli-ag-CZf" id="Uzy-VV-wLG"/>
+                        <outlet property="subStandardCrypto" destination="OXJ-IF-KGY" id="iSr-Ze-95R"/>
                         <outlet property="subTitle" destination="xN1-9Z-Ce8" id="Dct-uH-voL"/>
                         <outlet property="titleLabel" destination="FZB-Od-LKe" id="VoI-N7-XzQ"/>
                     </connections>
@@ -285,6 +387,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LogoBig" width="153" height="149"/>
         <image name="WallE" width="690" height="680"/>
+        <image name="exportW" width="36" height="49"/>
+        <image name="newWalletIconWhite" width="37" height="35"/>
+        <image name="qrCodeIconW" width="36" height="36"/>
+        <image name="transactionInIconW" width="38" height="43"/>
+        <image name="transactionOutIconW" width="38" height="49"/>
     </resources>
 </document>
