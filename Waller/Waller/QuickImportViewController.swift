@@ -42,8 +42,13 @@ class QuickImportViewController: UIViewController, SetupPageViewDelegate
         backButton.isEnabled = false
 
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        gradientView.FirstColor = Props().firstGradientColor
-        gradientView.SecondColor = Props().secondGradientColor
+        if Props.colorSchemaClear {
+            gradientView.FirstColor = Props().firstGradientColor
+            gradientView.SecondColor = Props().secondGradientColor
+        } else {
+            gradientView.FirstColor = Props().firstGradientColorDark
+            gradientView.SecondColor = Props().secondGradientColorDark
+        }
         self.view.addSubview(gradientView)
 
         qrcodeView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
@@ -107,8 +112,18 @@ class QuickImportViewController: UIViewController, SetupPageViewDelegate
                 {
                     print(btcurl.address!)
                     self.canScan = false
-                    print("WALLET FOUND : \(String(describing: btcurl.address?.string))")
-                    self.addressFounded(address: (btcurl.address?.string)!)
+                    
+                    guard let address = btcurl.address?.string else { return }
+                    print("WALLET FOUND : \(address)")
+
+                    let db = WalletsDatabase.init()
+                    if db.checkIfAlreadyListed(address: address)
+                    {
+                        self.addressIsAlreadyPresent(address: address)
+                        return
+                    }
+                    
+                    self.addressFounded(address:address)
                     return
                 }
             }

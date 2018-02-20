@@ -72,6 +72,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
         exportICloud.layer.borderColor = UIColor.gray.cgColor
         exportICloud.layer.cornerRadius = 6
         exportICloud.setTitle("export on iCloud", for: .normal)
+        exportICloud.isEnabled = false
         typeWrapper.addSubview(exportICloud)
         
         let exportOnFile = UIButton.init(type: .roundedRect)

@@ -35,8 +35,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         walletsList = []
         
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        gradientView.FirstColor = Props().firstGradientColor
-        gradientView.SecondColor = Props().secondGradientColor
+        if Props.colorSchemaClear {
+            gradientView.FirstColor = Props().firstGradientColor
+            gradientView.SecondColor = Props().secondGradientColor
+        } else {
+            gradientView.FirstColor = Props().firstGradientColorDark
+            gradientView.SecondColor = Props().secondGradientColorDark
+        }
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
                 
@@ -45,9 +50,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         lineChart.clipsToBounds = true
         self.view.bringSubview(toFront: collectionView!)
         
+        let baseString = "data forom blockchain.com and bitstamp.net"
+        let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
+        let blockchainRange = (attributedString.string as NSString).range(of: "blockchain.com")
+        let bitstampRange = (attributedString.string as NSString).range(of: "bitstamp.net")
+        attributedString.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: blockchainRange)
+        attributedString.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: bitstampRange)
+        let footerLabel = UILabel.init(frame: CGRect.init(x: 0, y: self.view.frame.size.height-20,
+        width: self.view.frame.size.width, height: 20))
+        footerLabel.font = UIFont.systemFont(ofSize: 14)
+        footerLabel.attributedText = attributedString
+        footerLabel.textAlignment = .center
+        footerLabel.textColor = UIColor.lightText
+        self.view.addSubview(footerLabel)
+        
         collectionView?.layer.cornerRadius = 6
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
-        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28
+        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28 - 20
         collectionView?.frame.size.width = self.view.frame.size.width - 30
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
@@ -251,15 +270,25 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AWCell", for: indexPath) as! AddWalletCell
                 cell.delegate = self
+                
                 return cell
             }
             else
             {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
-                cell.headerImage.tintColor = UIColor.darkGray
+                
+                if let privateKey = walletsList[indexPath.row-1].privatekey
+                {
+                    cell.addressPrivateKey = privateKey
+                    cell.headerImage.tintColor = UIColor.darkGray
+                }
+                else
+                {
+                    cell.headerImage.tintColor = UIColor.blue
+                }
+                
                 cell.iconImage.image = UIImage.init(named: "done")
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
-                cell.addressPrivateKey = walletsList[indexPath.row-1].privatekey
                 let address = walletsList[indexPath.row-1].address
                 cell.addressLabel.text = address
                 cell.amountLabel.text = "0"

@@ -10,7 +10,9 @@ import UIKit
 
 class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
     
+    let viewWidth = UIScreen.main.bounds.width - 30
     let deleteButton = UIButton.init(type: .roundedRect)
+    var slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: 0, width: 0, height: 0))
     var delegate:WalletFunctionDelegate!
     var address:String = ""
     
@@ -22,7 +24,6 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         layer.cornerRadius = 6
         clipsToBounds = true
         
-        let viewWidth = UIScreen.main.bounds.width - 30
         
         let flipButton = UIButton.init(type: .roundedRect)
         flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
@@ -45,6 +46,7 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         let option = OptionLabel.init(frame: CGRect.init(x: 30, y: y, width: viewWidth - 60, height: 30))
         option.label.text = "i'm sure about deleting"
         option.delegate = self
+        option.optionButton?.check(isChecked: false)
         self.addSubview(option)
         
         deleteButton.frame = CGRect.init(x: (viewWidth-160)/2, y: y + 50, width: 160, height: 30)
@@ -55,16 +57,17 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
         deleteButton.layer.cornerRadius = 6
         deleteButton.setTitle("complete", for: .normal)
         deleteButton.isEnabled = false
-        self.addSubview(deleteButton)
+        //self.addSubview(deleteButton)
         
-        let slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: y + 60, width: viewWidth - 60, height: 80))
+        slider = MMSlidingButton.init(frame: CGRect.init(x:30, y: y + 40, width: viewWidth - 60, height: 50))
         slider.buttonText = "Slide to Delete Wallet"
         slider.buttonCornerRadius = 6
         slider.buttonUnlockedText = "Wallet Deleted"
         slider.buttonColor = UIColor.gray
         slider.animationFinished()
+        slider.isUserInteractionEnabled = false
         slider.delegate = self
-        //self.addSubview(slider)
+        self.addSubview(slider)
     }
     
     @objc func flipButtonPressed()
@@ -77,10 +80,12 @@ class DeleteWalletView: UIView, OptionLabelDelegate, SlideButtonDelegate {
     {
         if isChecked == true
         {
-            deleteButton.isEnabled = false
+            slider.isUserInteractionEnabled = true
+            deleteButton.isEnabled = true
             return
         }
-        deleteButton.isEnabled = true
+        slider.isUserInteractionEnabled = false
+        deleteButton.isEnabled = false
     }
     
     @objc func deleteButtonPressed()
