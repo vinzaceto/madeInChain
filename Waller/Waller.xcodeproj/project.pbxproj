@@ -10,6 +10,7 @@
 		240E02F4203716B6009FE6E4 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E02F3203716B6009FE6E4 /* CheckBox.swift */; };
 		243594A42034D14C00D328D9 /* OnViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243594A32034D14C00D328D9 /* OnViewController3.swift */; };
 		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
+		24705661203C4570000BAD90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24705660203C4570000BAD90 /* StoreKit.framework */; };
 		249C73A7202DAE1E00A0EB36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */; };
 		24B0984D2034C0EE00DD8FF5 /* OnViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */; };
 		24E34BDF203CAE51003132FE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E34BDE203CAE51003132FE /* StoreKit.framework */; };
@@ -136,6 +137,7 @@
 		240E02F3203716B6009FE6E4 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		243594A32034D14C00D328D9 /* OnViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController3.swift; sourceTree = "<group>"; };
 		24365669202C60B200E33A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		24705660203C4570000BAD90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController2.swift; sourceTree = "<group>"; };
 		24E34BDE203CAE51003132FE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -278,7 +280,7 @@
 			files = (
 				24E34BE2203CAE63003132FE /* PassKit.framework in Frameworks */,
 				D89E88C03253AEC6F5AA8A61 /* libPods-Waller.a in Frameworks */,
-				24E34BDF203CAE51003132FE /* StoreKit.framework in Frameworks */,
+				24705661203C4570000BAD90 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,8 +290,7 @@
 		24E6CC41032909971F747B5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				24E34BE1203CAE63003132FE /* PassKit.framework */,
-				24E34BDE203CAE51003132FE /* StoreKit.framework */,
+				24705660203C4570000BAD90 /* StoreKit.framework */,
 				FCE9EC54B3FB6821C14C8E8A /* libPods-Waller.a */,
 			);
 			name = Frameworks;
@@ -753,15 +754,6 @@
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
-							com.apple.Siri = {
-								enabled = 1;
-							};
-							com.apple.Wallet = {
-								enabled = 1;
-							};
-							com.apple.iCloud = {
-								enabled = 1;
-							};
 						};
 					};
 				};
@@ -1132,7 +1124,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Waller/Waller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L2SQ7F4N43;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1153,7 +1145,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Waller/Waller.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L2SQ7F4N43;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
