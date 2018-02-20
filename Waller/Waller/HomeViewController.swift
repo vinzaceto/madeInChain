@@ -45,7 +45,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
                 
-        lineChart.frame = CGRect.init(x: 10, y: 110, width: self.view.frame.size.width-20, height: 190)
+        lineChart.frame = CGRect.init(x: 15, y: 110, width: self.view.frame.size.width-30, height: 190)
         lineChart.layer.cornerRadius = 6
         lineChart.clipsToBounds = true
         self.view.bringSubview(toFront: collectionView!)
