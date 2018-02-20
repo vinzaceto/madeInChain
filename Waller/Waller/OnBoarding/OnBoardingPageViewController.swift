@@ -53,7 +53,7 @@ class OnBoardingPageViewController: UIPageViewController, UIPageViewControllerDe
         pageControl.currentPage = 0
         pageControl.tintColor = UIColor.white
         pageControl.pageIndicatorTintColor = UIColor.gray
-        pageControl.currentPageIndicatorTintColor = UIColor.red
+        pageControl.currentPageIndicatorTintColor = UIColor.white
        
         
         self.view.addSubview(pageControl)
