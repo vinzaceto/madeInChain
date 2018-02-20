@@ -31,7 +31,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
     var privateKeyLabel:UITextView!
     
     let decryptButton = UIButton.init(type: .roundedRect)
-    let backButton = UIButton.init(type: .roundedRect)
+    let backButton = UIButton.init(type: .custom)
 
     var views:[UIView] = []
     
@@ -45,12 +45,13 @@ class ExportWalletView: UIView, UITextFieldDelegate
         
         let viewWidth = UIScreen.main.bounds.width - 30
         
-        let flipButton = UIButton.init(type: .roundedRect)
-        flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
+        let flipButton = UIButton.init(type: .custom)
+        flipButton.frame = CGRect.init(x: viewWidth - 55 , y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
-        flipButton.backgroundColor = UIColor.clear
-        flipButton.setTitle("close", for: .normal)
-        flipButton.center.x = self.center.x
+        //flipButton.backgroundColor = UIColor.blue
+        //flipButton.setTitle("close", for: .normal)
+        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
+        //flipButton.center.x = self.center.x
         addSubview(flipButton)
         
         typeWrapper = UIView.init(frame: CGRect.init(x: 0, y: 0, width: viewWidth, height: 340))
@@ -138,9 +139,10 @@ class ExportWalletView: UIView, UITextFieldDelegate
         privateKeyLabel.isEditable = false
         textWrapper.addSubview(privateKeyLabel)
         
-        backButton.frame = CGRect.init(x: 10, y: 10, width: 50, height: 25)
+        backButton.frame = CGRect.init(x: 10, y: 10, width:45, height: 45)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        backButton.setTitle("back", for: .normal)
+        //backButton.setTitle("back", for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "BackIcon"), for: .normal)
         backButton.isHidden = true
         self.addSubview(backButton)
         

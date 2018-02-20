@@ -17,6 +17,8 @@ protocol WalletFunctionDelegate
 
 class QRCodeWalletView: UIView {
 
+    let viewWidth = UIScreen.main.bounds.width - 30
+
     var address:String!
     var addressLabel:UILabel!
     var qrCodeImage:UIImageView!
@@ -29,12 +31,10 @@ class QRCodeWalletView: UIView {
         layer.cornerRadius = 6
         clipsToBounds = true
         
-        let flipButton = UIButton.init(type: .roundedRect)
-        flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
+        let flipButton = UIButton.init(type: .custom)
+        flipButton.frame = CGRect.init(x: viewWidth - 55, y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
-        flipButton.backgroundColor = UIColor.clear
-        flipButton.setTitle("close", for: .normal)
-        flipButton.center.x = self.center.x
+        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
         addSubview(flipButton)
         
         qrCodeImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 240, height: 240))

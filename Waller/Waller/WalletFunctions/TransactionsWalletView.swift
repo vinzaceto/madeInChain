@@ -13,7 +13,8 @@ class TransactionsWalletView: UIView, UITableViewDelegate, UITableViewDataSource
     var tableView:UITableView!
     var delegate:WalletFunctionDelegate!
     var transactions:[String] = []
-    
+    let viewWidth = UIScreen.main.bounds.width - 30
+
     override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -22,12 +23,10 @@ class TransactionsWalletView: UIView, UITableViewDelegate, UITableViewDataSource
         layer.cornerRadius = 6
         clipsToBounds = true
         
-        let flipButton = UIButton.init(type: .roundedRect)
-        flipButton.frame = CGRect.init(x: 0, y: 10, width:60, height: 25)
+        let flipButton = UIButton.init(type: .custom)
+        flipButton.frame = CGRect.init(x: viewWidth - 55, y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
-        flipButton.backgroundColor = UIColor.clear
-        flipButton.setTitle("close", for: .normal)
-        flipButton.center.x = self.center.x
+        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
         addSubview(flipButton)
         
         tableView = UITableView.init(frame: CGRect.init(x: 0, y: 50, width: frame.size.width, height: frame.size.height-50))
