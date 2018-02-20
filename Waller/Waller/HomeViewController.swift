@@ -8,7 +8,8 @@
 
 import UIKit
 
-class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate {
+class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
+    
  
     
     
@@ -49,9 +50,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         lineChart.clipsToBounds = true
         self.view.bringSubview(toFront: collectionView!)
         
+        let baseString = "data forom blockchain.com and bitstamp.net"
+        let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
+        let blockchainRange = (attributedString.string as NSString).range(of: "blockchain.com")
+        let bitstampRange = (attributedString.string as NSString).range(of: "bitstamp.net")
+        attributedString.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: blockchainRange)
+        attributedString.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: bitstampRange)
+        let footerLabel = UILabel.init(frame: CGRect.init(x: 0, y: self.view.frame.size.height-20,
+        width: self.view.frame.size.width, height: 20))
+        footerLabel.font = UIFont.systemFont(ofSize: 14)
+        footerLabel.attributedText = attributedString
+        footerLabel.textAlignment = .center
+        footerLabel.textColor = UIColor.lightText
+        self.view.addSubview(footerLabel)
+        
         collectionView?.layer.cornerRadius = 6
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
-        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28
+        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28 - 20
         collectionView?.frame.size.width = self.view.frame.size.width - 30
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
@@ -256,26 +271,24 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AWCell", for: indexPath) as! AddWalletCell
                 cell.delegate = self
                 
-                let dashedBorder = CAShapeLayer()
-                dashedBorder.strokeColor = UIColor.black.cgColor
-                dashedBorder.lineDashPattern = [4, 4]
-                dashedBorder.frame = cell.bounds
-                dashedBorder.cornerRadius = 6
-                dashedBorder.masksToBounds = true
-                dashedBorder.fillColor = nil
-                dashedBorder.path = UIBezierPath(rect: cell.bounds).cgPath
-                cell.layer.addSublayer(dashedBorder)
-                cell.clipsToBounds = true
-                
                 return cell
             }
             else
             {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
-                cell.headerImage.tintColor = UIColor.darkGray
+                
+                if let privateKey = walletsList[indexPath.row-1].privatekey
+                {
+                    cell.addressPrivateKey = privateKey
+                    cell.headerImage.tintColor = UIColor.darkGray
+                }
+                else
+                {
+                    cell.headerImage.tintColor = UIColor.blue
+                }
+                
                 cell.iconImage.image = UIImage.init(named: "done")
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
-                cell.addressPrivateKey = walletsList[indexPath.row-1].privatekey
                 let address = walletsList[indexPath.row-1].address
                 cell.addressLabel.text = address
                 cell.amountLabel.text = "0"
@@ -317,6 +330,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         print("quick import button pressed")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let quickImport = storyboard.instantiateViewController(withIdentifier: "QIController") as! QuickImportViewController
+        quickImport.delegate = self
         let navigationVC = UINavigationController(rootViewController: quickImport)
         present(navigationVC, animated: true, completion: nil)
     }
@@ -365,79 +379,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
-    func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, didUnrevealCardAtIndex index: Int)
+    func exportWalletAsPDF(unencryptedWallet: Wallet)
     {
-
+        PDFExport(unencryptedWallet: unencryptedWallet)
     }
     
-    func exportUsing(exportType: ExportType, unencryptedWallet:Wallet)
-    {
-        print("export using \(exportType)")
-        
-        
-        PDFExport(unencryptedWallet:unencryptedWallet)
-    }
-    
-    func PDFExport(unencryptedWallet:Wallet)
-    {
-        print("Generating PDF")
-        let v1 = UIView(frame: CGRect(x: 0.0,y: 0, width: 210, height: 297))
-        v1.backgroundColor = UIColor.lightGray
-
-        // Draw logo
-        let mod:CGFloat = 0.3
-        let logo = UIImageView.init(frame: CGRect.init(x: 10, y:10, width: 153*mod, height: 149*mod))
-        logo.image = UIImage.init(named: "LogoBig")
-        v1.addSubview(logo)
-        
-        // Draw private key as QRCode
-        let privKeyQRCode = BTCQRCode.image(for: unencryptedWallet.privatekey!, size: CGSize.init(width: 50, height: 50 ), scale: 10)
-        let privateKeyImageView = UIImageView.init(frame: CGRect.init(x: 10, y: logo.frame.size.height + 20, width: 50, height: 50))
-        privateKeyImageView.image = privKeyQRCode
-        v1.addSubview(privateKeyImageView)
-
-        // Draw private key label
-        let privateKeyLabel = UILabel.init(frame: CGRect.init(x: 10, y: privateKeyImageView.frame.origin.y+privateKeyImageView.frame.size.height+20, width: privateKeyImageView.frame.size.width, height: 10))
-        privateKeyLabel.text = unencryptedWallet.privatekey
-        privateKeyLabel.adjustsFontSizeToFitWidth = true
-        v1.addSubview(privateKeyLabel)
-        
-        //let dst = URL(fileURLWithPath: NSTemporaryDirectory().appending("sample1.pdf"))
-        /*
-        // outputs as Data
-        do
-        {
-            let data = try PDFGenerator.generated(by: [v1])
-            try data.write(to: dst, options: .atomic)
-        }
-        catch (let error)
-        {
-            print(error)
-        }
-        */
-        
-        // writes to Disk directly.
-        let dst = NSHomeDirectory() + "/sampleeee.pdf"
-        do
-        {
-            try PDFGenerator.generate([v1], to: dst)
-        }
-        catch (let error)
-        {
-            print(error)
-        }
-        openPDFViewer(dst)
-    }
-    
-    fileprivate func openPDFViewer(_ pdfPath: String)
-    {
-        let url = URL(fileURLWithPath: pdfPath)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let pdfViewer = storyboard.instantiateViewController(withIdentifier: "PDFPreviewVC") as! PDFPreviewVC
-        pdfViewer.setupWithURL(url)
-        let navigationVC = UINavigationController.init(rootViewController: pdfViewer)
-        present(navigationVC, animated: true, completion: nil)
-    }
     
     
     
@@ -496,7 +442,74 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
     }
     
+    func PDFExport(unencryptedWallet:Wallet)
+    {
+        print("Generating PDF")
+        let v1 = UIView(frame: CGRect(x: 0.0,y: 0, width: 420, height: 594))
+        v1.backgroundColor = UIColor.lightGray
+        
+        // Draw logo
+        let mod:CGFloat = 0.6
+        let logo = UIImageView.init(frame: CGRect.init(x: 0, y:20, width: 153*mod, height: 149*mod))
+        logo.image = UIImage.init(named: "LogoBig")
+        logo.center.x = v1.center.x
+        v1.addSubview(logo)
+        
+        // Draw private key as QRCode
+        let privKeyQRCode = BTCQRCode.image(for: unencryptedWallet.privatekey!, size: CGSize.init(width: 100, height: 100 ), scale: 10)
+        let privateKeyImageView = UIImageView.init(frame: CGRect.init(x: 20, y: 20, width: 100, height: 100))
+        privateKeyImageView.image = privKeyQRCode
+        v1.addSubview(privateKeyImageView)
+        
+        // Draw private key label
+        let privateKeyLabel = UILabel.init(frame: CGRect.init(x: 20, y: privateKeyImageView.frame.size.height+40,
+                                                              width:privateKeyImageView.frame.size.width, height: 200))
+        privateKeyLabel.textAlignment = .center
+        privateKeyLabel.numberOfLines = 0
+        privateKeyLabel.text = unencryptedWallet.privatekey
+        //privateKeyLabel.font = UIFont.systemFont(ofSize: 5)
+        privateKeyLabel.adjustsFontSizeToFitWidth = true
+        v1.addSubview(privateKeyLabel)
+        
+        let pubKeyQRCode = BTCQRCode.image(for: "bitcoin:\(unencryptedWallet.address)", size: CGSize.init(width: 100, height: 100 ), scale: 10)
+        let pubKeyImageView = UIImageView.init(frame: CGRect.init(x: v1.frame.size.width-120, y: 20, width: 100, height: 100))
+        pubKeyImageView.image = pubKeyQRCode
+        v1.addSubview(pubKeyImageView)
+
+        
+        let addressLabel = UILabel.init(frame: CGRect.init(x: v1.frame.size.width-120, y: privateKeyImageView.frame.size.height+40,
+                                                              width:privateKeyImageView.frame.size.width, height: 100))
+        addressLabel.textAlignment = .center
+        addressLabel.numberOfLines = 0
+        addressLabel.text = unencryptedWallet.address
+        //privateKeyLabel.font = UIFont.systemFont(ofSize: 5)
+        addressLabel.adjustsFontSizeToFitWidth = true
+        v1.addSubview(addressLabel)
+        
+        do
+        {
+            let data = try PDFGenerator.generated(by: [v1])
+            loadPDFAndShare(data: data)
+        }
+        catch
+        {
+            print("error in the generation of the pdfxD")
+        }
+    }
     
+    func loadPDFAndShare(data:Data)
+    {
+        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView=self.view
+        activityViewController.completionWithItemsHandler =
+        {
+            (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
+            
+            // Do something
+            self.cardCollectionViewLayout?.flipRevealedCardBack()
+        }
+        present(activityViewController, animated: true, completion: nil)
+    }
     
     
     //

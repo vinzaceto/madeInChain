@@ -14,6 +14,7 @@ class SetPasswordView: UIView, UITextFieldDelegate
     var retypePassField:PWTextField!
     var passTemporaryText:String = ""
     var temporaryPlaceholder:NSAttributedString!
+    let generateButton = UIButton.init(type: .roundedRect)
     var lockWrite:Bool = false
     var delegate:SetupPageViewDelegate!
 
@@ -58,7 +59,6 @@ class SetPasswordView: UIView, UITextFieldDelegate
         
         let by = retypePassField.frame.origin.y + retypePassField.frame.size.height + 20
 
-        let generateButton = UIButton.init(type: .roundedRect)
         generateButton.frame = CGRect.init(x: 0, y: by, width: 160, height: 35)
         generateButton.addTarget(self, action: #selector(generateButtonPressed), for: .touchUpInside)
         generateButton.center.x = self.center.x

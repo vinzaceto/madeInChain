@@ -22,6 +22,12 @@ class OnViewController3: UIViewController, UIViewControllerTransitioningDelegate
     @IBOutlet weak var imagePage1: UIImageView!
     
     
+    
+    @IBAction func startButton(_ sender: Any) {
+        performSegue(withIdentifier: "segueToMain", sender: self)
+    }
+
+    
     let gradientView:GradientView = GradientView()
     
     override func viewDidLoad() {

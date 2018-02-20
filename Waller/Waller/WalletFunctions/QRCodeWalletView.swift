@@ -12,7 +12,7 @@ protocol WalletFunctionDelegate
 {
     func unflipCard()
     func unflipAndRemove(address:String)
-    func exportUsing(exportType: ExportType, unencryptedWallet:Wallet)
+    func exportWalletAsPDF(unencryptedWallet: Wallet)
 }
 
 class QRCodeWalletView: UIView {
@@ -69,7 +69,7 @@ class QRCodeWalletView: UIView {
     {
         self.address = address
         addressLabel.text = address
-        let image = BTCQRCode.image(for: address, size: qrCodeImage.frame.size, scale: 10)
+        let image = BTCQRCode.image(for: "bitcoin:\(address)", size: qrCodeImage.frame.size, scale: 10)
         qrCodeImage.image = image
     }
     

@@ -65,7 +65,6 @@
 		6192037420373C8F00443521 /* FilePathConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6192036B20373C8F00443521 /* FilePathConvertible.swift */; };
 		6192037520373C8F00443521 /* PDFPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6192036C20373C8F00443521 /* PDFPage.swift */; };
 		6192037620373C8F00443521 /* PDFGenerateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6192036D20373C8F00443521 /* PDFGenerateError.swift */; };
-		61920379203740BD00443521 /* PDFPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61920378203740BC00443521 /* PDFPreviewVC.swift */; };
 		61B6284B20323CE700EE6ABB /* WalletsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6284A20323CE600EE6ABB /* WalletsGenerator.swift */; };
 		61B6285420323D4300EE6ABB /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6284D20323D4300EE6ABB /* CircleTransition.swift */; };
 		61B6285520323D4300EE6ABB /* UIImgWithMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6284E20323D4300EE6ABB /* UIImgWithMask.swift */; };
@@ -195,7 +194,6 @@
 		6192036C20373C8F00443521 /* PDFPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPage.swift; sourceTree = "<group>"; };
 		6192036D20373C8F00443521 /* PDFGenerateError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFGenerateError.swift; sourceTree = "<group>"; };
 		6192036E20373C8F00443521 /* PDFGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFGenerator.h; sourceTree = "<group>"; };
-		61920378203740BC00443521 /* PDFPreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPreviewVC.swift; sourceTree = "<group>"; };
 		61B6284A20323CE600EE6ABB /* WalletsGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletsGenerator.swift; sourceTree = "<group>"; };
 		61B6284D20323D4300EE6ABB /* CircleTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTransition.swift; sourceTree = "<group>"; };
 		61B6284E20323D4300EE6ABB /* UIImgWithMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImgWithMask.swift; sourceTree = "<group>"; };
@@ -543,7 +541,6 @@
 		6192036620373C8F00443521 /* PDFGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				61920378203740BC00443521 /* PDFPreviewVC.swift */,
 				6192036720373C8F00443521 /* PDFPageRenderable.swift */,
 				6192036820373C8F00443521 /* DPIType.swift */,
 				6192036920373C8F00443521 /* PDFPassword.swift */,
@@ -868,7 +865,6 @@
 				61B6285720323D4300EE6ABB /* OnBoardingPageViewController.swift in Sources */,
 				61B9D2A5202B796D00E22B0D /* ACProgressView.swift in Sources */,
 				610B1DF92030D647005B1105 /* SelectWalletCell.swift in Sources */,
-				61920379203740BD00443521 /* PDFPreviewVC.swift in Sources */,
 				61CDB2E9202CCD5C0004C02B /* SetNameView.swift in Sources */,
 				240E02F4203716B6009FE6E4 /* CheckBox.swift in Sources */,
 				610B1DD8202DB7B9005B1105 /* Requestable.swift in Sources */,
@@ -1111,7 +1107,7 @@
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.waller.develop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.waller.developp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Waller/Waller-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1131,7 +1127,7 @@
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.waller.develop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.madeinchain.waller.developp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Waller/Waller-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

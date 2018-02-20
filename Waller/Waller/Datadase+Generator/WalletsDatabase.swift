@@ -19,11 +19,28 @@ class WalletsDatabase: NSObject
     
         for wEntity in walletEntities
         {
-            let w = Wallet.init(label: wEntity.label!, address: wEntity.address!, privatekey: wEntity.privateKey!)
+            var w:Wallet
+            if let privateKey = wEntity.privateKey
+            {w = Wallet.init(label: wEntity.label!, address: wEntity.address!, privatekey: privateKey)}
+            else{w = Wallet.init(label: wEntity.label!, address: wEntity.address!, privatekey: nil)}
             walletList.append(w)
         }
 
         return walletList
+    }
+    
+    func checkIfAlreadyListed(address:String) -> Bool
+    {
+        let wallets = getAllWallets()
+        for wallet in wallets
+        {
+            if wallet.address == address
+            {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func saveWallet(wallet:Wallet, completionHandler: @escaping (Bool, String) -> Void)
