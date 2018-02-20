@@ -40,4 +40,12 @@ class Props:NSObject
     let addViewsBackgroundColor = UIColor.clear
     
     static let colorSchemaClear = false
+    
+}
+
+extension UILabel{
+    var defaultFont: UIFont? {
+        get { return self.font }
+        set { self.font = newValue }
+    }
 }
