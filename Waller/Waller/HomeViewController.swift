@@ -10,10 +10,6 @@ import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
     
- 
-    
-    
-    
     weak var timer: Timer?
 
     @IBOutlet weak var totalView: InfoSectionXibController!
@@ -31,18 +27,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
-        
-        
-        
-        let b = BitcoinTransaction.init()
-        b.initTransaction(recipientAddress: "")
-        
-        
-        
-        
-        
         
         walletsList = []
         
@@ -63,7 +47,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         lineChart.frame = CGRect.init(x: 15, y: 110, width: self.view.frame.size.width-30, height: 190)
         lineChart.layer.cornerRadius = 6
         lineChart.clipsToBounds = true
+        lineChart.isUserInteractionEnabled = false
+        lineChart.scrollView.setContentOffset(CGPoint.init(x: lineChart.scrollView.contentSize.width, y: 0), animated: true)
         self.view.bringSubview(toFront: collectionView!)
+        
+        var footerY = self.view.frame.size.height-20
+        if UIDevice().userInterfaceIdiom == .phone && UIScreen.main.nativeBounds.height == 2436
+        {
+            //iPhone X
+            footerY = self.view.frame.size.height-40
+        }
         
         let baseString = "data forom blockchain.com and bitstamp.net"
         let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
@@ -71,7 +64,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let bitstampRange = (attributedString.string as NSString).range(of: "bitstamp.net")
         attributedString.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: blockchainRange)
         attributedString.setAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15)], range: bitstampRange)
-        let footerLabel = UILabel.init(frame: CGRect.init(x: 0, y: self.view.frame.size.height-20,
+        let footerLabel = UILabel.init(frame: CGRect.init(x: 0, y: footerY,
         width: self.view.frame.size.width, height: 20))
         footerLabel.font = UIFont.systemFont(ofSize: 14)
         footerLabel.attributedText = attributedString
@@ -358,6 +351,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = PaymentWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
+        let w = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
+        //view.testTransactionWithWallet(wallet: w)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     

@@ -54,7 +54,7 @@ class LineChart: UIView {
     private let mainLayer: CALayer = CALayer()
     
     /// Contains mainLayer and label for each data entry
-    private let scrollView: UIScrollView = UIScrollView()
+    let scrollView: UIScrollView = UIScrollView()
     
     /// Contains horizontal lines
     private let gridLayer: CALayer = CALayer()
@@ -97,6 +97,8 @@ class LineChart: UIView {
             gradientLayer.frame = dataLayer.frame
             dataPoints = convertDataEntriesToPoints(entries: dataEntries)
             gridLayer.frame = CGRect(x: 0, y: topSpace, width: self.frame.width, height: mainLayer.frame.height - topSpace - bottomSpace)
+            
+            scrollView.setContentOffset(CGPoint.init(x: scrollView.contentSize.width-self.frame.width, y: 0), animated: false)
             
             clean()
             drawHorizontalLines()
