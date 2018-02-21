@@ -12,7 +12,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     
     weak var timer: Timer?
-
+    
     @IBOutlet weak var totalView: InfoSectionXibController!
     @IBOutlet weak var lineChart: LineChart!
     var infoButton: UIButton!
@@ -61,7 +61,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             footerY = self.view.frame.size.height-40
         }
 
-        let baseString = "data forom blockchain.com and bitstamp.net"
+        let baseString = ""
         let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
         let blockchainRange = (attributedString.string as NSString).range(of: "blockchain.com")
         let bitstampRange = (attributedString.string as NSString).range(of: "bitstamp.net")
@@ -89,14 +89,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.cardCollectionViewLayout?.cardHeight = 340
         }
         
-        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width/2-15, y: 0, width: 30, height:30))
-        infoButton.backgroundColor = .red
-        infoButton.layer.cornerRadius = 9
+        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width-18, y: 96, width: 15, height:15))
+        infoButton.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+        infoButton.layer.cornerRadius = 5
         infoButton.setTitle("i", for: .normal)
-        infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
-        lineChart.addSubview(infoButton)
+        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 8)
         
-        
+        infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)),
+                             for: .touchUpInside)
+        collectionView?.addSubview(infoButton)
+
         updateBTCValue()
         getChartData()
         
@@ -106,6 +108,18 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         startTimer()
     }
+    
+    //Pasquale pop up infoButton
+    
+    @objc func infoButtonPopUp(sender: UIButton!) {
+        print("pressed")
+        let alert = EMAlertController(title: "Credit", message: "Data and chart from blockchain.com and bitstamp.net")
+        let close = EMAlertAction(title: "Close", style: .cancel)
+        alert.addAction(action: close)
+        alert.buttonSpacing = 0
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     func loadWallets()
     {
@@ -650,18 +664,5 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
     }
-    
-    //Pasquale pop up infoButton
-   @objc func infoButtonPopUp(sender: UIButton!) {
-        print("pressed")
-        let alert = EMAlertController(title: "Info PopUP", message: "URL")
-        let close = EMAlertAction(title: "Close", style: .cancel)
-        alert.addAction(action: close)
-        alert.buttonSpacing = 0
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
-    
 }
 
