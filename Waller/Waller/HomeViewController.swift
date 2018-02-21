@@ -367,7 +367,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = ExportWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
-        view.wallet = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
+        view.wallet = Wallet.init(label: walletCell.nameLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -456,7 +456,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         print("Generating PDF")
         let v1 = UIView(frame: CGRect(x: 0.0,y: 0, width: 420, height: 594))
-        v1.backgroundColor = UIColor.lightGray
+        v1.backgroundColor = UIColor.white
         
         // Draw logo
         let mod:CGFloat = 0.6
@@ -495,6 +495,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         //privateKeyLabel.font = UIFont.systemFont(ofSize: 5)
         addressLabel.adjustsFontSizeToFitWidth = true
         v1.addSubview(addressLabel)
+        
+        //        Draw Name
+        let nameLabel = UILabel.init(frame: CGRect.init(x: 0, y: 150,width: 153*mod, height: 149*mod))
+        nameLabel.textAlignment = .center
+        nameLabel.numberOfLines = 0
+        nameLabel.text = "This is your wallet:\n \(unencryptedWallet.label)"
+        nameLabel.backgroundColor = .clear
+        nameLabel.center.x = v1.center.x
+        nameLabel.adjustsFontSizeToFitWidth = true
+        v1.addSubview(nameLabel)
         
         do
         {
