@@ -14,6 +14,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet weak var totalView: InfoSectionXibController!
     @IBOutlet weak var lineChart: LineChart!
+    var infoButton: UIButton!
     
     var loadingLabel:UILabel!
     let gradientView:GradientView = GradientView()
@@ -44,7 +45,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
-                
+    
         lineChart.frame = CGRect.init(x: 15, y: 110, width: self.view.frame.size.width-30, height: 190)
         lineChart.layer.cornerRadius = 6
         lineChart.clipsToBounds = true
@@ -58,7 +59,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             //iPhone X
             footerY = self.view.frame.size.height-40
         }
-        
+
         let baseString = "data forom blockchain.com and bitstamp.net"
         let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
         let blockchainRange = (attributedString.string as NSString).range(of: "blockchain.com")
@@ -86,6 +87,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.cardCollectionViewLayout = layout
             self.cardCollectionViewLayout?.cardHeight = 340
         }
+        
+        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width/2-15, y: 0, width: 30, height:30))
+        infoButton.backgroundColor = .red
+        infoButton.layer.cornerRadius = 9
+        infoButton.setTitle("i", for: .normal)
+        infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
+        lineChart.addSubview(infoButton)
+        
         
         updateBTCValue()
         getChartData()
@@ -387,7 +396,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = ExportWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
-        view.wallet = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
+        view.wallet = Wallet.init(label: walletCell.nameLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -476,7 +485,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         print("Generating PDF")
         let v1 = UIView(frame: CGRect(x: 0.0,y: 0, width: 420, height: 594))
-        v1.backgroundColor = UIColor.lightGray
+        v1.backgroundColor = UIColor.white
         
         // Draw logo
         let mod:CGFloat = 0.6
@@ -515,6 +524,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         //privateKeyLabel.font = UIFont.systemFont(ofSize: 5)
         addressLabel.adjustsFontSizeToFitWidth = true
         v1.addSubview(addressLabel)
+        
+        //        Draw Name
+        let nameLabel = UILabel.init(frame: CGRect.init(x: 0, y: 150,width: 153*mod, height: 149*mod))
+        nameLabel.textAlignment = .center
+        nameLabel.numberOfLines = 0
+        nameLabel.text = "This is your wallet:\n \(unencryptedWallet.label)"
+        nameLabel.backgroundColor = .clear
+        nameLabel.center.x = v1.center.x
+        nameLabel.adjustsFontSizeToFitWidth = true
+        v1.addSubview(nameLabel)
         
         do
         {
@@ -620,5 +639,18 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
     }
+    
+    //Pasquale pop up infoButton
+   @objc func infoButtonPopUp(sender: UIButton!) {
+        print("pressed")
+        let alert = EMAlertController(title: "Info PopUP", message: "URL")
+        let close = EMAlertAction(title: "Close", style: .cancel)
+        alert.addAction(action: close)
+        alert.buttonSpacing = 0
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
 }
 
