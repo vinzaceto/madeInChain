@@ -12,7 +12,6 @@
 		2436566A202C60B200E33A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24365668202C60B200E33A6E /* Main.storyboard */; };
 		249C73A7202DAE1E00A0EB36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */; };
 		24B0984D2034C0EE00DD8FF5 /* OnViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */; };
-		24E34BDF203CAE51003132FE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E34BDE203CAE51003132FE /* StoreKit.framework */; };
 		24E34BE2203CAE63003132FE /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E34BE1203CAE63003132FE /* PassKit.framework */; };
 		610B1DD2202DB7B9005B1105 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAC202DB7B9005B1105 /* Logger.swift */; };
 		610B1DD3202DB7B9005B1105 /* DirUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B1DAE202DB7B9005B1105 /* DirUtils.swift */; };
@@ -138,7 +137,6 @@
 		24365669202C60B200E33A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		249C73A6202DAE1D00A0EB36 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24B0984C2034C0EE00DD8FF5 /* OnViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnViewController2.swift; sourceTree = "<group>"; };
-		24E34BDE203CAE51003132FE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		24E34BE0203CAE59003132FE /* Waller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waller.entitlements; sourceTree = "<group>"; };
 		24E34BE1203CAE63003132FE /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		609D201F7C6CD61BD4EE8733 /* Pods-Waller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waller.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waller/Pods-Waller.release.xcconfig"; sourceTree = "<group>"; };
@@ -593,6 +591,7 @@
 			children = (
 				6130BA842031A7E9002262FE /* WalletsGenerator.swift */,
 				61294A702024C7D0009F9886 /* OnBoarding.storyboard */,
+				24E34BE1203CAE63003132FE /* PassKit.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
