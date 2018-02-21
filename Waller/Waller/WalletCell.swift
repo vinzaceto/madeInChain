@@ -18,7 +18,7 @@ protocol WalletCellDelegate
     
     func addButtonPressed()
     func scanButtonPressed()
-    
+        
     func getOutputBalanceByAddress(address:String) -> [BTCTransactionOutput]?
     func getUSDVAlueFromAmount(amount:String) -> String?
 

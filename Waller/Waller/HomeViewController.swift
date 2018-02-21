@@ -14,6 +14,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet weak var totalView: InfoSectionXibController!
     @IBOutlet weak var lineChart: LineChart!
+    var infoButton: UIButton!
     
     var loadingLabel:UILabel!
     let gradientView:GradientView = GradientView()
@@ -43,7 +44,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
-                
+    
         lineChart.frame = CGRect.init(x: 15, y: 110, width: self.view.frame.size.width-30, height: 190)
         lineChart.layer.cornerRadius = 6
         lineChart.clipsToBounds = true
@@ -57,7 +58,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             //iPhone X
             footerY = self.view.frame.size.height-40
         }
-        
+
         let baseString = "data forom blockchain.com and bitstamp.net"
         let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
         let blockchainRange = (attributedString.string as NSString).range(of: "blockchain.com")
@@ -85,6 +86,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.cardCollectionViewLayout = layout
             self.cardCollectionViewLayout?.cardHeight = 340
         }
+        
+        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width/2-15, y: 0, width: 30, height:30))
+        infoButton.backgroundColor = .red
+        infoButton.layer.cornerRadius = 9
+        infoButton.setTitle("i", for: .normal)
+        infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
+        lineChart.addSubview(infoButton)
+        
         
         updateBTCValue()
         getChartData()
@@ -610,5 +619,18 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
     }
+    
+    //Pasquale pop up infoButton
+   @objc func infoButtonPopUp(sender: UIButton!) {
+        print("pressed")
+        let alert = EMAlertController(title: "Info PopUP", message: "URL")
+        let close = EMAlertAction(title: "Close", style: .cancel)
+        alert.addAction(action: close)
+        alert.buttonSpacing = 0
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
 }
 
