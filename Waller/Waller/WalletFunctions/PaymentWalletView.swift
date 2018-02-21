@@ -54,26 +54,23 @@ class PaymentWalletView: UIView, SlideButtonDelegate
         let btcw:CGFloat = 33
         let btcx = (viewWidth / 2) + btcw
         
-        let btcLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 10, width: btcw, height: 10))
+        let btcLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 20, width: btcw, height: 10))
         btcLabel.backgroundColor = UIColor.clear
         btcLabel.textAlignment = .right
         btcLabel.font = UIFont.boldSystemFont(ofSize: 12)
         btcLabel.text = "BTC"
         btcLabel.textColor = UIColor.darkGray
-        //btcLabel.shadowColor = UIColor.gray
-        //btcLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
         sendView.addSubview(btcLabel)
         
-        btcAmountLabel = UILabel.init(frame: CGRect.init(x: btcx-100, y: 10, width: 100, height: 20))
+        btcAmountLabel = UILabel.init(frame: CGRect.init(x: btcx-100, y: 15, width: 100, height: 20))
         btcAmountLabel.backgroundColor = UIColor.clear
         btcAmountLabel.textAlignment = .right
         btcAmountLabel.adjustsFontSizeToFitWidth = true
         btcAmountLabel.textColor = UIColor.black
-        //amountLabel.shadowColor = UIColor.black
-        //amountLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
+        btcAmountLabel.text = "0"
         sendView.addSubview(btcAmountLabel)
         
-        usdLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 25, width: btcw, height: 10))
+        usdLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 40, width: btcw, height: 10))
         usdLabel.backgroundColor = UIColor.clear
         usdLabel.textAlignment = .right
         usdLabel.font = UIFont.boldSystemFont(ofSize: 12)
@@ -83,10 +80,11 @@ class PaymentWalletView: UIView, SlideButtonDelegate
         //btcLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
         sendView.addSubview(usdLabel)
         
-        usdAmountLabel = UILabel.init(frame: CGRect.init(x: btcx-100, y: 25, width: 100, height: 20))
+        usdAmountLabel = UILabel.init(frame: CGRect.init(x: btcx-100, y: 37, width: 100, height: 20))
         usdAmountLabel.backgroundColor = UIColor.clear
         usdAmountLabel.textAlignment = .right
         usdAmountLabel.adjustsFontSizeToFitWidth = true
+        usdAmountLabel.text = "--"
         sendView.addSubview(usdAmountLabel)
         
         let hintLabel = UILabel.init(frame: CGRect.init(x: 25, y: 50, width: viewWidth-80, height: 20))
