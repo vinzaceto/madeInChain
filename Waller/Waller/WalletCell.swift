@@ -21,17 +21,12 @@ protocol WalletCellDelegate
         
     func getOutputBalanceByAddress(address:String) -> [BTCTransactionOutput]?
     func getUSDVAlueFromAmount(amount:String) -> String?
-
-    /*
-    func getBTCBalanceByAddress(address:String) -> WalletBalance?
-    func getUSDBalanceByAddress(address:String) -> String?
-    func getUnspentOutputsAddress(address:String) -> [BTCTransactionOutput]?
-    */
+    func getTransactionsBy(address: String) -> WalletTransactions?
 }
 
 class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewDataSource
 {
-    var balance:WalletBalance!
+    var transactions:WalletTransactions!
     var magneticBand:UIImageView!
     var headerImage:UIImageView!
     var iconImage:UIImageView!
@@ -41,15 +36,19 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     var amountLabel:UILabel!
     var usdLabel:UILabel!
     var unconfirmedAmountLabel:UILabel!
+    var uncLabel:UILabel!
     var currencyAmount:UILabel!
     var tableView:UITableView!
     var delegate:WalletCellDelegate!
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
  
-      weak var timer: Timer?
-      var txs:[Transaction] = []
-//    var unspentTxs:[BTCTransactionOutput] = []
+    weak var timer: Timer?
+    var txs:[Transaction] = []
 
+    var btcxTemp:CGFloat?
+    let btcw:CGFloat = 33
+
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -66,11 +65,11 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         headerImage.image = image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         self.addSubview(headerImage)
         
-        iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 40, height: 40))
+        iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 38, height: 49))
         self.addSubview(iconImage)
         
-        let btcw:CGFloat = 33
         let btcx = viewWidth - btcw - 10
+        btcxTemp = btcw
         
         let btcLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 35, width: btcw, height: 10))
         btcLabel.backgroundColor = UIColor.clear
@@ -78,8 +77,6 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         btcLabel.font = UIFont.boldSystemFont(ofSize: 12)
         btcLabel.text = "BTC"
         btcLabel.textColor = UIColor.darkGray
-        //btcLabel.shadowColor = UIColor.gray
-        //btcLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
         self.addSubview(btcLabel)
         
         amountLabel = UILabel.init(frame: CGRect.init(x: btcx-100, y: 25, width: 100, height: 20))
@@ -87,8 +84,6 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         amountLabel.textAlignment = .right
         amountLabel.adjustsFontSizeToFitWidth = true
         amountLabel.textColor = UIColor.black
-        //amountLabel.shadowColor = UIColor.black
-        //amountLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
         self.addSubview(amountLabel)
         
         usdLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 56, width: btcw, height: 10))
@@ -97,8 +92,6 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         usdLabel.font = UIFont.boldSystemFont(ofSize: 12)
         usdLabel.text = "USD"
         usdLabel.textColor = UIColor.darkGray
-        //btcLabel.shadowColor = UIColor.gray
-        //btcLabel.shadowOffset = CGSize(width: 0.5, height: 0.3)
         self.addSubview(usdLabel)
         
         currencyAmount = UILabel.init(frame: CGRect.init(x: btcx-100, y: 50, width: 100, height: 20))
@@ -109,7 +102,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         
         let nw = viewWidth - iconImage.frame.size.width - 30 - btcLabel.frame.size.width - currencyAmount.frame.size.width
         let nx = iconImage.frame.origin.x + iconImage.frame.size.width + 10
-        nameLabel = UILabel.init(frame: CGRect.init(x: nx, y: 45, width: nw, height: 25))
+        nameLabel = UILabel.init(frame: CGRect.init(x: nx, y: 41, width: nw, height: 25))
         nameLabel.backgroundColor = UIColor.clear
         nameLabel.font = UIFont.systemFont(ofSize: 24)
         self.addSubview(nameLabel)
@@ -121,7 +114,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         //self.addSubview(addressLabel)
         
         
-        let tvh = addressLabel.frame.origin.y + 40
+        let tvh = addressLabel.frame.origin.y + 20
         tableView = UITableView.init(frame: CGRect.init(x: 0, y: tvh, width: viewWidth, height: 150))
         tableView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         tableView.register(TransactionCell.self, forCellReuseIdentifier: "TransactionCell")
@@ -194,7 +187,15 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         unconfirmedAmountLabel.textColor = UIColor.orange
         unconfirmedAmountLabel.font = UIFont.systemFont(ofSize: 13)
         amountLabel.addSubview(unconfirmedAmountLabel)
-        currencyAmount.frame.origin.y = 70
+        
+        if uncLabel != nil { uncLabel.removeFromSuperview() }
+        uncLabel = UILabel.init(frame: CGRect.init(x: unconfirmedAmountLabel.frame.width + 6, y: 25, width: btcw, height: 15))
+        uncLabel.backgroundColor = UIColor.clear
+        usdLabel.textAlignment = .right
+        uncLabel.textColor = UIColor.orange
+        uncLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        amountLabel.addSubview(uncLabel)
+        currencyAmount.frame.origin.y = 73
         usdLabel.frame.origin.y = 75
     }
     
@@ -335,8 +336,10 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
             [weak self] _ in
             self?.updateBalance()
             self?.updateCurrencyPrice()
+            self?.updateTransactions()
         }
     }
+    
     
     func updateBalance()
     {
@@ -368,12 +371,18 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
             if let formattedAmount = formatter?.string(fromAmount: unconfirmedAmount)
             {
                 showUnconfirmedLabel()
-                self.unconfirmedAmountLabel.text = "+ \(formattedAmount)"
+                self.unconfirmedAmountLabel.text = "\(formattedAmount)"
+                self.uncLabel.text = "UNC"
             }
         }
         else
         {
-            if unconfirmedAmountLabel != nil { unconfirmedAmountLabel.removeFromSuperview() }
+            if unconfirmedAmountLabel != nil {
+                unconfirmedAmountLabel.removeFromSuperview()
+            }
+            if uncLabel != nil {
+                uncLabel.removeFromSuperview()
+            }
             currencyAmount.frame.origin.y = 50
             usdLabel.frame.origin.y = 56
         }
@@ -381,43 +390,74 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     
     func updateCurrencyPrice()
     {
-        guard let btcPrice = delegate.getUSDVAlueFromAmount(amount: amountLabel.text!) else {return}
+        guard let btcPrice = delegate?.getUSDVAlueFromAmount(amount: amountLabel.text!) else {return}
         self.currencyAmount.text = btcPrice
+    }
+    
+    func updateTransactions()
+    {
+        guard let address = self.addressLabel.text else {return}
+        guard let transactions = delegate?.getTransactionsBy(address: address) else {return}
+        self.fiterTransactions(myAddress: address, transactions: transactions.txs)
+    }
+    
+    func fiterTransactions( myAddress:String, transactions:[TXs])
+    {
+        txs = []
+        
+        for tx in transactions
+        {
+            for input in tx.inputs
+            {
+                if input.prev_out.addr == myAddress
+                {
+                    // it is an outgoing transaction
+                    let inValue = input.prev_out.value
+                    var outValue:BTCAmount = 0
+
+                    for output in tx.out
+                    {
+                        if output.addr == myAddress
+                        {
+                            outValue = outValue + output.value
+                        }
+                    }
+                    let outgoingTotal = inValue - outValue
+                    let transaction = Transaction.init(input: false, value: outgoingTotal, time: tx.time, confirmations: 0)
+                    txs.append(transaction)
+                }
+            }
+        }
+        
+        for tx in transactions
+        {
+            for input in tx.inputs
+            {
+                if input.prev_out.addr != myAddress
+                {
+                    // it is an incoming transaction
+                    var inValue:BTCAmount = 0
+                    for output in tx.out
+                    {
+                        if output.addr == myAddress
+                        {
+                            inValue = inValue + output.value
+                        }
+                    }
+                    let transaction = Transaction.init(input: true, value: inValue, time: tx.time, confirmations: 0)
+                    txs.append(transaction)
+                }
+            }
+        }
+        print("transactions : \(txs)")
     }
     
     /*
 
     
-    func updateBalance()
-    {
-        //print("Updating balance for address : \(String(describing: addressLabel.text))")
-        guard let balance = delegate.getBTCBalanceByAddress(address: addressLabel.text!) else {return}
-        //print(balance)
-        if balance.final_balance == 0
-        {
-            self.amountLabel.text = "--"
-            return
-        }
-        let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
-        let amount = formatter?.string(fromAmount: balance.final_balance)
-        self.amountLabel.text = amount
-        
-        filterTransactions(transactions: balance.txs)
-    }
     
-    func updateCurrencyPrice()
-    {
-        print("updating address \(addressLabel.text)")
-        guard let btcPrice = delegate.getUSDBalanceByAddress(address: addressLabel.text!) else {return}
-        self.currencyAmount.text = btcPrice
-    }
     
-    func updateUnspent()
-    {
-        guard let unspentsTxs = delegate.getUnspentOutputsAddress(address: addressLabel.text!) else {return}
-        self.unspentTxs = unspentsTxs
-    }
-    
+ 
     func filterTransactions(transactions:[TXs])
     {
         txs = []

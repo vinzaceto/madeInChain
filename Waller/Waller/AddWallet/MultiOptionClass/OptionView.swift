@@ -20,7 +20,9 @@ class OptionView: UIView {
     var delegate:OptionViewDelegate!
     var height:CGFloat = 0
     var isOpen:Bool = true
-    
+    let button = UIButton.init(type: UIButtonType.roundedRect)
+    let selectButton = UIButton.init(type: .roundedRect)
+
     init(frame: CGRect, data:Option, index:Int) {
         
         super.init(frame: frame)
@@ -50,7 +52,6 @@ class OptionView: UIView {
         self.addSubview(optionText)
         
         let y:CGFloat = optionText.frame.origin.y + optionText.frame.size.height + 10
-        let selectButton = UIButton.init(type: .roundedRect)
         selectButton.frame = CGRect.init(x: 0, y: y, width: frame.size.width, height: 40)
         selectButton.setTitle(data.buttonTitle, for: .normal)
         selectButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
@@ -60,7 +61,6 @@ class OptionView: UIView {
         height = optionTitle.frame.size.height + optionText.frame.size.height + 20 + CGFloat(Props.optionViewMargin) + selectButton.frame.size.height + 10
         self.frame.size.height = height
         
-        let button = UIButton.init(type: UIButtonType.roundedRect)
         button.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width , height: self.frame.size.height)
         button.addTarget(self, action: #selector(optionPressed), for: .touchUpInside)
         self.addSubview(button)

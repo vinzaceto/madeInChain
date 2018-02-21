@@ -38,6 +38,8 @@ class AddTypeView: UIView, MultiOptionViewDelegate {
         multiView.setDefaultIndex(index: 0)
         self.addSubview(multiView)
         
+        multiView.options[1].selectButton.isEnabled = false
+        
         multiView.center.x = self.center.x
         multiView.center.y = self.center.y + 40
     }

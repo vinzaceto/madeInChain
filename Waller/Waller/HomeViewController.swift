@@ -10,8 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
     
+    
     weak var timer: Timer?
-
+    
     @IBOutlet weak var totalView: InfoSectionXibController!
     @IBOutlet weak var lineChart: LineChart!
     var infoButton: UIButton!
@@ -24,7 +25,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     var walletsList:[Wallet]!
     var walletsBalancesList:[(address:String,unspent:[BTCTransactionOutput])] = []
-
+    var walletsTransactionsList:[WalletTransactions] = []
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -59,7 +61,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             footerY = self.view.frame.size.height-40
         }
 
-        let baseString = "data forom blockchain.com and bitstamp.net"
+        let baseString = ""
         let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
         let blockchainRange = (attributedString.string as NSString).range(of: "blockchain.com")
         let bitstampRange = (attributedString.string as NSString).range(of: "bitstamp.net")
@@ -87,26 +89,37 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.cardCollectionViewLayout?.cardHeight = 340
         }
         
-        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width/2-15, y: 0, width: 30, height:30))
-        infoButton.backgroundColor = .red
-        infoButton.layer.cornerRadius = 9
+        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width-18, y: 96, width: 15, height:15))
+        infoButton.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+        infoButton.layer.cornerRadius = 5
         infoButton.setTitle("i", for: .normal)
-        infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
-        lineChart.addSubview(infoButton)
+        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 8)
         
-        
+        infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)),
+                             for: .touchUpInside)
+        collectionView?.addSubview(infoButton)
+
         updateBTCValue()
         getChartData()
         
         loadWallets()
         loadBalance()
-
-        /*
-        loadUnspentOutputs()
-        */
+        loadTransactions()
         
         startTimer()
     }
+    
+    //Pasquale pop up infoButton
+    
+    @objc func infoButtonPopUp(sender: UIButton!) {
+        print("pressed")
+        let alert = EMAlertController(title: "Credit", message: "Data and chart from blockchain.com and bitstamp.net")
+        let close = EMAlertAction(title: "Close", style: .cancel)
+        alert.addAction(action: close)
+        alert.buttonSpacing = 0
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     func loadWallets()
     {
@@ -121,7 +134,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
         {
             [weak self] _ in
-            //self?.loadUnspentOutputs()
+            self?.loadTransactions()
             self?.loadBalance()
             self?.updateBTCValue()
         }
@@ -150,10 +163,29 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         totalView.updateBTCTotal(total: confirmedTotalBalance)
     }
     
-    func getTransactions()
+    func loadTransactions()
     {
-        
+        walletsTransactionsList = []
+        let testnet = BTCTestnetInfo.init()
+        for wallet in walletsList
+        {
+            testnet.getWalletTransactions(address: wallet.address, completion:
+            {
+                (success, txs) in
+                if success == true
+                {
+                    if let transactions = txs
+                    {
+                        self.walletsTransactionsList.append(transactions)
+                        print(transactions)
+                    }
+                }
+            })
+        }
     }
+    
+    
+    // WalletCell Delegate
     
     func getOutputBalanceByAddress(address:String) -> [BTCTransactionOutput]?
     {
@@ -173,6 +205,18 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         if totalBTCAmount == 0{return "--"}
         let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
         return formattedBalance
+    }
+
+    func getTransactionsBy(address: String) -> WalletTransactions?
+    {
+        for walletTransactions in walletsTransactionsList
+        {
+            if walletTransactions.address == address
+            {
+                return walletTransactions
+            }
+        }
+        return nil
     }
     
     /*
@@ -298,13 +342,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 {
                     cell.addressPrivateKey = privateKey
                     cell.headerImage.tintColor = UIColor.darkGray
+                    cell.iconImage.image = UIImage.init(named: "standard")
                 }
                 else
                 {
                     cell.headerImage.tintColor = UIColor.blue
+                    cell.iconImage.image = UIImage.init(named: "eye")
                 }
                 
-                cell.iconImage.image = UIImage.init(named: "done")
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
                 let address = walletsList[indexPath.row-1].address
                 cell.addressLabel.text = address
@@ -312,7 +357,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 cell.currencyAmount.text = "--"
                 cell.cardCollectionViewLayout = cardCollectionViewLayout
                 cell.delegate = self
-                //cell.updateUnspent()
+                cell.updateTransactions()
                 cell.updateBalance()
                 cell.updateCurrencyPrice()
                 cell.startTimer()
@@ -361,7 +406,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let view = PaymentWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
         let w = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
-        //view.testTransactionWithWallet(wallet: w)
+        view.testTransactionWithWallet(wallet: w)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -376,7 +421,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = ExportWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
-        view.wallet = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
+        view.wallet = Wallet.init(label: walletCell.nameLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -465,7 +510,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         print("Generating PDF")
         let v1 = UIView(frame: CGRect(x: 0.0,y: 0, width: 420, height: 594))
-        v1.backgroundColor = UIColor.lightGray
+        v1.backgroundColor = UIColor.white
         
         // Draw logo
         let mod:CGFloat = 0.6
@@ -504,6 +549,16 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         //privateKeyLabel.font = UIFont.systemFont(ofSize: 5)
         addressLabel.adjustsFontSizeToFitWidth = true
         v1.addSubview(addressLabel)
+        
+        //        Draw Name
+        let nameLabel = UILabel.init(frame: CGRect.init(x: 0, y: 150,width: 153*mod, height: 149*mod))
+        nameLabel.textAlignment = .center
+        nameLabel.numberOfLines = 0
+        nameLabel.text = "This is your wallet:\n \(unencryptedWallet.label)"
+        nameLabel.backgroundColor = .clear
+        nameLabel.center.x = v1.center.x
+        nameLabel.adjustsFontSizeToFitWidth = true
+        v1.addSubview(nameLabel)
         
         do
         {
@@ -609,18 +664,5 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
     }
-    
-    //Pasquale pop up infoButton
-   @objc func infoButtonPopUp(sender: UIButton!) {
-        print("pressed")
-        let alert = EMAlertController(title: "Info PopUP", message: "URL")
-        let close = EMAlertAction(title: "Close", style: .cancel)
-        alert.addAction(action: close)
-        alert.buttonSpacing = 0
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
-    
 }
 

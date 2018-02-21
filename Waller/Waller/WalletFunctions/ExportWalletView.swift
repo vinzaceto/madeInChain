@@ -67,6 +67,63 @@ class ExportWalletView: UIView, UITextFieldDelegate
         typeWrapper.addSubview(infoLabel)
         
         let exportICloud = UIButton.init(type: .roundedRect)
+        exportICloud.frame = CGRect.init(x: 0, y: 0, width: 104, height: 88)
+        exportICloud.setImage(UIImage.init(named: "backupCloudIcon"), for: .normal)
+        exportICloud.addTarget(self, action: #selector(exportByICloudPressed), for: .touchUpInside)
+        exportICloud.isEnabled = false
+        exportICloud.center.y = self.center.y
+        exportICloud.center.x = self.center.x - 110
+        typeWrapper.addSubview(exportICloud)
+
+        let exportAsText = UIButton.init(type: .roundedRect)
+        exportAsText.frame = CGRect.init(x: 0, y: 0, width: 70, height: 87)
+        exportAsText.setImage(UIImage.init(named: "txtIcon"), for: .normal)
+        exportAsText.addTarget(self, action: #selector(exportAsTextPressed), for: .touchUpInside)
+        exportAsText.center.y = self.center.y
+        exportAsText.center.x = self.center.x + 10
+        exportAsText.tintColor = UIColor.darkGray
+        typeWrapper.addSubview(exportAsText)
+        
+        let exportOnFile = UIButton.init(type: .roundedRect)
+        exportOnFile.frame = CGRect.init(x: 0, y: 0, width: 70, height: 87)
+        exportOnFile.setImage(UIImage.init(named: "pdfIcon"), for: .normal)
+        exportOnFile.addTarget(self, action: #selector(exportByFilePressed), for: .touchUpInside)
+        exportOnFile.center.y = self.center.y
+        exportOnFile.center.x = self.center.x + 120
+        exportOnFile.tintColor = UIColor.darkGray
+        typeWrapper.addSubview(exportOnFile)
+        
+        let textExport = UIButton.init(type: .roundedRect)
+        textExport.frame = CGRect.init(x:0, y: 0, width: 80, height: 35)
+        textExport.addTarget(self, action: #selector(exportAsTextPressed), for: .touchUpInside)
+        textExport.setTitle("txt file", for: .normal)
+        textExport.center.x = exportAsText.center.x
+        textExport.center.y = exportAsText.center.y + 70
+        textExport.setTitleColor(UIColor.darkGray, for: .normal)
+        typeWrapper.addSubview(textExport)
+
+        
+        let fileExport = UIButton.init(type: .roundedRect)
+        fileExport.frame = CGRect.init(x:0, y: 0, width: 80, height: 35)
+        fileExport.addTarget(self, action: #selector(exportByFilePressed), for: .touchUpInside)
+        fileExport.setTitle("pdf file", for: .normal)
+        fileExport.center.x = exportOnFile.center.x
+        fileExport.center.y = exportOnFile.center.y + 70
+        fileExport.setTitleColor(UIColor.darkGray, for: .normal)
+        typeWrapper.addSubview(fileExport)
+
+        let iCloudButton = UIButton.init(type: .roundedRect)
+        iCloudButton.frame = CGRect.init(x: 0, y: 0, width: 80, height: 35)
+        iCloudButton.addTarget(self, action: #selector(exportByICloudPressed), for: .touchUpInside)
+        iCloudButton.setTitle("iCloud", for: .normal)
+        iCloudButton.isEnabled = false
+        iCloudButton.center.x = exportICloud.center.x
+        iCloudButton.center.y = exportICloud.center.y + 70
+        typeWrapper.addSubview(iCloudButton)
+
+        
+        /*
+        let exportICloud = UIButton.init(type: .roundedRect)
         exportICloud.frame = CGRect.init(x: (viewWidth-160)/2, y: 130, width: 160, height: 35)
         exportICloud.addTarget(self, action: #selector(exportByICloudPressed), for: .touchUpInside)
         exportICloud.layer.borderWidth = 2
@@ -93,6 +150,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
         exportAsText.layer.cornerRadius = 6
         exportAsText.setTitle("export as Text", for: .normal)
         typeWrapper.addSubview(exportAsText)
+        */
         
         passwordWrapper = UIView.init(frame: CGRect.init(x: viewWidth, y: 0, width: viewWidth, height: 340))
         self.addSubview(passwordWrapper)

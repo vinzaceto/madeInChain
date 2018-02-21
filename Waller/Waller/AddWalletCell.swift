@@ -15,7 +15,7 @@ class AddWalletCell: HFCardCollectionViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:0.7)
         
         let viewWidth = (UIScreen.main.bounds.width - 30)
         
@@ -27,7 +27,7 @@ class AddWalletCell: HFCardCollectionViewCell
         newLabel.backgroundColor = UIColor.clear
         newLabel.font = UIFont.init(name: "Rubik-Medium", size: 40)
         newLabel.text = "New"
-        newLabel.textColor = UIColor.iosBlueColor
+        newLabel.textColor = UIColor.darkGray
         self.addSubview(newLabel)
         
         let addButton = UIButton.init(type: .custom)
@@ -48,7 +48,7 @@ class AddWalletCell: HFCardCollectionViewCell
         subtitleLabel.text = "Ta add a new wallet tap to the + button in the bottom left corner or quick import a QR code with your camera."
         subtitleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.font = UIFont.init(name: "Rubik-Italic", size: 19)
-        subtitleLabel.textColor = UIColor.lightGray
+        subtitleLabel.textColor = UIColor.darkGray
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
         self.addSubview(subtitleLabel)
