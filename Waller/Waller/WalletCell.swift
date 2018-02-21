@@ -41,6 +41,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     var amountLabel:UILabel!
     var usdLabel:UILabel!
     var unconfirmedAmountLabel:UILabel!
+    var uncLabel:UILabel!
     var currencyAmount:UILabel!
     var tableView:UITableView!
     var delegate:WalletCellDelegate!
@@ -50,6 +51,10 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
       var txs:[Transaction] = []
 //    var unspentTxs:[BTCTransactionOutput] = []
 
+    var btcxTemp:CGFloat?
+    let btcw:CGFloat = 33
+
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -69,8 +74,8 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 40, height: 40))
         self.addSubview(iconImage)
         
-        let btcw:CGFloat = 33
         let btcx = viewWidth - btcw - 10
+        btcxTemp = btcw
         
         let btcLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 35, width: btcw, height: 10))
         btcLabel.backgroundColor = UIColor.clear
@@ -194,6 +199,14 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         unconfirmedAmountLabel.textColor = UIColor.orange
         unconfirmedAmountLabel.font = UIFont.systemFont(ofSize: 13)
         amountLabel.addSubview(unconfirmedAmountLabel)
+        
+        if uncLabel != nil { uncLabel.removeFromSuperview() }
+        uncLabel = UILabel.init(frame: CGRect.init(x: unconfirmedAmountLabel.frame.width + 6, y: 25, width: btcw, height: 15))
+        uncLabel.backgroundColor = UIColor.clear
+        usdLabel.textAlignment = .right
+        uncLabel.textColor = UIColor.orange
+        uncLabel.font = UIFont.systemFont(ofSize: 13)
+        amountLabel.addSubview(uncLabel)
         currencyAmount.frame.origin.y = 70
         usdLabel.frame.origin.y = 75
     }
@@ -368,12 +381,18 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
             if let formattedAmount = formatter?.string(fromAmount: unconfirmedAmount)
             {
                 showUnconfirmedLabel()
-                self.unconfirmedAmountLabel.text = "+ \(formattedAmount)"
+                self.unconfirmedAmountLabel.text = "\(formattedAmount)"
+                self.uncLabel.text = "UNC"
             }
         }
         else
         {
-            if unconfirmedAmountLabel != nil { unconfirmedAmountLabel.removeFromSuperview() }
+            if unconfirmedAmountLabel != nil {
+                unconfirmedAmountLabel.removeFromSuperview()
+            }
+            if uncLabel != nil {
+                uncLabel.removeFromSuperview()
+            }
             currencyAmount.frame.origin.y = 50
             usdLabel.frame.origin.y = 56
         }
