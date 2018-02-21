@@ -31,7 +31,7 @@ protocol WalletCellDelegate
 
 class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewDataSource
 {
-    var balance:WalletBalance!
+    var transactions:WalletTransactions!
     var magneticBand:UIImageView!
     var headerImage:UIImageView!
     var iconImage:UIImageView!
@@ -66,7 +66,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         headerImage.image = image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         self.addSubview(headerImage)
         
-        iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 40, height: 40))
+        iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 38, height: 49))
         self.addSubview(iconImage)
         
         let btcw:CGFloat = 33
@@ -109,7 +109,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         
         let nw = viewWidth - iconImage.frame.size.width - 30 - btcLabel.frame.size.width - currencyAmount.frame.size.width
         let nx = iconImage.frame.origin.x + iconImage.frame.size.width + 10
-        nameLabel = UILabel.init(frame: CGRect.init(x: nx, y: 45, width: nw, height: 25))
+        nameLabel = UILabel.init(frame: CGRect.init(x: nx, y: 41, width: nw, height: 25))
         nameLabel.backgroundColor = UIColor.clear
         nameLabel.font = UIFont.systemFont(ofSize: 24)
         self.addSubview(nameLabel)

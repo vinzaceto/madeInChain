@@ -83,6 +83,7 @@ class ImportUsingTextView: UIView {
         
         let m = BTCMnemonic.init(words: mnemonic, password: "", wordListType: BTCMnemonicWordListType.english)
         guard let keychain = m?.keychain else { print("wrong mnemonic");return }
+        
         keychainImported(btcKeychain:keychain )
     }
 
@@ -102,10 +103,6 @@ class ImportUsingTextView: UIView {
         guard let _ = self.delegate?.keychainImported(btcKeychain: btcKeychain)
         else { return }
     }
-    
-    
-    
-    
     
    
     
