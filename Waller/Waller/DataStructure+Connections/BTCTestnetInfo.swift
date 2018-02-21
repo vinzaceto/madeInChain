@@ -24,11 +24,9 @@ struct BTCUtx:Codable
     let confirmations:UInt
 }
 
-struct WalletBalance:Codable
+struct WalletTransactions:Codable
 {
-    let hash160:String
     let address:String
-    let n_tx:UInt32
     let total_received:BTCAmount
     let total_sent:BTCAmount
     let final_balance:BTCAmount
@@ -61,36 +59,35 @@ struct TXout:Codable
 }
 
 class BTCTestnetInfo: NSObject
-{    
-    func getWalletBalance(address:String) -> WalletBalance?
+{
+    func getWalletTransactions(address:String, completion: @escaping ((Bool,WalletTransactions?) -> Void))
     {
         let url = URL(string: "https://testnet.blockchain.info/it/rawaddr/\(address)")!
         let request = URLRequest(url: url)
-        let semaphore = DispatchSemaphore(value: 0)
         var data: Data? = nil
         
         URLSession.shared.dataTask(with: request)
         {
             (responseData, _, _) -> Void in
             data = responseData
-            semaphore.signal()
+            
+            //let reply = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
+            //print(reply)
+            
+            let decoder = JSONDecoder()
+            do
+            {
+                let decodedResponse = try decoder.decode(WalletTransactions.self, from: data!)
+                completion(true,decodedResponse)
+                return
+            }
+            catch
+            {
+                print("error converting data to JSON")
+                completion(false,nil)
+                return
+            }
         }.resume()
-        semaphore.wait(timeout: .distantFuture)
-
-        let reply = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
-        //print(reply)
-        
-        let decoder = JSONDecoder()
-        do
-        {
-            let decodedResponse = try decoder.decode(WalletBalance.self, from: data!)
-            return decodedResponse
-        }
-        catch
-        {
-            print("error converting data to JSON")
-            return nil
-        }
     }
 
     
@@ -110,7 +107,7 @@ class BTCTestnetInfo: NSObject
         semaphore.wait(timeout: .distantFuture)
         
         let reply = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
-        //print(reply)
+        print(reply)
         
         guard let d = data else { return nil }
         
@@ -118,7 +115,6 @@ class BTCTestnetInfo: NSObject
         do
         {
             let decodedResponse = try decoder.decode(BTCUnspentRespose.self, from: d)
-            
             return unspentOutputsForResponseData(data: decodedResponse.unspent_outputs)
         }
         catch
@@ -161,19 +157,7 @@ class BTCTestnetInfo: NSObject
     
     
     
-    
-    /*
-    func requestForTransactionBroadcastWithData(data:Data) -> NSMutableURLRequest?
-    {
-        if data.count == 0 {return nil}
-        let urlstring = "https://testnet.blockchain.info/pushtx"
-        let request = NSMutableURLRequest.init(url: URL.init(string: urlstring)!)
-        request.httpMethod = "POST"
-        let form = "tx=\(BTCHexFromData(data))"
-        request.httpBody = form.data(using: .utf8)
-        return request
-    }
-    */
+  
     
     
     func requestForTransactionBroadcastWithData(data:Data) -> NSMutableURLRequest?

@@ -188,9 +188,15 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         let keychain = m?.keychain
         let addr = keychain?.key.addressTestnet.string
         
-        let coldWallet = Wallet.init(label: walletLabel, address: addr!, privatekey: "")
+        let coldWallet = Wallet.init(label: walletLabel, address: addr!, privatekey: nil)
         
         let walletsDatabase = WalletsDatabase.init()
+        if walletsDatabase.checkIfAlreadyListed(address: addr!) == true
+        {
+            addressIsAlreadyPresent(address: addr!)
+            return
+        }
+        
         walletsDatabase.saveWallet(wallet: coldWallet)
         {
             (success, error) in
@@ -218,6 +224,14 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     {
         importedKeychain = btcKeychain
         addNameView.infoText.text = "You are importing a new wallet, give a name to it to continue."
+     
+        let db = WalletsDatabase.init()
+        if db.checkIfAlreadyListed(address: importedKeychain.key.addressTestnet.string) == true
+        {
+            addressIsAlreadyPresent(address: importedKeychain.key.addressTestnet.string)
+            return
+        }
+        
         goToSetNameView()
     }
     
@@ -537,6 +551,15 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         addPasswordView.retypePassField.textField.resignFirstResponder()
         mnemonicConfirmView.mnemonicLabel.resignFirstResponder()
         importUsingTextView.textField.resignFirstResponder()
+    }
+    
+    func addressIsAlreadyPresent(address:String)
+    {
+        let alert = EMAlertController(title: "Address already listed", message: address)
+        let close = EMAlertAction(title: "Close", style: .cancel){}
+        alert.addAction(action: close)
+        alert.buttonSpacing = 0
+        present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning()
