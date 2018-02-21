@@ -10,6 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
     
+    
     weak var timer: Timer?
 
     @IBOutlet weak var totalView: InfoSectionXibController!
@@ -101,7 +102,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         loadWallets()
         loadBalance()
-        getTransactions()
+        loadTransactions()
         
         startTimer()
     }
@@ -119,7 +120,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
         {
             [weak self] _ in
-            self?.getTransactions()
+            self?.loadTransactions()
             self?.loadBalance()
             self?.updateBTCValue()
         }
@@ -148,7 +149,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         totalView.updateBTCTotal(total: confirmedTotalBalance)
     }
     
-    func getTransactions()
+    func loadTransactions()
     {
         walletsTransactionsList = []
         let testnet = BTCTestnetInfo.init()
@@ -169,6 +170,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
     }
     
+    
+    // WalletCell Delegate
+    
     func getOutputBalanceByAddress(address:String) -> [BTCTransactionOutput]?
     {
         for balance in walletsBalancesList
@@ -188,10 +192,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
         return formattedBalance
     }
-    
-    func loadTransactions()
+
+    func getTransactionsBy(address: String) -> WalletTransactions?
     {
-        
+        for walletTransactions in walletsTransactionsList
+        {
+            if walletTransactions.address == address
+            {
+                return walletTransactions
+            }
+        }
+        return nil
     }
     
     /*
@@ -332,7 +343,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 cell.currencyAmount.text = "--"
                 cell.cardCollectionViewLayout = cardCollectionViewLayout
                 cell.delegate = self
-                //cell.updateUnspent()
+                cell.updateTransactions()
                 cell.updateBalance()
                 cell.updateCurrencyPrice()
                 cell.startTimer()
