@@ -13,6 +13,7 @@ class GenerateWalletController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /*
         self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         
         let pk = "92YEdQpKUqAYjyw29VVRuh6Z1TUL4YfC1f9fbCQH7xRpao9d6Xt"
@@ -159,6 +160,7 @@ class GenerateWalletController: UIViewController {
             }
         
         bci.broadcastTransactionData(data: NSData.init(data: transaction.data), error: nil)
+ */
         
     }
     

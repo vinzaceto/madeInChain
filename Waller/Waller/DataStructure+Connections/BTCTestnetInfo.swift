@@ -154,59 +154,105 @@ class BTCTestnetInfo: NSObject
 
     
     
-    func requestForTransactionBroadcastWithData(data:NSData) -> NSMutableURLRequest?
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+    func requestForTransactionBroadcastWithData(data:Data) -> NSMutableURLRequest?
     {
-        if data.length == 0 {return nil}
-        let urlstring = "https://blockchain.info/pushtx"
+        if data.count == 0 {return nil}
+        let urlstring = "https://testnet.blockchain.info/pushtx"
         let request = NSMutableURLRequest.init(url: URL.init(string: urlstring)!)
         request.httpMethod = "POST"
-        let form = "tx=\(BTCHexFromData(Data.init(referencing: data)))"
+        let form = "tx=\(BTCHexFromData(data))"
         request.httpBody = form.data(using: .utf8)
         return request
     }
+    */
     
-    func broadcastTransactionData(data:NSData,error:NSError?)
+    
+    func requestForTransactionBroadcastWithData(data:Data) -> NSMutableURLRequest?
     {
-
-        let request = requestForTransactionBroadcastWithData(data: data)
-        var data: Data? = nil
-        let session = URLSession.shared
-        let semaphore = DispatchSemaphore(value: 0)
-
-        session.dataTask(with: request! as URLRequest)
+        guard let hex = BTCHexFromData(data) else
         {
-            (responseData, _, _) -> Void in
-            data = responseData
-            semaphore.signal()
-        }.resume()
-        semaphore.wait(timeout: .distantFuture)
+            print("unable to compute transaction data to hex")
+            return nil
+        }
         
-        let reply = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
-        print(reply)
+        let url = URL.init(string: "https://testnet.blockchain.info/pushtx?tx=\(hex)")
+        let request = NSMutableURLRequest.init(url: url!)
+        return request
     }
     
     
-/*
- 
-     
-     
-
-     - (BOOL) broadcastTransactionData:(NSData*)data error:(NSError**)errorOut {
-     NSURLRequest* req = [self requestForTransactionBroadcastWithData:data];
-     NSURLResponse* response = nil;
-     NSData* resultData = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:errorOut];
-     if (!resultData) {
-     return NO;
-     }
-     
-     // TODO: parse the response to determine if it was successful or not.
-     
-     return YES;
-     }
-     
-
- 
- */
+    
+    func broadcastTransactionData(data:Data, completion:@escaping ((Bool,String?) -> Void))
+    {
+        guard let hex = BTCHexFromData(data) else
+        {
+            completion(false,"unable to compute transaction data to hex")
+            return
+        }
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "testnet.blockchain.info"
+        urlComponents.path = "/pushtx"
+        urlComponents.queryItems = [URLQueryItem.init(name: "tx", value: hex)]
+        
+        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+      
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        var headers = request.allHTTPHeaderFields ?? [:]
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
+        request.allHTTPHeaderFields = headers
+        
+        print("url : \(urlComponents)")
+        
+        
+//        let encoder = JSONEncoder()
+//        do
+//        {
+//            let jsonData = try encoder.encode(thc)
+//            request.httpBody = jsonData
+//            print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
+//        }
+//        catch
+//        {
+//            completion(false,"unable to json encode")
+//            return
+//        }
+        
+        // Create and run a URLSession data task with our JSON encoded POST request
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request)
+        {
+            (responseData, response, responseError) in
+            guard responseError == nil else
+            {
+                completion(false,responseError.debugDescription)
+                return
+            }
+            // APIs usually respond with the data you just sent in your POST request
+            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
+                print("response: ", utf8Representation)
+            } else {
+                print("no readable data received in response")
+            }
+        }
+        task.resume()
+        
+    }
+    
     
     
 }

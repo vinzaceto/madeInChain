@@ -71,6 +71,54 @@ class PaymentWalletView: UIView
         
         self.bringSubview(toFront: flipButton)
         self.bringSubview(toFront: backButton)
+        
+    }
+    
+    func testTransactionWithWallet(wallet:Wallet)
+    {
+        let data = Data.init(base64Encoded: wallet.privatekey, options: .ignoreUnknownCharacters)
+        guard let privateKey = decrypt(data: data!, pass: "a") else
+        {
+            print("unable to decrypt the private key")
+            return
+        }
+        print("decrypted \(privateKey)")
+        guard let keychain = BTCKeychain.init(extendedKey: privateKey) else
+        {
+            print("unable to build the keychain")
+            return
+        }
+        
+        print("decrypted \(privateKey)")
+       
+        let amount:BTCAmount = 123000
+        let fee:BTCAmount = 1000
+        print(amount)
+        
+        let test = BitcoinTransaction.init()
+        test.buildTransaction(wallet: wallet, amount: amount,fee:fee, destinationAddress: "mmUZ98EhFFh9HTbTfqoTHsghUTW8h6hXh1", key: keychain.key)
+        {
+            (success, error, transaction) in
+            if success == true
+            {
+                guard let tx = transaction else {return}
+
+                print("Transaction builded : \(String(describing: transaction))")
+                print("estimated fee : \(test.estimateFee(tx: transaction!))")
+                print(tx.data)
+                
+                let api = BTCTestnetInfo.init()
+                api.broadcastTransactionData(data: tx.data, completion:
+                {
+                    (success, error) in
+                    print(error)
+                })
+            }
+            else
+            {
+                print("fail to build the transaction : \(String(describing: error))")
+            }
+        }
     }
     
     
@@ -107,7 +155,7 @@ class PaymentWalletView: UIView
         let scanView = BTCQRCode.scannerView
         {
             (message) in
-            print("\(message)")
+            print("\(String(describing: message))")
         }
         return scanView
     }
@@ -138,6 +186,22 @@ class PaymentWalletView: UIView
         {
             self.sendView.frame.origin.x = 0
             self.scannerView.frame.origin.x = self.frame.size.width
+        }
+    }
+    
+    func decrypt(data:Data, pass:String) -> String?
+    {
+        print("original data : \(data.base64EncodedString())")
+        
+        do
+        {
+            let originalData = try RNCryptor.decrypt(data: data, withPassword: pass)
+            let originalPrivateKey = String.init(data: originalData, encoding: String.Encoding.utf8)
+            return originalPrivateKey
+        }
+        catch
+        {
+            return nil
         }
     }
     
