@@ -98,9 +98,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         infoButton.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         infoButton.layer.cornerRadius = 5
         infoButton.setTitle("i", for: .normal)
+        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 8)
         infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
-        //lineChart.addSubview(infoButton)
-        
         infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)),
                              for: .touchUpInside)
         collectionView?.addSubview(infoButton)
