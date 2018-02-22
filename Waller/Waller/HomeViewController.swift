@@ -111,9 +111,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         loadWallets()
         loadBalance()
 
-        /*
         loadTransactions()
- */
+
         startTimer()
     }
     
@@ -142,7 +141,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
         {
             [weak self] _ in
-            //self?.loadTransactions()
+            self?.loadTransactions()
             self?.loadBalance()
             self?.updateBTCValue()
         }
