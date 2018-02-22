@@ -120,7 +120,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     @objc func infoButtonPopUp(sender: UIButton!) {
         print("pressed")
-        let alert = EMAlertController(title: "Credit", message: "Data and chart from blockchain.com and bitstamp.net")
+        let alert = EMAlertController(title: "Credits", message: "Data and chart from blockchain.com and bitstamp.net")
         let close = EMAlertAction(title: "Close", style: .cancel)
         alert.addAction(action: close)
         alert.buttonSpacing = 0
