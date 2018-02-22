@@ -234,13 +234,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multisign wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tg-fu-taA">
-                                <rect key="frame" x="47" y="489" width="281" height="24"/>
+                                <rect key="frame" x="47" y="469" width="281" height="24"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.8898000949" blue="0.26417354430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUO-7E-SAK">
-                                <rect key="frame" x="36" y="339" width="303" height="22"/>
+                                <rect key="frame" x="36" y="324" width="303" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="Tui-lT-jd2"/>
                                 </constraints>
@@ -263,7 +263,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standard crypto wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN1-9Z-Ce8">
-                                <rect key="frame" x="47" y="121" width="281" height="24"/>
+                                <rect key="frame" x="47" y="119.5" width="281" height="24"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.8898000949" blue="0.26417354430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -290,7 +290,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Create multi sign wallet and manage it with your friends" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-i5-knO">
-                                <rect key="frame" x="47" y="523" width="281" height="52"/>
+                                <rect key="frame" x="47" y="496" width="281" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="dUf-Bt-aRp"/>
                                     <constraint firstAttribute="width" constant="281" id="ibF-3u-c4u"/>
@@ -307,21 +307,21 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrCodeIconW" translatesAutoresizingMaskIntoConstraints="NO" id="Oli-ag-CZf">
-                                <rect key="frame" x="47" y="419" width="40" height="40"/>
+                                <rect key="frame" x="47" y="404" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="IQD-Mo-Jus"/>
                                     <constraint firstAttribute="height" constant="40" id="UZt-gl-epM"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrCodeIconW" translatesAutoresizingMaskIntoConstraints="NO" id="6Ch-KP-5k1">
-                                <rect key="frame" x="288" y="419" width="40" height="40"/>
+                                <rect key="frame" x="288" y="404" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Bwi-z1-iUD"/>
                                     <constraint firstAttribute="height" constant="40" id="oYK-VG-hEU"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newWalletIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="bgC-bP-XQj">
-                                <rect key="frame" x="145" y="600" width="85" height="35"/>
+                                <rect key="frame" x="145" y="573" width="85" height="35"/>
                                 <color key="tintColor" red="0.96630391616984679" green="1" blue="0.10685908859245041" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
                         </subviews>
@@ -340,7 +340,7 @@
                             <constraint firstItem="8ba-WA-rmr" firstAttribute="top" secondItem="OXJ-IF-KGY" secondAttribute="bottom" constant="8" id="CxT-Xo-y8H"/>
                             <constraint firstItem="bgC-bP-XQj" firstAttribute="top" secondItem="ggZ-i5-knO" secondAttribute="bottom" constant="25" id="Die-EM-G0f"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="ggZ-i5-knO" secondAttribute="trailing" constant="47" id="DjC-qs-Aum"/>
-                            <constraint firstItem="ggZ-i5-knO" firstAttribute="top" secondItem="4tg-fu-taA" secondAttribute="bottom" constant="10" id="Ecj-dq-bVJ"/>
+                            <constraint firstItem="ggZ-i5-knO" firstAttribute="top" secondItem="4tg-fu-taA" secondAttribute="bottom" constant="3" id="Ecj-dq-bVJ"/>
                             <constraint firstItem="xN1-9Z-Ce8" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="FGm-HG-4MO"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="4tg-fu-taA" secondAttribute="trailing" constant="47" id="K17-Td-Cxi"/>
                             <constraint firstItem="e2b-E6-ggF" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="148" id="Kfq-yT-U71"/>
@@ -349,12 +349,12 @@
                             <constraint firstItem="8ba-WA-rmr" firstAttribute="leading" secondItem="ntp-Tt-yAV" secondAttribute="trailing" constant="45" id="TnY-Gs-0lj"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="e2b-E6-ggF" secondAttribute="trailing" constant="149" id="W8b-Ox-mzy"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="FZB-Od-LKe" secondAttribute="trailing" constant="88" id="X2O-eN-x9t"/>
-                            <constraint firstItem="zUO-7E-SAK" firstAttribute="top" secondItem="ntp-Tt-yAV" secondAttribute="bottom" constant="58" id="Ynd-vM-FXo"/>
+                            <constraint firstItem="zUO-7E-SAK" firstAttribute="top" secondItem="ntp-Tt-yAV" secondAttribute="bottom" constant="43" id="Ynd-vM-FXo"/>
                             <constraint firstItem="ggZ-i5-knO" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="Ysl-oZ-RPH"/>
-                            <constraint firstItem="e2b-E6-ggF" firstAttribute="top" secondItem="zUO-7E-SAK" secondAttribute="bottom" constant="19" id="ZlD-jb-2CY"/>
-                            <constraint firstItem="4tg-fu-taA" firstAttribute="top" secondItem="Oli-ag-CZf" secondAttribute="bottom" constant="30" id="co5-cS-QFG"/>
+                            <constraint firstItem="e2b-E6-ggF" firstAttribute="top" secondItem="zUO-7E-SAK" secondAttribute="bottom" constant="12" id="ZlD-jb-2CY"/>
+                            <constraint firstItem="4tg-fu-taA" firstAttribute="top" secondItem="Oli-ag-CZf" secondAttribute="bottom" constant="25" id="co5-cS-QFG"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="6Ch-KP-5k1" secondAttribute="trailing" constant="47" id="hgd-QN-ukx"/>
-                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="36.5" id="jvw-Gj-r1X"/>
+                            <constraint firstItem="xN1-9Z-Ce8" firstAttribute="top" secondItem="FZB-Od-LKe" secondAttribute="bottom" constant="35" id="jvw-Gj-r1X"/>
                             <constraint firstItem="Oli-ag-CZf" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="47" id="rAp-nP-wvE"/>
                             <constraint firstItem="8wb-IF-jFZ" firstAttribute="trailing" secondItem="8ba-WA-rmr" secondAttribute="trailing" constant="25" id="roe-PL-CtP"/>
                             <constraint firstItem="bGc-QH-n62" firstAttribute="top" secondItem="OXJ-IF-KGY" secondAttribute="bottom" constant="8" id="un3-EQ-AL5"/>
