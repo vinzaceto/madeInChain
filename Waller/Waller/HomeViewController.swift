@@ -98,9 +98,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         infoButton.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         infoButton.layer.cornerRadius = 5
         infoButton.setTitle("i", for: .normal)
+        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 8)
         infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
-        //lineChart.addSubview(infoButton)
-        
         infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)),
                              for: .touchUpInside)
         collectionView?.addSubview(infoButton)
@@ -121,7 +120,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     @objc func infoButtonPopUp(sender: UIButton!) {
         print("pressed")
-        let alert = EMAlertController(title: "Credit", message: "Data and chart from blockchain.com and bitstamp.net")
+        let alert = EMAlertController(title: "Credits", message: "Data and chart from blockchain.com and bitstamp.net")
         let close = EMAlertAction(title: "Close", style: .cancel)
         alert.addAction(action: close)
         alert.buttonSpacing = 0
