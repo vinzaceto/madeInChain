@@ -45,7 +45,7 @@ class AddWalletCell: HFCardCollectionViewCell
         
         let subtitleLabel = UILabel.init(frame: CGRect.init(x: 30, y: 100, width: viewWidth - 60, height: 120))
         subtitleLabel.backgroundColor = UIColor.clear
-        subtitleLabel.text = "Ta add a new wallet tap to the + button in the bottom left corner or quick import a QR code with your camera."
+        subtitleLabel.text = "To add a new wallet tap on the + button in the bottom right corner or quick import a QR code with your camera."
         subtitleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.font = UIFont.init(name: "Rubik-Italic", size: 19)
         subtitleLabel.textColor = UIColor.darkGray
