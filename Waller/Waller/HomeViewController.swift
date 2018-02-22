@@ -106,12 +106,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
         updateBTCValue()
         getChartData()
-        
         loadWallets()
-        loadBalance()
-
-        loadTransactions()
-
         startTimer()
     }
     
@@ -119,7 +114,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     @objc func infoButtonPopUp(sender: UIButton!) {
         print("pressed")
-        let alert = EMAlertController(title: "Credits", message: "Data and chart from blockchain.com and bitstamp.net")
+        let alert = EMAlertController(title: "Credits", message: "Data from blockchain.info and bitstamp.net")
         let close = EMAlertAction(title: "Close", style: .cancel)
         alert.addAction(action: close)
         alert.buttonSpacing = 0
@@ -132,12 +127,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         walletsList = []
         let walletsKeychain = WalletsDatabase.init()
         walletsList = walletsKeychain.getAllWallets()
+        
+        loadBalance()
+        loadTransactions()
     }
     
     func startTimer()
     {
         timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true)
         {
             [weak self] _ in
             self?.loadTransactions()
@@ -151,22 +149,42 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         walletsBalancesList = []
         
         var confirmedTotalBalance:BTCAmount = 0
-        for wallet in walletsList
+        for (index, wallet) in walletsList.enumerated()
         {
             let testnet = BTCTestnetInfo.init()
-            if let unspentOutputs = testnet.unspentOutputsWithAddress(address: wallet.address)
+            testnet.unspentOutputsWithAddress(address: wallet.address, completion:
             {
-                walletsBalancesList.append((address: wallet.address, unspent: unspentOutputs))
-                for output in unspentOutputs
+                (success, error, unspentOutputs) in
+                if success == true
                 {
-                    if output.confirmations >= 3
+                    self.walletsBalancesList.append((address: wallet.address, unspent: unspentOutputs!))
+                    for output in unspentOutputs!
                     {
                         confirmedTotalBalance = confirmedTotalBalance + output.value
+
+                        /* unable to check confirmations now
+                        if output.confirmations >= 3
+                        {
+                            confirmedTotalBalance = confirmedTotalBalance + output.value
+                        }
+                        */
+                    }
+                    
+                    // check for latest element and trigger as latest operation
+                    if index == self.walletsList.count-1
+                    {
+                        DispatchQueue.main.async
+                        {
+                            self.totalView.updateBTCTotal(total: confirmedTotalBalance)
+                        }
                     }
                 }
-            }
+                else
+                {
+                    print("GET unspent outputs fail : \(error)")
+                }
+            })
         }
-        totalView.updateBTCTotal(total: confirmedTotalBalance)
     }
     
     func loadTransactions()
@@ -222,6 +240,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     func getTransactionsBy(address: String) -> WalletTransactions?
     {
+        print("GET transactions for address : \(address)")
         for walletTransactions in walletsTransactionsList
         {
             if walletTransactions.address == address

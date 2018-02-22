@@ -32,6 +32,8 @@ class DataConnections {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { (responseData, response, responseError) in
             DispatchQueue.main.async {
+                
+                
                 guard responseError == nil else {
                     completion?(.failure(responseError!))
                     return
