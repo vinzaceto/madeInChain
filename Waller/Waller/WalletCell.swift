@@ -114,7 +114,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         //self.addSubview(addressLabel)
         
         
-        let tvh = addressLabel.frame.origin.y + 20
+        let tvh = addressLabel.frame.origin.y + 15
         tableView = UITableView.init(frame: CGRect.init(x: 0, y: tvh, width: viewWidth, height: 150))
         tableView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         tableView.register(TransactionCell.self, forCellReuseIdentifier: "TransactionCell")
@@ -181,7 +181,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         amountLabel.clipsToBounds = false
         
         if unconfirmedAmountLabel != nil { unconfirmedAmountLabel.removeFromSuperview() }
-        unconfirmedAmountLabel = UILabel.init(frame: CGRect.init(x: 0, y: 25, width: amountLabel.frame.size.width, height: 15))
+        unconfirmedAmountLabel = UILabel.init(frame: CGRect.init(x: 0, y: 26, width: amountLabel.frame.size.width, height: 15))
         unconfirmedAmountLabel.backgroundColor = UIColor.clear
         unconfirmedAmountLabel.textAlignment = .right
         unconfirmedAmountLabel.textColor = UIColor.orange
@@ -189,13 +189,13 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         amountLabel.addSubview(unconfirmedAmountLabel)
         
         if uncLabel != nil { uncLabel.removeFromSuperview() }
-        uncLabel = UILabel.init(frame: CGRect.init(x: unconfirmedAmountLabel.frame.width + 6, y: 25, width: btcw, height: 15))
+        uncLabel = UILabel.init(frame: CGRect.init(x: unconfirmedAmountLabel.frame.width + 6, y: 27, width: btcw, height: 15))
         uncLabel.backgroundColor = UIColor.clear
         usdLabel.textAlignment = .right
         uncLabel.textColor = UIColor.orange
         uncLabel.font = UIFont.boldSystemFont(ofSize: 12)
         amountLabel.addSubview(uncLabel)
-        currencyAmount.frame.origin.y = 73
+        currencyAmount.frame.origin.y = 70
         usdLabel.frame.origin.y = 75
     }
     
@@ -390,8 +390,10 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     
     func updateCurrencyPrice()
     {
-        guard let btcPrice = delegate?.getUSDVAlueFromAmount(amount: amountLabel.text!) else {return}
-        self.currencyAmount.text = btcPrice
+        print("updating usd value with amount : \(amountLabel.text)")
+        guard let usdValue = delegate?.getUSDVAlueFromAmount(amount: amountLabel.text!) else {return}
+        print(usdValue)
+        self.currencyAmount.text = usdValue
     }
     
     func updateTransactions()

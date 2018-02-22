@@ -8,11 +8,17 @@
 
 import UIKit
 
+extension String {
+    func toDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
+    }
+}
+
 @IBDesignable
 class InfoSectionXibController: UIView {
 
-    var btcValue:NSNumber = 0.0
-    var btcTotalAmount:NSNumber = 0.0
+    var btcValue:Double = 0.0
+    var btcTotalAmount:BTCAmount = 0
     
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
@@ -90,50 +96,80 @@ class InfoSectionXibController: UIView {
     
     func updateBTCPrice(btcPrice:Double)
     {
+        print("updating btc price")
+        self.btcValue = btcPrice
+        
         let formatter = NumberFormatter()
         formatter.locale = Locale.init(identifier: "en_US")
         formatter.numberStyle = .currency
         
-        self.btcValue = NSNumber.init(value: btcPrice)
-
-        guard let formattedBTCValue = formatter.string(from: self.btcValue) else { return }
+        let n = NSNumber.init(value: btcPrice)
+        guard let formattedBTCValue = formatter.string(from: n) else {return}
+        print("price \(formattedBTCValue)")
         self.currentBTCvalue.text = formattedBTCValue
-        
+
         updateCurrencyTotal()
     }
     
     func updateBTCTotal(total:BTCAmount)
     {
-        print("totale : \(total)")
+        print("updating btc total : \(total)")
+        self.btcTotalAmount = total
+
         let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
         let amount = formatter?.string(fromAmount: total)
-        guard let totalBTCAmount = Double(amount!) else { return }
-        self.btcTotalAmount = NSNumber.init(value: totalBTCAmount)
-        self.currentBtcAmount.text = "\(self.btcTotalAmount)"
+        self.currentBtcAmount.text = amount
         
         updateCurrencyTotal()
     }
     
+    
+    
+    
+
+    
     func updateCurrencyTotal()
     {
-        if self.btcTotalAmount.doubleValue == 0
-        {
-            self.currentAmount.text = "--"
-            return
-        }
-        let formattedTotal = self.convertBTCAmountToCurrency(amount: self.btcTotalAmount.doubleValue)
+        print("converting currency total")
+        
+        let btcf = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+        let str = btcf?.string(fromAmount: btcTotalAmount)
+        print("string amount : \(str)")
+        
+        let amount = str?.toDouble()
+        
+        print("dounble amount: \(amount)")
+        print("value: \(self.btcValue)")
+        
+        let total = self.btcValue * amount!
+        print("total: \(total)")
+
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.init(identifier: "en_US")
+        formatter.numberStyle = .currency
+        
+        guard let formattedTotal = formatter.string(from: NSNumber(value:total)) else { return }
+        print("formattedTotal: \(formattedTotal)")
+
         self.currentAmount.text = formattedTotal
     }
 
     func convertBTCAmountToCurrency(amount:Double) -> String
     {
+        if self.btcValue == 0
+        {
+            return "--"
+        }
+        
+        let value = self.btcValue * amount
+        
         let formatter = NumberFormatter()
         formatter.locale = Locale.init(identifier: "en_US")
         formatter.numberStyle = .currency
         
-        let total = self.btcValue.doubleValue * amount
-        guard let formattedTotal = formatter.string(from: total as NSNumber) else { return "" }
-
+        guard let formattedTotal = formatter.string(from: NSNumber(value:value)) else { return "--" }
+        print("formattedTotal: \(formattedTotal)")
+        
         return formattedTotal
     }
 }
