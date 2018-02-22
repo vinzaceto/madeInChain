@@ -331,7 +331,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     func startTimer()
     {
         timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true)
         {
             [weak self] _ in
             self?.updateBalance()
@@ -452,54 +452,8 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
             }
         }
         print("transactions : \(txs)")
-    }
-    
-    /*
-
-    
-    
-    
- 
-    func filterTransactions(transactions:[TXs])
-    {
-        txs = []
-        
-        var txsInput:[TXin] = []
-        for tx in transactions
-        {
-            for input in tx.inputs
-            {
-                if input.prev_out.addr == addressLabel.text
-                {
-                    txsInput.append(input)
-                }
-            }
-            
-            for outputs in tx.out
-            {
-                if outputs.addr == addressLabel.text
-                {
-                    let confirmations = getConfirmationsByScript(script:outputs.script)
-                    let tx = Transaction.init(input: true, value: outputs.value, time: tx.time, confirmations: confirmations)
-                    txs.append(tx)
-                }
-            }
-        }
-        print("txsInput \(txsInput)")
         tableView.reloadData()
+        
     }
-    
-    func getConfirmationsByScript(script:String) -> UInt
-    {
-        for unspent in unspentTxs
-        {
-            if unspent.script.hex == script
-            {
-                return unspent.confirmations
-            }
-        }
-        return 0
-    }
- */
     
 }

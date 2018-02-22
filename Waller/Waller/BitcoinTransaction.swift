@@ -20,15 +20,42 @@ class BitcoinTransaction: NSObject
     
     
     
-    
+    func buildTransaction(wallet:Wallet,amount:BTCAmount,fee:BTCAmount,destinationAddress:String,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
+    {
+        /*
+        let api = BTCTestnetInfo.init()
+        api.unspentOutputsWithAddress(address: wal)
+        {
+            (success, error, utxos) in
+            if success == true
+            {
+                
+            }
+            else
+            {
+                print("unable to fetch outputs to use as imputs")
+            }
+        }
+        */
+        
+        
+   
+    }
     
 
-    
-    func buildTransaction(wallet:Wallet,amount:BTCAmount,fee:BTCAmount,destinationAddress:String,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
+    /*
+    func createTransaction(wallet:Wallet,amount:BTCAmount,fee:BTCAmount,destinationAddress:String,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
     {
         var unspentTransactions:NSArray = NSArray.init()
 
         let api = BTCTestnetInfo.init()
+        api.unspentOutputsWithAddress(address: wallet.address)
+        {
+            (success, error, utxos) in
+            
+        }
+        
+        
         guard let utxos = api.unspentOutputsWithAddress(address: wallet.address) else
         {
             completionHandler(false,"Unable to fetch unspent transactions.",nil)
@@ -184,5 +211,6 @@ class BitcoinTransaction: NSObject
         return
         
     }
+    */
     
 }
