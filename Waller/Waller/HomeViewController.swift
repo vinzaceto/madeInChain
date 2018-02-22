@@ -11,6 +11,9 @@ import UIKit
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
     
     
+
+    
+    
     weak var timer: Timer?
 
     @IBOutlet weak var totalView: InfoSectionXibController!
@@ -22,6 +25,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
+    var defaultCollectionViewCenter:CGPoint!
     
     var walletsList:[Wallet]!
     var walletsBalancesList:[(address:String,unspent:[BTCTransactionOutput])] = []
@@ -82,7 +86,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
         collectionView?.backgroundColor = UIColor.clear
-
+        defaultCollectionViewCenter = collectionView?.center
+        
         if let layout = self.collectionView?.collectionViewLayout as? HFCardCollectionViewLayout
         {
             self.cardCollectionViewLayout = layout
@@ -94,7 +99,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         infoButton.layer.cornerRadius = 9
         infoButton.setTitle("i", for: .normal)
         infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
-        lineChart.addSubview(infoButton)
+        //lineChart.addSubview(infoButton)
         
         
         updateBTCValue()
@@ -102,8 +107,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         loadWallets()
         loadBalance()
+
+        /*
         loadTransactions()
-        
+ */
         startTimer()
     }
     
@@ -120,7 +127,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
         {
             [weak self] _ in
-            self?.loadTransactions()
+            //self?.loadTransactions()
             self?.loadBalance()
             self?.updateBTCValue()
         }
@@ -163,7 +170,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                     if let transactions = txs
                     {
                         self.walletsTransactionsList.append(transactions)
-                        print(transactions)
                     }
                 }
             })
@@ -184,12 +190,20 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         return nil
     }
+
     
     func getUSDVAlueFromAmount(amount:String) -> String?
     {
-        guard let totalBTCAmount = Double(amount) else { return nil }
-        if totalBTCAmount == 0{return "--"}
-        let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
+        print("update total in the cells")
+        print("string amount: \(amount)")
+        print("double amount: \(amount.toDouble())")
+
+        if amount.toDouble() == 0
+        {
+            return "--"
+        }
+        
+        let formattedBalance = totalView.convertBTCAmountToCurrency(amount: amount.toDouble()!)
         return formattedBalance
     }
 
@@ -203,6 +217,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
         return nil
+    }
+    
+    func getBTCValue() ->Double?
+    {
+        return totalView.btcValue
     }
     
     /*
@@ -359,6 +378,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     
     
+    
+    
     //
     // MARK: NEW WALLET CELL BUTTONS
     //
@@ -391,9 +412,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         let view = PaymentWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
+        
         let w = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
-        view.testTransactionWithWallet(wallet: w)
+        view.wallet = w
+        //view.testTransactionWithWallet(wallet: w)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
+        view.receiverAddressField.becomeFirstResponder()
+        view.updateAmount()
+        view.updateBtcValue()
     }
     
     func listTransactionsButtonPressed(walletCell:WalletCell)
@@ -571,6 +597,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         present(activityViewController, animated: true, completion: nil)
     }
     
+    func keyboardDidOpen()
+    {
+        let fix = self.view.frame.size.height - 330
+        
+        UIView.animate(withDuration: 0.3)
+        {
+            self.collectionView?.center.y = fix
+        }
+    }
+    
+    func keyboardDidClose()
+    {
+        UIView.animate(withDuration: 0.5)
+        {
+            self.collectionView?.center = self.defaultCollectionViewCenter
+        }
+    }
     
     //
     // MARK: CHART DATA LOADING

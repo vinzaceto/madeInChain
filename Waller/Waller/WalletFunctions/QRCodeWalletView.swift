@@ -13,6 +13,13 @@ protocol WalletFunctionDelegate
     func unflipCard()
     func unflipAndRemove(address:String)
     func exportWalletAsPDF(unencryptedWallet: Wallet)
+    
+    func keyboardDidOpen()
+    func keyboardDidClose()
+    
+    func getOutputBalanceByAddress(address:String) -> [BTCTransactionOutput]?
+    func getUSDVAlueFromAmount(amount:String) -> String?
+    func getBTCValue() ->Double?
 }
 
 class QRCodeWalletView: UIView {
