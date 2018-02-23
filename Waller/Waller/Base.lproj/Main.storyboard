@@ -137,7 +137,7 @@
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="cardShouldExpandHeadHeight" value="NO"/>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cardHeadHeight">
-                                            <real key="value" value="115"/>
+                                            <real key="value" value="90"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </collectionViewLayout>

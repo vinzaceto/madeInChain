@@ -81,7 +81,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         collectionView?.layer.cornerRadius = 20
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
-        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28 - 20
+        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28 - 25
         collectionView?.frame.size.width = self.view.frame.size.width - 30
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
@@ -94,15 +94,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.cardCollectionViewLayout?.cardHeight = 340
         }
         
-        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width-18, y: 96, width: 15, height:15))
+        infoButton = UIButton.init(frame:CGRect.init(x: 0, y: 80, width: 20, height:20))
         infoButton.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         infoButton.layer.cornerRadius = 5
         infoButton.setTitle("i", for: .normal)
         infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 8)
         infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
-        infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)),
-                             for: .touchUpInside)
-        collectionView?.addSubview(infoButton)
+        infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)), for: .touchUpInside)
+        totalView.addSubview(infoButton)
 
         updateBTCValue()
         getChartData()
