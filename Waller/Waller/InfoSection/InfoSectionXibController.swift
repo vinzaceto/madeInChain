@@ -113,7 +113,7 @@ class InfoSectionXibController: UIView {
     
     func updateBTCTotal(total:BTCAmount)
     {
-        print("updating btc total : \(total)")
+        print("updating HEADER TOTAL: \(total)")
         self.btcTotalAmount = total
 
         let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)

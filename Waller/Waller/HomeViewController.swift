@@ -211,6 +211,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                         */
                     }
                     
+                    print("weewewewe")
+                    
                     // check for latest element and trigger as latest operation
                     if index == self.walletsList.count-1
                     {
@@ -296,80 +298,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         return totalView.btcValue
     }
-    
-    /*
-    
-    func loadBalance()
-    {
-        var total:BTCAmount = 0
-        walletsBalancesList = []
-        
-        for wallet in walletsList
-        {
-            let testnet = BTCTestnetInfo.init()
-            guard let balance = testnet.getWalletBalance(address: wallet.address) else {return}
-            walletsBalancesList.append(balance)
-            total = total + balance.final_balance
-        }
-        totalView.updateBTCTotal(total: total)
-    }
-    
-    func loadUnspentOutputs()
-    {
-        unspentOutputsList = []
-        for wallet in walletsList
-        {
-            let testnet = BTCTestnetInfo.init()
-            guard let unspentOutputs = testnet.unspentOutputsWithAddress(address: wallet.address) else {return}
-            unspentOutputsList.append((address: wallet.address, unspent: unspentOutputs))
-        }
-    }
-    
-    func getBTCBalanceByAddress(address:String) -> WalletBalance?
-    {
-        for balance in walletsBalancesList
-        {
-            if balance.address == address
-            {
-                return balance
-            }
-        }
-        return nil
-    }
-    
-    func getUSDBalanceByAddress(address:String) -> String?
-    {
-        for balance in walletsBalancesList
-        {
-            if balance.address == address
-            {
-                let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
-                let amount = formatter?.string(fromAmount: balance.final_balance)
-                guard let totalBTCAmount = Double(amount!) else { return nil }
-                if totalBTCAmount == 0{return "--"}
-                let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
-                return formattedBalance
-            }
-        }
-        return nil
-    }
-    
-    func getUnspentOutputsAddress(address:String) -> [BTCTransactionOutput]?
-    {
-        for output in unspentOutputsList
-        {
-            if output.address == address
-            {
-                return output.unspent
-            }
-        }
-        return nil
-    }
-    */
-    
-    
-    
-    
+   
 
     
 
@@ -424,13 +353,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                     cell.addressPrivateKey = privateKey
                     cell.backgroundColor = Props.myYellow
                     cell.headerImage.tintColor = UIColor.darkGray
-                    cell.iconImage.image = UIImage.init(named: "standard")
+                    cell.iconImage.image = UIImage.init(named: "standardIcon")
                 }
                 else
                 {
                     cell.backgroundColor = Props.myBlue
                     cell.headerImage.tintColor = UIColor.blue
-                    cell.iconImage.image = UIImage.init(named: "eye")
+                    cell.iconImage.image = UIImage.init(named: "watchOnlyIcon")
                 }
                 
                 cell.nameLabel.text = walletsList[indexPath.row-1].label

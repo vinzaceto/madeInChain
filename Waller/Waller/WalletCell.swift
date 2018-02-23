@@ -67,7 +67,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         headerImage.image = image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         //self.addSubview(headerImage)
         
-        iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 38, height: 49))
+        iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 45, height: 45))
         self.addSubview(iconImage)
         
         let btcx = viewWidth - btcw - 10
@@ -118,18 +118,18 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         
         let tvh = addressLabel.frame.origin.y + 15
         tableView = UITableView.init(frame: CGRect.init(x: 0, y: tvh, width: viewWidth, height: 150))
-        //tableView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         tableView.register(TransactionCell.self, forCellReuseIdentifier: "TransactionCell")
         tableView.register(NoTransactionsCell.self, forCellReuseIdentifier: "NoTransactionsCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.backgroundColor = UIColor.clear
         self.addSubview(tableView)
         
         let mod:CGFloat = 0.8
-        let width:CGFloat = 38 * mod
-        let height:CGFloat = 49 * mod
+        let width:CGFloat = 45 * mod
+        let height:CGFloat = 45 * mod
         let by:CGFloat = 340 - height - 15
 
         let margin:CGFloat = (viewWidth - (width * 5)) / 6
@@ -138,13 +138,13 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         makeAPaymentButton.frame = CGRect.init(x: margin, y: by, width: width, height:height)
         makeAPaymentButton.addTarget(self, action: #selector(makeAPaymentButtonPressed), for: .touchUpInside)
         makeAPaymentButton.backgroundColor = UIColor.clear
-        makeAPaymentButton.setImage(UIImage.init(named: "out"), for: .normal)
+        makeAPaymentButton.setImage(UIImage.init(named: "sendIcon"), for: .normal)
         self.addSubview(makeAPaymentButton)
         
         var newMargin = (margin * 2) + (width * 1)
         
         let listTransactionButton = UIButton.init(type: .custom)
-        listTransactionButton.frame = CGRect.init(x: newMargin, y: by+4, width: width, height: height)
+        listTransactionButton.frame = CGRect.init(x: newMargin, y: by, width: width, height: height)
         listTransactionButton.addTarget(self, action: #selector(listTransactionsButtonPressed), for: .touchUpInside)
         listTransactionButton.backgroundColor = UIColor.clear
         listTransactionButton.setImage(UIImage.init(named: "list"), for: .normal)
@@ -153,28 +153,28 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         newMargin = (margin * 3) + (width * 2)
         
         let exportButton = UIButton.init(type: .custom)
-        exportButton.frame = CGRect.init(x: newMargin, y: by+1, width: width, height: height)
+        exportButton.frame = CGRect.init(x: newMargin, y: by, width: width, height: height)
         exportButton.addTarget(self, action: #selector(exportButtonPressed), for: .touchUpInside)
         exportButton.backgroundColor = UIColor.clear
-        exportButton.setImage(UIImage.init(named: "export"), for: .normal)
+        exportButton.setImage(UIImage.init(named: "uploadIcon"), for: .normal)
         self.addSubview(exportButton)
         
         newMargin = (margin * 4) + (width * 3)
         
         let trashButton = UIButton.init(type: .custom)
-        trashButton.frame = CGRect.init(x: newMargin, y: by+1, width: width, height: height)
+        trashButton.frame = CGRect.init(x: newMargin, y: by, width: width, height: height)
         trashButton.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
         trashButton.backgroundColor = UIColor.clear
-        trashButton.setImage(UIImage.init(named: "trash"), for: .normal)
+        trashButton.setImage(UIImage.init(named: "trashIcon"), for: .normal)
         self.addSubview(trashButton)
         
         newMargin = (margin * 5) + (width * 4)
         
         let showQRCodeButton = UIButton.init(type: .custom)
-        showQRCodeButton.frame = CGRect.init(x: newMargin, y: by+2, width: width, height: height)
+        showQRCodeButton.frame = CGRect.init(x: newMargin, y: by, width: width, height: height)
         showQRCodeButton.addTarget(self, action: #selector(showQRCodeButtonPressed), for: .touchUpInside)
         showQRCodeButton.backgroundColor = UIColor.clear
-        showQRCodeButton.setImage(UIImage.init(named: "qrCode"), for: .normal)
+        showQRCodeButton.setImage(UIImage.init(named: "qrCodeIcon"), for: .normal)
         self.addSubview(showQRCodeButton)
 
     }
@@ -230,7 +230,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoTransactionsCell", for: indexPath) as! NoTransactionsCell
             cell.awakeFromNib()
-            cell.backgroundColor = Props.myYellow
+            cell.backgroundColor = .clear
             cell.infoLabel.frame.size.height = tableView.frame.size.height - 70
             cell.infoLabel.text = "No transactions found for this wallet, the latest 3 transactions for this wallet will be shown here"
             return cell
@@ -244,11 +244,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         var unconfirmed = ""
         
         cell.awakeFromNib()
-        if wallet.privatekey != nil {
-            cell.backgroundColor = Props.myYellow
-        } else {
-            cell.backgroundColor = Props.myBlue
-        }
+        cell.backgroundColor = .clear
         
         if tx.confirmations < 3
         {

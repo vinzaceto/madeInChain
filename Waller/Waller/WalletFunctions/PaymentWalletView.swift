@@ -41,13 +41,12 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         let flipButton = UIButton.init(type: .custom)
         flipButton.frame = CGRect.init(x: viewWidth - 55 , y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
-        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
+        flipButton.setImage(#imageLiteral(resourceName: "closeIcon"), for: .normal)
         addSubview(flipButton)
         
         backButton.frame = CGRect.init(x: 10, y: 10, width:45, height: 45)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        //backButton.setTitle("back", for: .normal)
-        backButton.setImage(#imageLiteral(resourceName: "BackIcon"), for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "backIcon"), for: .normal)
         backButton.isHidden = true
         self.addSubview(backButton)
         
@@ -113,8 +112,8 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         let sbx = receiverAddressField.frame.origin.x + receiverAddressField.frame.width + 10
         let scanButton = UIButton.init(type: UIButtonType.custom)
         scanButton.addTarget(self, action: #selector(scanButtonPressed), for: .touchUpInside)
-        scanButton.frame = CGRect.init(x: sbx, y: 0, width: 35, height: 35)
-        scanButton.setImage(UIImage.init(named: "scan"), for: .normal)
+        scanButton.frame = CGRect.init(x: sbx, y: 0, width: 45, height: 45)
+        scanButton.setImage(UIImage.init(named: "barcodeIcon"), for: .normal)
         scanButton.center.y = receiverAddressField.center.y
         sendView.addSubview(scanButton)
         
@@ -163,7 +162,7 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         
         var convertImage = UIImage.init(named: "convertIcon")
         convertImage = convertImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        let swapIcon = UIImageView.init(frame: CGRect.init(x: 0, y: 145, width: 40*0.8, height: 30*0.8))
+        let swapIcon = UIImageView.init(frame: CGRect.init(x: 0, y: 135, width: 45, height: 45))
         swapIcon.image = convertImage
         swapIcon.tintColor = UIColor.lightGray
         swapIcon.center.x = self.center.x
@@ -265,12 +264,12 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         scannerView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         scannerView.frame.origin.x = self.frame.size.width
         
-        let borderImage = UIImageView.init(frame: CGRect.init(x: (viewWidth-280)/2, y: 40, width: 280, height: 280))
+        let borderImage = UIImageView.init(frame: CGRect.init(x: (viewWidth-260)/2, y: 60, width: 260, height: 260))
         borderImage.image = UIImage.init(named: "QRBorders")
         scannerView.addSubview(borderImage)
         
         let scanView = getScanView()
-        scanView?.frame = CGRect.init(x: 0, y: 0, width: 250, height: 250)
+        scanView?.frame = CGRect.init(x: 0, y: 0, width: 230, height: 230)
         scanView?.center = borderImage.center
         scannerView.addSubview(scanView!)
         

@@ -26,11 +26,11 @@ class TransactionsWalletView: UIView, UITableViewDelegate, UITableViewDataSource
         let flipButton = UIButton.init(type: .custom)
         flipButton.frame = CGRect.init(x: viewWidth - 55, y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
-        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
+        flipButton.setImage(#imageLiteral(resourceName: "closeIcon"), for: .normal)
         addSubview(flipButton)
         
         tableView = UITableView.init(frame: CGRect.init(x: 0, y: 50, width: frame.size.width, height: frame.size.height-50))
-        tableView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(TransactionCell.self, forCellReuseIdentifier: "TransactionCell")
