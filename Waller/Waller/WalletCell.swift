@@ -118,7 +118,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         
         let tvh = addressLabel.frame.origin.y + 15
         tableView = UITableView.init(frame: CGRect.init(x: 0, y: tvh, width: viewWidth, height: 150))
-        tableView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        //tableView.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         tableView.register(TransactionCell.self, forCellReuseIdentifier: "TransactionCell")
         tableView.register(NoTransactionsCell.self, forCellReuseIdentifier: "NoTransactionsCell")
         tableView.delegate = self
@@ -229,11 +229,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoTransactionsCell", for: indexPath) as! NoTransactionsCell
             cell.awakeFromNib()
-            if Props.colorSchemaClear {
-                cell.backgroundColor = UIColor(red:1, green:0.8, blue:0, alpha:1)
-            } else {
-                cell.backgroundColor = UIColor.clear
-            }
+            cell.backgroundColor = Props.myYellow
             cell.infoLabel.frame.size.height = tableView.frame.size.height - 70
             cell.infoLabel.text = "No transactions found for this wallet, the latest 3 transactions for this wallet will be shown here"
             return cell

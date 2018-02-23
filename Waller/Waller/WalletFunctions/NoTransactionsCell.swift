@@ -18,12 +18,13 @@ class NoTransactionsCell: UITableViewCell
         
         let viewWidth = UIScreen.main.bounds.width - 30
         self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.backgroundColor = Props.myYellow
 
         infoLabel = UILabel.init(frame: CGRect.init(x: 40, y: 0, width: viewWidth - 80, height: 0))
         infoLabel.backgroundColor = UIColor.clear
         infoLabel.text = ""
         infoLabel.adjustsFontSizeToFitWidth = true
-        infoLabel.textColor = UIColor.lightGray
+        infoLabel.textColor = UIColor.darkGray
         infoLabel.textAlignment = .center
         infoLabel.numberOfLines = 0
         self.addSubview(infoLabel)
