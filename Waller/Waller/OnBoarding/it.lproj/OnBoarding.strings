@@ -12,7 +12,7 @@
 "QPG-3F-O6l.text" = "Multisign wallet";
 
 /* Class = "UITextView"; text = "I know that  if this app will be transfered in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process."; ObjectID = "e7u-2E-wBf"; */
-"e7u-2E-wBf.text" = "I know that  if this app will be transfered in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process.";
+"e7u-2E-wBf.text" = "I know that if this app will be transferred in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process.";
 
 /* Class = "UILabel"; text = "check the box below"; ObjectID = "i5g-jf-qaO"; */
 "i5g-jf-qaO.text" = "check the box below";
@@ -27,7 +27,7 @@
 "rSv-AF-ldS.normalTitle" = "Let's start";
 
 /* Class = "UITextView"; text = "I understood thath my founds are safely stored in this device not in a company."; ObjectID = "slS-Uz-tZN"; */
-"slS-Uz-tZN.text" = "I understood thath my founds are safely stored in this device not in a company.";
+"slS-Uz-tZN.text" = "I understood that my funds are safely stored in this device not in a company.";
 
 /* Class = "UILabel"; text = "Standard crypto wallet"; ObjectID = "xN1-9Z-Ce8"; */
 "xN1-9Z-Ce8.text" = "Standard crypto wallet";
