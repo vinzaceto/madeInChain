@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
     
@@ -30,6 +31,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var walletsList:[Wallet]!
     var walletsBalancesList:[(address:String,unspent:[BTCTransactionOutput])] = []
     var walletsTransactionsList:[WalletTransactions] = []
+    
+    var eeTimer:Timer!
+    var numPressed = 0
     
     override func viewDidLoad()
     {
@@ -94,15 +98,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.cardCollectionViewLayout?.cardHeight = 340
         }
         
-        infoButton = UIButton.init(frame:CGRect.init(x: 0, y: 80, width: 20, height:20))
+        infoButton = UIButton.init(frame:CGRect.init(x: 12, y: 107, width: 20, height:20))
         infoButton.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         infoButton.layer.cornerRadius = 5
         infoButton.setTitle("i", for: .normal)
-        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 8)
-        infoButton.addTarget(nil, action: Selector(("infoButtonPopUp")), for: .touchUpInside)
-        infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)), for: .touchUpInside)
-        totalView.addSubview(infoButton)
-
+        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 14)
+        infoButton.addTarget(self,action:#selector(infoButtonPopUp), for: .touchUpInside)
+        view.addSubview(infoButton)
+        
+        
         updateBTCValue()
         getChartData()
         loadWallets()
@@ -111,15 +115,53 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     //Pasquale pop up infoButton
     
-    @objc func infoButtonPopUp(sender: UIButton!) {
+    @objc func infoButtonPopUp()
+    {
         print("pressed")
-        let alert = EMAlertController(title: "Credits", message: "Data from blockchain.info and bitstamp.net")
+        
+        numPressed = numPressed + 1
+        
+        if eeTimer != nil
+        {eeTimer.invalidate()}
+        
+        eeTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false)
+        {_ in
+            if self.numPressed == 3
+            {self.showEE()}
+            else {self.showInfoAlert()}
+            self.numPressed = 0
+        }
+    }
+    
+    func showInfoAlert()
+    {
+        let alert = EMAlertController(title: "Credits", message: "Data from:\nblockchain.info and bitstamp.net")
         let close = EMAlertAction(title: "Close", style: .cancel)
         alert.addAction(action: close)
         alert.buttonSpacing = 0
         present(alert, animated: true, completion: nil)
     }
     
+    
+    
+    // This is a present for our unforgotten bestfriend
+    func showEE()
+    {
+        let latitude: CLLocationDegrees =  50.110924
+        let longitude: CLLocationDegrees = 8.682127
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "FRANCOFORTE"
+        mapItem.openInMaps(launchOptions: options)
+    }
     
     func loadWallets()
     {

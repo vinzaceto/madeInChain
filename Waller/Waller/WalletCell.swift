@@ -124,6 +124,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.addSubview(tableView)
         
         let mod:CGFloat = 0.8

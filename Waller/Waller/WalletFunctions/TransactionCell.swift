@@ -50,6 +50,11 @@ class TransactionCell: UITableViewCell {
         dateLabel.adjustsFontSizeToFitWidth = true
         dateLabel.numberOfLines = 0
         self.addSubview(dateLabel)
+        
+        
+        let line = UIView.init(frame: CGRect.init(x: 5, y: 49, width: viewWidth-10, height: 1))
+        line.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        self.addSubview(line)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
