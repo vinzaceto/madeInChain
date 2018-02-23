@@ -79,7 +79,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         footerLabel.textColor = UIColor.lightText
         self.view.addSubview(footerLabel)
         
-        collectionView?.layer.cornerRadius = 6
+        collectionView?.layer.cornerRadius = 20
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
         collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28 - 20
         collectionView?.frame.size.width = self.view.frame.size.width - 30
@@ -373,16 +373,21 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
             else
             {
+                
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
                 
-                if let privateKey = walletsList[indexPath.row-1].privatekey
+                cell.wallet = walletsList[indexPath.row-1]
+                
+                if let privateKey = cell.wallet.privatekey
                 {
                     cell.addressPrivateKey = privateKey
+                    cell.backgroundColor = Props.myYellow
                     cell.headerImage.tintColor = UIColor.darkGray
                     cell.iconImage.image = UIImage.init(named: "standard")
                 }
                 else
                 {
+                    cell.backgroundColor = Props.myBlue
                     cell.headerImage.tintColor = UIColor.blue
                     cell.iconImage.image = UIImage.init(named: "eye")
                 }
