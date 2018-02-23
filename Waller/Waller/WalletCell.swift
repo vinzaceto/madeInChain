@@ -41,13 +41,14 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     var tableView:UITableView!
     var delegate:WalletCellDelegate!
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
+    
+    var wallet:Wallet!
  
     weak var timer: Timer?
     var txs:[Transaction] = []
 
     var btcxTemp:CGFloat?
     let btcw:CGFloat = 33
-
     
     override func awakeFromNib()
     {
@@ -60,10 +61,11 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         }
         let viewWidth = (UIScreen.main.bounds.width - 30)
 
+        //Header commented for now
         headerImage = UIImageView.init(frame: CGRect.init(x: (viewWidth-220)/2, y: 0, width: 220, height: 11))
         let image = UIImage.init(named: "WalletHeaderImage")
         headerImage.image = image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        self.addSubview(headerImage)
+        //self.addSubview(headerImage)
         
         iconImage = UIImageView.init(frame: CGRect.init(x: 10, y: 30, width: 38, height: 49))
         self.addSubview(iconImage)
@@ -245,7 +247,11 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         var unconfirmed = ""
         
         cell.awakeFromNib()
-        cell.backgroundColor = UIColor.clear
+        if wallet.privatekey != nil {
+            cell.backgroundColor = Props.myYellow
+        } else {
+            cell.backgroundColor = Props.myBlue
+        }
         
         if tx.confirmations < 3
         {

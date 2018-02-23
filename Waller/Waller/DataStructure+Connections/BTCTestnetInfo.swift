@@ -77,8 +77,12 @@ class BTCTestnetInfo: NSObject
             let decoder = JSONDecoder()
             do
             {
-                let decodedResponse = try decoder.decode(WalletTransactions.self, from: data!)
-                completion(true,decodedResponse)
+                if data != nil {
+                    let decodedResponse = try decoder.decode(WalletTransactions.self, from: data!)
+                    completion(true,decodedResponse)
+                } else {
+                    completion(false,nil)
+                }
                 return
             }
             catch

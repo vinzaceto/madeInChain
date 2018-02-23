@@ -15,7 +15,7 @@ class AddWalletCell: HFCardCollectionViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:0.9)
+        self.backgroundColor = Props.myGreyAlpha
         
         let viewWidth = (UIScreen.main.bounds.width - 30)
         
@@ -53,19 +53,18 @@ class AddWalletCell: HFCardCollectionViewCell
         subtitleLabel.numberOfLines = 0
         self.addSubview(subtitleLabel)
         
-        let rect = CGRect.init(x: 0, y: 0, width: viewWidth, height: 340)
-        let dashedBorder = CAShapeLayer()
-        dashedBorder.strokeColor = UIColor.darkGray.cgColor
-        dashedBorder.lineDashPattern = [8, 6]
-        dashedBorder.frame = rect
-        dashedBorder.cornerRadius = 6
-        dashedBorder.masksToBounds = true
-        dashedBorder.fillColor = nil
-        dashedBorder.lineWidth = 6
-        dashedBorder.path = UIBezierPath(rect: rect).cgPath
-        self.layer.addSublayer(dashedBorder)
-        self.clipsToBounds = true
-
+//        let rect = CGRect.init(x: 0, y: 0, width: viewWidth, height: 340)
+//        let dashedBorder = CAShapeLayer()
+//        dashedBorder.strokeColor = Props.myBlack.cgColor
+//        dashedBorder.lineDashPattern = [6, 6]
+//        dashedBorder.frame = rect
+//        dashedBorder.cornerRadius = 20
+//        dashedBorder.masksToBounds = true
+//        dashedBorder.fillColor = nil
+//        dashedBorder.lineWidth = 6
+//        dashedBorder.path = UIBezierPath(rect: dashedBorder.bounds).cgPath
+//        self.layer.addSublayer(dashedBorder)
+//        self.clipsToBounds = true
     }
     
     @objc func scanButtonPressed()
