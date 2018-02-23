@@ -15,7 +15,7 @@ class AddWalletCell: HFCardCollectionViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:0.7)
+        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:0.9)
         
         let viewWidth = (UIScreen.main.bounds.width - 30)
         
