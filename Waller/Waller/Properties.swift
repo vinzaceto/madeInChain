@@ -17,10 +17,8 @@ class Props:NSObject
     static let optionCornerRadius = 10
     
     static let hasBeenSeen:String = "visualized"
-
     
     static let lastBtcValue = "LASTBTCVALUE"
-    
     
     static let httpsSchema = "https"
     static let httpSchema = "http"
