@@ -10,7 +10,7 @@ import UIKit
 
 protocol WalletCellDelegate
 {
-    func listTransactionsButtonPressed(walletCell:WalletCell)
+    func listTransactionsButtonPressed(walletCell:WalletCell, transactions:[Transaction])
     func makeAPaymentButtonPressed(walletCell:WalletCell)
     func showQRCodeButtonPressed(walletCell:WalletCell)
     func deleteButtonPressed(walletCell:WalletCell)
@@ -109,12 +109,10 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         nameLabel.font = UIFont.systemFont(ofSize: 24)
         self.addSubview(nameLabel)
         
-        
         addressLabel = UILabel.init(frame: CGRect.init(x: 10, y: 90, width: viewWidth-20, height: 20))
         addressLabel.backgroundColor = UIColor.clear
         addressLabel.adjustsFontSizeToFitWidth = true
         //self.addSubview(addressLabel)
-        
         
         let tvh = addressLabel.frame.origin.y + 15
         tableView = UITableView.init(frame: CGRect.init(x: 0, y: tvh, width: viewWidth, height: 150))
@@ -130,7 +128,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         let mod:CGFloat = 0.8
         let width:CGFloat = 45 * mod
         let height:CGFloat = 45 * mod
-        let by:CGFloat = 340 - height - 15
+        let by:CGFloat = 340 - height - 20
 
         let margin:CGFloat = (viewWidth - (width * 5)) / 6
         
@@ -302,7 +300,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     @objc func listTransactionsButtonPressed()
     {
         print("listTransactionsButtonPressed")
-        guard let _ = delegate?.listTransactionsButtonPressed(walletCell: self) else
+        guard let _ = delegate?.listTransactionsButtonPressed(walletCell: self ,transactions:txs) else
         {return}
     }
     
@@ -344,6 +342,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     {
         print("updating balance for address : \(addressLabel.text!)")
         guard let outputs = delegate.getOutputBalanceByAddress(address: addressLabel.text!) else {return}
+        
         var unconfirmedAmount:BTCAmount = 0
         var confirmedAmount:BTCAmount = 0
         var totalAmount:BTCAmount = 0

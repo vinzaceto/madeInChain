@@ -36,6 +36,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     var eeTimer:Timer!
     var numPressed = 0
     
+    let dataConnection = DataConnections()
+    let testnet = BTCTestnetInfo.init()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -84,9 +87,9 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         footerLabel.textColor = UIColor.lightText
         self.view.addSubview(footerLabel)
         
-        collectionView?.layer.cornerRadius = 20
+        collectionView?.layer.cornerRadius = 10
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
-        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28 - 25
+        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28
         collectionView?.frame.size.width = self.view.frame.size.width - 30
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
@@ -110,6 +113,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         updateBTCValue()
         getChartData()
+        
         loadWallets()
         startTimer()
     }
@@ -177,10 +181,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func startTimer()
     {
         timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true)
         {
             [weak self] _ in
             self?.loadTransactions()
+            self?.updateTotal()
             self?.loadBalance()
             self?.updateBTCValue()
         }
@@ -189,39 +194,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func loadBalance()
     {
         walletsBalancesList = []
-        
-        var confirmedTotalBalance:BTCAmount = 0
+
         for (index, wallet) in walletsList.enumerated()
         {
-            let testnet = BTCTestnetInfo.init()
             testnet.unspentOutputsWithAddress(address: wallet.address, completion:
             {
                 (success, error, unspentOutputs) in
                 if success == true
                 {
                     self.walletsBalancesList.append((address: wallet.address, unspent: unspentOutputs!))
-                    for output in unspentOutputs!
-                    {
-                        confirmedTotalBalance = confirmedTotalBalance + output.value
-
-                        /* unable to check confirmations now
-                        if output.confirmations >= 3
-                        {
-                            confirmedTotalBalance = confirmedTotalBalance + output.value
-                        }
-                        */
-                    }
-                    
-                    print("weewewewe")
-                    
-                    // check for latest element and trigger as latest operation
-                    if index == self.walletsList.count-1
-                    {
-                        DispatchQueue.main.async
-                        {
-                            self.totalView.updateBTCTotal(total: confirmedTotalBalance)
-                        }
-                    }
                 }
                 else
                 {
@@ -231,10 +212,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
     }
     
+    func updateTotal()
+    {
+        print("updating total")
+        var confirmedTotalBalance:BTCAmount = 0
+        for walletBalance in walletsBalancesList
+        {
+            for unspent in walletBalance.unspent
+            {
+                confirmedTotalBalance = confirmedTotalBalance + unspent.value
+            }
+        }
+        self.totalView.updateBTCTotal(total: confirmedTotalBalance)
+    }
+    
     func loadTransactions()
     {
         walletsTransactionsList = []
-        let testnet = BTCTestnetInfo.init()
         for wallet in walletsList
         {
             testnet.getWalletTransactions(address: wallet.address, completion:
@@ -431,10 +425,12 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         view.updateBtcValue()
     }
     
-    func listTransactionsButtonPressed(walletCell:WalletCell)
+    func listTransactionsButtonPressed(walletCell:WalletCell,transactions:[Transaction])
     {
         let view = TransactionsWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
+        view.transactions = transactions
+        view.tableView.reloadData()
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -638,8 +634,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         loadingLabel.textAlignment = .center
         lineChart.addSubview(loadingLabel)
         
-        let connection = DataConnections.init()
-        connection.getBitcoinChartData
+        dataConnection.getBitcoinChartData
             {
                 (result) in
                 
@@ -687,13 +682,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     func updateBTCValue()
     {
-        let dataConnection = DataConnections()
         dataConnection.getBitcoinValue(currency: Props.btcUsd) { (result) in
             switch result
             {
             case .success(let posts):
                 
                 guard let btcValue = Double(posts.last) else { return }
+                print("btc value : \(btcValue)")
                 self.totalView.updateBTCPrice(btcPrice: btcValue)
                 
             case .failure(let error):

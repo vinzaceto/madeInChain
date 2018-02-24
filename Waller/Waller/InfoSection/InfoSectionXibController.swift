@@ -32,6 +32,9 @@ class InfoSectionXibController: UIView {
     
     var contentView: UIView?
     @IBInspectable var nibName: String?
+    
+    let btcFormatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+    let currencyFormatter = NumberFormatter()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -99,12 +102,11 @@ class InfoSectionXibController: UIView {
         print("updating btc price")
         self.btcValue = btcPrice
         
-        let formatter = NumberFormatter()
-        formatter.locale = Locale.init(identifier: "en_US")
-        formatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.init(identifier: "en_US")
+        currencyFormatter.numberStyle = .currency
         
         let n = NSNumber.init(value: btcPrice)
-        guard let formattedBTCValue = formatter.string(from: n) else {return}
+        guard let formattedBTCValue = currencyFormatter.string(from: n) else {return}
         print("price \(formattedBTCValue)")
         self.currentBTCvalue.text = formattedBTCValue
 
@@ -116,8 +118,7 @@ class InfoSectionXibController: UIView {
         print("updating HEADER TOTAL: \(total)")
         self.btcTotalAmount = total
 
-        let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
-        let amount = formatter?.string(fromAmount: total)
+        let amount = btcFormatter?.string(fromAmount: total)
         self.currentBtcAmount.text = amount
         
         updateCurrencyTotal()
@@ -132,23 +133,15 @@ class InfoSectionXibController: UIView {
     {
         print("converting currency total")
         
-        let btcf = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
-        let str = btcf?.string(fromAmount: btcTotalAmount)
-        print("string amount : \(str)")
+        guard let amount = btcFormatter?.string(fromAmount: btcTotalAmount).toDouble() else {return}
+        print("btc total amount : \(amount)")
         
-        let amount = str?.toDouble()
-        
-        print("dounble amount: \(amount)")
-        print("value: \(self.btcValue)")
-        
-        let total = self.btcValue * amount!
-        print("total: \(total)")
+        let total = self.btcValue * amount
 
-        let formatter = NumberFormatter()
-        formatter.locale = Locale.init(identifier: "en_US")
-        formatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.init(identifier: "en_US")
+        currencyFormatter.numberStyle = .currency
         
-        guard let formattedTotal = formatter.string(from: NSNumber(value:total)) else { return }
+        guard let formattedTotal = currencyFormatter.string(from: NSNumber(value:total)) else { return }
         print("formattedTotal: \(formattedTotal)")
 
         self.currentAmount.text = formattedTotal
@@ -163,11 +156,10 @@ class InfoSectionXibController: UIView {
         
         let value = self.btcValue * amount
         
-        let formatter = NumberFormatter()
-        formatter.locale = Locale.init(identifier: "en_US")
-        formatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.init(identifier: "en_US")
+        currencyFormatter.numberStyle = .currency
         
-        guard let formattedTotal = formatter.string(from: NSNumber(value:value)) else { return "--" }
+        guard let formattedTotal = currencyFormatter.string(from: NSNumber(value:value)) else { return "--" }
         print("formattedTotal: \(formattedTotal)")
         
         return formattedTotal
