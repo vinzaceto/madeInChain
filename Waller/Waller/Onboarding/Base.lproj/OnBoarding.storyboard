@@ -60,7 +60,7 @@
                                     <segue destination="4bC-QA-rzS" kind="show" identifier="MainSB" id="9pg-7J-ufC"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="I understood thath my founds are safely stored in this device not in a company." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slS-Uz-tZN">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="I understood that my funds are safely stored in this device not in a company." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slS-Uz-tZN">
                                 <rect key="frame" x="123" y="161" width="212" height="137"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -88,7 +88,7 @@
                                     <constraint firstAttribute="height" constant="212" id="CAE-wm-kEb"/>
                                     <constraint firstAttribute="width" constant="212" id="Dhr-1c-ZBd"/>
                                 </constraints>
-                                <string key="text">I know that  if this app will be transfered in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process.</string>
+                                <string key="text">I know that if this app will be transferred in a new device , my bitcoin will be restored only by mnemonic words I read in the creation process.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -289,7 +289,7 @@
                                     <constraint firstAttribute="height" constant="54" id="OyT-nP-zxc"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Create multi sign wallet and manage it with your friends" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-i5-knO">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Create multisig wallet and manage it with your friends" textAlignment="center" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-i5-knO">
                                 <rect key="frame" x="47" y="496" width="281" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="dUf-Bt-aRp"/>
