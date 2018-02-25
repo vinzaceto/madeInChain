@@ -23,7 +23,7 @@ class NoTransactionsCell: UITableViewCell
         infoLabel.backgroundColor = UIColor.clear
         infoLabel.text = ""
         infoLabel.adjustsFontSizeToFitWidth = true
-        infoLabel.textColor = UIColor.lightGray
+        infoLabel.textColor = UIColor.darkGray
         infoLabel.textAlignment = .center
         infoLabel.numberOfLines = 0
         self.addSubview(infoLabel)

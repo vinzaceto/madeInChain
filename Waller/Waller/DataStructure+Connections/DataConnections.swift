@@ -17,39 +17,69 @@ class DataConnections {
     
     func getBitcoinValue(currency: String, completion: ((Result<BitstampValue>) -> Void)?) {
         
-        var urlComponents = URLComponents()
+        var urlComponents:URLComponents! = URLComponents()
         urlComponents.scheme = Props.httpsSchema
         urlComponents.host = Props.bitstampHost
         urlComponents.path = "/api/v2/ticker/"+currency
 
-        print("Bitstamp URL: \(urlComponents.url)")
         guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
         
-        var request = URLRequest(url: url)
+        var request:URLRequest! = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let task = session.dataTask(with: request) { (responseData, response, responseError) in
-            DispatchQueue.main.async {
-                guard responseError == nil else {
+        var config:URLSessionConfiguration! = URLSessionConfiguration.default
+        var session:URLSession! = URLSession(configuration: config)
+        var task:URLSessionDataTask! = session.dataTask(with: request) { (responseData, response, responseError) in
+            DispatchQueue.main.async
+            {
+                guard responseError == nil else
+                {
                     completion?(.failure(responseError!))
+                    
+                    task = nil
+                    session = nil
+                    config = nil
+                    request = nil
+                    urlComponents = nil
                     return
                 }
                 
-                guard let jsonData = responseData else {
+                guard let jsonData = responseData else
+                {
                     let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Data was not retrieved from request"]) as Error
                     completion?(.failure(error))
+                    
+                    session = nil
+                    config = nil
+                    request = nil
+                    urlComponents = nil
                     return
                 }
                 
-                let decoder = JSONDecoder()
+                var decoder:JSONDecoder! = JSONDecoder()
                 
-                do {
+                do
+                {
                     let posts = try decoder.decode(BitstampValue.self, from: jsonData)
                     completion?(.success(posts))
-                } catch {
+                    
+                    session = nil
+                    config = nil
+                    request = nil
+                    urlComponents = nil
+                    decoder = nil
+                    return
+                }
+                catch
+                {
                     completion?(.failure(error))
+                    
+                    session = nil
+                    config = nil
+                    request = nil
+                    urlComponents = nil
+                    decoder = nil
+                    return
                 }
             }
         }

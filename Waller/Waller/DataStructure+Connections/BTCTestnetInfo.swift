@@ -77,8 +77,12 @@ class BTCTestnetInfo: NSObject
             let decoder = JSONDecoder()
             do
             {
-                let decodedResponse = try decoder.decode(WalletTransactions.self, from: data!)
-                completion(true,decodedResponse)
+                if data != nil {
+                    let decodedResponse = try decoder.decode(WalletTransactions.self, from: data!)
+                    completion(true,decodedResponse)
+                } else {
+                    completion(false,nil)
+                }
                 return
             }
             catch
@@ -91,37 +95,30 @@ class BTCTestnetInfo: NSObject
     }
 
     
-    func unspentOutputsWithAddress(address:String) -> [BTCTransactionOutput]?
+    func unspentOutputsWithAddress(address:String,completion: @escaping ((Bool,String,[BTCTransactionOutput]?) -> Void))
     {
         let url = URL(string: "https://testnet.blockchain.info/unspent?active=\(address)")!
         let request = URLRequest(url: url)
-        let semaphore = DispatchSemaphore(value: 0)
-        var data: Data? = nil
         
         URLSession.shared.dataTask(with: request)
         {
             (responseData, _, _) -> Void in
-            data = responseData
-            semaphore.signal()
+            guard let data = responseData else { completion(false,"wrong data",nil); return }
+
+            //let reply = responseData.flatMap { String(data: $0, encoding: .utf8) } ?? ""
+            //print(reply)
+            
+            let decoder = JSONDecoder()
+            do
+            {
+                let decodedResponse = try decoder.decode(BTCUnspentRespose.self, from: data)
+                let txs = self.unspentOutputsForResponseData(data: decodedResponse.unspent_outputs)
+                completion(true,"nil",txs)
+                return
+            }
+            catch {completion(false,"error converting data to JSON",nil);return}
+            
         }.resume()
-        semaphore.wait(timeout: .distantFuture)
-        
-        let reply = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
-        print(reply)
-        
-        guard let d = data else { return nil }
-        
-        let decoder = JSONDecoder()
-        do
-        {
-            let decodedResponse = try decoder.decode(BTCUnspentRespose.self, from: d)
-            return unspentOutputsForResponseData(data: decodedResponse.unspent_outputs)
-        }
-        catch
-        {
-            print("error converting data to JSON")
-            return nil
-        }
     }
     
     func unspentOutputsForResponseData(data:[BTCUtx]) -> [BTCTransactionOutput]?

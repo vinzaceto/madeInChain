@@ -46,10 +46,19 @@
                                     <constraint firstAttribute="width" constant="196" id="ICx-lk-o2p"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed by Made in Chain Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1L-BD-sP1">
+                                <rect key="frame" x="28" y="575" width="319" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.098039215686274508" green="0.15294117647058825" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0TL-eg-K1p" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PkW-Pf-0Vt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V1L-BD-sP1" secondAttribute="trailing" constant="28" id="VcL-JF-tMi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="V1L-BD-sP1" secondAttribute="bottom" constant="80" id="iwu-tT-3eZ"/>
+                            <constraint firstItem="V1L-BD-sP1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="28" id="kI4-jm-4C5"/>
                             <constraint firstItem="0TL-eg-K1p" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="qAp-LB-S7f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

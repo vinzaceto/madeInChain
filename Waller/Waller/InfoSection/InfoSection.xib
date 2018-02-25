@@ -43,14 +43,14 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8V-Bm-xhO">
-                    <rect key="frame" x="322" y="81" width="53" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8V-Bm-xhO">
+                    <rect key="frame" x="358.5" y="82" width="16.5" height="20"/>
                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/US$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdF-Te-wA5">
-                    <rect key="frame" x="0.0" y="65" width="43" height="12"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 BTC =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdF-Te-wA5">
+                    <rect key="frame" x="0.0" y="65" width="34" height="12"/>
                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="10"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -61,43 +61,39 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khv-U6-3s5">
-                    <rect key="frame" x="0.0" y="81" width="25" height="21"/>
-                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="US$ AMOUNT" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRM-3p-gD0">
                     <rect key="frame" x="312" y="0.0" width="63" height="12"/>
                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="10"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- $" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tql-bo-KRD">
-                    <rect key="frame" x="316" y="16" width="59" height="38"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tql-bo-KRD">
+                    <rect key="frame" x="344" y="17" width="31" height="38"/>
                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="32"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khv-U6-3s5">
+                    <rect key="frame" x="23" y="81" width="25" height="21"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="kuX-Vs-9aa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1ld-q6-Mzo"/>
-                <constraint firstItem="nEc-Lp-GBS" firstAttribute="top" secondItem="Tql-bo-KRD" secondAttribute="bottom" constant="10" id="2bc-K9-RTK"/>
+                <constraint firstItem="nEc-Lp-GBS" firstAttribute="top" secondItem="Tql-bo-KRD" secondAttribute="bottom" constant="9" id="2bc-K9-RTK"/>
                 <constraint firstItem="Tql-bo-KRD" firstAttribute="top" secondItem="IRM-3p-gD0" secondAttribute="bottom" constant="5" id="5yx-dz-7M2"/>
-                <constraint firstItem="Tql-bo-KRD" firstAttribute="top" secondItem="IRM-3p-gD0" secondAttribute="bottom" constant="4" id="69d-p6-ruP"/>
                 <constraint firstItem="qdF-Te-wA5" firstAttribute="top" secondItem="IDx-ri-elx" secondAttribute="bottom" constant="28" id="7qM-fg-mdN"/>
                 <constraint firstAttribute="trailing" secondItem="IRM-3p-gD0" secondAttribute="trailing" id="8JB-l4-s7U"/>
-                <constraint firstItem="Khv-U6-3s5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="AC5-FG-mF8"/>
+                <constraint firstItem="Khv-U6-3s5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="23" id="AC5-FG-mF8"/>
                 <constraint firstItem="qdF-Te-wA5" firstAttribute="top" secondItem="IDx-ri-elx" secondAttribute="bottom" constant="28" id="EOr-OE-LSD"/>
-                <constraint firstItem="IDx-ri-elx" firstAttribute="top" secondItem="kuX-Vs-9aa" secondAttribute="bottom" constant="4" id="EXj-7k-KZQ"/>
-                <constraint firstItem="j8V-Bm-xhO" firstAttribute="top" secondItem="nEc-Lp-GBS" secondAttribute="bottom" constant="4" id="HZh-qD-jrK"/>
-                <constraint firstItem="nEc-Lp-GBS" firstAttribute="top" secondItem="Tql-bo-KRD" secondAttribute="bottom" constant="10" id="KN3-T1-FYP"/>
+                <constraint firstItem="nEc-Lp-GBS" firstAttribute="top" secondItem="Tql-bo-KRD" secondAttribute="bottom" constant="9" id="KN3-T1-FYP"/>
                 <constraint firstItem="Tql-bo-KRD" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="MqO-Vf-Xcn"/>
-                <constraint firstItem="Khv-U6-3s5" firstAttribute="top" secondItem="qdF-Te-wA5" secondAttribute="bottom" constant="5" id="Rk5-sm-wca"/>
-                <constraint firstItem="j8V-Bm-xhO" firstAttribute="top" secondItem="nEc-Lp-GBS" secondAttribute="bottom" constant="5" id="TQ6-eh-9lC"/>
+                <constraint firstItem="Khv-U6-3s5" firstAttribute="top" secondItem="qdF-Te-wA5" secondAttribute="bottom" constant="4" id="Rk5-sm-wca"/>
+                <constraint firstItem="j8V-Bm-xhO" firstAttribute="top" secondItem="nEc-Lp-GBS" secondAttribute="bottom" constant="6" id="TQ6-eh-9lC"/>
                 <constraint firstItem="qdF-Te-wA5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="boc-oj-MlL"/>
-                <constraint firstItem="Khv-U6-3s5" firstAttribute="top" secondItem="qdF-Te-wA5" secondAttribute="bottom" constant="4" id="eNT-aa-sh3"/>
                 <constraint firstItem="IRM-3p-gD0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iIG-WQ-1At"/>
                 <constraint firstItem="nEc-Lp-GBS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="nox-2h-sVc"/>
                 <constraint firstItem="IDx-ri-elx" firstAttribute="top" secondItem="kuX-Vs-9aa" secondAttribute="bottom" constant="5" id="q8S-DG-1A9"/>

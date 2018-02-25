@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import MapKit
+import LocalAuthentication
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
+    
+    
+
     
     
     weak var timer: Timer?
@@ -22,10 +27,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     @IBOutlet var collectionView: UICollectionView?
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
+    var defaultCollectionViewCenter:CGPoint!
     
     var walletsList:[Wallet]!
     var walletsBalancesList:[(address:String,unspent:[BTCTransactionOutput])] = []
     var walletsTransactionsList:[WalletTransactions] = []
+    
+    var eeTimer:Timer!
+    var numPressed = 0
+    
+    let dataConnection = DataConnections()
+    let testnet = BTCTestnetInfo.init()
     
     override func viewDidLoad()
     {
@@ -36,13 +48,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         if Props.colorSchemaClear
         {
-            gradientView.FirstColor = Props().firstGradientColor
-            gradientView.SecondColor = Props().secondGradientColor
+            gradientView.FirstColor = Props.myBlack
+            gradientView.SecondColor = Props.myBlack
         }
         else
         {
-            gradientView.FirstColor = Props().firstGradientColorDark
-            gradientView.SecondColor = Props().secondGradientColorDark
+            gradientView.FirstColor = Props.myBlack
+            gradientView.SecondColor = Props.myBlack
         }
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
@@ -75,45 +87,59 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         footerLabel.textColor = UIColor.lightText
         self.view.addSubview(footerLabel)
         
-        collectionView?.layer.cornerRadius = 6
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
-        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28 - 20
+        collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28
         collectionView?.frame.size.width = self.view.frame.size.width - 30
         collectionView?.center.x = self.view.center.x
         collectionView?.backgroundView?.backgroundColor = UIColor.clear
         collectionView?.backgroundColor = UIColor.clear
-
+        defaultCollectionViewCenter = collectionView?.center
+        
         if let layout = self.collectionView?.collectionViewLayout as? HFCardCollectionViewLayout
         {
             self.cardCollectionViewLayout = layout
             self.cardCollectionViewLayout?.cardHeight = 340
         }
         
-        infoButton = UIButton.init(frame:CGRect.init(x: lineChart.frame.size.width-18, y: 96, width: 15, height:15))
+        infoButton = UIButton.init(frame:CGRect.init(x: 12, y: 107, width: 20, height:20))
         infoButton.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         infoButton.layer.cornerRadius = 5
         infoButton.setTitle("i", for: .normal)
-        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 8)
+        infoButton.titleLabel?.font = UIFont(name: "Rubik", size: 14)
+        infoButton.addTarget(self,action:#selector(infoButtonPopUp), for: .touchUpInside)
+        view.addSubview(infoButton)
         
-        infoButton.addTarget(self,action:#selector(infoButtonPopUp(sender:)),
-                             for: .touchUpInside)
-        collectionView?.addSubview(infoButton)
-
+        
         updateBTCValue()
         getChartData()
         
         loadWallets()
-        loadBalance()
-        loadTransactions()
-        
         startTimer()
     }
     
     //Pasquale pop up infoButton
     
-    @objc func infoButtonPopUp(sender: UIButton!) {
+    @objc func infoButtonPopUp()
+    {
         print("pressed")
-        let alert = EMAlertController(title: "Credit", message: "Data and chart from blockchain.com and bitstamp.net")
+        
+        numPressed = numPressed + 1
+        
+        if eeTimer != nil
+        {eeTimer.invalidate()}
+        
+        eeTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false)
+        {_ in
+            if self.numPressed == 3
+            {self.showEE()}
+            else {self.showInfoAlert()}
+            self.numPressed = 0
+        }
+    }
+    
+    func showInfoAlert()
+    {
+        let alert = EMAlertController(title: "Credits", message: "Data from:\nblockchain.info and bitstamp.net")
         let close = EMAlertAction(title: "Close", style: .cancel)
         alert.addAction(action: close)
         alert.buttonSpacing = 0
@@ -121,20 +147,44 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     
+    
+    // This is a present for our unforgotten bestfriend
+    func showEE()
+    {
+        let latitude: CLLocationDegrees =  50.110924
+        let longitude: CLLocationDegrees = 8.682127
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "FRANCOFORTE"
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
     func loadWallets()
     {
         walletsList = []
         let walletsKeychain = WalletsDatabase.init()
         walletsList = walletsKeychain.getAllWallets()
+        
+        loadBalance()
+        loadTransactions()
     }
     
     func startTimer()
     {
         timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true)
         {
             [weak self] _ in
             self?.loadTransactions()
+            self?.updateTotal()
             self?.loadBalance()
             self?.updateBTCValue()
         }
@@ -143,30 +193,41 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func loadBalance()
     {
         walletsBalancesList = []
-        
-        var confirmedTotalBalance:BTCAmount = 0
-        for wallet in walletsList
+
+        for (index, wallet) in walletsList.enumerated()
         {
-            let testnet = BTCTestnetInfo.init()
-            if let unspentOutputs = testnet.unspentOutputsWithAddress(address: wallet.address)
+            testnet.unspentOutputsWithAddress(address: wallet.address, completion:
             {
-                walletsBalancesList.append((address: wallet.address, unspent: unspentOutputs))
-                for output in unspentOutputs
+                (success, error, unspentOutputs) in
+                if success == true
                 {
-                    if output.confirmations >= 3
-                    {
-                        confirmedTotalBalance = confirmedTotalBalance + output.value
-                    }
+                    self.walletsBalancesList.append((address: wallet.address, unspent: unspentOutputs!))
                 }
+                else
+                {
+                    print("GET unspent outputs fail : \(error)")
+                }
+            })
+        }
+    }
+    
+    func updateTotal()
+    {
+        print("updating total")
+        var confirmedTotalBalance:BTCAmount = 0
+        for walletBalance in walletsBalancesList
+        {
+            for unspent in walletBalance.unspent
+            {
+                confirmedTotalBalance = confirmedTotalBalance + unspent.value
             }
         }
-        totalView.updateBTCTotal(total: confirmedTotalBalance)
+        self.totalView.updateBTCTotal(total: confirmedTotalBalance)
     }
     
     func loadTransactions()
     {
         walletsTransactionsList = []
-        let testnet = BTCTestnetInfo.init()
         for wallet in walletsList
         {
             testnet.getWalletTransactions(address: wallet.address, completion:
@@ -177,7 +238,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                     if let transactions = txs
                     {
                         self.walletsTransactionsList.append(transactions)
-                        print(transactions)
                     }
                 }
             })
@@ -198,17 +258,26 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         return nil
     }
+
     
     func getUSDVAlueFromAmount(amount:String) -> String?
     {
-        guard let totalBTCAmount = Double(amount) else { return nil }
-        if totalBTCAmount == 0{return "--"}
-        let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
+        print("update total in the cells")
+        print("string amount: \(amount)")
+        print("double amount: \(amount.toDouble())")
+
+        if amount.toDouble() == 0
+        {
+            return "--"
+        }
+        
+        let formattedBalance = totalView.convertBTCAmountToCurrency(amount: amount.toDouble()!)
         return formattedBalance
     }
 
     func getTransactionsBy(address: String) -> WalletTransactions?
     {
+        print("GET transactions for address : \(address)")
         for walletTransactions in walletsTransactionsList
         {
             if walletTransactions.address == address
@@ -219,79 +288,11 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         return nil
     }
     
-    /*
-    
-    func loadBalance()
+    func getBTCValue() ->Double?
     {
-        var total:BTCAmount = 0
-        walletsBalancesList = []
-        
-        for wallet in walletsList
-        {
-            let testnet = BTCTestnetInfo.init()
-            guard let balance = testnet.getWalletBalance(address: wallet.address) else {return}
-            walletsBalancesList.append(balance)
-            total = total + balance.final_balance
-        }
-        totalView.updateBTCTotal(total: total)
+        return totalView.btcValue
     }
-    
-    func loadUnspentOutputs()
-    {
-        unspentOutputsList = []
-        for wallet in walletsList
-        {
-            let testnet = BTCTestnetInfo.init()
-            guard let unspentOutputs = testnet.unspentOutputsWithAddress(address: wallet.address) else {return}
-            unspentOutputsList.append((address: wallet.address, unspent: unspentOutputs))
-        }
-    }
-    
-    func getBTCBalanceByAddress(address:String) -> WalletBalance?
-    {
-        for balance in walletsBalancesList
-        {
-            if balance.address == address
-            {
-                return balance
-            }
-        }
-        return nil
-    }
-    
-    func getUSDBalanceByAddress(address:String) -> String?
-    {
-        for balance in walletsBalancesList
-        {
-            if balance.address == address
-            {
-                let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
-                let amount = formatter?.string(fromAmount: balance.final_balance)
-                guard let totalBTCAmount = Double(amount!) else { return nil }
-                if totalBTCAmount == 0{return "--"}
-                let formattedBalance = totalView.convertBTCAmountToCurrency(amount: totalBTCAmount)
-                return formattedBalance
-            }
-        }
-        return nil
-    }
-    
-    func getUnspentOutputsAddress(address:String) -> [BTCTransactionOutput]?
-    {
-        for output in unspentOutputsList
-        {
-            if output.address == address
-            {
-                return output.unspent
-            }
-        }
-        return nil
-    }
-    */
-    
-    
-    
-    
+   
 
     
 
@@ -336,18 +337,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
             else
             {
+                
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
                 
-                if let privateKey = walletsList[indexPath.row-1].privatekey
+                cell.wallet = walletsList[indexPath.row-1]
+                
+                if let privateKey = cell.wallet.privatekey
                 {
                     cell.addressPrivateKey = privateKey
+                    cell.backgroundColor = Props.myYellow
                     cell.headerImage.tintColor = UIColor.darkGray
-                    cell.iconImage.image = UIImage.init(named: "standard")
+                    cell.iconImage.image = UIImage.init(named: "standardIcon")
                 }
                 else
                 {
+                    cell.backgroundColor = Props.myBlue
                     cell.headerImage.tintColor = UIColor.blue
-                    cell.iconImage.image = UIImage.init(named: "eye")
+                    cell.iconImage.image = UIImage.init(named: "watchOnlyIcon")
                 }
                 
                 cell.nameLabel.text = walletsList[indexPath.row-1].label
@@ -370,6 +376,8 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     {
         self.cardCollectionViewLayout?.revealCardAt(index: indexPath.item)
     }
+    
+    
     
     
     
@@ -403,17 +411,25 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     func makeAPaymentButtonPressed(walletCell:WalletCell)
     {
+        authenticationWithTouchID()
+        
         let view = PaymentWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
         let w = Wallet.init(label: walletCell.amountLabel.text!, address: walletCell.addressLabel.text!, privatekey: walletCell.addressPrivateKey)
-        view.testTransactionWithWallet(wallet: w)
+        view.wallet = w
+        //view.testTransactionWithWallet(wallet: w)
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
+        view.receiverAddressField.becomeFirstResponder()
+        view.updateAmount()
+        view.updateBtcValue()
     }
     
-    func listTransactionsButtonPressed(walletCell:WalletCell)
+    func listTransactionsButtonPressed(walletCell:WalletCell,transactions:[Transaction])
     {
         let view = TransactionsWalletView.init(frame: CGRect.init(x: 0, y: 0, width: walletCell.frame.size.width, height: walletCell.frame.size.height))
         view.delegate = self
+        view.transactions = transactions
+        view.tableView.reloadData()
         walletCell.cardCollectionViewLayout?.flipRevealedCard(toView: view)
     }
     
@@ -585,6 +601,23 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         present(activityViewController, animated: true, completion: nil)
     }
     
+    func keyboardDidOpen()
+    {
+        let fix = self.view.frame.size.height - 330
+        
+        UIView.animate(withDuration: 0.3)
+        {
+            self.collectionView?.center.y = fix
+        }
+    }
+    
+    func keyboardDidClose()
+    {
+        UIView.animate(withDuration: 0.5)
+        {
+            self.collectionView?.center = self.defaultCollectionViewCenter
+        }
+    }
     
     //
     // MARK: CHART DATA LOADING
@@ -600,8 +633,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         loadingLabel.textAlignment = .center
         lineChart.addSubview(loadingLabel)
         
-        let connection = DataConnections.init()
-        connection.getBitcoinChartData
+        dataConnection.getBitcoinChartData
             {
                 (result) in
                 
@@ -649,13 +681,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     func updateBTCValue()
     {
-        let dataConnection = DataConnections()
         dataConnection.getBitcoinValue(currency: Props.btcUsd) { (result) in
             switch result
             {
             case .success(let posts):
                 
                 guard let btcValue = Double(posts.last) else { return }
+                print("btc value : \(btcValue)")
                 self.totalView.updateBTCPrice(btcPrice: btcValue)
                 
             case .failure(let error):
@@ -663,6 +695,121 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
                 print("No connection \(error.localizedDescription)")
             }
         }
+    }
+}
+
+extension HomeViewController {
+    
+    func authenticationWithTouchID() {
+        let localAuthenticationContext = LAContext()
+        localAuthenticationContext.localizedFallbackTitle = "Use Passcode"
+        
+        var authError: NSError?
+        let reasonString = "To access the secure data"
+        
+        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+            
+            localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString) { success, evaluateError in
+                
+                if success {
+                    
+                    //TODO: User authenticated successfully, take appropriate action
+                    
+                    
+                } else {
+                    //TODO: User did not authenticate successfully, look at error and take appropriate action
+
+                    guard let error = evaluateError else {
+                        return
+                    }
+                    
+                    print(self.evaluateAuthenticationPolicyMessageForLA(errorCode: error._code))
+                    
+                    //TODO: If you have choosen the 'Fallback authentication mechanism selected' (LAError.userFallback). Handle gracefully
+                    
+                    
+                }
+            }
+        } else {
+            
+            guard let error = authError else {
+                return
+            }
+            //TODO: Show appropriate alert if biometry/TouchID/FaceID is lockout or not enrolled
+            print(self.evaluateAuthenticationPolicyMessageForLA(errorCode: error.code))
+        }
+    }
+    
+    func evaluatePolicyFailErrorMessageForLA(errorCode: Int) -> String {
+        var message = ""
+        if #available(iOS 11.0, macOS 10.13, *) {
+            switch errorCode {
+            case LAError.biometryNotAvailable.rawValue:
+                message = "Authentication could not start because the device does not support biometric authentication."
+                
+            case LAError.biometryLockout.rawValue:
+                message = "Authentication could not continue because the user has been locked out of biometric authentication, due to failing authentication too many times."
+                
+            case LAError.biometryNotEnrolled.rawValue:
+                message = "Authentication could not start because the user has not enrolled in biometric authentication."
+                
+            default:
+                message = "Did not find error code on LAError object"
+            }
+        } else {
+            switch errorCode {
+            case LAError.touchIDLockout.rawValue:
+                message = "Too many failed attempts."
+                
+            case LAError.touchIDNotAvailable.rawValue:
+                message = "TouchID is not available on the device"
+                
+            case LAError.touchIDNotEnrolled.rawValue:
+                message = "TouchID is not enrolled on the device"
+                
+            default:
+                message = "Did not find error code on LAError object"
+            }
+        }
+        
+        return message;
+    }
+    
+    func evaluateAuthenticationPolicyMessageForLA(errorCode: Int) -> String {
+        
+        var message = ""
+        
+        switch errorCode {
+            
+        case LAError.authenticationFailed.rawValue:
+            message = "The user failed to provide valid credentials"
+            
+        case LAError.appCancel.rawValue:
+            message = "Authentication was cancelled by application"
+            
+        case LAError.invalidContext.rawValue:
+            message = "The context is invalid"
+            
+        case LAError.notInteractive.rawValue:
+            message = "Not interactive"
+            
+        case LAError.passcodeNotSet.rawValue:
+            message = "Passcode is not set on the device"
+            
+        case LAError.systemCancel.rawValue:
+            message = "Authentication was cancelled by the system"
+            
+        case LAError.userCancel.rawValue:
+            message = "The user did cancel"
+            
+        case LAError.userFallback.rawValue:
+            message = "The user chose to use the fallback"
+            
+        default:
+            message = evaluatePolicyFailErrorMessageForLA(errorCode: errorCode)
+        }
+        
+        return message
     }
 }
 

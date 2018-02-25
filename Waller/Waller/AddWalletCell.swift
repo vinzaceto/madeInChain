@@ -15,7 +15,7 @@ class AddWalletCell: HFCardCollectionViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        self.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:0.7)
+        self.backgroundColor = Props.myGreyAlpha
         
         let viewWidth = (UIScreen.main.bounds.width - 30)
         
@@ -30,42 +30,31 @@ class AddWalletCell: HFCardCollectionViewCell
         newLabel.textColor = UIColor.darkGray
         self.addSubview(newLabel)
         
-        let addButton = UIButton.init(type: .custom)
-        addButton.frame = CGRect.init(x: viewWidth-35-30, y: 290, width: 35, height: 35)
-        addButton.setImage(UIImage.init(named: "AddButton"), for: .normal)
-        addButton.imageView?.contentMode = .scaleAspectFill
-        addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
-        self.addSubview(addButton)
+        let createButton = UIButton.init(type: UIButtonType.roundedRect)
+        createButton.frame = CGRect.init(x: 0, y: 220, width: 213, height: 38)
+        createButton.setImage(UIImage.init(named: "createNewWallet"), for: .normal)
+        createButton.imageView?.contentMode = .scaleAspectFill
+        createButton.center.x = self.center.x-20
+        createButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
+        self.addSubview(createButton)
         
-        let scanButton = UIButton.init(type: .custom)
-        scanButton.frame = CGRect.init(x: 30, y: 290, width: 38*0.8, height: 49*0.7)
-        scanButton.setImage(UIImage.init(named: "scan"), for: .normal)
-        scanButton.addTarget(self, action: #selector(scanButtonPressed), for: .touchUpInside)
+        let scanButton = UIButton.init(type: UIButtonType.roundedRect)
+        scanButton.frame = CGRect.init(x: 0, y: 280, width: 213, height: 38)
+        scanButton.setImage(UIImage.init(named: "quickImport"), for: .normal)
+        scanButton.imageView?.contentMode = .scaleAspectFill
+        scanButton.center.x = self.center.x-45
+        scanButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
         self.addSubview(scanButton)
-        
-        let subtitleLabel = UILabel.init(frame: CGRect.init(x: 30, y: 100, width: viewWidth - 60, height: 120))
+
+        let subtitleLabel = UILabel.init(frame: CGRect.init(x: 30, y: 90, width: viewWidth - 60, height: 120))
         subtitleLabel.backgroundColor = UIColor.clear
-        subtitleLabel.text = "Ta add a new wallet tap to the + button in the bottom left corner or quick import a QR code with your camera."
+        subtitleLabel.text = "To add a new wallet tap on the + button in the bottom right corner or quick import a QR code with your camera."
         subtitleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.font = UIFont.init(name: "Rubik-Italic", size: 19)
         subtitleLabel.textColor = UIColor.darkGray
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
         self.addSubview(subtitleLabel)
-        
-        let rect = CGRect.init(x: 0, y: 0, width: viewWidth, height: 340)
-        let dashedBorder = CAShapeLayer()
-        dashedBorder.strokeColor = UIColor.darkGray.cgColor
-        dashedBorder.lineDashPattern = [8, 6]
-        dashedBorder.frame = rect
-        dashedBorder.cornerRadius = 6
-        dashedBorder.masksToBounds = true
-        dashedBorder.fillColor = nil
-        dashedBorder.lineWidth = 6
-        dashedBorder.path = UIBezierPath(rect: rect).cgPath
-        self.layer.addSublayer(dashedBorder)
-        self.clipsToBounds = true
-
     }
     
     @objc func scanButtonPressed()

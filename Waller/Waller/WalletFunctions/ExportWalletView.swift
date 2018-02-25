@@ -50,7 +50,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
         //flipButton.backgroundColor = UIColor.blue
         //flipButton.setTitle("close", for: .normal)
-        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
+        flipButton.setImage(#imageLiteral(resourceName: "closeIcon"), for: .normal)
         //flipButton.center.x = self.center.x
         addSubview(flipButton)
         
@@ -200,7 +200,7 @@ class ExportWalletView: UIView, UITextFieldDelegate
         backButton.frame = CGRect.init(x: 10, y: 10, width:45, height: 45)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         //backButton.setTitle("back", for: .normal)
-        backButton.setImage(#imageLiteral(resourceName: "BackIcon"), for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "backIcon"), for: .normal)
         backButton.isHidden = true
         self.addSubview(backButton)
         

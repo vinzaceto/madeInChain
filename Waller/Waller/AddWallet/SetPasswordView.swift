@@ -18,8 +18,8 @@ class SetPasswordView: UIView, UITextFieldDelegate
     var lockWrite:Bool = false
     var delegate:SetupPageViewDelegate!
 
-    override init(frame: CGRect) {
-        
+    override init(frame: CGRect)
+    {
         super.init(frame: frame)
         
         self.backgroundColor = Props().addViewsBackgroundColor

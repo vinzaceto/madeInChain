@@ -8,11 +8,17 @@
 
 import UIKit
 
+extension String {
+    func toDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
+    }
+}
+
 @IBDesignable
 class InfoSectionXibController: UIView {
 
-    var btcValue:NSNumber = 0.0
-    var btcTotalAmount:NSNumber = 0.0
+    var btcValue:Double = 0.0
+    var btcTotalAmount:BTCAmount = 0
     
     @IBOutlet weak var currentCurrancy: UILabel!
     @IBOutlet weak var currentBTCvalue: UILabel!
@@ -26,6 +32,9 @@ class InfoSectionXibController: UIView {
     
     var contentView: UIView?
     @IBInspectable var nibName: String?
+    
+    let btcFormatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+    let currencyFormatter = NumberFormatter()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -90,50 +99,69 @@ class InfoSectionXibController: UIView {
     
     func updateBTCPrice(btcPrice:Double)
     {
-        let formatter = NumberFormatter()
-        formatter.locale = Locale.init(identifier: "en_US")
-        formatter.numberStyle = .currency
+        print("updating btc price")
+        self.btcValue = btcPrice
         
-        self.btcValue = NSNumber.init(value: btcPrice)
-
-        guard let formattedBTCValue = formatter.string(from: self.btcValue) else { return }
+        currencyFormatter.locale = Locale.init(identifier: "en_US")
+        currencyFormatter.numberStyle = .currency
+        
+        let n = NSNumber.init(value: btcPrice)
+        guard let formattedBTCValue = currencyFormatter.string(from: n) else {return}
+        print("price \(formattedBTCValue)")
         self.currentBTCvalue.text = formattedBTCValue
-        
+
         updateCurrencyTotal()
     }
     
     func updateBTCTotal(total:BTCAmount)
     {
-        print("totale : \(total)")
-        let formatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
-        let amount = formatter?.string(fromAmount: total)
-        guard let totalBTCAmount = Double(amount!) else { return }
-        self.btcTotalAmount = NSNumber.init(value: totalBTCAmount)
-        self.currentBtcAmount.text = "\(self.btcTotalAmount)"
+        print("updating HEADER TOTAL: \(total)")
+        self.btcTotalAmount = total
+
+        let amount = btcFormatter?.string(fromAmount: total)
+        self.currentBtcAmount.text = amount
         
         updateCurrencyTotal()
     }
     
+    
+    
+    
+
+    
     func updateCurrencyTotal()
     {
-        if self.btcTotalAmount.doubleValue == 0
-        {
-            self.currentAmount.text = "--"
-            return
-        }
-        let formattedTotal = self.convertBTCAmountToCurrency(amount: self.btcTotalAmount.doubleValue)
+        print("converting currency total")
+        
+        guard let amount = btcFormatter?.string(fromAmount: btcTotalAmount).toDouble() else {return}
+        print("btc total amount : \(amount)")
+        
+        let total = self.btcValue * amount
+
+        currencyFormatter.locale = Locale.init(identifier: "en_US")
+        currencyFormatter.numberStyle = .currency
+        
+        guard let formattedTotal = currencyFormatter.string(from: NSNumber(value:total)) else { return }
+        print("formattedTotal: \(formattedTotal)")
+
         self.currentAmount.text = formattedTotal
     }
 
     func convertBTCAmountToCurrency(amount:Double) -> String
     {
-        let formatter = NumberFormatter()
-        formatter.locale = Locale.init(identifier: "en_US")
-        formatter.numberStyle = .currency
+        if self.btcValue == 0
+        {
+            return "--"
+        }
         
-        let total = self.btcValue.doubleValue * amount
-        guard let formattedTotal = formatter.string(from: total as NSNumber) else { return "" }
-
+        let value = self.btcValue * amount
+        
+        currencyFormatter.locale = Locale.init(identifier: "en_US")
+        currencyFormatter.numberStyle = .currency
+        
+        guard let formattedTotal = currencyFormatter.string(from: NSNumber(value:value)) else { return "--" }
+        print("formattedTotal: \(formattedTotal)")
+        
         return formattedTotal
     }
 }

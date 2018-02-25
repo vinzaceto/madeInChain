@@ -68,11 +68,11 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
         
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         if Props.colorSchemaClear {
-            gradientView.FirstColor = Props().firstGradientColor
-            gradientView.SecondColor = Props().secondGradientColor
+            gradientView.FirstColor = Props.myBlack
+            gradientView.SecondColor = Props.myBlack
         } else {
-            gradientView.FirstColor = Props().firstGradientColorDark
-            gradientView.SecondColor = Props().secondGradientColorDark
+            gradientView.FirstColor = Props.myBlack
+            gradientView.SecondColor = Props.myBlack
         }
         self.view.addSubview(gradientView)
         
@@ -497,7 +497,6 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     
     func setupViews()
     {
-        
         addTypeView = AddTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         addTypeView.delegate = self
         
