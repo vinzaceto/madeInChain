@@ -497,7 +497,6 @@ class AddWalletViewController: UIViewController,SetupPageViewDelegate {
     
     func setupViews()
     {
-        
         addTypeView = AddTypeView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         addTypeView.delegate = self
         

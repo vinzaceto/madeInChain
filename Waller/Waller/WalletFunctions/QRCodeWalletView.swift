@@ -41,7 +41,7 @@ class QRCodeWalletView: UIView {
         let flipButton = UIButton.init(type: .custom)
         flipButton.frame = CGRect.init(x: viewWidth - 55, y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
-        flipButton.setImage(#imageLiteral(resourceName: "CloseIcon"), for: .normal)
+        flipButton.setImage(#imageLiteral(resourceName: "closeIcon"), for: .normal)
         addSubview(flipButton)
         
         qrCodeImage = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 240, height: 240))
