@@ -10,7 +10,6 @@ import UIKit
 
 class BitcoinTransaction: NSObject
 {
-
     func estimateFee(tx:BTCTransaction) -> BTCAmount
     {
         var amount:BTCAmount = 0
@@ -18,25 +17,103 @@ class BitcoinTransaction: NSObject
         return amount
     }
     
-    
-    
-    func buildTransaction(wallet:Wallet,amount:BTCAmount,fee:BTCAmount,destinationAddress:String,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
+    func buildTransaction(senderAddress:String, destinationAddress:String, amount:BTCAmount, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
     {
-        /*
+        var unspentTransactions:NSArray = NSArray.init()
         let api = BTCTestnetInfo.init()
-        api.unspentOutputsWithAddress(address: wal)
+
+        api.unspentOutputsWithAddress(address: senderAddress)
         {
-            (success, error, utxos) in
+            (success, error, transactions) in
             if success == true
             {
+                guard let utx = transactions else
+                {
+                    completionHandler(false,"Unable to fetch unspent transactions.",nil)
+                    return
+                }
+
+                unspentTransactions = NSArray.init(array: utx)
+                print("unspent transactions list: \(unspentTransactions)")
+                
+                let feeAmount:BTCAmount = 0
+                
+                let totalAmount:BTCAmount = amount + feeAmount
+                let dustThreshold:BTCAmount = 100000
+                
+                // ordering transactions
+                unspentTransactions = unspentTransactions.sortedArray
+                {
+                    (a:Any, b:Any) -> ComparisonResult in
+                    let tx1 = a as! BTCTransactionOutput
+                    let tx2 = b as! BTCTransactionOutput
+                    if ((tx1.value - tx2.value) < 0)
+                    {return ComparisonResult.orderedAscending}
+                    return ComparisonResult.orderedDescending
+                } as NSArray
+                
+                var unspentTransactionOuts:[BTCTransactionOutput] = []
+                for u in unspentTransactions
+                {
+                    let unspentTransaction = u as! BTCTransactionOutput
+                    if unspentTransaction.value > (totalAmount + dustThreshold) && unspentTransaction.script.isPayToPublicKeyHashScript
+                    {
+                        unspentTransactionOuts.append(unspentTransaction)
+                        break
+                    }
+                }
+                
+                if unspentTransactionOuts.count <= 0
+                {
+                    completionHandler(false,"Amount is not enough",nil)
+                    return
+                }
+                
+                print("unspent transactions outputs: \(unspentTransactionOuts)")
+                
+                // Create a new transaction
+                let tx = BTCTransaction.init()
+                var spentCoins:BTCAmount = 0
+                
+                for unspentOutput in unspentTransactionOuts
+                {
+                    let input = BTCTransactionInput.init()
+                    input.previousHash = unspentOutput.transactionHash
+                    input.previousIndex = unspentOutput.index
+                    tx.addInput(input)
+                    
+                    spentCoins += unspentOutput.value;
+                }
+            
+                print("Total satoshis to spend: \(spentCoins)")
+                print("Total satoshis to destination: \(amount)")
+                print("Total satoshis to fee: \(feeAmount)")
+                print("Total satoshis to change: \((spentCoins - (amount + feeAmount)))")
+                
+                let paymentOutput = BTCTransactionOutput.init(value: amount, address: BTCAddress.init(string: destinationAddress))
+                let changeOutput = BTCTransactionOutput.init(value: spentCoins - (amount + feeAmount), address: BTCAddress.init(string: senderAddress))
+                
+                tx.addOutput(paymentOutput)
+                tx.addOutput(changeOutput)
+                
+                completionHandler(true,"",tx)
+
+                // signing
                 
             }
             else
             {
-                print("unable to fetch outputs to use as imputs")
+                completionHandler(false,"Unable to get unspent transactions.",nil)
+                return
             }
         }
-        */
+    }
+    
+    
+    
+    func buildTransaction(wallet:Wallet,amount:BTCAmount,fee:BTCAmount,destinationAddress:String,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
+    {
+    
         
         
    

@@ -27,6 +27,13 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
     var usdLabel:UILabel!
     var usdAmountLabel:UILabel!
     var btcValue:Double!
+    let fee:Double = Double(0.00000100)
+
+    let sendButton = UIButton.init(type: .roundedRect)
+    
+    var lockWrite:Bool = false
+    var temporaryReceiverAddress:String!
+    var temporaryFieldPlaceholder:NSAttributedString!
     
     override init(frame: CGRect)
     {
@@ -54,22 +61,22 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         addSubview(sendView)
         
         /******* *******/
-        let btcw:CGFloat = 70
+        let btcw:CGFloat = 65
         let btcx = (viewWidth / 2) + btcw - 30
         
-        let btcLabel = UILabel.init(frame: CGRect.init(x: btcx, y: 20, width: btcw, height: 10))
+        let btcLabel = UILabel.init(frame: CGRect.init(x: (viewWidth/2)+20, y: 25, width: btcw, height: 15))
         btcLabel.backgroundColor = UIColor.clear
-        btcLabel.textAlignment = .right
+        btcLabel.textAlignment = .left
         btcLabel.font = UIFont.boldSystemFont(ofSize: 11)
         btcLabel.text = "TOTAL BTC"
         btcLabel.textColor = UIColor.darkGray
         sendView.addSubview(btcLabel)
         
-        btcAmountLabel = UILabel.init(frame: CGRect.init(x: btcx-100, y: 15, width: 100, height: 20))
+        btcAmountLabel = UILabel.init(frame: CGRect.init(x: (viewWidth/2)-105, y: 20, width: 120, height: 20))
         btcAmountLabel.backgroundColor = UIColor.clear
         btcAmountLabel.textAlignment = .right
         btcAmountLabel.adjustsFontSizeToFitWidth = true
-        btcAmountLabel.textColor = UIColor.black
+        btcAmountLabel.textColor = UIColor.darkText
         btcAmountLabel.text = "0"
         sendView.addSubview(btcAmountLabel)
         
@@ -90,8 +97,8 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         usdAmountLabel.text = "--"
         //sendView.addSubview(usdAmountLabel)
         
-        let hintLabel = UILabel.init(frame: CGRect.init(x: 25, y: 50, width: viewWidth-80, height: 20))
-        hintLabel.text = "Address"
+        let hintLabel = UILabel.init(frame: CGRect.init(x: 25, y: 70, width: viewWidth-80, height: 20))
+        hintLabel.text = "Receiver address"
         hintLabel.textColor = UIColor.gray
         sendView.addSubview(hintLabel)
         
@@ -99,7 +106,7 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         let attributedString = NSMutableAttributedString(string: baseString, attributes: nil)
         let bitstampRange = (attributedString.string as NSString).range(of: baseString)
         attributedString.setAttributes([NSAttributedStringKey.foregroundColor: UIColor.lightText], range: bitstampRange)
-        receiverAddressField = UITextField.init(frame: CGRect.init(x: 20, y: 73, width: viewWidth-80, height: 35))
+        receiverAddressField = UITextField.init(frame: CGRect.init(x: 20, y: 93, width: viewWidth-70, height: 35))
         receiverAddressField.backgroundColor = UIColor.darkGray
         receiverAddressField.layer.cornerRadius = 6
         receiverAddressField.textAlignment = .center
@@ -109,10 +116,10 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         receiverAddressField.delegate = self
         sendView.addSubview(receiverAddressField)
         
-        let sbx = receiverAddressField.frame.origin.x + receiverAddressField.frame.width + 10
+        let sbx = receiverAddressField.frame.origin.x + receiverAddressField.frame.width + 5
         let scanButton = UIButton.init(type: UIButtonType.custom)
         scanButton.addTarget(self, action: #selector(scanButtonPressed), for: .touchUpInside)
-        scanButton.frame = CGRect.init(x: sbx, y: 0, width: 45, height: 45)
+        scanButton.frame = CGRect.init(x: sbx, y: 0, width: 45*0.8, height: 45*0.8)
         scanButton.setImage(UIImage.init(named: "barcodeIcon"), for: .normal)
         scanButton.center.y = receiverAddressField.center.y
         sendView.addSubview(scanButton)
@@ -120,19 +127,12 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         self.bringSubview(toFront: flipButton)
         self.bringSubview(toFront: backButton)
         
-        let btc = UILabel.init(frame: CGRect.init(x: 25, y: 120, width: 50, height: 20))
+        let btc = UILabel.init(frame: CGRect.init(x: 25, y: 150, width: 50, height: 20))
         btc.text = "BTC"
         btc.textColor = UIColor.gray
         sendView.addSubview(btc)
         
-        /*
-        let amountString = "Type the amount to send"
-        let attributedAmountString = NSMutableAttributedString(string: amountString, attributes: nil)
-        let amountRange = (attributedAmountString.string as NSString).range(of: amountString)
-        attributedAmountString.setAttributes([NSAttributedStringKey.foregroundColor: UIColor.lightText], range: amountRange)
-        */
-        
-        amountField = UITextField.init(frame: CGRect.init(x: 20, y: 140, width: (viewWidth/2)-45, height: 35))
+        amountField = UITextField.init(frame: CGRect.init(x: 20, y: 170, width: (viewWidth/2)-45, height: 35))
         amountField.backgroundColor = UIColor.lightGray
         amountField.layer.cornerRadius = 6
         amountField.textAlignment = .center
@@ -144,7 +144,7 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         amountField.delegate = self
         sendView.addSubview(amountField)
         
-        currencyField = UITextField.init(frame: CGRect.init(x: viewWidth-((viewWidth/2)-45)-18, y: 140, width: (viewWidth/2)-45, height: 35))
+        currencyField = UITextField.init(frame: CGRect.init(x: viewWidth-((viewWidth/2)-45)-18, y: 170, width: (viewWidth/2)-45, height: 35))
         currencyField.backgroundColor = UIColor.lightGray
         currencyField.layer.cornerRadius = 6
         currencyField.textAlignment = .center
@@ -155,42 +155,67 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         currencyField.text = formatNumberWithCurrency(number: 0)
         sendView.addSubview(currencyField)
        
-        let usd = UILabel.init(frame: CGRect.init(x: currencyField.frame.origin.x, y: 120, width: 50, height: 20))
+        let usd = UILabel.init(frame: CGRect.init(x: currencyField.frame.origin.x, y: 150, width: 50, height: 20))
         usd.text = "USD"
         usd.textColor = UIColor.gray
         sendView.addSubview(usd)
         
         var convertImage = UIImage.init(named: "convertIcon")
         convertImage = convertImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        let swapIcon = UIImageView.init(frame: CGRect.init(x: 0, y: 135, width: 45, height: 45))
+        let swapIcon = UIImageView.init(frame: CGRect.init(x: 0, y: 165, width: 45, height: 45))
         swapIcon.image = convertImage
         swapIcon.tintColor = UIColor.lightGray
         swapIcon.center.x = self.center.x
         sendView.addSubview(swapIcon)
         
-        let fee = UILabel.init(frame: CGRect.init(x: 20, y: 190, width: 120, height: 20))
+        let fee = UILabel.init(frame: CGRect.init(x: 0, y: 230, width: 120, height: 20))
         fee.text = "Calculated fee:"
         fee.textColor = UIColor.gray
+        fee.center.x = self.center.x-62
+        fee.textAlignment = .right
+        fee.font = UIFont.boldSystemFont(ofSize: 16)
+        fee.backgroundColor = UIColor.clear
         sendView.addSubview(fee)
         
-        feeLabel = UILabel.init(frame: CGRect.init(x: 140, y: 190, width: viewWidth-160, height: 20))
+        feeLabel = UILabel.init(frame: CGRect.init(x: 0, y: 230, width: 140, height: 20))
         feeLabel.text = "0.000001"
         feeLabel.textColor = UIColor.gray
         feeLabel.backgroundColor = UIColor.clear
+        feeLabel.center.x = self.center.x+72
+        feeLabel.textAlignment = .left
+        feeLabel.backgroundColor = UIColor.clear
         sendView.addSubview(feeLabel)
         
-        let total = UILabel.init(frame: CGRect.init(x: 20, y: 220, width: 120, height: 20))
+        let total = UILabel.init(frame: CGRect.init(x: 0, y: 260, width: 50, height: 20))
         total.text = "Total:"
         total.textAlignment = .right
         total.textColor = UIColor.gray
+        total.center.x = self.center.x-27
+        total.textAlignment = .right
+        total.font = UIFont.boldSystemFont(ofSize: 14)
+        total.backgroundColor = UIColor.clear
         sendView.addSubview(total)
         
-        totalLabel = UILabel.init(frame: CGRect.init(x: 140, y: 220, width: viewWidth-160, height: 20))
+        totalLabel = UILabel.init(frame: CGRect.init(x: 0, y: 260, width:140, height: 20))
         totalLabel.text = "0"
         totalLabel.textColor = UIColor.gray
         totalLabel.backgroundColor = UIColor.clear
+        totalLabel.center.x = self.center.x+72
+        totalLabel.textAlignment = .left
+        totalLabel.backgroundColor = UIColor.clear
         sendView.addSubview(totalLabel)
         
+        sendButton.frame = CGRect.init(x: 10, y: 10, width: 300, height: 34)
+        sendButton.addTarget(self, action: #selector(check), for: .touchUpInside)
+        sendButton.backgroundColor = UIColor.clear
+        sendButton.setTitle("Build tx", for: .normal)
+        sendButton.isEnabled = false
+        sendButton.titleLabel?.font = UIFont.systemFont(ofSize: 26)
+        sendButton.center.x = self.center.x
+        sendButton.center.y = self.center.y + 140
+        addSubview(sendButton)
+        
+        /*
         slider = MMSlidingButton.init(frame: CGRect.init(x:20, y: 260, width: viewWidth - 40, height: 60))
         slider.buttonText = "Slide to Send >>>"
         slider.buttonCornerRadius = 6
@@ -201,7 +226,32 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         slider.isUserInteractionEnabled = true
         slider.delegate = self
         sendView.addSubview(slider)
+        */
     }
+    
+    func buildTransaction(senderAddress:String, receiverAddress:String, amount:BTCAmount, completionHandler: @escaping (Bool,BTCTransaction?) -> Void)
+    {
+        let BTCTransactionManager = BitcoinTransaction.init()
+        BTCTransactionManager.buildTransaction(senderAddress: senderAddress, destinationAddress: receiverAddress, amount:amount)
+        {
+            (success, error, tx) in
+            if success == true
+            {
+                print("tx builded successfully")
+                completionHandler(true,tx!)
+            }
+            else
+            {
+                print("fail to build the transaction")
+                completionHandler(false,nil)
+            }
+        }
+    }
+    
+    
+    
+    
+    
     
     func createTransaction(pass:String)
     {
@@ -211,6 +261,7 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
             print("unable to decrypt the private key")
             return
         }
+        
         print("decrypted \(privateKey)")
         guard let keychain = BTCKeychain.init(extendedKey: privateKey) else
         {
@@ -402,12 +453,29 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
+        if lockWrite == true {return false}
+        
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let o = currentText.replacingCharacters(in: stringRange, with: string)
         
+        if o.count == 0
+        {
+            if textField == currencyField
+            {
+                textField.text = formatNumberWithCurrency(number: 0)
+                return true
+            }
+            
+            updateTotalWithAmount(total: 0)
+            //textField.text = "0"
+            return true
+        }
         
+        feeLabel.text = "0.00000100"
         
+        var total:Double = 0
+
         if textField == currencyField
         {
             if let amount = convertCurrencyToDouble(usd:o)
@@ -416,74 +484,150 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
                 print("usd amount: \(amount)")
                 guard let value = btcValue else { return true }
                 print("bitcoin value: \(value)")
-                var total = amount / value
+                total = amount / value
                 total = (total * 100000000).rounded() / 100000000
-                
-                if total.isLess(than: 0.0001)
-                {
-                    total = 0
-                }
-                
                 amountField.text = "\(total)"
-
-                let fee:Double = Double(0.00000100)
-                feeLabel.text = "0.00000100"
-
-                total = total + fee
-                totalLabel.text = "\(total)"
-
+            }
+            else
+            {
+                amountField.text = "0"
             }
         }
         if textField == amountField
         {
             print("calculate usd from bitcoin")
-            let amount = o.toDouble()
-            print("btc amount: \(amount)")
-            guard let value = btcValue else { return true }
-            print("bitcoin value: \(value)")
-            guard let amo = amount else {return true}
-            var total = amo * value
-            print("btc total : \(total)")
-
-            let formatter = NumberFormatter()
-            formatter.locale = Locale.init(identifier: "en_US")
-            formatter.numberStyle = .currency
-            
-            guard let formattedTotal = formatter.string(from: NSNumber(value:total)) else { return true }
-            print("formattedTotal: \(formattedTotal)")
-            currencyField.text  = formattedTotal
-            
-            print("btc total: \(amount)")
-            
-            
-            
-            let fee:Decimal = Decimal(0.00000100)
-            feeLabel.text = "0.00000100"
-            var tot  = Decimal.init(amo) + fee
-
-            if tot.isLess(than: fee)
+            guard let value = btcValue else
             {
-                tot = 0.0
+                currencyField.text = formatNumberWithCurrency(number: 0)
+                return true
             }
+            print("bitcoin value: \(value)")
             
-            
-            totalLabel.text = "\(tot)"
+            let amount = o.toDouble()
+            guard let amo = amount else
+            {
+                currencyField.text = formatNumberWithCurrency(number: 0)
+                return true
+            }
+            print("btc amount: \(amo)")
+
+            total = amo * value
+
+            currencyField.text  = formatNumberWithCurrency(number: NSNumber.init(value: total))
+
+            total = amo
         }
+        
+        if textField == receiverAddressField
+        {
+            return true
+        }
+        
+        total = total + fee
+        updateTotalWithAmount(total: total)
         
         return true
     }
     
-    func convertCurrencyToDouble(usd:String) -> Double?
+    func resetLabels()
     {
-        let formatter = NumberFormatter()
-        formatter.locale = Locale.init(identifier: "en_US")
-        formatter.numberStyle = .currency
-
-        if let number = formatter.number(from: usd)
+        amountField.layer.borderWidth = 2
+        amountField.layer.borderColor = UIColor.clear.cgColor
+        btcAmountLabel.textColor = UIColor.darkText
+    }
+    
+    func updateTotalWithAmount(total:Double)
+    {
+        print("btc total: \(total)")
+        
+        
+        var tot = total
+        
+        if total.isLess(than: fee) || total.isEqual(to: fee)
         {
-            return number.doubleValue
+            tot = 0
         }
-        return nil
+        
+        guard let excess = btcAmountLabel.text?.toDouble()?.isLess(than: tot) else { return }
+        if excess == true
+        {
+            amountField.layer.borderWidth = 2
+            amountField.layer.borderColor = UIColor.red.cgColor
+            btcAmountLabel.textColor = UIColor.red
+        }
+        else
+        {
+            resetLabels()
+        }
+        
+        if tot.isEqual(to: 0) || excess == true
+        {
+            sendButton.setTitle("Build tx", for: .normal)
+            sendButton.isEnabled = false
+        }
+        else
+        {
+            sendButton.setTitle("Build tx with \(tot)", for: .normal)
+            sendButton.isEnabled = true
+        }
+        
+        totalLabel.text = "\(tot)"
+        
+    }
+    
+    
+    func buttonStatus(unlocked: Bool, sender: MMSlidingButton)
+    {
+        print("slide unlocked \(unlocked)")
+        if(unlocked)
+        {
+            check()
+        }
+    }
+    
+    @objc func check()
+    {
+        sendButton.isEnabled = false
+        guard let address = receiverAddressField.text else
+        {
+            printErrorOnField(error: "wrong address", field: receiverAddressField)
+            return
+        }
+        
+        if address.count == 0
+        {
+            printErrorOnField(error: "empty address", field: receiverAddressField)
+            return
+        }
+        
+        guard let btcAddress = BTCAddress.init(string: address) else
+        {
+            printErrorOnField(error: "invalid address", field: receiverAddressField)
+            return
+        }
+        
+        if btcAddress.isTestnet != true
+        {
+            printErrorOnField(error: "invalid address", field: receiverAddressField)
+        }
+        
+        buildTransaction(senderAddress: wallet.address, receiverAddress: address, amount: 123000)
+        {
+            (success, tx) in
+            if success == true
+            {
+                let BTCTransactionManager = BitcoinTransaction.init()
+                let estimatedFee =  BTCTransactionManager.estimateFee(tx: tx!)
+                print("estimated FEE : \(estimatedFee)")
+            }
+            else
+            {
+                DispatchQueue.main.async
+                {
+                    self.printErrorOnButton(error: "fail to build tx", button: self.sendButton)
+                }
+            }
+        }
     }
     
     @objc func flipButtonPressed()
@@ -492,11 +636,17 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         guard let _ = delegate?.unflipCard() else { return }
     }
     
-    func buttonStatus(unlocked: Bool, sender: MMSlidingButton) {
-        print("slide unlocked \(unlocked)")
-        if(unlocked) {
-
+    func convertCurrencyToDouble(usd:String) -> Double?
+    {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.init(identifier: "en_US")
+        formatter.numberStyle = .currency
+        
+        if let number = formatter.number(from: usd)
+        {
+            return number.doubleValue
         }
+        return nil
     }
     
     func updateAmount()
@@ -529,6 +679,58 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
     {
         guard let value = delegate?.getBTCValue() else {return}
         self.btcValue = value
+    }
+    
+    func printErrorOnButton(error:String,button:UIButton)
+    {
+        button.setTitle(error, for: .normal)
+        button.setTitleColor(UIColor.red, for: .normal)
+        perform(#selector(resetButton(button:)), with: button, afterDelay: 2)
+    }
+    
+    func printErrorOnField(error:String, field:UITextField)
+    {
+        if lockWrite == true
+        {
+            return
+        }
+        
+        guard let text = field.text else { return }
+        guard let placeholder = field.attributedPlaceholder else { return }
+        
+        lockWrite = true
+        
+        temporaryReceiverAddress = text
+        temporaryFieldPlaceholder = placeholder
+        
+        field.text = ""
+        changePlaceholderColor(field: field, color: UIColor.orange, text: error)
+        
+        perform(#selector(resetField(field:)), with: field, afterDelay: 2)
+    }
+    
+    @objc func resetButton(button:UIButton)
+    {
+        button.setTitle("Build tx", for: .normal)
+        button.isEnabled = true
+    }
+    
+    @objc func resetField(field:UITextField)
+    {
+        lockWrite = false
+        field.text = temporaryReceiverAddress
+        field.attributedPlaceholder = temporaryFieldPlaceholder
+        temporaryReceiverAddress = ""
+        temporaryFieldPlaceholder = nil
+        sendButton.isEnabled = true
+    }
+    
+    func changePlaceholderColor(field:UITextField, color:UIColor, text:String?)
+    {
+        var p = field.placeholder
+        if text != nil{p = text}
+        let attrPlaceholder = NSAttributedString(string: p!, attributes: [NSAttributedStringKey.foregroundColor: color])
+        field.attributedPlaceholder = attrPlaceholder
     }
     
     required init?(coder aDecoder: NSCoder)
