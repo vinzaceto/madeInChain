@@ -48,13 +48,13 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         if Props.colorSchemaClear
         {
-            gradientView.FirstColor = Props().firstGradientColor
-            gradientView.SecondColor = Props().secondGradientColor
+            gradientView.FirstColor = Props.myBlack
+            gradientView.SecondColor = Props.myBlack
         }
         else
         {
-            gradientView.FirstColor = Props().firstGradientColorDark
-            gradientView.SecondColor = Props().secondGradientColorDark
+            gradientView.FirstColor = Props.myBlack
+            gradientView.SecondColor = Props.myBlack
         }
         self.view.addSubview(gradientView)
         self.view.sendSubview(toBack: gradientView)
@@ -87,7 +87,6 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         footerLabel.textColor = UIColor.lightText
         self.view.addSubview(footerLabel)
         
-        collectionView?.layer.cornerRadius = 10
         collectionView?.frame.origin.y = lineChart.frame.origin.y + 30
         collectionView?.frame.size.height = self.view.frame.size.height - lineChart.frame.origin.y - 28
         collectionView?.frame.size.width = self.view.frame.size.width - 30

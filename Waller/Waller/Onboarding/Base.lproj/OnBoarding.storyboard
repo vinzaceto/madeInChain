@@ -120,7 +120,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.20784313725490194" green="0.29019607843137252" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rSv-AF-ldS" secondAttribute="bottom" constant="40" id="0yM-VL-4EG"/>
@@ -191,7 +190,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.20852026343345642" green="0.2927061915397644" blue="0.36863934993743896" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="QPG-3F-O6l" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="47" id="5N6-aQ-ZGQ"/>
                             <constraint firstItem="4Cc-yP-sbb" firstAttribute="leading" secondItem="CyO-9X-Akd" secondAttribute="leading" constant="87" id="7h3-eo-8YO"/>
@@ -325,7 +323,6 @@
                                 <color key="tintColor" red="0.96630391616984679" green="1" blue="0.10685908859245041" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.20852026343345642" green="0.2927061915397644" blue="0.36863934993743896" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="FZB-Od-LKe" firstAttribute="leading" secondItem="8wb-IF-jFZ" secondAttribute="leading" constant="87" id="1B6-X7-xEO"/>
                             <constraint firstItem="ntp-Tt-yAV" firstAttribute="top" secondItem="OXJ-IF-KGY" secondAttribute="bottom" constant="8" id="3Bt-P4-uKU"/>

@@ -78,7 +78,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         btcLabel.textAlignment = .right
         btcLabel.font = UIFont.boldSystemFont(ofSize: 12)
         btcLabel.text = "BTC"
-        btcLabel.textColor = UIColor.darkGray
+        btcLabel.textColor = Props.myBlack
         self.addSubview(btcLabel)
         
         amountLabel = UILabel.init(frame: CGRect.init(x: btcx-100, y: 25, width: 100, height: 20))
@@ -92,8 +92,8 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         usdLabel.backgroundColor = UIColor.clear
         usdLabel.textAlignment = .right
         usdLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        usdLabel.text = "USD"
-        usdLabel.textColor = UIColor.darkGray
+        usdLabel.text = "US$"
+        usdLabel.textColor = Props.myBlack
         self.addSubview(usdLabel)
         
         currencyAmount = UILabel.init(frame: CGRect.init(x: btcx-100, y: 50, width: 100, height: 20))
@@ -228,9 +228,20 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoTransactionsCell", for: indexPath) as! NoTransactionsCell
             cell.awakeFromNib()
-            cell.backgroundColor = .clear
+            
+            if wallet.privatekey != nil {
+                cell.backgroundColor = Props.myYellow
+            } else {
+                cell.backgroundColor = Props.myBlue
+            }
+//            if Props.colorSchemaClear {
+//                cell.backgroundColor = UIColor(red:1, green:0.8, blue:0, alpha:1)
+//            } else {
+//                cell.backgroundColor = UIColor.clear
+//            }
             cell.infoLabel.frame.size.height = tableView.frame.size.height - 70
             cell.infoLabel.text = "No transactions found for this wallet, the latest 3 transactions for this wallet will be shown here"
+            cell.infoLabel.textColor = UIColor.darkGray
             return cell
         }
         
@@ -247,11 +258,11 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         if tx.confirmations < 3
         {
             unconfirmed = "unconfirmed "
-            cell.amountLabel.textColor = UIColor.orange
+            cell.amountLabel.textColor = Props.myRose
         }
         if tx.confirmations == 3
         {
-            cell.amountLabel.textColor = UIColor.green
+            cell.amountLabel.textColor = Props.myBlack
         }
         
         if tx.input
@@ -275,6 +286,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
         }
         
         cell.confirmationsLabel.text = "\(tx.confirmations) confirmations"
+        cell.confirmationsLabel.textColor = UIColor.darkGray
         
         let date = Date.init(timeIntervalSince1970: TimeInterval(tx.time))
         let calendar = Calendar.current
