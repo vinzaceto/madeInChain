@@ -8,6 +8,12 @@
 
 import UIKit
 
+struct UnsignedBTCTransaction
+{
+    let tx:BTCTransaction
+    let unspentOutputs:[BTCTransactionOutput]
+}
+
 class BitcoinTransaction: NSObject
 {
     func estimateFee(tx:BTCTransaction) -> BTCAmount
@@ -17,7 +23,7 @@ class BitcoinTransaction: NSObject
         return amount
     }
     
-    func buildTransaction(senderAddress:String, destinationAddress:String, amount:BTCAmount, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
+    func buildUnsignedTransaction(senderAddress:String, fee:BTCAmount?, destinationAddress:String, amount:BTCAmount, completionHandler: @escaping (Bool,String?,UnsignedBTCTransaction?) -> Void)
     {
         var unspentTransactions:NSArray = NSArray.init()
         let api = BTCTestnetInfo.init()
@@ -36,10 +42,14 @@ class BitcoinTransaction: NSObject
                 unspentTransactions = NSArray.init(array: utx)
                 print("unspent transactions list: \(unspentTransactions)")
                 
-                let feeAmount:BTCAmount = 0
+                var feeAmount:BTCAmount = 0
+                if fee != nil
+                {
+                    feeAmount = fee!
+                }
                 
                 let totalAmount:BTCAmount = amount + feeAmount
-                let dustThreshold:BTCAmount = 100000
+                let dustThreshold:BTCAmount = 5460
                 
                 // ordering transactions
                 unspentTransactions = unspentTransactions.sortedArray
@@ -96,7 +106,8 @@ class BitcoinTransaction: NSObject
                 tx.addOutput(paymentOutput)
                 tx.addOutput(changeOutput)
                 
-                completionHandler(true,"",tx)
+                let unsigned = UnsignedBTCTransaction.init(tx: tx, unspentOutputs: unspentTransactionOuts)
+                completionHandler(true,"",unsigned)
 
                 // signing
                 
@@ -109,14 +120,76 @@ class BitcoinTransaction: NSObject
         }
     }
     
-    
-    
-    func buildTransaction(wallet:Wallet,amount:BTCAmount,fee:BTCAmount,destinationAddress:String,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
+    func signTransaction(unsignedTX:UnsignedBTCTransaction,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
     {
-    
+        for (index, _) in (0...unsignedTX.unspentOutputs.count-1).enumerated()
+        {
+            print(index)
+            let txout = unsignedTX.unspentOutputs[index]
+            let txin = unsignedTX.tx.inputs[index] as! BTCTransactionInput
+            let sigScript = BTCScript.init()
+            
+            let d1 = unsignedTX.tx.data
+            
+            let hashtype = BTCSignatureHashType.BTCSignatureHashTypeAll
+            
+            var hash:Data!
+            
+            do
+            {
+                hash = try unsignedTX.tx.signatureHash(for: txout.script, inputIndex: UInt32(index), hashType: hashtype)
+                
+                let d2 = unsignedTX.tx.data
+                
+                if d1 != d2
+                {
+                    completionHandler(false,"hash change after computing",nil)
+                    return
+                }
+            }
+            catch
+            {
+                completionHandler(false,"signatureHash fail",nil)
+                return
+            }
+            
+            print("computed hash \(hash)")
+            
+            guard let signatureForScript = key.signature(forHash: hash, hashType: hashtype) else
+            {
+                completionHandler(false,"unable to build signature for hash",nil)
+                return
+            }
+            
+            sigScript?.appendData(signatureForScript)
+            sigScript?.appendData(key.publicKey as! Data)
+            
+            let sig = signatureForScript.subdata(in: Range.init(uncheckedBounds: (lower:0, upper: signatureForScript.count-1)))
+            
+            if key.isValidSignature(sig, hash: hash) == false
+            {
+                completionHandler(false,"Signature must be valid",nil)
+                return
+            }
+            
+            txin.signatureScript = sigScript
+        }
         
+        let sm = BTCScriptMachine.init(transaction: unsignedTX.tx, inputIndex: 0)
         
-   
+        do
+        {
+            try sm?.verify(withOutputScript: unsignedTX.unspentOutputs[0].script)
+        }
+        catch
+        {
+            completionHandler(false,"Failed to verify scrypt",nil)
+            return
+        }
+        
+        completionHandler(true,"error",unsignedTX.tx)
+        return
+        
     }
     
 
@@ -125,13 +198,7 @@ class BitcoinTransaction: NSObject
     {
         var unspentTransactions:NSArray = NSArray.init()
 
-        let api = BTCTestnetInfo.init()
-        api.unspentOutputsWithAddress(address: wallet.address)
-        {
-            (success, error, utxos) in
-            
-        }
-        
+
         
         guard let utxos = api.unspentOutputsWithAddress(address: wallet.address) else
         {
@@ -215,6 +282,16 @@ class BitcoinTransaction: NSObject
         tx.addOutput(paymentOutput)
         tx.addOutput(changeOutput)
 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
         
         for (index, _) in (0...unspentTransactionOuts.count-1).enumerated()
         {

@@ -11,6 +11,8 @@ import MapKit
 import LocalAuthentication
 
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,HFCardCollectionViewLayoutDelegate,AddWalletViewControllerDelegate,WalletCellDelegate,WalletFunctionDelegate,QuickImportDelegate {
+
+    
     
     
 
@@ -146,7 +148,14 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         present(alert, animated: true, completion: nil)
     }
     
-    
+    func showBroadcastSuccess()
+    {
+        let alert = EMAlertController(title: "Success", message: "Transaction has been correctly broadcasted.")
+        let close = EMAlertAction(title: "Close", style: .cancel)
+        alert.addAction(action: close)
+        alert.buttonSpacing = 0
+        present(alert, animated: true, completion: nil)
+    }
     
     // This is a present for our unforgotten bestfriend
     func showEE()
@@ -180,7 +189,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func startTimer()
     {
         timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true)
         {
             [weak self] _ in
             self?.loadTransactions()
@@ -616,6 +625,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         UIView.animate(withDuration: 0.5)
         {
             self.collectionView?.center = self.defaultCollectionViewCenter
+        }
+    }
+    
+    func transactionSuccess(success: Bool)
+    {
+        if success == true
+        {
+            self.cardCollectionViewLayout?.flipRevealedCardBack()
+            showBroadcastSuccess()
         }
     }
     

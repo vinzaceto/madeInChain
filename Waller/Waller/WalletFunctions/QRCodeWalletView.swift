@@ -20,6 +20,8 @@ protocol WalletFunctionDelegate
     func getOutputBalanceByAddress(address:String) -> [BTCTransactionOutput]?
     func getUSDVAlueFromAmount(amount:String) -> String?
     func getBTCValue() ->Double?
+    
+    func transactionSuccess(success:Bool)
 }
 
 class QRCodeWalletView: UIView {

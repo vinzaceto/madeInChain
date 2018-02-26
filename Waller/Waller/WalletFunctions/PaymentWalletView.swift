@@ -8,8 +8,9 @@
 
 import UIKit
 
-class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
+class PaymentWalletView: UIView,UITextFieldDelegate,SignViewDelegate
 {
+    
     var canScan = true
     var wallet:Wallet!
     var sendView:UIView!
@@ -22,13 +23,14 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
     var feeLabel:UILabel!
     var totalLabel:UILabel!
     var delegate:WalletFunctionDelegate!
-    var slider:MMSlidingButton!
     var btcAmountLabel:UILabel!
     var usdLabel:UILabel!
     var usdAmountLabel:UILabel!
     var btcValue:Double!
-    let fee:Double = Double(0.00000100)
-
+    var fee:Double = Double(0.00000100)
+    
+    var signView:SignView!
+    
     let sendButton = UIButton.init(type: .roundedRect)
     
     var lockWrite:Bool = false
@@ -45,7 +47,6 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         
         let viewWidth = UIScreen.main.bounds.width - 30
         
-        let flipButton = UIButton.init(type: .custom)
         flipButton.frame = CGRect.init(x: viewWidth - 55 , y: 10, width:45, height: 45)
         flipButton.addTarget(self, action: #selector(flipButtonPressed), for: .touchUpInside)
         flipButton.setImage(#imageLiteral(resourceName: "closeIcon"), for: .normal)
@@ -136,7 +137,6 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         amountField.backgroundColor = UIColor.lightGray
         amountField.layer.cornerRadius = 6
         amountField.textAlignment = .center
-        //amountField.attributedPlaceholder = attributedAmountString
         amountField.textColor = UIColor.lightText
         amountField.keyboardType = UIKeyboardType.decimalPad
         amountField.autocorrectionType = UITextAutocorrectionType.no
@@ -214,45 +214,11 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         sendButton.center.x = self.center.x
         sendButton.center.y = self.center.y + 140
         addSubview(sendButton)
-        
-        /*
-        slider = MMSlidingButton.init(frame: CGRect.init(x:20, y: 260, width: viewWidth - 40, height: 60))
-        slider.buttonText = "Slide to Send >>>"
-        slider.buttonCornerRadius = 6
-        slider.buttonUnlockedText = "Transaction created"
-        slider.buttonColor = UIColor.gray
-        slider.animationFinished()
-        slider.dragPointWidth = 60
-        slider.isUserInteractionEnabled = true
-        slider.delegate = self
-        sendView.addSubview(slider)
-        */
     }
+
     
-    func buildTransaction(senderAddress:String, receiverAddress:String, amount:BTCAmount, completionHandler: @escaping (Bool,BTCTransaction?) -> Void)
-    {
-        let BTCTransactionManager = BitcoinTransaction.init()
-        BTCTransactionManager.buildTransaction(senderAddress: senderAddress, destinationAddress: receiverAddress, amount:amount)
-        {
-            (success, error, tx) in
-            if success == true
-            {
-                print("tx builded successfully")
-                completionHandler(true,tx!)
-            }
-            else
-            {
-                print("fail to build the transaction")
-                completionHandler(false,nil)
-            }
-        }
-    }
-    
-    
-    
-    
-    
-    
+
+    /*
     func createTransaction(pass:String)
     {
         let data = Data.init(base64Encoded: wallet.privatekey, options: .ignoreUnknownCharacters)
@@ -300,7 +266,7 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
             }
         }
     }
-    
+    */
   
     
     @objc func scanButtonPressed()
@@ -363,70 +329,12 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         return scanView
     }
     
-    func showScannerView()
-    {
-        amountField.resignFirstResponder()
-        currencyField.resignFirstResponder()
-        receiverAddressField.resignFirstResponder()
-        backButton.isEnabled = true
-        backButton.isHidden = false
-        UIView.animate(withDuration: 0.5)
-        {
-            self.sendView.frame.origin.x = -self.frame.size.width
-            self.scannerView.frame.origin.x = 0
-        }
-    }
+
     
+
     
+
     
-    func goBackWithAddress(address:String)
-    {
-        self.canScan = true
-        receiverAddressField.text = address
-        backButtonPressed()
-    }
-    
-    @objc func backButtonPressed()
-    {
-        backButton.isEnabled = false
-        backButton.isHidden = true
-        UIView.animate(withDuration: 0.5)
-        {
-            self.sendView.frame.origin.x = 0
-            self.scannerView.frame.origin.x = self.frame.size.width
-        }
-    }
-    
-    func decrypt(data:Data, pass:String) -> String?
-    {
-        print("original data : \(data.base64EncodedString())")
-        
-        do
-        {
-            let originalData = try RNCryptor.decrypt(data: data, withPassword: pass)
-            let originalPrivateKey = String.init(data: originalData, encoding: String.Encoding.utf8)
-            return originalPrivateKey
-        }
-        catch
-        {
-            return nil
-        }
-    }
-    
-    func formatNumberWithCurrency(number:NSNumber) -> String
-    {
-        let formatter = NumberFormatter()
-        formatter.locale = Locale.init(identifier: "en_US")
-        formatter.numberStyle = .currency
-        
-        guard let formattedTotal = formatter.string(from: number)
-        else
-        {
-            return formatter.string(from: 0)!
-        }
-        
-        return formattedTotal
-    }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason)
     {
@@ -523,67 +431,27 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
             return true
         }
         
-        total = total + fee
-        updateTotalWithAmount(total: total)
-        
+
+        self.updateFeeAndTotal(total: total)
+
         return true
     }
     
     func resetLabels()
     {
-        amountField.layer.borderWidth = 2
-        amountField.layer.borderColor = UIColor.clear.cgColor
-        btcAmountLabel.textColor = UIColor.darkText
-    }
-    
-    func updateTotalWithAmount(total:Double)
-    {
-        print("btc total: \(total)")
-        
-        
-        var tot = total
-        
-        if total.isLess(than: fee) || total.isEqual(to: fee)
+        DispatchQueue.main.async
         {
-            tot = 0
+            self.amountField.layer.borderWidth = 2
+            self.amountField.layer.borderColor = UIColor.clear.cgColor
+            self.btcAmountLabel.textColor = UIColor.darkText
         }
-        
-        guard let excess = btcAmountLabel.text?.toDouble()?.isLess(than: tot) else { return }
-        if excess == true
-        {
-            amountField.layer.borderWidth = 2
-            amountField.layer.borderColor = UIColor.red.cgColor
-            btcAmountLabel.textColor = UIColor.red
-        }
-        else
-        {
-            resetLabels()
-        }
-        
-        if tot.isEqual(to: 0) || excess == true
-        {
-            sendButton.setTitle("Build tx", for: .normal)
-            sendButton.isEnabled = false
-        }
-        else
-        {
-            sendButton.setTitle("Build tx with \(tot)", for: .normal)
-            sendButton.isEnabled = true
-        }
-        
-        totalLabel.text = "\(tot)"
-        
     }
     
     
-    func buttonStatus(unlocked: Bool, sender: MMSlidingButton)
-    {
-        print("slide unlocked \(unlocked)")
-        if(unlocked)
-        {
-            check()
-        }
-    }
+    
+    
+    
+    
     
     @objc func check()
     {
@@ -611,24 +479,68 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
             printErrorOnField(error: "invalid address", field: receiverAddressField)
         }
         
-        buildTransaction(senderAddress: wallet.address, receiverAddress: address, amount: 123000)
+        let btcFormatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+        
+        guard let amount = btcFormatter?.amount(from: self.totalLabel.text) else
         {
-            (success, tx) in
+            return
+        }
+        
+        guard let currentFee = btcFormatter?.amount(from: String.init("\(fee)")) else
+        {
+            return
+        }
+        
+        let BTCTransactionManager = BitcoinTransaction.init()
+        BTCTransactionManager.buildUnsignedTransaction(senderAddress: wallet.address, fee:currentFee, destinationAddress: address, amount:amount)
+        {
+            (success, error, tx) in
             if success == true
             {
-                let BTCTransactionManager = BitcoinTransaction.init()
-                let estimatedFee =  BTCTransactionManager.estimateFee(tx: tx!)
-                print("estimated FEE : \(estimatedFee)")
+                print("tx builded successfully")
+                DispatchQueue.main.async
+                {
+                    self.buildSignView(unsignedTX:tx!)
+                }                
             }
             else
             {
-                DispatchQueue.main.async
-                {
-                    self.printErrorOnButton(error: "fail to build tx", button: self.sendButton)
-                }
+                print("fail to build the transaction")
             }
         }
     }
+    
+    func buildSignView(unsignedTX:UnsignedBTCTransaction)
+    {
+        let viewWidth = UIScreen.main.bounds.width - 30
+        signView = SignView.init(frame: CGRect.init(x: 0, y: 0, width: viewWidth, height: 340))
+        
+        signView.wallet = wallet
+        signView.unsignedTX = unsignedTX
+        signView.totalLabel.text = "Total \(totalLabel.text!) BTC"
+        signView.passwordField.textField.delegate = self
+        signView.delegate = self
+        
+        self.addSubview(signView)
+        self.bringSubview(toFront:self.flipButton)
+        signView.passwordField.becomeFirstResponder()
+    }
+    
+
+    func transactionBroadcast(success: Bool)
+    {
+        guard let _ = delegate?.transactionSuccess(success: success) else {return}
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @objc func flipButtonPressed()
     {
@@ -731,6 +643,141 @@ class PaymentWalletView: UIView, SlideButtonDelegate,UITextFieldDelegate
         if text != nil{p = text}
         let attrPlaceholder = NSAttributedString(string: p!, attributes: [NSAttributedStringKey.foregroundColor: color])
         field.attributedPlaceholder = attrPlaceholder
+    }
+    
+    func formatNumberWithCurrency(number:NSNumber) -> String
+    {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.init(identifier: "en_US")
+        formatter.numberStyle = .currency
+        
+        guard let formattedTotal = formatter.string(from: number)
+            else
+        {
+            return formatter.string(from: 0)!
+        }
+        
+        return formattedTotal
+    }
+    
+    func updateFeeAndTotal(total:Double)
+    {
+        let numFormatter = BTCNumberFormatter.init(bitcoinUnit: BTCNumberFormatterUnit.BTC)
+        
+        guard let amount = numFormatter?.amount(from: String.init("\(total)")) else { return }
+        
+        let api = BitcoinTransaction.init()
+        api.buildUnsignedTransaction(senderAddress: wallet.address, fee: nil, destinationAddress: "none", amount: amount)
+        {
+            (success, error, tx) in
+            if success == true
+            {
+                DispatchQueue.main.async
+                    {
+                        guard let estimated = numFormatter?.string(fromAmount: api.estimateFee(tx: tx!.tx)).toDouble() else {return}
+                        self.fee = estimated
+                        self.feeLabel.text = "\(self.fee)"
+                        self.updateTotalWithAmount(total: total)
+                }
+            }
+            else
+            {
+                DispatchQueue.main.async
+                    {
+                        self.fee = 0.00000100
+                        self.feeLabel.text =  "none"
+                        self.updateTotalWithAmount(total: total)
+                }
+            }
+        }
+    }
+    
+    func updateTotalWithAmount(total:Double)
+    {
+        print("btc total: \(total)")
+        
+        var tot = total + fee
+        
+        if total.isLess(than: fee) || total.isEqual(to: fee)
+        {
+            tot = 0
+        }
+        
+        DispatchQueue.main.async
+            {
+                guard let excess = self.btcAmountLabel.text?.toDouble()?.isLess(than: tot) else { return }
+                if excess == true
+                {
+                    self.amountField.layer.borderWidth = 2
+                    self.amountField.layer.borderColor = UIColor.red.cgColor
+                    self.btcAmountLabel.textColor = UIColor.red
+                }
+                else
+                {
+                    self.resetLabels()
+                }
+                
+                if tot.isEqual(to: 0) || excess == true
+                {
+                    self.sendButton.setTitle("Build tx", for: .normal)
+                    self.sendButton.isEnabled = false
+                }
+                else
+                {
+                    self.sendButton.setTitle("Build tx with \(tot)", for: .normal)
+                    self.sendButton.isEnabled = true
+                }
+                
+                self.totalLabel.text = "\(tot)"
+        }
+    }
+    
+    func decrypt(data:Data, pass:String) -> String?
+    {
+        print("original data : \(data.base64EncodedString())")
+        
+        do
+        {
+            let originalData = try RNCryptor.decrypt(data: data, withPassword: pass)
+            let originalPrivateKey = String.init(data: originalData, encoding: String.Encoding.utf8)
+            return originalPrivateKey
+        }
+        catch
+        {
+            return nil
+        }
+    }
+    
+    func showScannerView()
+    {
+        amountField.resignFirstResponder()
+        currencyField.resignFirstResponder()
+        receiverAddressField.resignFirstResponder()
+        backButton.isEnabled = true
+        backButton.isHidden = false
+        UIView.animate(withDuration: 0.5)
+        {
+            self.sendView.frame.origin.x = -self.frame.size.width
+            self.scannerView.frame.origin.x = 0
+        }
+    }
+    
+    func goBackWithAddress(address:String)
+    {
+        self.canScan = true
+        receiverAddressField.text = address
+        backButtonPressed()
+    }
+    
+    @objc func backButtonPressed()
+    {
+        backButton.isEnabled = false
+        backButton.isHidden = true
+        UIView.animate(withDuration: 0.5)
+        {
+            self.sendView.frame.origin.x = 0
+            self.scannerView.frame.origin.x = self.frame.size.width
+        }
     }
     
     required init?(coder aDecoder: NSCoder)
