@@ -201,7 +201,7 @@ class LineChart: UIView {
             
             let maskLayer = CAShapeLayer()
             maskLayer.path = path.cgPath
-            maskLayer.fillColor = UIColor.white.cgColor
+            maskLayer.fillColor = UIColor.yellow.cgColor
             maskLayer.strokeColor = UIColor.clear.cgColor
             maskLayer.lineWidth = 0.0
             
