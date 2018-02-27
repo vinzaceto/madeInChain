@@ -22,8 +22,8 @@ class SetImportTypeView: UIView,MultiOptionViewDelegate {
 
         var data:[Option] = []
         
-        let option1 = Option.init(title: "Import from text", text: "Insert a text represensting a PrivateKey or a mnemonic to import a wallet.", buttonTitle: "insert a text")
-        let option2 = Option.init(title: "Import from QRCode", text: "Use the camera of your device to import a new wallet by scanning a QRCode.", buttonTitle: "scan a QRCode")
+        let option1 = Option.init(title: "Import from text", text: "Insert a text containing your private key or a previously generated mnemonic word to import a wallet.", buttonTitle: "Insert a text")
+        let option2 = Option.init(title: "Import from QR Code", text: "Use the camera of your device to import a new wallet by scanning a QR Code.", buttonTitle: "Scan a QR Code")
         
         data.append(option1)
         data.append(option2)

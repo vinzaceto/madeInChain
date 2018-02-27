@@ -78,7 +78,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
         transition.startingPoint = startButton.center
-        transition.circleColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+        transition.circleColor = Props.myGrey
         
         return transition
     }
@@ -88,12 +88,12 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let onBoardingBackgroundColor1 = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
-        let onBoardingBackgroundColor2 = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+        //let onBoardingBackgroundColor1 = UIColor(red: 26/255, green: 44/255, blue: 59/255, alpha: 1)
+        //let onBoardingBackgroundColor2 = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
         
         gradientView.frame = CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        gradientView.FirstColor = onBoardingBackgroundColor1
-        gradientView.SecondColor = onBoardingBackgroundColor2
+        gradientView.FirstColor = Props.myBlack
+        gradientView.SecondColor = Props.myBlack
         self.view.addSubview(gradientView)
         startButton.layer.cornerRadius = 10;
         

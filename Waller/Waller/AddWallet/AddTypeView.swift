@@ -25,8 +25,8 @@ class AddTypeView: UIView, MultiOptionViewDelegate {
 
         var data:[Option] = []
         
-        let option1 = Option.init(title: "Create a standard Wallet", text: "Create a simple wallet to send and receive funds, it will be protected with a password and stored directly on your device.", buttonTitle: "Create a Wallet")
-        let option2 = Option.init(title: "Request a multisig Wallet", text: "A multisignature wallet is like a shared wallet, it can receive funds from anyone, but require the signature of more than one person to send.", buttonTitle: "Request a multisig Wallet")
+        let option1 = Option.init(title: "Create a standard Wallet", text: "Create a standard wallet to send and receive Bitcoins. It will be protected with a password and stored directly on your device.", buttonTitle: "Create a Wallet")
+        let option2 = Option.init(title: "Request a multisig Wallet", text: "A multisignature wallet is like a shared wallet. It can receive Bitcoins from anyone, but require the signature of more than one person to send an amount.", buttonTitle: "Request a multisig Wallet")
         let option3 = Option.init(title: "Import a Wallet", text: "Import a wallet that you already have by using a private key or a mnemonic.", buttonTitle: "Import a Wallet")
         
         data.append(option1)

@@ -340,7 +340,7 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     func startTimer()
     {
         timer?.invalidate() // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true)
+        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true)
         {
             [weak self] _ in
             self?.updateBalance()
@@ -416,7 +416,8 @@ class WalletCell: HFCardCollectionViewCell, UITableViewDelegate, UITableViewData
     func fiterTransactions( myAddress:String, transactions:[TXs])
     {
         txs = []
-        
+        tableView.reloadData()
+
         for tx in transactions
         {
             for input in tx.inputs
