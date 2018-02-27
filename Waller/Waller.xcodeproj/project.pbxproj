@@ -264,7 +264,7 @@
 		74B76DA2203429B100E1C6F3 /* DataConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConnections.swift; sourceTree = "<group>"; };
 		74B76DE620347D7100E1C6F3 /* InfoSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoSection.xib; sourceTree = "<group>"; };
 		74B76DE92034846600E1C6F3 /* InfoSectionXibController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSectionXibController.swift; sourceTree = "<group>"; };
-		74BDE772203AD28B005A7E81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OnBoarding.strings; sourceTree = "<group>"; };
+		74BDE772203AD28B005A7E81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OnBoarding.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		74BDE773203AD28C005A7E81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		74BDE774203AD28C005A7E81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		74C6FB872037163A009B92CA /* MMSlidingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
@@ -1123,7 +1123,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B2ZFJLTBF9;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1145,7 +1145,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B2ZFJLTBF9;
+				DEVELOPMENT_TEAM = EZ8Q48MF9W;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

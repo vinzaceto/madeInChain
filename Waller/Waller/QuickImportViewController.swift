@@ -65,7 +65,7 @@ class QuickImportViewController: UIViewController, SetupPageViewDelegate
         infoText.frame.origin.y = borderImage.frame.origin.y - infoText.frame.size.height - 10
         infoText.textColor = UIColor.gray
         infoText.textAlignment = .center
-        infoText.text = "Scan a QRCode to import a wallet in watch only mode. You can also import a multisig wallet or proceed to payment request created by another user."
+        infoText.text = "Find the QR code to import the wallet. These will be created in watch only mode. You will need to enter a private key in order to operate with it."
         infoText.font = UIFont.systemFont(ofSize: 20)
         infoText.numberOfLines = 0
         qrcodeView.addSubview(infoText)

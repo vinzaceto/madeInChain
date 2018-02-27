@@ -78,7 +78,7 @@ class OnViewController: UIViewController, UIViewControllerTransitioningDelegate 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
         transition.startingPoint = startButton.center
-        transition.circleColor = UIColor(red: 53/255, green: 74/255, blue: 94/255, alpha: 1)
+        transition.circleColor = Props.myGrey
         
         return transition
     }
