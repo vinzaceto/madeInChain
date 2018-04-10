@@ -3,7 +3,9 @@
 ![alt Waller icon](https://github.com/vinzaceto/madeInChain/blob/master/Waller/Waller/Assets.xcassets/AppIcon.appiconset/wallerIcon-83.5%402x.png)
 
 
-Developed for education purpose at Apple Developer Academy, Naples
+Developed for education purpose at _Apple Developer Academy_, Naples
+
+
 
 **The Team**
 -----
