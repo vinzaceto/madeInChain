@@ -12,4 +12,11 @@ Developed for education purpose at Apple Developer Academy, Naples
 
 **Pasquale Mauriello** _Software Developer_ [email](mailTo://paki81@cheapnet.it)
 
+**Vincenzo Ajello** _Software Developer_
+
+**Vittorio Stile** _UI Designer_
+
 **Filippo Fresilli** _UX Designer_ [email](mailTo://filippo.fresilli@gmail.com)
+
+**Ciro Barbato** _Business & Communication Manager_
+
