@@ -6,6 +6,7 @@
 Developed for education purpose at Apple Developer Academy, Naples
 
 ##The Team
-Vincenzo Aceto [Software Developer] mailTo://vinc.aceto@gmail.com
-Pasquale Mauriello [Software Developer] mailTo://paki81@cheapnet.it
-Filippo Fresilli [UX Designer] mailTo://filippo.fresilli@gmail.com 
+
+Vincenzo Aceto "[Software Developer]" mailTo://vinc.aceto@gmail.com
+Pasquale Mauriello "[Software Developer]" mailTo://paki81@cheapnet.it
+Filippo Fresilli "[UX Designer]" mailTo://filippo.fresilli@gmail.com 
