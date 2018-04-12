@@ -4,7 +4,7 @@
 
 Waller is a prototype iOS app developed for educational purpose at _Apple Developer Academy_, Naples
 
-This app allow users to exchange and save Bitcoin in a very easy way. Waller is inspired in design to Wallet, the system iOS app to manage cards, ticket, ect.
+This app allows users to exchange and save Bitcoin in a very easy way. Waller is inspired in design to Wallet, the system iOS app to manage cards, ticket, ect.
 
 This app works on Bitcoin Testnet: this allows users to test the app and the bitcoin protocol in a safe way.
 
