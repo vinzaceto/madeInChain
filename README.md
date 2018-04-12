@@ -12,18 +12,23 @@ This app works on Bitcoin Testnet: this allows users to test the app and the bit
 
 ![alt Waller screenshot](https://github.com/vinzaceto/madeInChain/blob/master/Screen%20Shot%202018-04-12%20at%2009.30.54.png)
 
+
+
 **The Team**
 -----
 
 **Vincenzo Aceto** _Software Developer_ [email](mailTo://vinc.aceto@gmail.com)
 
-**Pasquale Mauriello** _Software Developer_ [email](mailTo://paki81@cheapnet.it)
-
 **Vincenzo Ajello** _Software Developer_
 
-**Vittorio Stile** _UI Designer_
+**Ciro Barbato** _Business & Communication Manager_ 
 
 **Filippo Fresilli** _UX Designer_ [email](mailTo://filippo.fresilli@gmail.com)
 
-**Ciro Barbato** _Business & Communication Manager_ 
+**Pasquale Mauriello** _Software Developer_ [email](mailTo://paki81@cheapnet.it)
+
+**Vittorio Stile** _UI Designer_
+
+
+
 
