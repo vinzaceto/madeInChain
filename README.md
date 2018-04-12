@@ -10,7 +10,7 @@ This app works on Bitcoin Testnet: this allows users to test the app and the bit
 
 **To use it, you need to get some testnet bitcoin from a faucet.**
 
-
+![alt Waller screenshot](https://github.com/vinzaceto/madeInChain/blob/master/Screen%20Shot%202018-04-12%20at%2009.30.54.png)
 
 **The Team**
 -----
