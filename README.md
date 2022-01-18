@@ -27,7 +27,7 @@ This app works on Bitcoin Testnet: this allows users to test the app and the bit
 
 **Pasquale Mauriello** _Software Developer_ [email](mailTo://paki81@cheapnet.it)
 
-**Vittorio Stile** _UI/UX Designer_
+**Vittorio Stile** _UI/UX Designer_ [email](mailTo://vittoriostile@outlook.com)
 
 
 
