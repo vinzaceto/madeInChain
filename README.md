@@ -17,17 +17,17 @@ This app works on Bitcoin Testnet: this allows users to test the app and the bit
 **The Team**
 -----
 
-**Vincenzo Aceto** _Software Developer_ [email](mailTo://vinc.aceto@gmail.com)
+**Vincenzo Aceto** _Software Developer_, [email me](mailTo://vinc.aceto@gmail.com)
 
 **Vincenzo Ajello** _Software Developer_
 
-**Ciro Barbato** _Business & Communication Manager_ 
+**Ciro Barbato** _Business & Communication Manager_
 
-**Filippo Fresilli** _UI/UX Designer_ [email](mailTo://filippo.fresilli@gmail.com)
+**Filippo Fresilli** _UI/UX Designer_, [email me](mailTo://filippo.fresilli@gmail.com)
 
-**Pasquale Mauriello** _Software Developer_ [email](mailTo://paki81@cheapnet.it)
+**Pasquale Mauriello** _Software Developer_, [email me](mailTo://paki81@cheapnet.it)
 
-**Vittorio Stile** _Business & UI/UX Designer_ [LinkedIn](https://www.linkedin.com/in/vittoriostile/) [Behance](https://www.behance.net/vittoriostile)
+**Vittorio Stile** _Business & UI/UX Designer_, go to my [LinkedIn profile](https://www.linkedin.com/in/vittoriostile/) or see my [Behance portfolio](https://www.behance.net/vittoriostile)
 
 
 
