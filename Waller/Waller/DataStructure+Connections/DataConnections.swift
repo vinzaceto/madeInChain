@@ -36,7 +36,7 @@ class DataConnections {
                 {
                     completion?(.failure(responseError!))
                     
-                    task = nil
+                    //task = nil
                     session = nil
                     config = nil
                     request = nil

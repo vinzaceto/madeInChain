@@ -247,7 +247,8 @@ public extension RNCryptor {
             var derivedKey = Data(count: keySize)!
             let passwordData = password.data(using: String.Encoding.utf8)!
 
-            let result: CCCryptorStatus = derivedKey.withUnsafeMutableBytes { (derivedKeyPtr : UnsafeMutablePointer<UInt8>) in
+            var tmp = derivedKey;
+            let result: CCCryptorStatus = tmp.withUnsafeMutableBytes { (derivedKeyPtr : UnsafeMutablePointer<UInt8>) in
                 passwordData.withUnsafeBytes { (passwordPtr : UnsafePointer<Int8>) in
                     salt.withUnsafeBytes { (saltPtr : UnsafePointer<UInt8>) in
 

@@ -100,7 +100,6 @@
 		663065A4202FDF8F00DBD516 /* DefaultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6630659D202FDF8F00DBD516 /* DefaultTableView.swift */; };
 		663065A5202FDF8F00DBD516 /* Dialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6630659E202FDF8F00DBD516 /* Dialog.storyboard */; };
 		663065A6202FDF8F00DBD516 /* CustomPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6630659F202FDF8F00DBD516 /* CustomPresentAnimationController.swift */; };
-		663065A7202FDF8F00DBD516 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 663065A0202FDF8F00DBD516 /* Info.plist */; };
 		664263F6202E5AB00010828E /* MnemonicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F5202E5AB00010828E /* MnemonicView.swift */; };
 		664263F8202E64350010828E /* ImportUsingQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F7202E64350010828E /* ImportUsingQRCodeView.swift */; };
 		664263FC202E709A0010828E /* UIColor+EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664263F9202E70990010828E /* UIColor+EMAlertController.swift */; };
@@ -722,8 +721,6 @@
 				61294A652024C7D0009F9886 /* Sources */,
 				61294A662024C7D0009F9886 /* Frameworks */,
 				61294A672024C7D0009F9886 /* Resources */,
-				72CAA85F603110A4FB1B8188 /* [CP] Embed Pods Frameworks */,
-				27115F4AF669680A54C7D8B0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -792,7 +789,6 @@
 				7443591C202DC1A700CD1982 /* Rubik-Light.ttf in Resources */,
 				663065A5202FDF8F00DBD516 /* Dialog.storyboard in Resources */,
 				7443591E202DC1A700CD1982 /* Rubik-BlackItalic.ttf in Resources */,
-				663065A7202FDF8F00DBD516 /* Info.plist in Resources */,
 				7443591D202DC1A700CD1982 /* Rubik-BoldItalic.ttf in Resources */,
 				74435918202DC1A700CD1982 /* Rubik-Italic.ttf in Resources */,
 				74435920202DC1A700CD1982 /* Rubik-MediumItalic.ttf in Resources */,
@@ -805,21 +801,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27115F4AF669680A54C7D8B0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Waller/Pods-Waller-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5EB4C71A9392D1F5EBEBEFC1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -836,21 +817,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		72CAA85F603110A4FB1B8188 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Waller/Pods-Waller-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1055,7 +1021,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1107,7 +1073,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1123,7 +1089,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EZ8Q48MF9W;
+				DEVELOPMENT_TEAM = 88F98V79M6;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1145,7 +1111,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EZ8Q48MF9W;
+				DEVELOPMENT_TEAM = 88F98V79M6;
 				INFOPLIST_FILE = Waller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1168,7 +1134,7 @@
 				61294A7D2024C7D0009F9886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		61294A7E2024C7D0009F9886 /* Build configuration list for PBXNativeTarget "Waller" */ = {
 			isa = XCConfigurationList;
@@ -1177,7 +1143,7 @@
 				61294A802024C7D0009F9886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
