@@ -51,7 +51,7 @@ class BitcoinTransaction: NSObject
                 let totalAmount:BTCAmount = amount + feeAmount
                 let dustThreshold:BTCAmount = 5460
                 
-                // ordering transactions
+                // ordering transactions in ordine ascendente di value
                 unspentTransactions = unspentTransactions.sortedArray
                 {
                     (a:Any, b:Any) -> ComparisonResult in
@@ -62,7 +62,9 @@ class BitcoinTransaction: NSObject
                     return ComparisonResult.orderedDescending
                 } as NSArray
                 
+                // 3. If not, find a bigger one which covers the amount + reasonably big change (to avoid dust), but as small as possible.
                 var unspentTransactionOuts:[BTCTransactionOutput] = []
+
                 for u in unspentTransactions
                 {
                     let unspentTransaction = u as! BTCTransactionOutput
@@ -73,6 +75,10 @@ class BitcoinTransaction: NSObject
                     }
                 }
                 
+                
+                
+                
+                //unspentTransactionOuts array di tutti gli utx cui valore > (totalAmount + dustThreshold)
                 if unspentTransactionOuts.count <= 0
                 {
                     completionHandler(false,"Amount is not enough",nil)
@@ -84,7 +90,7 @@ class BitcoinTransaction: NSObject
                 // Create a new transaction
                 let tx = BTCTransaction.init()
                 var spentCoins:BTCAmount = 0
-                
+                // per ogni utx crea un elemento input e lo aggiunge alla transaction
                 for unspentOutput in unspentTransactionOuts
                 {
                     let input = BTCTransactionInput.init()
@@ -106,6 +112,7 @@ class BitcoinTransaction: NSObject
                 tx.addOutput(paymentOutput)
                 tx.addOutput(changeOutput)
                 
+                //
                 let unsigned = UnsignedBTCTransaction.init(tx: tx, unspentOutputs: unspentTransactionOuts)
                 completionHandler(true,"",unsigned)
 
@@ -119,9 +126,12 @@ class BitcoinTransaction: NSObject
             }
         }
     }
-    
+    //validare una tranazione
     func signTransaction(unsignedTX:UnsignedBTCTransaction,key:BTCKey, completionHandler: @escaping (Bool,String?,BTCTransaction?) -> Void)
     {
+        
+        // per ogni unspentOutputs (quelli calcolati con il punto 3)
+        
         for (index, _) in (0...unsignedTX.unspentOutputs.count-1).enumerated()
         {
             print(index)
@@ -155,6 +165,7 @@ class BitcoinTransaction: NSObject
             
             print("computed hash \(hash)")
             
+            //s
             guard let signatureForScript = key.signature(forHash: hash, hashType: hashtype) else
             {
                 completionHandler(false,"unable to build signature for hash",nil)

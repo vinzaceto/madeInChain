@@ -36,6 +36,8 @@ class SignView: UIView
     override init(frame: CGRect)
     {
         super.init(frame: frame)
+        debugPrint("XXX: Here ")
+
         
         backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         layer.cornerRadius = 6
